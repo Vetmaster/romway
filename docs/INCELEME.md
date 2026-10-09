@@ -28,6 +28,6 @@ Bu çalışma sırasında bu dosyaya silme/yazma işlemi yapılmadı veya dosya 
 - İlk yönetici oluşturma, açık kaydı kapatma, origin/CORS, oturum saklama/çıkış ve hata kurtarma kılavuzu yok.
 
 ## Yapılan ve yapılmayan kontroller
-Yapıldı: yerel dosya/Git incelemesi, uzak ref ve özel depo kontrolü, plan/taslak okuması, font kaynak doğrulaması. Beş hazırlanan Markdown belgesi için yerel bağlantı/boş dosya kontrolleri ve git diff --check geçti. Son envantere göre tekrar kontrol edilecektir.
+Yapıldı: yerel dosya/Git incelemesi, uzak ref ve özel depo kontrolü, plan/taslak okuması, font kaynak doğrulaması. Beş hazırlanan Markdown belgesinin yerel bağlantı/boş dosya kontrolleri geçti. Yedi MD dosyasında bilinen anahtar/token önekleri için sınırlı sabit-değer kontrolü geçti; kapsamlı secret taraması değildir. Standart staged diff kontrolü özgün Sasa-F planındaki üç Markdown satır sonu boşluğunu bildirdi. Kaynak belge değiştirilmedi; satır sonu boşlukları hariç tutulan diff kontrolü geçti.
 
 Yapılmadı: TypeScript/Deno çalıştırma, Supabase/Auth/RLS entegrasyonu, rol/lokasyon testi, arayüz/mobil/dil testi, migration, sunucu veya web dağıtımı. Planlarda test kutuları tamamlanmış olarak işaretlenmedi.
