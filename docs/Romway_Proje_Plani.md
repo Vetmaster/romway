@@ -12,12 +12,12 @@ Yalnız telefon/tablet/bilgisayara uyumlu web uygulaması. İlk sürüm çevrimi
 | --- | --- |
 | Web | Sade HTML/CSS ve modüler JavaScript |
 | Kaynak kod | Özel GitHub deposu: Vetmaster/romway |
-| Statik yayın | Cloudflare Pages; yalnız web çıktı dizini yayınlanır |
+| Statik yayın | GitHub Pages; yalnız web çıktı dizini gh-pages dalından yayınlanır |
 | Veri/kimlik doğrulama | Supabase PostgreSQL ve Auth |
 | Güvenilir sunucu işlemleri | Supabase Edge Functions ve güvenli PostgreSQL fonksiyonları |
 | Diller | Türkçe ve Romence; metinler ayrı dil dosyalarında |
 
-Next.js, Auth.js, Vercel, GitHub Pages yayını ve Cloudflare Workers eklenmez. Önceki hosting adayları geçersizdir. romway.ro alt alan adı ve ürün markası henüz seçilmedi; DNS veya servis kurulumu yapılmış sayılmaz.
+Next.js, Auth.js, Vercel ve Cloudflare Workers eklenmez. 10 Ekim 2026 kullanıcı kararı GitHub Pages yönünde güncellendi; Cloudflare kurulmayacak. romway.ro alt alan adı ve ürün markası henüz seçilmedi; DNS veya servis kurulumu yapılmış sayılmaz.
 
 ## Personel ve güvenlik
 - Giriş yalnız sicil numarası ve şifreyle; kullanıcıdan e-posta/telefon istenmez.
@@ -65,9 +65,14 @@ Küçük dal/PR'lar, sentetik verili ayrı test ortamı, ilgili işlev ve doğru
 Mavi #065788, kırmızı #DB202D, zeytin #697000, sarı #FFE500 ve beyaz. Kontrast ve okunabilirlik korunur. Sasa-F yerel kaynaklarından gövde Roboto (400/500/700/900), marka Anta doğrulandı. Sasa-F'ün futbol okulu, ödeme ve üyelik akışları taşınmaz.
 
 ## İlk geliştirme aşaması ve açık işler
-İlk aşama yalnız sicil/şifre giriş, zorunlu şifre değişimi, TR/RO dil seçimi ve sade karşılama ekranıdır. Yanlışlıkla eklenen Auth dosyası proje referansı değildir. Çalışır giriş altyapısı bulunmuyor; giriş kodu plan gereksinimlerine göre hazırlanacak. Personel yönetimi, stok, transfer, QR ve yakıt sonraki küçük aşamalardır.
+İlk aşama yalnız sicil/şifre giriş, zorunlu şifre değişimi, TR/RO dil seçimi ve sade karşılama ekranıdır. Yanlışlıkla eklenen Auth dosyası proje referansı değildir. Plan gereksinimlerine göre ilk yerel giriş prototipi hazırlandı; gerçek Supabase entegrasyonu henüz doğrulanmadı; statik Pages önizlemesi ayrı olarak yayınlanır. Personel yönetimi, stok, transfer, QR ve yakıt sonraki küçük aşamalardır.
 
-Açık işler: Güvenli giriş kodunun hazırlanması, Auth şeması/RLS ve bootstrap, test ortamı, oturum süreleri, kısmi hesap işlemlerinin kurtarılması, Excel örnekleri/başlangıç stokları, etiket/baskı, performans ölçütleri, yedek hedefleri ve pilot cihazları. İlerleme kanıtları `INCELEME.md`, küçük aşamalar `TODO.md` içindedir.
+Açık işler: Gerçek izole Supabase/Auth/Edge entegrasyonu, bootstrap doğrulaması, aynı-site cookie adres kararı, oturum süreleri, kısmi hesap işlemlerinin kurtarılması, Excel örnekleri/başlangıç stokları, etiket/baskı, performans ölçütleri, yedek hedefleri ve pilot cihazları. İlerleme kanıtları `INCELEME.md`, küçük aşamalar `TODO.md` içindedir.
 
 ## Sasa-F planından uyarlanan düzen
-Modüler auth/yetki/ortak arayüz ayrımı, kodla aynı PR içinde migration dosyaları, ayrı test ortamı, doğrudan RLS/rol regresyon testleri, güvenlik başlıkları, bağımlılık sürüm kontrolü, secret taraması, yayın sonrası temel akış kontrolü ve yedek geri yükleme dokümantasyonu alınır. Bunların Romway deposunda kurulmuş/çalıştırılmış olduğu varsayılmaz. CodeQL/secret scanning kullanılabilirliği özel depo planına göre doğrulanacak; mevcut bağımlılığa uygun Dependabot yapılandırması hazırlanacak. OWASP ZAP çalışan deneme web uygulaması hazır olunca değerlendirilir. Android/TWA, Firebase, okul üyeliği, ödeme, okul izolasyonu ve GitHub Pages yayını taşınmaz.
+Modüler auth/yetki/ortak arayüz ayrımı, kodla aynı PR içinde migration dosyaları, ayrı test ortamı, doğrudan RLS/rol regresyon testleri, güvenlik başlıkları, bağımlılık sürüm kontrolü, secret taraması, yayın sonrası temel akış kontrolü ve yedek geri yükleme dokümantasyonu alınır. Bunların Romway deposunda kurulmuş/çalıştırılmış olduğu varsayılmaz. CodeQL/secret scanning kullanılabilirliği mevcut açık depo ayarlarına göre doğrulanacak; mevcut bağımlılığa uygun Dependabot yapılandırması hazırlanacak. OWASP ZAP çalışan deneme web uygulaması hazır olunca değerlendirilir. Android/TWA, Firebase, okul üyeliği, ödeme, okul izolasyonu akışları taşınmaz; GitHub Pages tercihi kullanıcının sonraki kararıdır.
+
+İlk aşamanın HttpOnly cookie oturum tasarımı, test kanıtları ve canlıya geçiş sınırları `AUTH.md` içinde kayıtlıdır. Auth tokenları JavaScript’e aktarılmaz; üretim oturum süreleri ve web/API alan adı kararı henüz açık olarak korunur.
+
+## Yayın kararı — 10 Ekim 2026
+Kullanıcı Sasa-F gibi GitHub Pages üzerinden devam etmeyi açıkça seçti. Bu karar eski Cloudflare tercihini günceller. İlk yayın yalnız bağlantısız statik arayüz önizlemesidir. Kullanıcının sonraki onayıyla repo şimdilik herkese açıldı; yalnız web dosyaları ayrı gh-pages dalına çıkarılır. PR otomatik birleştirilmez. Gerçek girişin cookie/domain uyumu ve Pages kullanım uyarıları ayrıca doğrulanacak; bu yayın Supabase veya girişin tamamlandığı anlamına gelmez.
