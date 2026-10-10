@@ -1,0 +1,73 @@
+# Romway — ana kapsam ve kesin kararlar
+
+Güncelleme: 10 Ekim 2026. Bu belge mevcut uygulamanın tamamlandığı anlamına gelmez. Kök dizindeki `Romway_Proje_Plani.md` özgün kaynak olarak korunmuştur. Kullanıcının bu sohbet içindeki kesin kararları, kaynak plandaki eski öneri ve açık kararları günceller. SASA-F_PROJECT_PLAN.md bütünü okundu; geliştirme, güvenlik, test ve dokümantasyon ilkeleri Romway kapsamına uyarlandı.
+
+## Amaç ve sınırlar
+Türkiye ve Romanya depoları arasında ağırlıklı araç yedek parçalarının satın alınması, sevkiyatı, teslimi, departmana aktarılması ve araç/makinede kullanımı izlenir. İlk kurulum tek Romway kurumudur. Şirket adı, logo ve lokasyonlar yapılandırılabilir; ortak çok şirketli platform kapsam dışıdır.
+
+Yalnız telefon/tablet/bilgisayara uyumlu web uygulaması. İlk sürüm çevrimiçi; QR telefon kamerasıyla okunur. Canlı GPS, bildirim merkezi, web push ve çevrimdışı stok işlemleri kapsam dışıdır.
+
+## Kesin teknik seçimler
+| Katman | Karar |
+| --- | --- |
+| Web | Sade HTML/CSS ve modüler JavaScript |
+| Kaynak kod | Özel GitHub deposu: Vetmaster/romway |
+| Statik yayın | Cloudflare Pages; yalnız web çıktı dizini yayınlanır |
+| Veri/kimlik doğrulama | Supabase PostgreSQL ve Auth |
+| Güvenilir sunucu işlemleri | Supabase Edge Functions ve güvenli PostgreSQL fonksiyonları |
+| Diller | Türkçe ve Romence; metinler ayrı dil dosyalarında |
+
+Next.js, Auth.js, Vercel, GitHub Pages yayını ve Cloudflare Workers eklenmez. Önceki hosting adayları geçersizdir. romway.ro alt alan adı ve ürün markası henüz seçilmedi; DNS veya servis kurulumu yapılmış sayılmaz.
+
+## Personel ve güvenlik
+- Giriş yalnız sicil numarası ve şifreyle; kullanıcıdan e-posta/telefon istenmez.
+- Sunucu her personel için posta kutusu olmayan benzersiz e-posta biçimli iç Auth kimliği üretir. Edge Function sicili bu kimliğe eşleyip Supabase Auth ile şifreyi doğrular. Sicil değişse bile personel/Auth kimliği korunur. İç kimlik secret değildir; kullanıcı akışında gösterilmez.
+- Admin hesap açarken otomatik, güvenli rastgele geçici şifre oluşturur; ilk girişte şifre değişimi zorunludur. Posta ile kurtarma yerine yetkili admin sıfırlaması kullanılır. Geçici şifreyle stok/finans erişimi sunucuda engellenir.
+- Roller: `super_admin`, `admin`, `purchasing`, `receiver`. Merkezi admin yönetim erişimi; operasyon personeli atanmış lokasyonlarda çalışır. Fiyat erişimi yalnız super_admin, admin ve purchasing rollerindedir.
+- Rol/lokasyon/kayıt/alan izinleri sunucuda ve veritabanında uygulanır; menü gizleme yetki kontrolü değildir. Receiver'a finansal veri hiçbir erişim yolunda verilmez.
+- Şifre/token/service_role anahtarı kaynak kod, tarayıcı yapılandırması ve günlüklerde tutulmaz. Kullanıcıdan token kopyalaması istenmez. Oturum uygulama tarafından yönetilir.
+- Açık kayıt kapalıdır. Giriş denemeleri sınırlandırılır. Kapalı hesap ve eski oturumlar reddedilir. Oturum süreleri ve ilk yönetici kurulum yöntemi test öncesi belgelenecek.
+
+## Malzeme, alım ve stok
+- Tedarikçi Excel stok kartları kontrollü önizleme, doğrulama ve mükerrer kontrolüyle içe alınır. Ürün kartı aktarımı fiziksel stok artırmaz; başlangıç stokları ayrı işlemdir.
+- Takip türü ürün kartında parti/miktar veya tekil seri olarak seçilir. Farklı alım partileri farklı kimlik, maliyet ve garanti geçmişi taşır.
+- Malzemelere ve araç/makinelere ayrı QR kimliği verilir. Genel ürün/raf QR'ı parti seçimine yardımcı olur; sevkiyat/paket QR ayrıntıları sonraki aşamada belirlenir.
+- Temel birimler adet/litre/kg/metre gibi tanımlanır. Kutu/paket dönüşümü açık tutulur; stok ve temel birim maliyeti dönüşümle hesaplanır. QR okutma bütün paketin çıkışı değildir; miktar onaylanır.
+- Garanti bitişi, son kullanma tarihi, stok miktarı ve hareket geçmişi tutulur. Düşük stok ve fiyat değişimleri ekranda izlenir; otomatik bildirim gönderilmez.
+
+## Transfer, teslim ve kullanım
+1. İlk satın alan depo alış fiyatını ve alım partisini kaydeder.
+2. Purchasing yetkili kaynak lokasyondan admin onayı olmadan sevkiyat gönderir; kişi/zaman kayıtlıdır.
+3. Malzeme kaynak depo → yolda → hedef depo şeklinde izlenir. Depolar arası hareket satış değildir; transferdir.
+4. Hedef lokasyondaki yetkili personel QR okuyup miktarı doğrulayarak teslim alır. Sağlam kabul kullanılabilir stoğa girer; hasarlı miktar ayrı tutulur; eksik miktar teslim edilmiş sayılmaz. Uyuşmazlık çözülmeden sorunsuz teslim olarak kapatılmaz.
+5. Departmana teslim ve araç/makinede fiilî kullanım ayrı hareketler olarak izlenir. Miktar, teslim alan/kullanan, departman, araç/makine, işlem yapan ve zaman kaydedilir. Receiver atanmış lokasyonda admin onayı beklemez.
+6. Kullanılmamış sağlam iade aynı parti/tekil kimlik ve maliyetle kullanılabilir stoğa döner. Kullanılmış/arızalı parça ayrı durumdadır; admin kararı olmadan kullanılabilir yapılmaz. İade önceki hareketle ilişkilidir.
+7. Tamamlanmış yanlış kayıt/stok farkı düzeltmesi yalnız admin/super_admin tarafından gerekçeyle yapılır; eski kayıt, kişi ve zaman korunur.
+
+## Maliyet
+- Para birimi EUR. Alış fiyatı vergi dahil; net tutar, oran ve vergi ayrı gösterilir. Sabit ülke vergi oranı varsayılmaz.
+- Taşıma gideri alış maliyetine eklenmez. Alışın paket veya temel birim fiyatı olduğu açık belirtilir.
+- Belirli parti/seri okutulursa o kaydın maliyeti kullanılır. Genel ürün QR'ında uygun mevcut partiler için FIFO önerilir; fiziksel seçilen parti doğrulanır.
+- Transfer ve sağlam iadede orijinal maliyet korunur. Yeni fiyat eski partinin fiyatını değiştirmez.
+- Ondalık hassasiyet/yuvarlama kuralları tanımlanacak. Basit maliyet hesapları ve raporlama yapılır; kapsamlı muhasebe sistemi bu aşamada kurulmaz.
+
+## Yakıt ve raporlar
+Şantiye tankları, tank girişleri, tanktan araca dolum ve istasyondan doğrudan alımlar izlenir. Litre, fiyat, toplam, tarih, personel ve uygun kilometre/çalışma saati bilgisi tutulur. Tank çıkışı stoktan düşer. Tam/kısmi dolum, litre/100 km ve litre/çalışma saati hesaplarının ölçüm kuralları ayrıca netleştirilecek.
+
+Ürün, depo, departman, kişi, araç/makine ve dönem bazında stok/hareket/maliyet raporları hazırlanır. Garanti ve tarih takibi korunur; eş değer ürün onayı ve fiyat uyarı eşiği henüz açık karardır.
+
+## Veri bütünlüğü ve yayın
+Stok ve maliyet güncellemeleri atomiktir. Tekrar okutma/çift tıklama/ağ tekrarı aynı hareketi çoğaltmaz. Eşzamanlı çıkışlarda fazla stok ve aynı seriyle iki transfer reddedilir. QR yalnız kimlik referansı taşır; yetki/maliyet/gizli bilgi içermez.
+
+Küçük dal/PR'lar, sentetik verili ayrı test ortamı, ilgili işlev ve doğrudan API/RLS testleri kullanılır. Mevcut Supabase'e migration/dağıtım yapılmaz. Otomatik PR birleştirme yoktur. Canlı öncesi ayrı ortamda yedek geri yükleme ve veri tutarlılığı denenir; kod geri dönüşü veri geri dönüşü değildir.
+
+## Tasarım
+Mavi #065788, kırmızı #DB202D, zeytin #697000, sarı #FFE500 ve beyaz. Kontrast ve okunabilirlik korunur. Sasa-F yerel kaynaklarından gövde Roboto (400/500/700/900), marka Anta doğrulandı. Sasa-F'ün futbol okulu, ödeme ve üyelik akışları taşınmaz.
+
+## İlk geliştirme aşaması ve açık işler
+İlk aşama yalnız sicil/şifre giriş, zorunlu şifre değişimi, TR/RO dil seçimi ve sade karşılama ekranıdır. Yanlışlıkla eklenen Auth dosyası proje referansı değildir. Çalışır giriş altyapısı bulunmuyor; giriş kodu plan gereksinimlerine göre hazırlanacak. Personel yönetimi, stok, transfer, QR ve yakıt sonraki küçük aşamalardır.
+
+Açık işler: Güvenli giriş kodunun hazırlanması, Auth şeması/RLS ve bootstrap, test ortamı, oturum süreleri, kısmi hesap işlemlerinin kurtarılması, Excel örnekleri/başlangıç stokları, etiket/baskı, performans ölçütleri, yedek hedefleri ve pilot cihazları. İlerleme kanıtları `INCELEME.md`, küçük aşamalar `TODO.md` içindedir.
+
+## Sasa-F planından uyarlanan düzen
+Modüler auth/yetki/ortak arayüz ayrımı, kodla aynı PR içinde migration dosyaları, ayrı test ortamı, doğrudan RLS/rol regresyon testleri, güvenlik başlıkları, bağımlılık sürüm kontrolü, secret taraması, yayın sonrası temel akış kontrolü ve yedek geri yükleme dokümantasyonu alınır. Bunların Romway deposunda kurulmuş/çalıştırılmış olduğu varsayılmaz. CodeQL/secret scanning kullanılabilirliği özel depo planına göre doğrulanacak; mevcut bağımlılığa uygun Dependabot yapılandırması hazırlanacak. OWASP ZAP çalışan deneme web uygulaması hazır olunca değerlendirilir. Android/TWA, Firebase, okul üyeliği, ödeme, okul izolasyonu ve GitHub Pages yayını taşınmaz.
