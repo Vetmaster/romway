@@ -16,4 +16,6 @@ const server = createServer(async (req,res) => {
     res.end(req.method === 'HEAD' ? undefined : data);
   } catch { res.writeHead(404); res.end('Not found'); }
 });
-server.listen(8000,'127.0.0.1',() => console.log('Romway preview: http://localhost:8000 (web/ only)'));
+const host = process.env.ROMWAY_PREVIEW_HOST ?? '127.0.0.1';
+if (!/^(127\.0\.0\.1|10\.[0-9.]+|192\.168\.[0-9.]+|172\.(1[6-9]|2[0-9]|3[01])\.[0-9.]+)$/.test(host)) throw new Error('Preview host must be loopback or a private LAN address');
+server.listen(8000,host,() => console.log(`Romway preview: http://${host === '127.0.0.1' ? 'localhost' : host}:8000 (web/ only)`));

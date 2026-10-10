@@ -35,3 +35,5 @@ Supabase migration ve function kodu **mevcut projeye uygulanmadı**. `supabase/c
 Tipografi Sasa-F kaynaklarından doğrulandı: gövde Roboto (400/500/700/900), marka Anta. Palet: mavi #065788, kırmızı #DB202D, zeytin #697000, sarı #FFE500 ve beyaz.
 
 GitHub CI şablonu `docs/ci/checks.yml.example` içinde hazır. Mevcut GitHub bağlantısının workflow scope izni yok; şablon henüz aktif bir workflow değildir. Yerel kontroller çalıştırıldı.
+
+Telefon önizlemesi için aynı Wi-Fi ağında Mac’in özel ağ IP adresiyle `ROMWAY_PREVIEW_HOST=192.168.x.x npm run dev` başlatılabilir. Telefonda `http://192.168.x.x:8000` açılır. Varsayılan sunucu yalnız localhost kullanır; LAN modu yalnız web/ dosyalarını sunar.
