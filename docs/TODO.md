@@ -33,3 +33,10 @@
 8. Raporlar/tarih/düşük stok ekranları, yedek geri yükleme ve tek depo pilotu.
 
 Stok/finans/lokasyon yetkileri, gerçek Supabase kurulumu veya canlı dağıtım tamamlanmış değildir. Bildirimler ve çevrimdışı stok kapsam dışıdır.
+
+## Statik önizleme yayını — 10 Ekim 2026
+
+- [x] Kullanıcı onayıyla açık GitHub deposu ve gh-pages yayını.
+- [x] HTTPS canlı sayfa, logo, TR arayüzü ve gerçek girişin kapalı olması doğrulandı.
+- [ ] Gerçek Supabase girişini ayrı test ortamında doğrula; canlı cookie/domain uyumunu çöz.
+- [ ] Repo görünürlüğünü ve gerçek kullanım için hosting/güvenlik kararını yeniden değerlendir.

@@ -32,3 +32,7 @@ Yapılmadı: TypeScript/Deno çalıştırma, Supabase/Auth/RLS entegrasyonu, rol
 Ayrıntılı mimari, yerel komutlar, oturum varsayımları ve kurtarma sınırları `AUTH.md` içindedir. Lokasyon ve fiyat verileri/işlemleri henüz yok; bunların sunucu izinleri sonraki aşamada ayrıca test edilecek.
 
 GitHub, mevcut OAuth bağlantısında workflow scope olmadığı için `.github/workflows/checks.yml` içeren ilk push girişimini reddetti. Yetki genişletilmedi; aynı dosya `docs/ci/checks.yml.example` olarak korundu. Otomatik CI kurulmuş/çalışmış sayılmaz; yerel test sonuçları yukarıdadır.
+
+## 10 Ekim 2026 — açık depo ve statik yayın
+
+Kullanıcı onayıyla Vetmaster/romway public yapıldı. Önceki özel depo/Cloudflare kayıtları tarihsel inceleme sonuçlarıdır; güncel hosting GitHub Pages. Kaynak geçmişindeki 12 commit/60 benzersiz blob üzerinde bilinen token/JWT/özel anahtar önekleri tarandı, bulgu yok; bu kapsamlı güvenlik denetimi değildir. gh-pages yalnız web ağacını içerir. https://vetmaster.github.io/romway/ canlı olarak doğrulandı; Pages built, HTTPS, logo ve devre dışı giriş kontrol edildi. Supabase değişikliği ve PR merge yapılmadı.
