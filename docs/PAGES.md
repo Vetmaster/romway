@@ -11,3 +11,7 @@ Endpoint boş; gerçek giriş devre dışı. Pages ile uzak Supabase cookie uyum
 Yeni sürüm: kontroller, commit ve PR güncellemesinden sonra güvenilir terminalde `node scripts/publish-pages.mjs`. Betik commit edilmiş web/ ağacını ayrı gh-pages dalına gönderir; dosya silmez, ana dalı veya PR’ı birleştirmez, force push kullanmaz. Yalnız kullanıcı tarafından yayın yetkilendirilmişken çalıştırılır.
 
 Resmi kaynaklar: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site ve https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits
+
+## Yayın sonucu (10 Ekim 2026)
+
+Web dosyaları gh-pages dalına gönderildi. Pages etkinleştirme isteği HTTP 422 ile reddedildi: mevcut hesap planı bu özel depoda GitHub Pages desteklemiyor. Site henüz yayınlanmadı. Depo özel olarak korundu; ücretli plan veya görünürlük değişikliği yapılmadı.
