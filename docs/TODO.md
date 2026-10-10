@@ -1,44 +1,35 @@
 # Küçük aşamalar ve durum
 
-## Tamamlanan / doğrulanan
-- [x] Özel GitHub deposu oluşturuldu; yerel klasör ve geliştirme dalı bağlandı.
-- [x] İki kaynak plan okundu; kaynak MD dosyaları korundu.
-- [x] Kesin kapsam, AGENTS ve README hazırlandı.
-- [x] Sasa-F gerçek fontları kaynak koddan doğrulandı.
-- [x] Eksik altyapı kaydedildi; yanlışlıkla eklenen Auth dosyası referanslardan çıkarıldı.
+## Tamamlanan / kanıtlanan
+- [x] Özel GitHub deposu, yerel proje klasörü, belge dalı ve taslak PR #1.
+- [x] İki kaynak plan okundu; Romway ana referans, uygun Sasa-F kuralları uyarlandı.
+- [x] Kapsam/AGENTS/README; Sasa-F gerçek Roboto/Anta fontlarının kaynak doğrulaması.
+- [x] Yanlış yüklenen Auth dosyası referanslardan çıkarıldı; yeni kod bu dosyadan alınmadı.
+- [x] Modüler web prototipi: sicil/şifre, zorunlu değişim, karşılama/çıkış ve ayrı TR/RO dil kaynakları.
+- [x] Sunucu işleyicisi, Supabase REST/Auth adaptörü, HttpOnly oturum, ilk şifre değişimi ve fail-closed işlem kilidi.
+- [x] Uygulanmamış yeni şema/RLS/service-only RPC migration dosyası.
+- [x] Yalnız yeni localhost test projesi için ilk yönetici oluşturma betiği; güvenli rastgele geçici şifre repo dışındaki 0600 dosyaya yazılır.
+- [x] JS syntax/web referans/sınırlı secret kontrolleri; 22 Node/PostgreSQL testi geçti.
+- [x] Mobil/masaüstü, TR/RO, hatalı giriş, zorunlu değişim, XSS-safe profil, çıkış hatası, bağlantı tekrar deneme ve gerçek HTTP HttpOnly cookie/CORS tarayıcı testleri; API/gerçek Auth sonuçları testlerde simüle edilir.
 
-## Doğrulanması gereken
-- [x] SASA-F_PROJECT_PLAN.md okundu; uygun geliştirme/test/dokümantasyon kuralları işlendi.
-- [ ] Giriş kodunun plan gereksinimlerine göre hazırlanması.
-- [ ] Mevcut Supabase projesi varsa yalnız okuma ile kaynak/şema/ayar envanterini çıkar; dağıtım yapma.
-- [ ] Hazırlanacak giriş altyapısının şema/RLS/RPC ve kısmi hata/oturum iptali davranışını test ortamında doğrula.
-- [ ] Geçici şifre süresi, oturum süresi, admin bootstrap ve sıfırlama/hata kurtarma kurallarını kesinleştir.
+## Doğrulanması gereken — ilk aşama henüz canlıya hazır değil
+- [ ] Yeni yerel Supabase/Docker ortamında migration ve Deno Edge gateway'i çalıştır; mevcut projeye uygulama.
+- [ ] Gerçek Supabase Auth ile hesap açma, signin/logout ve şifre değişimini doğrula. PGlite auth.users/roller fixture'ı gerçek Auth değildir.
+- [ ] Operatör bootstrap betiğinin gerçek yerel API ile kısmi hata/şifre dosyası/hesap aktivasyonu testleri.
+- [ ] Gerçek Auth JWT ile doğrudan tablo/RPC reddi, cookie, hesap kapatma ve eski oturum entegrasyonu.
+- [ ] ROMWAY_LOCAL_DEV, signup kapatma ve APP_ORIGIN/HTTPS/CSP ayarlarını gerçek runtime'da kontrol et.
+- [ ] Cookie akışı için aynı-site web/API adresi, domain erişimi ve maliyet kararını netleştir; hiçbir ücretli kurulum yapılmadı.
+- [ ] 8 saat oturum / 24 saat geçici şifre / deneme limitleri üretim politikası olarak kullanıcıyla netleşsin.
+- [ ] Kısmi şifre değişimi için operatör kurtarma, audit/izleme ve saklama politikası; güvenilir ağ/IP limitini tasarla.
+- [ ] GitHub bağlantısında workflow yetkisi veya kullanıcı tarafından kurulum sonrası docs/ci/checks.yml.example şablonunu etkinleştir ve PR kontrollerini çalıştır; PR #1 ve bağlı geliştirme PR'ını incele. Otomatik merge yok.
 
-## Yapılacaklar — ilk geliştirme aşaması
-### 1A — Sunucu güvenlik tasarımı ve yerel prototip
-- [ ] Şema, rol/lokasyon/fiyat politikaları ve deneme sınırı için migration dosyaları hazırla; mevcut Supabase'e uygulama.
-- [ ] Plan gereksinimlerine göre modüler güvenli sunucu kodu hazırla; yeni şifre geçici şifreden farklı olsun; veri koruyan telafi ve eşzamanlı işlem düzeni hazırla.
-- [ ] Sicil→iç Auth kimliği, kapalı hesap, yanlış şifre, sınır, geçici süre ve şifre değişimini sentetik test ortamında doğrula.
-- [ ] Geçici şifre/iptal edilmiş oturumla doğrudan API/RLS erişiminin reddini test et.
-
-### 1B — Sade web arayüzü
-- [ ] Ayrı statik yayın dizini, HTML/CSS ve modüler JavaScript oluştur.
-- [ ] Ayrı TR/RO metin dosyaları ve dil seçimi; giriş, şifre değişimi, sade karşılama ve çıkış ekranları.
-- [ ] Oturumu uygulama yönetsin; elle token girişi veya sahte başarılı giriş ekleme.
-- [ ] Ağ kesintisi, bekleme/hata durumları ve boş yapılandırma davranışları; klavye/mobil/kontrast kontrolü.
-
-### 1C — Kabul ve inceleme
-- [ ] Giriş→zorunlu değişim→yeniden giriş→karşılama→çıkış; TR/RO ve telefon/masaüstü testi.
-- [ ] İlgili otomatik testler, güvenlik ve secret kontrolleri; kurulum kılavuzunu güncelle.
-- [ ] Küçük PR hazırla; otomatik birleştirme yok. Canlıya dağıtım ayrı kullanıcı yetkilendirmesi gerektirir.
-
-## Sonraki aşamalar — ilk aşamaya dahil değil
-2. Personel yönetimi, lokasyonlar ve araç/makine tanımları; rol sınırları ve güvenli geçici şifre teslimi.
-3. Ürün kartları, birimler, kontrollü Excel önizleme; başlangıç stoğu ayrı akış.
-4. Alım, parti/seri, QR kimlikleri, EUR vergi/net/toplam ve maliyet testleri.
-5. Transfer ve yolda durumu; tam/kısmi/hasarlı kabul, tekrar/eşzamanlı işlem testleri.
+## Sonraki küçük aşamalar
+2. Admin personel yönetimi/sıfırlama arayüzü, lokasyon atamaları ve araç/makine tanımları. İlk prototip browser endpoint'i create/reset-staff sunmaz.
+3. Ürün kartları, birimler ve Excel önizleme; başlangıç stoğu ayrı akış.
+4. Alım, parti/seri, QR, EUR vergi/net/toplam ve maliyet testleri.
+5. Transfer/yolda durumu; kısmi/hasarlı kabul; atomiklik ve tekrar/eşzamanlı işlem testleri.
 6. Departman/kullanım, iadeler ve admin düzeltme geçmişi.
-7. Tanklar, dolumlar, istasyon alımları ve ölçüm kuralları.
-8. Raporlar, tarih/düşük stok ekranları, yedek geri yükleme ve tek depo pilotu.
+7. Yakıt tankları, dolumlar, istasyon alımları ve ölçüm kuralları.
+8. Raporlar/tarih/düşük stok ekranları, yedek geri yükleme ve tek depo pilotu.
 
-Hiçbir sonraki aşama tamamlanmış değildir. Bildirimler ve çevrimdışı stok kapsam dışıdır.
+Stok/finans/lokasyon yetkileri, gerçek Supabase kurulumu veya canlı dağıtım tamamlanmış değildir. Bildirimler ve çevrimdışı stok kapsam dışıdır.

@@ -19,3 +19,16 @@ Kullanıcı, ilk kontrolde bulunan `Romway_Auth_Personel_v4.ts` dosyasının yan
 Yapıldı: yerel dosya/Git incelemesi, uzak ref ve özel depo kontrolü, iki kaynak planın okunması, font kaynak doğrulaması. Beş hazırlanan Markdown belgesinin yerel bağlantı/boş dosya kontrolleri geçti. Yedi MD dosyasında bilinen anahtar/token önekleri için sınırlı sabit-değer kontrolü geçti; kapsamlı secret taraması değildir. Standart staged diff kontrolü özgün Sasa-F planındaki üç Markdown satır sonu boşluğunu bildirdi. Kaynak belge değiştirilmedi; satır sonu boşlukları hariç tutulan diff kontrolü geçti.
 
 Yapılmadı: TypeScript/Deno çalıştırma, Supabase/Auth/RLS entegrasyonu, rol/lokasyon testi, arayüz/mobil/dil testi, migration, sunucu veya web dağıtımı. Planlarda test kutuları tamamlanmış olarak işaretlenmedi.
+
+## İlk giriş prototipi — güncel inceleme
+`feature/auth-foundation` dalında modüler web, yeni sunucu kodu, uygulanmamış migration, yerel bootstrap betiği ve test araçları hazırlandı. Bu güncelleme önceki başlangıç envanterindeki "kod yok" durumunu yerel prototip düzeyinde değiştirir. Yanlış yüklenen Auth dosyası kullanılmadı.
+
+- `npm run check`: JS syntax, statik dosya referansları ve sınırlı credential/secret kontrolleri geçti.
+- `npm test`: 22 test geçti. Migration bellekte çalışan PGlite PostgreSQL'e uygulandı; özel şema/RLS/service-only RPC izinleri, geçici hesap, sürüm/oturum iptali, eşzamanlı kilit, yarım şifre değişimi ve Origin sınırları test edildi. Auth kullanıcısı/roller sentetik, Auth REST adaptörü kontrollü fetch fixture'ıyla sınandı.
+- Tarayıcı: yerel Chrome'da 1440 ve 390 px görünüm, TR/RO kalıcılığı, yanlış giriş/şifre temizliği, zorunlu değişim, eşleşmeyen şifre, güvenli textContent, çıkış hatası ve ağ tekrar denemesi geçti. Üretim HTTP işleyicisiyle gerçek tarayıcı HttpOnly cookie/CORS turu da geçti; Auth/DB bu tarayıcı testinde test doubles ile temsil edilir, SQL ayrı gerçek PostgreSQL motorunda sınandı. Ekran görüntüleri görsel olarak incelendi; taşma görülmedi. Otomatik testte dış font ağı bağımlılığı kapatılır; font kaynak seçimi ayrıca doğrulanmıştır.
+- Gerçek Supabase Auth/Edge/Deno entegrasyonu yapılmadı: Docker daemon çalışmıyor. Kurulu CLI sürümü 2.108.0. Uzak Supabase projesi bağlanmadı, migration/dağıtım yapılmadı. Node test motoru üretim altyapısı değildir.
+- Canlı web/API aynı-site adresi ve maliyet kararı açık; `_headers` connect-src varsayılan olarak yalnız self. Yapılandırma yokken gerçek giriş kapalıdır. Bu prototip canlıya hazır kabul edilmez.
+
+Ayrıntılı mimari, yerel komutlar, oturum varsayımları ve kurtarma sınırları `AUTH.md` içindedir. Lokasyon ve fiyat verileri/işlemleri henüz yok; bunların sunucu izinleri sonraki aşamada ayrıca test edilecek.
+
+GitHub, mevcut OAuth bağlantısında workflow scope olmadığı için `.github/workflows/checks.yml` içeren ilk push girişimini reddetti. Yetki genişletilmedi; aynı dosya `docs/ci/checks.yml.example` olarak korundu. Otomatik CI kurulmuş/çalışmış sayılmaz; yerel test sonuçları yukarıdadır.
