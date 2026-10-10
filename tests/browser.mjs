@@ -53,7 +53,7 @@ try {
   });
   await new Promise(resolve=>cookieServer.listen(8001,'127.0.0.1',resolve));
   try{
-    const context=await browser.newContext(),page=await context.newPage();
+    const context=await browser.newContext(); await context.grantPermissions(['local-network-access'],{origin:'http://localhost:8000'}); const page=await context.newPage();
     await page.route('http://localhost:8000/',async route => { const response=await route.fetch(); const html=await response.text(); await route.fulfill({response,body:html.replace("connect-src 'self'","connect-src 'self' http://localhost:8001")}); });
     await context.route('https://fonts.googleapis.com/**',route=>route.fulfill({contentType:'text/css',body:''}));
     await page.route('**/js/config.js',route=>route.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));

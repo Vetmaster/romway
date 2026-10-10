@@ -15,3 +15,5 @@ Resmi kaynaklar: https://docs.github.com/en/pages/getting-started-with-github-pa
 ## Yayın sonucu (10 Ekim 2026)
 
 Web dosyaları gh-pages dalına gönderildi. Pages etkinleştirme isteği HTTP 422 ile reddedildi: mevcut hesap planı bu özel depoda GitHub Pages desteklemiyor. Site henüz yayınlanmadı. Depo özel olarak korundu; ücretli plan veya görünürlük değişikliği yapılmadı.
+
+Doğrulama: kaynak kontrolü ve 22 sunucu/veritabanı testi geçti. Tarayıcı testindeki Chromium yerel ağ izin gereksinimi yalnız test bağlamında ele alınır; uygulamanın CSP veya Origin kontrolleri kaldırılmaz.
