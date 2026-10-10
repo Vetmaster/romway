@@ -3,14 +3,14 @@
 ## Referans ve kapsam
 - Ana referans `docs/Romway_Proje_Plani.md` ve kullanıcının en son kesin kararlarıdır. Kök dizindeki plan özgün kaynak olarak korunur.
 - Sasa-F planından yalnız geliştirme, güvenlik, test ve dokümantasyon düzeni alınır. Çelişkide Romway kararları geçerlidir. Futbol, üyelik, ödeme ve bildirim akışları taşınmaz.
-- Yalnız HTML/CSS ve modüler JavaScript; GitHub kaynak kod, Cloudflare Pages statik yayın, Supabase Auth/PostgreSQL/Edge Functions sunucu katmanı. Next.js, Vercel, Auth.js veya yeni altyapı ekleme.
+- Yalnız HTML/CSS ve modüler JavaScript; GitHub kaynak kod, GitHub Pages statik yayın (10 Ekim kullanıcı kararı), Supabase Auth/PostgreSQL/Edge Functions sunucu katmanı. Next.js, Vercel, Auth.js veya yeni altyapı ekleme.
 - İlk uygulama aşaması sicil/şifre girişi, zorunlu ilk şifre değişimi, TR/RO seçimi ve sade karşılama ekranıdır. Stok sistemini aynı PR'da oluşturma.
 
 ## Çalışma ve veri koruma
 - Önce mevcut kodu, Git durumunu ve ilgili belgeleri incele. Planlanan özellikleri kod/test kanıtı olmadan tamamlanmış sayma.
 - Dosyaları, veritabanını, Supabase projesini veya geçmiş kayıtları silme. Kullanıcının mevcut değişikliklerini koru.
 - Küçük görevleri ayrı dalda geliştir; ilgili kontrolleri çalıştır, commit/push ve inceleme için PR hazırla. PR'ı otomatik birleştirme.
-- Migration yalnız dosya olarak hazırlanabilir. Mevcut Supabase'e migration, fonksiyon dağıtımı veya veri değişikliği yapma. Cloudflare/DNS/canlı yayın ayrıca yetkilendirilmelidir.
+- Migration yalnız dosya olarak hazırlanabilir. Mevcut Supabase'e migration, fonksiyon dağıtımı veya veri değişikliği yapma. GitHub Pages önizlemesi kullanıcı tarafından yetkilendirildi. Supabase/DNS ve gerçek giriş yayını ayrıca değerlendirilir.
 - Testler sentetik veriyle, ayrı yerel/test ortamında çalışır. Deneme ve canlı anahtar/verilerini ayır.
 
 ## Güvenlik
@@ -29,7 +29,7 @@
 - Sonuçta dosyaları, çalıştırılan kontrolleri ve yapılmayan test/dağıtımları açıkça bildir.
 
 ## Sasa-F planından uyarlanan kontroller
-- HTTPS/CSP/Content-Type/Referrer-Policy/frame korumalarını Cloudflare yayın düzeninde doğrula; yeni servislerin CSP etkisini incele.
+- HTTPS/CSP/Content-Type/Referrer-Policy/frame korumalarını GitHub Pages yayın düzeninde doğrula; yeni servislerin CSP etkisini incele.
 - Tarayıcı deposu yetki veya kalıcı iş verisi için otorite değildir. Deneme ortamında doğrudan rol/lokasyon/fiyat erişim regresyonu çalıştır.
 - Yeni bağımlılıkları sürüm/kilit ve güvenlik açısından değerlendir; Dependabot güncellemelerini test et. CodeQL/secret scanning kullanılabilirliğini doğrulamadan aktif yazma.
 - Mimari, veritabanı, güvenlik, roller ve karar günlüklerini ihtiyaç oldukça ayrı docs dosyalarına ayır.

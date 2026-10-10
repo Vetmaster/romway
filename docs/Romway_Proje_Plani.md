@@ -12,12 +12,12 @@ Yalnız telefon/tablet/bilgisayara uyumlu web uygulaması. İlk sürüm çevrimi
 | --- | --- |
 | Web | Sade HTML/CSS ve modüler JavaScript |
 | Kaynak kod | Özel GitHub deposu: Vetmaster/romway |
-| Statik yayın | Cloudflare Pages; yalnız web çıktı dizini yayınlanır |
+| Statik yayın | GitHub Pages; yalnız web çıktı dizini gh-pages dalından yayınlanır |
 | Veri/kimlik doğrulama | Supabase PostgreSQL ve Auth |
 | Güvenilir sunucu işlemleri | Supabase Edge Functions ve güvenli PostgreSQL fonksiyonları |
 | Diller | Türkçe ve Romence; metinler ayrı dil dosyalarında |
 
-Next.js, Auth.js, Vercel, GitHub Pages yayını ve Cloudflare Workers eklenmez. Önceki hosting adayları geçersizdir. romway.ro alt alan adı ve ürün markası henüz seçilmedi; DNS veya servis kurulumu yapılmış sayılmaz.
+Next.js, Auth.js, Vercel ve Cloudflare Workers eklenmez. 10 Ekim 2026 kullanıcı kararı GitHub Pages yönünde güncellendi; Cloudflare kurulmayacak. romway.ro alt alan adı ve ürün markası henüz seçilmedi; DNS veya servis kurulumu yapılmış sayılmaz.
 
 ## Personel ve güvenlik
 - Giriş yalnız sicil numarası ve şifreyle; kullanıcıdan e-posta/telefon istenmez.
@@ -73,3 +73,6 @@ Açık işler: Gerçek izole Supabase/Auth/Edge entegrasyonu, bootstrap doğrula
 Modüler auth/yetki/ortak arayüz ayrımı, kodla aynı PR içinde migration dosyaları, ayrı test ortamı, doğrudan RLS/rol regresyon testleri, güvenlik başlıkları, bağımlılık sürüm kontrolü, secret taraması, yayın sonrası temel akış kontrolü ve yedek geri yükleme dokümantasyonu alınır. Bunların Romway deposunda kurulmuş/çalıştırılmış olduğu varsayılmaz. CodeQL/secret scanning kullanılabilirliği özel depo planına göre doğrulanacak; mevcut bağımlılığa uygun Dependabot yapılandırması hazırlanacak. OWASP ZAP çalışan deneme web uygulaması hazır olunca değerlendirilir. Android/TWA, Firebase, okul üyeliği, ödeme, okul izolasyonu ve GitHub Pages yayını taşınmaz.
 
 İlk aşamanın HttpOnly cookie oturum tasarımı, test kanıtları ve canlıya geçiş sınırları `AUTH.md` içinde kayıtlıdır. Auth tokenları JavaScript’e aktarılmaz; üretim oturum süreleri ve web/API alan adı kararı henüz açık olarak korunur.
+
+## Yayın kararı — 10 Ekim 2026
+Kullanıcı Sasa-F gibi GitHub Pages üzerinden devam etmeyi açıkça seçti. Bu karar eski Cloudflare tercihini günceller. İlk yayın yalnız bağlantısız statik arayüz önizlemesidir. Repo özel kalır; yalnız web dosyaları ayrı gh-pages dalına çıkarılır. PR otomatik birleştirilmez. Gerçek girişin cookie/domain uyumu ve Pages kullanım uyarıları ayrıca doğrulanacak; bu yayın Supabase veya girişin tamamlandığı anlamına gelmez.
