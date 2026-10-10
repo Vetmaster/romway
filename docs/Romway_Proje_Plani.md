@@ -65,9 +65,9 @@ Küçük dal/PR'lar, sentetik verili ayrı test ortamı, ilgili işlev ve doğru
 Mavi #065788, kırmızı #DB202D, zeytin #697000, sarı #FFE500 ve beyaz. Kontrast ve okunabilirlik korunur. Sasa-F yerel kaynaklarından gövde Roboto (400/500/700/900), marka Anta doğrulandı. Sasa-F'ün futbol okulu, ödeme ve üyelik akışları taşınmaz.
 
 ## İlk geliştirme aşaması ve açık işler
-İlk aşama yalnız sicil/şifre giriş, zorunlu şifre değişimi, TR/RO dil seçimi ve sade karşılama ekranıdır. İlk incelemede Auth taslağı okundu; son envanterde bu dosya yoktur. Çalışır giriş altyapısı bulunmuyor. Personel yönetimi, stok, transfer, QR ve yakıt sonraki küçük aşamalardır.
+İlk aşama yalnız sicil/şifre giriş, zorunlu şifre değişimi, TR/RO dil seçimi ve sade karşılama ekranıdır. Yanlışlıkla eklenen Auth dosyası proje referansı değildir. Çalışır giriş altyapısı bulunmuyor; giriş kodu plan gereksinimlerine göre hazırlanacak. Personel yönetimi, stok, transfer, QR ve yakıt sonraki küçük aşamalardır.
 
-Açık işler: Auth taslağının tekrar temini veya güvenli giriş kodunun hazırlanması, Auth şeması/RLS ve bootstrap, test ortamı, oturum süreleri, kısmi hesap işlemlerinin kurtarılması, Excel örnekleri/başlangıç stokları, etiket/baskı, performans ölçütleri, yedek hedefleri ve pilot cihazları. İlerleme kanıtları `INCELEME.md`, küçük aşamalar `TODO.md` içindedir.
+Açık işler: Güvenli giriş kodunun hazırlanması, Auth şeması/RLS ve bootstrap, test ortamı, oturum süreleri, kısmi hesap işlemlerinin kurtarılması, Excel örnekleri/başlangıç stokları, etiket/baskı, performans ölçütleri, yedek hedefleri ve pilot cihazları. İlerleme kanıtları `INCELEME.md`, küçük aşamalar `TODO.md` içindedir.
 
 ## Sasa-F planından uyarlanan düzen
 Modüler auth/yetki/ortak arayüz ayrımı, kodla aynı PR içinde migration dosyaları, ayrı test ortamı, doğrudan RLS/rol regresyon testleri, güvenlik başlıkları, bağımlılık sürüm kontrolü, secret taraması, yayın sonrası temel akış kontrolü ve yedek geri yükleme dokümantasyonu alınır. Bunların Romway deposunda kurulmuş/çalıştırılmış olduğu varsayılmaz. CodeQL/secret scanning kullanılabilirliği özel depo planına göre doğrulanacak; mevcut bağımlılığa uygun Dependabot yapılandırması hazırlanacak. OWASP ZAP çalışan deneme web uygulaması hazır olunca değerlendirilir. Android/TWA, Firebase, okul üyeliği, ödeme, okul izolasyonu ve GitHub Pages yayını taşınmaz.

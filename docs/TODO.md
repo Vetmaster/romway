@@ -2,22 +2,22 @@
 
 ## Tamamlanan / doğrulanan
 - [x] Özel GitHub deposu oluşturuldu; yerel klasör ve geliştirme dalı bağlandı.
-- [x] İki kaynak plan ve ilk incelemede bulunan Auth/personel taslağı okundu; kaynak MD dosyaları korundu.
+- [x] İki kaynak plan okundu; kaynak MD dosyaları korundu.
 - [x] Kesin kapsam, AGENTS ve README hazırlandı.
 - [x] Sasa-F gerçek fontları kaynak koddan doğrulandı.
-- [x] Eksik altyapı ve Auth taslağının açık güvenlik konuları kaydedildi.
+- [x] Eksik altyapı kaydedildi; yanlışlıkla eklenen Auth dosyası referanslardan çıkarıldı.
 
 ## Doğrulanması gereken
 - [x] SASA-F_PROJECT_PLAN.md okundu; uygun geliştirme/test/dokümantasyon kuralları işlendi.
-- [ ] Son kontrolde klasörde bulunmayan Auth taslağının tekrar temini veya giriş kodunun hazırlanması.
+- [ ] Giriş kodunun plan gereksinimlerine göre hazırlanması.
 - [ ] Mevcut Supabase projesi varsa yalnız okuma ile kaynak/şema/ayar envanterini çıkar; dağıtım yapma.
-- [ ] Auth taslağının şema/RLS/RPC bağımlılıklarını ve kısmi hata/oturum iptali davranışını test ortamında doğrula.
+- [ ] Hazırlanacak giriş altyapısının şema/RLS/RPC ve kısmi hata/oturum iptali davranışını test ortamında doğrula.
 - [ ] Geçici şifre süresi, oturum süresi, admin bootstrap ve sıfırlama/hata kurtarma kurallarını kesinleştir.
 
 ## Yapılacaklar — ilk geliştirme aşaması
 ### 1A — Sunucu güvenlik tasarımı ve yerel prototip
 - [ ] Şema, rol/lokasyon/fiyat politikaları ve deneme sınırı için migration dosyaları hazırla; mevcut Supabase'e uygulama.
-- [ ] İncelenen taslak tekrar temin edilirse koruyarak modülerleştir; aksi halde aynı gereksinimler için güvenli sunucu kodu hazırla; aynı geçici şifreyi yeni şifre kabul etme açığını düzelt; veri silmeyen telafi ve eşzamanlı işlem düzeni hazırla.
+- [ ] Plan gereksinimlerine göre modüler güvenli sunucu kodu hazırla; yeni şifre geçici şifreden farklı olsun; veri koruyan telafi ve eşzamanlı işlem düzeni hazırla.
 - [ ] Sicil→iç Auth kimliği, kapalı hesap, yanlış şifre, sınır, geçici süre ve şifre değişimini sentetik test ortamında doğrula.
 - [ ] Geçici şifre/iptal edilmiş oturumla doğrudan API/RLS erişiminin reddini test et.
 
