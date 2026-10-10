@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Romway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header><a class="brand" href="./" aria-label="Romway"><img src="assets/logo-romway.png" alt="Romway" width="288" height="75"></a>
+    <label class="language"><span data-i18n="language">Dil</span>
+      <select id="language"><option value="tr">Türkçe</option><option value="ro">Română</option></select>
+    </label>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="headline">
+      <span class="eyebrow" data-i18n="region">TÜRKİYE · ROMANYA</span>
+      <h1 id="headline" data-i18n="headline">Her parça, doğru yerde.</h1>
+      <p data-i18n="intro">Depolarınız arasında güvenli ve düzenli bir çalışma alanı.</p>
+      <div class="route" aria-hidden="true"><span>TR</span><i></i><span>RO</span></div>
+      <div class="accent" aria-hidden="true"></div>
+    </section>
+    <section class="panel" aria-labelledby="panel-title">
+      <p class="eyebrow" data-i18n="workspace">PERSONEL ÇALIŞMA ALANI</p>
+      <h2 id="panel-title" data-i18n="login_title">Hoş geldiniz</h2>
+      <p id="subtitle" class="muted"></p>
+      <p id="message" role="status" aria-live="polite"></p>
+      <form id="login" hidden>
+        <label for="employee" data-i18n="employee">Sicil numarası</label>
+        <input id="employee" name="employee_number" autocomplete="username" autocapitalize="characters" spellcheck="false" required maxlength="40" pattern="[A-Za-z0-9_-]{1,40}" aria-describedby="employee-help">
+        <small id="employee-help" data-i18n="employee_help">Size verilen personel sicil numarasını kullanın.</small>
+        <label for="password" data-i18n="password">Şifre</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="128">
+        <button type="submit" data-i18n="login">Giriş yap</button>
+        <p class="help" data-i18n="support">Hesap veya şifre desteği için yöneticinizle iletişime geçin.</p>
+      </form>
+      <form id="change" hidden>
+        <label for="current" data-i18n="current_password">Mevcut şifre</label>
+        <input id="current" type="password" autocomplete="current-password" required maxlength="128">
+        <label for="new" data-i18n="new_password">Yeni şifre</label>
+        <input id="new" type="password" autocomplete="new-password" required minlength="12" maxlength="128" aria-describedby="password-help">
+        <small id="password-help" data-i18n="password_help">12–128 karakter; mevcut şifrenizden farklı olmalı.</small>
+        <label for="confirm" data-i18n="confirm_password">Yeni şifreyi tekrar girin</label>
+        <input id="confirm" type="password" autocomplete="new-password" required minlength="12" maxlength="128">
+        <button type="submit" data-i18n="change">Şifreyi değiştir</button>
+      </form>
+      <div id="welcome" hidden>
+        <dl><dt data-i18n="employee">Sicil numarası</dt><dd id="staff-number"></dd><dt data-i18n="role">Rol</dt><dd id="staff-role"></dd></dl>
+        <p data-i18n="welcome_note">Çalışma alanınız hazır. Depo ve malzeme ekranları sonraki aşamalarda eklenecek.</p>
+      </div>
+      <button id="logout" class="secondary" type="button" hidden data-i18n="logout">Çıkış yap</button>
+      <button id="retry" class="secondary" type="button" hidden data-i18n="retry">Tekrar dene</button>
+      <noscript>JavaScript gerekli / Este necesar JavaScript.</noscript>
+    </section>
+  </main>
+  <footer><span>Romway</span><span data-i18n="footer">Depo ve malzeme takibi</span></footer>
+</body>
+</html>
