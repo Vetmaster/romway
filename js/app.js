@@ -1,4 +1,4 @@
-import {createPersonnel} from './personnel.js?v=b6160806fe4c';
+import {createPersonnel} from './personnel.js?v=f6bacc75953d';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
 import tr from './locales/tr.js?v=173ffe75aed0';

@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anta&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=e2e6f0f0b791">
-  <script type="module" src="js/app.js?v=3f53465ec8c4"></script>
+  <link rel="stylesheet" href="styles.css?v=f3609aa86338">
+  <script type="module" src="js/app.js?v=ea39705df919"></script>
 </head>
 <body>
   <header class="app-banner"><a class="brand" href="./" aria-label="Romway"><svg viewBox="400 160 735 510" role="img" aria-label="Solea" width="144" height="100"><image href="assets/logo-solea.png" width="1536" height="1024"></image></svg><small class="banner-subtitle"><span data-i18n="banner_line_one"></span><span data-i18n="banner_line_two"></span></small></a><div class="banner-controls"><span class="banner-test" data-i18n="test_environment"></span><label class="language"><span data-i18n="language">Dil</span><select id="language"><option value="tr">Türkçe</option><option value="ro">Română</option></select></label></div></header>
@@ -84,12 +84,8 @@
       <h2 id="personnel-heading" data-i18n="personnel_title">Personel yönetimi</h2>
       <p data-i18n="personnel_scope"></p>
       <p id="personnel-message" role="status" aria-live="polite"></p>
-      <button id="personnel-new" type="button" data-i18n="add_staff" aria-controls="personnel-form" aria-expanded="false"></button>
-      <div id="temporary-credential" class="credential" hidden role="status">
-        <p data-i18n="temporary_note"></p><strong id="temporary-number"></strong>
-        <code id="temporary-password"></code>
-        <button id="credential-close" class="secondary" type="button" data-i18n="hide_password"></button>
-      </div>
+      <div class="personnel-add-card">
+      <button class="personnel-card-toggle" id="personnel-new" type="button" data-i18n="add_staff" aria-controls="personnel-form" aria-expanded="false"></button>
       <form id="personnel-form" hidden aria-labelledby="personnel-form-heading">
         <h3 id="personnel-form-heading" data-i18n="add_staff"></h3>
         <label for="personnel-number" data-i18n="employee"></label><input id="personnel-number" required maxlength="40" pattern="[A-Za-z0-9_-]{1,40}" autocomplete="off">
@@ -100,6 +96,13 @@
         <button id="personnel-save" type="submit" data-i18n="create_staff"></button>
         <button id="personnel-cancel" class="secondary" type="button" data-i18n="cancel_staff"></button>
       </form>
+      </div>
+      <div id="temporary-credential" class="credential" hidden role="status">
+        <p data-i18n="temporary_note"></p><strong id="temporary-number"></strong>
+        <code id="temporary-password"></code>
+        <button id="credential-close" class="secondary" type="button" data-i18n="hide_password"></button>
+      </div>
+
       <h3 data-i18n="staff_list"></h3><ul id="personnel-list" class="staff-list"></ul>
       <form id="location-form" hidden>
         <h3 data-i18n="add_location"></h3>
