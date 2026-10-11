@@ -1,4 +1,5 @@
 export default {
+ drawer_brand_caption:'DPB Sistem de Management Logistic',
  version_label:'Versiunea aplicației ',
  show_more_staff:'Arată mai multe',
  search_staff:'Caută personal',

@@ -256,3 +256,7 @@ Oturumu kapat butonu menünün en altındaki kullanıcı adı/rol satırının s
 ## 11 Ekim — açılır alt menü
 
 Personel yönetimi alt menüsü ilk yüklemede kapalıdır. Üst başlık alt menüyü açar/kapatır; aria-expanded/aria-controls ve aşağı/yukarı CSS oku kullanılır. Alt seçenekler ayrı sayfaları açar; çıkışta açılma durumu sıfırlanır. 390/1440 px testlerinde varsayılan kapalılık, iki yönlü geçiş ve mevcut işlemler doğrulandı. Syntax/asset/diff kontrolleri geçti. Supabase değişikliği yok.
+
+## 11 Ekim — menü logo açıklaması
+
+Menü logosunun altına TR DPB Lojistik Yönetim Sistemi / RO DPB Sistem de Management Logistic yazısı eklendi. CSS sütun düzeniyle metin logo altında ortalanır. Syntax/web referans/asset/diff kontrolleri geçti. Bekleyen PR #37 sunucu değişikliği bu yayına dahil edilmedi; personel/lokasyon profil isteği henüz uygulanmadı.

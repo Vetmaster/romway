@@ -419,3 +419,6 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 #nav-personnel {display:flex;align-items:center;justify-content:space-between;gap:12px;}
 #nav-personnel::after {content:'';width:8px;height:8px;flex-shrink:0;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);}
 #nav-personnel[aria-expanded=true]::after {transform:rotate(225deg);}
+
+.drawer-heading .drawer-brand {flex-direction:column;gap:8px;}
+.drawer-brand-caption {display:block;color:#183446;font-size:12px;line-height:1.4;text-align:center;}
