@@ -81,3 +81,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] İki satırlı banner açıklaması Pages üzerinde doğrulandı; PR #18 taslak.
 
 - [x] Ana sayfa düğmesi kaldırıldı, dil banner sağına taşındı, çıkış tek satır sağa yaslandı; mobil/masaüstü kontrol geçti.
+- [x] Üst çubuk kontrolleri Pages üzerinde doğrulandı; PR #19 taslak.
