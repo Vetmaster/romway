@@ -1,4 +1,5 @@
 export default {
+ stock_tracking_pending:'Urmărirea stocurilor — În pregătire',
  drawer_brand_caption:'Sistem de Management al Depozitelor și Logisticii',
  version_label:'Versiunea aplicației ',
  show_more_staff:'Arată mai multe',

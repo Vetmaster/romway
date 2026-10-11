@@ -276,3 +276,7 @@ Visibility hidden→visible ve BFCache pageshow dönüşünde oturum yeniden do�
 ## 11 Ekim — menü açıklama metni
 
 Menü logosu altındaki DPB ifadesi Depo ve Lojistik Yönetim Sistemi olarak değiştirildi; RO karşılığı güncellendi. Syntax/web referans/asset/diff kontrolleri uygulanır; Supabase değişikliği yok.
+
+## 11 Ekim — stok ve depolar menüsü
+
+Mevcut menüde Depo yönetimi bulunmadığı doğrulandı; önceki kullanıcı isteği Stok ve depolar adıyla eklendi. Varsayılan kapalı okla açılan alt menüde Stok takibi — Hazırlanıyor pasif seçenek bulunur. TR/RO ayrı metinler; lokasyon mevcut personel alt menüsünde korunur. Syntax/web referans/asset/diff kontrolleri geçti; stok işlevi geliştirilmiş sayılmaz, Supabase değişikliği yok.
