@@ -83,3 +83,6 @@ Kullanıcı yeni ve ayrı Supabase test projesini seçti; yalnız yeni romway-au
 
 ## 11 Ekim — personel yönetimi kararları
 Kullanıcı, super_admin'ın tüm personeli; adminin yalnız atanmış lokasyonlarının tamamı içinde kalan purchasing/receiver personelini yönetmesini onayladı. Admin/super_admin rollerini yalnız super_admin atar. İlk lokasyon adları belli olmadığı için temsili Türkiye Test Deposu / Romanya Test Deposu seçildi. Personel ekleme, rol/lokasyon düzenleme, pasifleştirme ve lokasyon ekleme ayrı aşamadır; araç/stok ve şifre sıfırlama bu PR'a eklenmez. Uygulama ve kurtarma sınırları `PERSONNEL.md` içindedir.
+
+### Personel test yayını — kullanıcı onayı sonrası
+Kullanıcı PR #4 kapsamındaki personel şeması/fonksiyonu yalnız ayrı Romway test projesine uygulamayı ve doğrulama sonrası Pages'te yayınlamayı açıkça onayladı. Şema/Edge kuruldu; gerçek rol/lokasyon/Auth testleri, mobil önizleme ve gerçek yayın dosyalarıyla testler geçti. Ekran test amaçlı personel yönetimini içerir; stok/finans/araç, gerçek iş verisi ve üretim pilotu henüz tamamlanmadı. Mevcut diğer Supabase projeleri, TESTADMIN şifresi ve geçmiş kayıtlar korundu; otomatik merge yapılmadı.

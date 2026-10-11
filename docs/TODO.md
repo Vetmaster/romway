@@ -18,7 +18,7 @@
 - [x] Gerçek Supabase Auth/Edge/DB personel ekleme, zorunlu değişim, admin rol/lokasyon sınırları, lokasyon/aktiflik oturum iptali, RPC/JWT reddi ve audit doğrulandı.
 - [x] Gerçek Edge/DB ile aynı sicille eşzamanlı iki oluşturma isteği: bir başarılı hesap ve bir conflict.
 - [ ] Kısmi Auth oluşturma için operatör kurtarma prosedürü; daha geniş eşzamanlı düzenleme/aktivasyon senaryoları.
-- [ ] Doğrulama sonrası yeni ekranı GitHub Pages test önizlemesine yayınla; yayımdaki sürüm şu anda önceki giriş aşamasıdır.
+- [x] Yeni personel ekranı GitHub Pages test önizlemesine yayınlandı; gerçek yayın dosyalarıyla mobil Chrome ekleme/pasifleştirme/TR-RO/CHIPS testi geçti.
 - [ ] Taslak PR'ları incele; otomatik merge yapılmaz.
 
 ## Devam eden genel doğrulamalar
