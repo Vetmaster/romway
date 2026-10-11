@@ -1,4 +1,6 @@
 export default {
+ create_staff:'Salvează persoana',cancel_staff:'Anulează',
+
  personnel_title:"Administrarea personalului",
  personnel_scope:"Adăugați personal și modificați rolurile și locațiile. Dezactivarea închide sesiunile contului.",
  display_name:"Nume complet",

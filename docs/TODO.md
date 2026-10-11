@@ -38,3 +38,5 @@
 7. Raporlar/tarihler, yedek geri yükleme ve tek depo pilotu.
 
 Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı kullanıldı. Bildirimler ve çevrimdışı stok kapsam dışıdır. Personel migration ve Edge bu ayrı test projesinde kuruldu; dosya varlığı tek başına başka özelliklerin tamamlandığına kanıt değildir. Yerel test kanıtları ve sınırları INCELEME.md/PERSONNEL.md içindedir.
+
+- [x] Kullanıcı isteğiyle liste önce açılır; üstte tek Personel ekle düğmesi, kapalı form, kaydet/vazgeç ve listedeki düzenleme akışı. Mobil/masaüstü yerel kontroller geçti.

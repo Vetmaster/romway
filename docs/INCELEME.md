@@ -80,3 +80,9 @@ Giriş regresyonu yeni yedi tabloluk şemayla gerçek Auth/DB/Edge üzerinde yen
 `ROMWAY_TEST_PROJECT=ifnjvdjhfhzfxyuorqvz ROMWAY_TEST_PUBLISHED=true npm run test:cloud-personnel` geçti. Bu mod gerçek Pages HTML/JS/CSS dosyalarını değiştirmeden gerçek Edge/Auth/DB ile 390 px mobil personel oluşturma/pasifleştirme, TR/RO, HttpOnly/partitioned cookie, geçici şifre DOM temizliği, yalnız dil tercihi depolama ve logout doğruladı. Auth test doubles kullanılmadı; sadece dış font ağı test bağlamında izole edildi. Uzak API rol/lokasyon/eşzamanlı sicil/RLS/JWT/audit kontrolleri de bu koşuda tekrar geçti. Koşunun sentetik hesapları pasifleştirildi; hiç kayıt/hesap/proje silinmedi, TESTADMIN şifresine işlem yapılmadı.
 
 PR #4 inceleme için açık kalır; hiçbir PR birleştirilmedi. Kullanıcının gerçek telefon/Safari/Firefox cihaz doğrulaması ve operatör şifre sıfırlama/kurtarma sonraki aşamalardır.
+
+## 11 Ekim — personel listesi önce, form düğmeyle açılır
+
+`feature/personnel-list-form` dalında yalnız statik arayüz düzenlendi. Açılışta liste/form-kapalı; üstte tek “Personel ekle”; tıklamada boş form/sicil odağı; düzenlemede mevcut personel; kaydetme sonrası form kapanışı; “Vazgeç” temizliği ve odağın düğmeye dönmesi. Sunucu yetkileri, veritabanı, Auth ve personel kayıtları değiştirilmedi. Uzak testte yeni sentetik hesap açılmadı; gelecekteki bulut test betiğinin form açma adımı yeni düzene uyarlandı.
+
+35 Node/PGlite testi, syntax/dil anahtarı/web referans kontrolleri ve diff biçimi geçti. 390/1440 px yerel gerçek SQL/HTTP-handler tarayıcı testi geçti; Auth simüledir. Yeni akışta ilk açılışta formun kapalı ve tek ekle düğmesi olduğunu, vazgeçmenin kayıt oluşturmadığını, sicil odağını, kaydetme sonrası kapanışı, düzenlemeyi ve TR/RO geçişini doğruladı. Mevcut ekleme/pasifleştirme/yeniden açma/ilk şifre değiştirme testleri de geçti.
