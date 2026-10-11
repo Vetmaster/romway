@@ -46,3 +46,7 @@ Personel yönetimi açılınca karşılama kartı ve tanıtım bölümü gizleni
 ## Dashboard ve çekmece menü
 
 Giriş/şifre değişimi kuralları korunur; başarılı giriş ve oturum geri yükleme sonrası ilk ekran dashboard olur. SASA-F yerel index.html, styles.css ve app.js kaynaklarındaki gezinme kartı/sol menü yaklaşımı Romway paletine uyarlandı. Personel yönetimine dashboard kartı ve sol çekmece menüden ulaşılır; ikisi de aynı API kontrollü ekranı açar. Kart ve menü öğesi yalnız admin/super_admin için görünür. Stok/sevkiyat kartları henüz işlevsiz ve açıkça Yakında olarak işaretlidir; sahte sayaç yoktur. Modal çekmece klavye odağını sınırlar, Escape/kapatma/dış alan ile kapanır. Menü tercihi veya personel verisi tarayıcı deposuna yazılmaz.
+
+## Telefon paneli ve durum rozetleri
+
+Mobil personel ekranında dış yatay boşluklar 12 px, panel iç boşluğu 14 px olur. Ad/sicil tam satır genişliğini kullanır; düzenleme düğmesi detayların sağında sabit sütundadır, tek başına alt satıra kaymaz. Aktif rozet yeşil, pasif rozet kırmızıdır; metinler renk dışında da durumu belirtir.

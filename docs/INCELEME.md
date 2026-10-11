@@ -116,3 +116,9 @@ Kullanıcının Solea_Logo_Onayli.png dosyasındaki büyük renkli logo üst çu
 Syntax/web referans/diff ve 390/1440 px salt arayüz Chrome kontrolü geçti; mobil ekran görüntüsü incelendi, yatay taşma yok. API bu görsel kontrolde yapılandırılmadı; Supabase işlemi yapılmadı.
 
 Yayın doğrulandı: kaynak 8ad829ced122a0effb1c03d2c36f35b73a047710, gh-pages bf2b45bfe188523bdfd1a755bcc4e92419e12062. Pages built/error=null; HTML/CSS/JS/diller kaynakla eşleşti, canlı Solea PNG onaylı dosyayla birebir aynı. PR #9 taslak, birleştirilmedi.
+
+## 11 Ekim — mobil personel genişliği ve rozetler
+
+Mobil personel paneli dış boşluk 12 px/iç boşluk 14 px ile genişledi; düzenle düğmesi detayların sağ sütununda kalır. Aktif yeşil, pasif kırmızı; durum metni korunur. 360/390/412/432/1440 px render ve taşma/sağ hizalama ölçümü geçti; 412 px panel 388 px genişlikte, örnek satır 75 px yükseklikte. 412 px ekran görüntüsü incelendi. Bunlar CSS viewport ölçüleridir, fiziksel S24 Plus cihaz testi değildir. 390/1440 px yerel personel tarayıcı akışları, syntax/web referans/diff kontrolü geçti; Auth simüledir. Supabase/uzak personel değişmedi.
+
+Yayın doğrulandı: kaynak 9e58e59634363c7a8a9ddd1c969b74073cd89011, gh-pages 228285adefc8ff2913147ee723b308e78aea47eb. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO kaynakla birebir eşleşti. PR #10 taslak; birleştirilmedi.
