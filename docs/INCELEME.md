@@ -284,3 +284,7 @@ Mevcut menüde Depo yönetimi bulunmadığı doğrulandı; önceki kullanıcı i
 ## 11 Ekim — lokasyon menüsü taşıma
 
 Lokasyon ekle Personel yönetimi altından Stok ve depolar altına taşındı; yalnız super_admin görünürlüğü ve sunucu yetkileri korunur. 390/1440 px tarayıcı testleri yeni menüden geçiş/ekleme/yenileme ve mevcut akışlarla geçti; syntax/asset/diff kontrolleri başarılı. Supabase değişikliği yok.
+
+## 11 Ekim — sevkiyat menüsü
+
+Sevkiyat Yönetimi başlığı pasif/Yakında durumuyla menüye eklendi. TR/RO metinleri ayrı dosyalarda; sevkiyat işlevi mevcut sayılmaz. Syntax/web referans/asset/diff kontrolleri uygulanır; Supabase değişikliği yok.

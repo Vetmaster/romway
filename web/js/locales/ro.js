@@ -1,4 +1,5 @@
 export default {
+ shipment_management:'Gestionarea expedierilor',
  stock_tracking_pending:'Urmărirea stocurilor — În pregătire',
  drawer_brand_caption:'Sistem de Management al Depozitelor și Logisticii',
  version_label:'Versiunea aplicației ',

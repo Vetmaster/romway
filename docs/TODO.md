@@ -115,3 +115,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Menü logo açıklaması Depo ve Lojistik Yönetim Sistemi olarak düzeltildi.
 - [x] Stok ve depolar açılır menü başlığı eklendi; stok takibi hazırlık olarak gösterilir.
 - [x] Lokasyon ekle Stok ve depolar altına taşındı; mobil/masaüstü doğrulandı.
+- [x] Sevkiyat Yönetimi menü başlığı hazırlık durumuyla eklendi; işlev henüz geliştirilmedi.
