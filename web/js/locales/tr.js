@@ -1,6 +1,7 @@
 export default {
  dashboard_title:'Genel bakış',
- menu:'☰ Menü',
+ menu:'☰',
+ menu_label:'Menü',
  close_menu:'Menüyü kapat',
  personnel_card_note:'Personel, roller ve depo yetkilerini yönetin.',
  open_page:'Sayfayı aç →',

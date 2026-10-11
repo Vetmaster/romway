@@ -16,6 +16,8 @@ function render() {
   if(view!=='welcome') workspace=false;
   personnel?.update(view==='welcome'?profile:null);
   document.documentElement.lang = language; $('language').value = language;
+  $('menu-toggle').setAttribute('aria-label',text('menu_label'));
+  $('drawer-title').setAttribute('aria-label',text('menu_label'));
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = text(el.dataset.i18n); });
   for (const id of ['login','change','welcome']) $(id).hidden = id !== view;
   const signedIn=view==='welcome';
