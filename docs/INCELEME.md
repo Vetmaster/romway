@@ -190,3 +190,9 @@ Yayın: kaynak c17fc5caf27e719f7ba56c79c5b8e5e611cdf6e8, gh-pages 83fcc94098edf1
 Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açıkken yukarı bakan V ikonu kullanılır. aria-expanded ve erişilebilir ad korunur.
 
 İçerik sürüm/syntax/web referans/diff kontrolü geçti. Yayın: kaynak 5c3946afe142c392032dfa3a5db60a4d327406d6, gh-pages 9ffa4105394dcddc7bc6e0ed7816aa3b684b1f5f. Pages built/error=null; gerçek dosyalar kaynakla eşleşti. PR #21 taslak; birleştirilmedi.
+
+## 11 Ekim — yol rengi ve menü logosu
+
+Özgün PNG yol bölgesi (770,320) RGB 44/50/56, #2C3238 olarak örneklendi; raster yol gradyanlı olduğundan bu temsilî örnek tondur. Menü arka planı bu tona alındı. Menü üstünde Solea logosu eklendi, logo dashboard’a döner; erişilebilir menü adı korunur. Görünüm ayrı dalda hazırlanır; PR #22 tarih migration’ı uygulanmadan yayınlanmaz.
+
+Syntax/web referans/diff, içerik sürümü ve 390/1440 px personel tarayıcı testi geçti; masaüstü menü görünümü incelendi. Auth simüledir.
