@@ -252,3 +252,7 @@ Menüdeki × butonu DOM/CSS/JS’den kaldırıldı. Menü açıldığında odak 
 ## 11 Ekim — menüde oturum kapatma
 
 Oturumu kapat butonu menünün en altındaki kullanıcı adı/rol satırının sağına taşındı. Aynı buton ve sunucu oturum iptali kullanılır; zorunlu şifre değiştirme ekranında buton üst alanda erişilebilir kalır. TR metni Oturumu kapat, RO Deconectare. 390/1440 px personel tarayıcı testlerinde menüden çıkış, yeniden giriş ve mevcut akışlar geçti; syntax/asset/diff kontrolleri başarılı. Supabase değişikliği yok.
+
+## 11 Ekim — açılır alt menü
+
+Personel yönetimi alt menüsü ilk yüklemede kapalıdır. Üst başlık alt menüyü açar/kapatır; aria-expanded/aria-controls ve aşağı/yukarı CSS oku kullanılır. Alt seçenekler ayrı sayfaları açar; çıkışta açılma durumu sıfırlanır. 390/1440 px testlerinde varsayılan kapalılık, iki yönlü geçiş ve mevcut işlemler doğrulandı. Syntax/asset/diff kontrolleri geçti. Supabase değişikliği yok.
