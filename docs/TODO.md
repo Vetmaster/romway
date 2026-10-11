@@ -93,3 +93,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Yol tonu ve menü logosu Pages üzerinde doğrulandı; PR #23 taslak.
 
 - [x] Banner sağ üstüne SASA-F benzeri v2026.10.11.1 sürüm etiketi eklendi.
+- [x] v2026.10.11.1 sürüm etiketi Pages üzerinde doğrulandı; PR #24 taslak.
