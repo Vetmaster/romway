@@ -140,3 +140,9 @@ Yayın: kaynak e9271af123f0b4ed3296f111cb504659f0facb97, gh-pages ea0bad1501992d
 Kullanıcı önceki banner düzenini değiştirdi: büyük Solea logonun kendi alt yazısıyla gösterilir, yandaki ayrı Solea başlığı kaldırılır. TR/RO depo/malzeme alt metni logonun hemen altında ortalanır. Banner/masaüstü menü başlangıcı 116 px ile hizalandı. Syntax/web referans/diff ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi. Supabase/veri değişikliği yoktur.
 
 Yayın doğrulandı: kaynak 5a7b9819c407a96262b02977cb05904e5c125948, gh-pages b81c1e3a648bea081c00ae89113fc2dfec4f5177. Pages built/error=null ve gerçek HTML/CSS/JS/dil eşleşmesi geçti. PR #13 taslak; birleştirilmedi.
+
+## 11 Ekim — mobil banner açıklaması
+
+Logo bloğu tüm ekranlarda açıkça flex-column, açıklama block/tam genişlik/210 px sınır ile aşağıda ortalanır. TR açıklama Depo, personel yönetim ve stok takip sistemi, RO karşılığı Sistem de gestionare a depozitelor și personalului și de urmărire a stocurilor olarak güncellendi. Footer aynı dil anahtarını kullanır. Masaüstü banner/menü başlangıcı uzun açıklama için 144 px. Syntax/web referans/diff ve 390/1440 px Chrome taşma/görünüm kontrolü ile TR/RO anahtar kontrolü geçti; mobil görüntü incelendi. Supabase değişmedi.
+
+Yayın: kaynak 9a99d123993c9d88f21c06bd8326023e8e3a7071, gh-pages 04b2f9a70a4389a9ab81f86423693aac231f6e44. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #14 taslak, birleştirilmedi.
