@@ -1,7 +1,7 @@
 // No credentials or personnel data are persisted in browser storage.
 export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   const $=id=>document.getElementById(id);
-  let role=null,data=null,editing=null,visibleCount=10;
+  let role=null,data=null,editing=null,visibleCount=10,recordType=null,recordId=null;
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
   function clearSecret() {$('temporary-credential').hidden=true;$('temporary-password').textContent='';$('temporary-number').textContent='';}
   function options(select,values) {select.replaceChildren(...values.map(([value,label])=>{const o=node('option',label);o.value=value;return o;}));}
@@ -19,18 +19,18 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function render() {
     $('personnel-new').setAttribute('aria-label',text('add_staff'));
     const visible=!!role;$('personnel-open').hidden=!visible;
-    if(!visible) {$('personnel-section').hidden=true;$('location-section').hidden=true;return;}
+    if(!visible) {$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;return;}
     $('location-card').hidden=role!=='super_admin';
     $('location-toggle').setAttribute('aria-label',text('add_location'));
     if(!data)return;
-    $('location-list').replaceChildren(...data.locations.map(l=>{const row=node('li');row.append(node('strong',l.name),node('small',l.code),node('span',l.country));return row;}));
+    $('location-list').replaceChildren(...data.locations.map(l=>{const row=node('li');const title=node('a',l.name);title.className='profile-name';title.href='#location-profile/'+encodeURIComponent(l.id);row.append(title,node('small',l.code));return row;}));
     if(!data.locations.length)$('location-list').append(node('li',text('no_locations')));
     const normalize=value=>value.toLocaleLowerCase(document.documentElement.lang).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i');
     const query=normalize($('personnel-search').value.trim());
     const filtered=data.staff.filter(s=>normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)).sort((a,b)=>Number(b.active)-Number(a.active)||(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0));
     $('personnel-list').replaceChildren(...filtered.slice(0,visibleCount).map(s=>{
-      const row=node('li'),identity=node('div'),title=node('strong',s.display_name),number=node('small',s.employee_number),details=node('div');
-      identity.className='staff-identity';identity.append(title,number);details.className='staff-details';
+      const row=node('li'),identity=node('div'),title=node('a',s.display_name),number=node('small',s.employee_number),details=node('div');
+      title.className='profile-name';title.href='#staff-profile/'+encodeURIComponent(s.id);identity.className='staff-identity';identity.append(title,number);details.className='staff-details';
       const roleLabel=node('span',text(s.role)),status=node('span',text(s.active?'active':'inactive'));status.className='staff-status '+(s.active?'active':'inactive');
       const names=s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'').filter(Boolean);
       const button=node('button',text('edit_staff'));button.type='button';button.className='secondary';
@@ -43,13 +43,35 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     }));
     $('personnel-more').hidden=filtered.length<=visibleCount;
     if(!filtered.length)$('personnel-list').append(node('li',text('no_staff')));
+    renderRecord();
   }
   function closeLocation(){ $('location-form').reset();$('location-form').hidden=true;$('location-toggle').setAttribute('aria-expanded','false'); }
   $('personnel-search').addEventListener('input',()=>{visibleCount=10;render();});
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
   async function load() {visibleCount=10;data=await api.call('personnel-list');resetForm();render();}
-  async function open(card){if(!role || (card==='location'&&role!=='super_admin'))return;let loaded=false;await run(async()=>{$('personnel-section').hidden=card==='location';$('location-section').hidden=card!=='location';clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen(card==='location'?'location':'personnel');loaded=true;});if(loaded&&card){const toggle=$(card==='location'?'location-toggle':'personnel-new');toggle.focus();toggle.scrollIntoView({block:'nearest'});}}
+  async function open(card='personnel',id=null){
+    if(!role || (['location','location-profile'].includes(card)&&role!=='super_admin'))return;
+    await run(async()=>{
+      clearSecret();closeLocation();recordType=card;recordId=id;
+      $('personnel-section').hidden=card!=='personnel';$('location-section').hidden=card!=='location';$('record-profile').hidden=!card.endsWith('-profile');
+      $('personnel-search').value='';await load();onOpen(card,id);
+    });
+  }
+  function renderRecord(){
+    if(!recordType?.endsWith('-profile'))return;
+    const isStaff=recordType==='staff-profile',item=(isStaff?data.staff:data.locations).find(r=>r.id===recordId);
+    $('record-heading').textContent=text(isStaff?'staff_profile':'location_profile');$('record-details').replaceChildren();$('record-related').replaceChildren();
+    $('record-message').textContent=item?'':text('not_available');$('record-back').href=isStaff?'#personnel':'#location';
+    $('record-related-heading').textContent=text(isStaff?'locations':'staff_list');
+    if(!item)return;
+    const fields=isStaff?[[text('display_name'),item.display_name],[text('employee'),item.employee_number],[text('role'),text(item.role)],[text('status_label'),text(item.active?'active':'inactive')]]:[[text('location_name'),item.name],[text('location_code'),item.code]];
+    for(const [label,value] of fields)$('record-details').append(node('dt',label),node('dd',value));
+    const related=isStaff?data.locations.filter(l=>item.location_ids.includes(l.id)):data.staff.filter(r=>r.location_ids.includes(item.id));
+    for(const r of related){const row=node('li'),link=node('a',isStaff?r.name:r.display_name);link.className='profile-name';link.href=(isStaff?'#location-profile/':'#staff-profile/')+encodeURIComponent(r.id);if(isStaff&&role!=='super_admin')row.append(node('span',r.name));else row.append(link);$('record-related').append(row);}
+    if(!related.length)$('record-related').append(node('li',text(isStaff?'no_locations':'no_staff')));
+  }
+
   $('personnel-open').addEventListener('click',()=>open());
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
@@ -75,7 +97,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     open,
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
-      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();}
+      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();$('record-profile').hidden=true;$('record-details').replaceChildren();$('record-related').replaceChildren();recordType=null;recordId=null;}
       render();
     },
     translate(){const selected=$('personnel-role').value;options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));$('personnel-role').value=selected;render();},
