@@ -1,14 +1,14 @@
 import {createPersonnel} from './personnel.js?v=6372c281ccf4';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=0856b01e762e';
-import ro from './locales/ro.js?v=cfe0170e933a';
+import tr from './locales/tr.js?v=bf838bb1999f';
+import ro from './locales/ro.js?v=ddba2a466341';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
 let api;
 try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
-let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false, inventoryExpanded=false;
+let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false, inventoryExpanded=false, shipmentExpanded=false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
 let personnel;
 const desktopMenu=window.matchMedia('(min-width:821px)');
@@ -24,17 +24,19 @@ function render() {
   $('auth-panel').hidden=signedIn;document.querySelector('.intro').hidden=signedIn;
   $('welcome').hidden=!signedIn||workspace;
   document.body.classList.toggle('app-shell',signedIn);
-  const pageLabels={personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'stock_list',shipment:'shipment_management'};
+  const pageLabels={personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'stock_list',shipment:'shipment_management','shipment-start':'start_shipment'};
   $('page-title').textContent=signedIn?text(pageLabels[workspace]??'dashboard_title'):'';
-  $('pending-section').hidden=!signedIn||!['stock','shipment'].includes(workspace);
-  if(['stock','shipment'].includes(workspace))$('pending-heading').textContent=text(workspace==='stock'?'stock_list':'shipment_management');
+  $('pending-section').hidden=!signedIn||!['stock','shipment','shipment-start'].includes(workspace);
+  if(['stock','shipment','shipment-start'].includes(workspace))$('pending-heading').textContent=text(pageLabels[workspace]);
   $('bottom-tabs').hidden=!signedIn;
   $('tab-personnel').hidden=!['admin','super_admin'].includes(profile?.role);
-  for(const tab of ['dashboard','personnel','stock','shipment'])$('tab-'+tab).setAttribute('aria-current',(tab==='dashboard'?!workspace:tab==='stock'?['location','location-profile','stock'].includes(workspace):tab==='personnel'?['personnel','staff-profile'].includes(workspace):workspace===tab)?'page':'false');
+  for(const tab of ['dashboard','personnel','stock','shipment'])$('tab-'+tab).setAttribute('aria-current',(tab==='dashboard'?!workspace:tab==='stock'?['location','location-profile','stock'].includes(workspace):tab==='personnel'?['personnel','staff-profile'].includes(workspace):['shipment','shipment-start'].includes(workspace))?'page':'false');
   $('menu-toggle').hidden=!signedIn||desktopMenu.matches;
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
-  if(!signedIn)inventoryExpanded=false;
+  if(!signedIn){inventoryExpanded=false;shipmentExpanded=false;}
+  $('nav-shipment-submenu').hidden=!shipmentExpanded;
+  $('nav-shipment').setAttribute('aria-expanded',String(shipmentExpanded));
   $('nav-inventory-submenu').hidden=!inventoryExpanded;
   $('nav-inventory').setAttribute('aria-expanded',String(inventoryExpanded));
   $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(profile?.role);
@@ -59,7 +61,7 @@ function render() {
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button,#nav-stock-list,#nav-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -81,7 +83,7 @@ async function restorePage(){
   else if(page==='location'&&profile?.role==='super_admin')await personnel.open('location');
   else if(page==='staff-profile'&&['admin','super_admin'].includes(profile?.role))await personnel.open(page,id);
   else if(page==='location-profile'&&profile?.role==='super_admin')await personnel.open(page,id);
-  else if(['stock','shipment'].includes(page))showPending(page);
+  else if(['stock','shipment','shipment-start'].includes(page))showPending(page);
   else showDashboard();
 }
 async function restore() {
@@ -154,9 +156,10 @@ $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
-function showPending(page){closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':'shipment_management');render();$('pending-heading').focus();}
+function showPending(page){closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':page==='shipment-start'?'start_shipment':'shipment_management');render();$('pending-heading').focus();}
 $('nav-stock-list').addEventListener('click',()=>showPending('stock'));
-$('nav-shipment').addEventListener('click',()=>showPending('shipment'));
+$('nav-shipment').addEventListener('click',()=>{shipmentExpanded=!shipmentExpanded;render();});
+$('nav-start-shipment').addEventListener('click',()=>showPending('shipment-start'));
 $('tab-dashboard').addEventListener('click',showDashboard);
 $('tab-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
 $('tab-stock').addEventListener('click',()=>showPending('stock'));

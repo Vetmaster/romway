@@ -130,3 +130,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Masaüstünde banner üstte sticky konumlandırıldı; sabit sol menünün üst sınırı kaydırma sırasında banner ile aynı hizada kalır. Mobil kuralı korunur.
 
 - Alt sekmeler yalnız 820 px ve altındaki mobil görünümde gösterilir; masaüstünde sekmeler ve ayrılan alt boşluk kaldırıldı.
+
+- Sevkiyat yönetimine başlangıçta kapalı alt menü ve TR/RO Sevkiyat başlat hazırlık sayfası eklendi; hash ile yenileme korunur. Stok seçimi/sunucuda sevkiyat gönderme henüz uygulanmadı.
