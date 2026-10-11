@@ -57,3 +57,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Mobil genişlik/rozet değişikliği Pages built ve gerçek dosya eşleşmesiyle doğrulandı; PR #10 taslak.
 
 - [x] SASA-F banner/ayrı gezinme çubuğu/sabit masaüstü menü ve mobil çekmece yerleşimi; mobil düzenle tüm satırın sağında sabitlendi, uzun metinlerle doğrulandı.
+- [x] SASA-F yerleşimi ve mobil düzenle düzeltmesi Pages built ve gerçek dosya eşleşmesiyle doğrulandı; PR #11 taslak.

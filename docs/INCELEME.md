@@ -126,3 +126,5 @@ Yayın doğrulandı: kaynak 9e58e59634363c7a8a9ddd1c969b74073cd89011, gh-pages 2
 ## 11 Ekim — SASA-F banner/menü yerleşimi ve mobil düzenle düzeltmesi
 
 SASA-F index.html app-banner/topbar/sidebar ve styles.css 821 px sabit menü/820 px çekmece kaynakları yeniden salt okunur incelendi. Banner tam genişlikte üstte, gezinme çubuğu altında; masaüstü menü sürekli açık, mobil menü modal çekmecedir. Menü modu viewport değişimine uyar. Önceki mobil düzenle düğmesi ikinci bilgi satırına yerleşiyordu; sağ sütun artık tüm satır yüksekliğini kapsar ve düğmeyi ortalar. 360/390/412/432/1440 px uzun ad/sicil/iki lokasyon örnekleriyle sağ hizalama/taşma kontrolü geçti; 412 px ve masaüstü görüntüleri incelendi. 390/1440 px personel ve giriş tarayıcı testleri geçti; API/Auth simüledir. Fiziksel S24 Plus testi ve Supabase değişikliği yapılmadı.
+
+Yayın doğrulandı: kaynak 32c23a4ae5d75f1dc3ff6751a8b6d89272eb089b, gh-pages 9698aed51d9c039ae5a4792f47f0443ac09ffe75. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO kaynakla eşleşti. PR #11 taslak; birleştirilmedi.
