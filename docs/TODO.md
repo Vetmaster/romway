@@ -90,4 +90,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Kart V ikonu Pages üzerinde doğrulandı; PR #21 taslak.
 
 - [x] Lokasyon açılır kartı, liste araması ve aktif/pasif + tarih sıralaması yerel kod/testte hazır.
-- [ ] 202610110003 liste tarih migration’ı için test Supabase onayı, uygulama ve ardından Pages yayını.
+- [x] 202610110003 liste tarih migration’ı kullanıcı onayıyla yalnız romway-auth-test’e uygulandı; kayıt/izin ve gerçek liste sıralaması kontrol edildi. Pages doğrulaması aşağıda kaydedilir.

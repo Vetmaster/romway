@@ -198,3 +198,7 @@ Lokasyon kartı personel kartının altına taşındı; başlangıçta kapalı, 
 PR #23 ile yayınlanan #2C3238 yol tonu/menü logosu, bekleyen PR #22 taslağına da taşındı; sonraki yayında menü görünümü korunur. PR #22 migration onayı hâlâ beklenir, bu birleşik taslak yayınlanmadı.
 
 PR #24 ile yayınlanan sürüm etiketi, bekleyen PR #22 taslağına v2026.10.11.2 olarak taşındı. Taslak yayınlanmadı; migration onayı hâlâ bekler.
+
+## 11 Ekim — PR #22 onayı ve test migration uygulaması
+
+Kullanıcı migration ve yayını açıkça onayladı. 202610110003 yalnız romway-auth-test’e uygulandı; personel/Auth sayıları korundu, anon/authenticated RPC execute kapalı ve service_role açık. Mevcut geçerli super_admin oturumuyla gerçek veritabanı liste yanıtında created_at ve aktif/yeni/pasif sırası salt okuma çağrısıyla doğrulandı; hesap oluşturulmadı/değiştirilmedi. Birleşik menü logosu/yol tonu ve v2026.10.11.2 etiketli görünümde 390/1440 px personel tarayıcı testi ve 12 yerel SQL/endpoint testi geçti; yerel Auth simüledir. Mobil görüntü incelendi. Sasa-F/Vetamerikan-shift’e işlem yapılmadı.

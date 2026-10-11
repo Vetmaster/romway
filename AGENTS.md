@@ -48,3 +48,5 @@
 
 ## Yayın sürümü
 - Banner vYYYY.MM.DD.N gösterir; yeni web yayını hazırlarken kullanıcı zaman dilimine göre tarih/günlük sıra numarasını güncelle, sonra asset sürümlerini üret.
+
+- 11 Ekim kullanıcı PR #22 created_at liste migration’ını yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulamayı ve ardından lokasyon kartı/arama/sıralama görünümünü yayınlamayı açıkça onayladı. Diğer projeler ve veri silme kapsam dışıdır.
