@@ -36,7 +36,7 @@ async function fixture({role='receiver',required=true,active=true}={}) {
     assert.equal(response.status,200);
     return response.headers.get('set-cookie').split(';')[0];
   }
-  return {id,number,email,call,login,handler,failUpdate:() => {updateFails=true;}};
+  return {id,number,email,call,login,handler,backend,failUpdate:() => {updateFails=true;}};
 }
 
 test('sicil normalization and cookie parsing reject invalid/duplicate inputs',() => {
@@ -167,4 +167,26 @@ test('service role can invoke RPC but an Auth Bearer alone cannot enter the cook
   finally { await db.exec('reset role;'); }
   const response=await f.call({action:'me'},null,'http://localhost:8000',{Authorization:'Bearer synthetic-auth-jwt'});
   assert.equal(response.status,401);
+});
+
+test('partitioned HTTPS cookie keeps Origin enforcement and identical logout attributes',async () => {
+  const f=await fixture();
+  const appOrigin='https://vetmaster.github.io';
+  const handler=createHandler({backend:f.backend,appOrigin,cookieMode:'partitioned'});
+  const call=(body,cookie,origin=appOrigin)=>handler(new Request('https://api.example.com/auth',{
+    method:'POST',headers:{origin,'Content-Type':'application/json',...(cookie?{cookie}:{})},body:JSON.stringify(body)}));
+  const response=await call({action:'login',employee_number:f.number,password:'Synthetic-old-password-1'});
+  assert.equal(response.status,200);
+  const header=response.headers.get('set-cookie');
+  assert.match(header,/^__Host-romway_session=/);assert.match(header,/HttpOnly; Path=\//);
+  assert.match(header,/SameSite=None; Max-Age=28800; Secure; Partitioned$/);
+  assert(!header.includes('Domain='));const cookie=header.split(';')[0];
+  assert.equal((await call({action:'me'},cookie,'https://untrusted.invalid')).status,403);
+  assert.equal((await call({action:'me'},cookie,'null')).status,403);
+  assert.equal((await call({action:'me'},cookie)).status,200);
+  const logout=await call({action:'logout'},cookie);assert.equal(logout.status,200);
+  assert.match(logout.headers.get('set-cookie'),/SameSite=None; Max-Age=0; Secure; Partitioned$/);
+  assert.equal((await call({action:'me'},cookie)).status,401);
+  for(const mode of ['none','invalid']) assert.throws(()=>createHandler({backend:{},appOrigin,cookieMode:mode}));
+  assert.throws(()=>createHandler({backend:{},appOrigin:'http://localhost:8000',local:true,cookieMode:'partitioned'}));
 });

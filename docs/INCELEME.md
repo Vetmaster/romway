@@ -36,3 +36,13 @@ GitHub, mevcut OAuth bağlantısında workflow scope olmadığı için `.github/
 ## 10 Ekim 2026 — açık depo ve statik yayın
 
 Kullanıcı onayıyla Vetmaster/romway public yapıldı. Önceki özel depo/Cloudflare kayıtları tarihsel inceleme sonuçlarıdır; güncel hosting GitHub Pages. Kaynak geçmişindeki 12 commit/60 benzersiz blob üzerinde bilinen token/JWT/özel anahtar önekleri tarandı, bulgu yok; bu kapsamlı güvenlik denetimi değildir. gh-pages yalnız web ağacını içerir. https://vetmaster.github.io/romway/ canlı olarak doğrulandı; Pages built, HTTPS, logo ve devre dışı giriş kontrol edildi. Supabase değişikliği ve PR merge yapılmadı.
+
+## 11 Ekim 2026 — gerçek Auth ve CHIPS
+
+Kullanıcı Docker yerine yeni bulut test projesini seçti. Ücretsiz kuruluş planı Management API ile doğrulandı; yeni romway-auth-test (ifnjvdjhfhzfxyuorqvz) Frankfurt Nano olarak oluşturuldu. Şema/Auth kullanıcılarının boş olması kontrolünden sonra yalnız bu projeye migration uygulandı, signup kapatıldı, romway-auth API bundling ile dağıtıldı. Mevcut Sasa Futbol/Vetamerikan-shift projelerine işlem yapılmadı. Repo uzak projeye bağlanmadı.
+
+23 Node/PGlite testi ve yerel mobil/masaüstü tarayıcı regresyonları geçti. Gerçek uzak Auth/DB/Edge testleri: kapalı/yanlış hesap, zorunlu değişim, eski şifre/iki oturumun iptali, signup kapatma, gerçek Auth JWT ile RPC/özel şema reddi, RLS/SELECT izinleri, çıkış. Localhost mobil gerçek Auth/DB turu geçti. GitHub Pages origin üzerinde önce Strict cookie başarısızlığı, sonra partitioned HttpOnly cookie giriş/yenileme/çıkışı Chrome ile doğrulandı. GitHub Pages özel alan adı gerektirmeden bu test moduyla kullanılabilir. Safari/Firefox ve kullanıcının telefonundaki sürüm ayrıca denenmelidir; JS token fallback eklenmedi.
+
+TESTADMIN ayrı test projesinde etkinleştirildi; geçici şifre repo dışında 0600 dosyada, ilk değişim zorunlu. Gerçek personel/depo verisi yok; kurtarma/audit/üretim politikası henüz tamamlanmadı. Yeni kod feature/auth-integration dalında incelenir; otomatik merge yok.
+
+Yayın sonrası: GitHub Pages built, gerçek yayın modunda mobil CHIPS/Edge/Auth/DB giriş/yenileme/çıkış geçti. Etkin sicil/şifre formu Codex tarayıcısında görüldü. Yerel çalışma ağacı temiz tutuldu; PR #3 taslak olarak açıldı. TESTADMIN hesabının geçici şifresi değiştirilmedi, kullanıcının denemesi beklenir.

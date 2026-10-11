@@ -1,9 +1,12 @@
 import {AuthError, cookieValue, employeeNumber, hash, password, randomSecret, readJson, safeProfile} from './security.js';
-export function createHandler({backend, appOrigin, local = false}) {
+export function createHandler({backend, appOrigin, local = false, cookieMode = 'strict'}) {
   const origin = new URL(appOrigin);
   if (origin.origin !== appOrigin || (local ? !(['localhost','127.0.0.1'].includes(origin.hostname) && origin.protocol === 'http:') : origin.protocol !== 'https:')) throw new Error('Invalid APP_ORIGIN');
+  if (!['strict','partitioned'].includes(cookieMode) || (local && cookieMode !== 'strict')) throw new Error('Invalid cookie mode');
   const cookieName = local ? 'romway_dev_session' : '__Host-romway_session';
-  const cookie = (value, age) => `${cookieName}=${value}; HttpOnly; Path=/; SameSite=Strict; Max-Age=${age}${local ? '' : '; Secure'}`;
+  // CHIPS keeps the opaque HttpOnly session partitioned by the top-level site.
+  // All POSTs still require exact Origin and JSON; no unpartitioned None mode exists.
+  const cookie = (value, age) => `${cookieName}=${value}; HttpOnly; Path=/; SameSite=${cookieMode === 'partitioned' ? 'None' : 'Strict'}; Max-Age=${age}${local ? '' : '; Secure'}${cookieMode === 'partitioned' ? '; Partitioned' : ''}`;
   return async function handle(req) {
     const headers = {'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','Vary':'Origin',
       'Access-Control-Allow-Origin':appOrigin,'Access-Control-Allow-Credentials':'true','X-Content-Type-Options':'nosniff'};

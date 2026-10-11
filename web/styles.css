@@ -18,6 +18,14 @@ body {
   font:16px/1.5 var(--font);
   min-width:320px;
 }
+.environment {
+  margin:0 auto;
+  padding:4px 24px;
+  max-width:1200px;
+  color:var(--blue);
+  font-size:13px;
+  font-weight:700;
+}
 header,main,footer {
   max-width:1200px;
   margin:auto;

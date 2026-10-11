@@ -76,3 +76,7 @@ Modüler auth/yetki/ortak arayüz ayrımı, kodla aynı PR içinde migration dos
 
 ## Yayın kararı — 10 Ekim 2026
 Kullanıcı Sasa-F gibi GitHub Pages üzerinden devam etmeyi açıkça seçti. Bu karar eski Cloudflare tercihini günceller. İlk yayın yalnız bağlantısız statik arayüz önizlemesidir. Kullanıcının sonraki onayıyla repo şimdilik herkese açıldı; yalnız web dosyaları ayrı gh-pages dalına çıkarılır. PR otomatik birleştirilmez. Gerçek girişin cookie/domain uyumu ve Pages kullanım uyarıları ayrıca doğrulanacak; bu yayın Supabase veya girişin tamamlandığı anlamına gelmez.
+
+## 11 Ekim 2026 — ayrı Auth test projesi ve GitHub Pages
+
+Kullanıcı yeni ve ayrı Supabase test projesini seçti; yalnız yeni romway-auth-test ortamına giriş şeması/fonksiyonu kuruldu. Mevcut projeler korunur. Kullanıcı özel alan adı olmadan GitHub Pages ile devam eder. Ücretsiz partitioned HttpOnly cookie (CHIPS) seçeneği opt-in eklenip gerçek Chrome/Edge/Auth/DB ile doğrulandı; JWT/şifre JavaScript deposuna verilmez. Yayın test ortamına bağlı giriş önizlemesidir. Gerçek personel/stok/finans verisi ve üretim pilotu henüz kapsamda değildir. Telefon/Safari/Firefox sürüm doğrulaması ve kurtarma/audit işleri devam eder.

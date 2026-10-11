@@ -60,7 +60,12 @@ $('login').addEventListener('submit',event => {
   perform(async () => {
     await api.call('login',{employee_number,password});
     // Confirm the cookie round trip before admitting the user to the welcome screen.
-    const result = await api.call('me');
+    let result;
+    try { result = await api.call('me'); }
+    catch (error) {
+      if (error.message === 'session_expired') throw new Error('session_unavailable');
+      throw error;
+    }
     profile = result.profile ?? null; transition(result.password_change_required ? 'change' : 'welcome'); notify('');
   });
 });

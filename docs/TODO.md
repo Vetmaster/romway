@@ -40,3 +40,19 @@ Stok/finans/lokasyon yetkileri, gerçek Supabase kurulumu veya canlı dağıtım
 - [x] HTTPS canlı sayfa, logo, TR arayüzü ve gerçek girişin kapalı olması doğrulandı.
 - [ ] Gerçek Supabase girişini ayrı test ortamında doğrula; canlı cookie/domain uyumunu çöz.
 - [ ] Repo görünürlüğünü ve gerçek kullanım için hosting/güvenlik kararını yeniden değerlendir.
+
+## 11 Ekim — gerçek ayrı Supabase test ortamı
+
+- [x] Ücretsiz yeni romway-auth-test oluşturuldu; boş proje doğrulandı, yalnız buraya migration/Edge dağıtıldı.
+- [x] Gerçek Auth ile hesap aktivasyonu, kapalı hesap, yanlış şifre, zorunlu değişim, eski şifre/oturum, signup kapatma ve JWT/RPC/özel şema reddi doğrulandı.
+- [x] Gerçek DB RLS/SELECT izinleri doğrulandı.
+- [x] Gerçek uzak Auth/DB ile localhost mobil TR/RO/cookie/receiver akışı geçti.
+- [x] GitHub Pages ile gerçek Edge/Auth/DB CHIPS oturumu Chrome'da doğrulandı; özel domain gerekmiyor.
+- [x] TESTADMIN bootstrap; güvenli geçici şifre, zorunlu değişim; gizli dosya repo dışında.
+- [ ] Kullanıcının telefonunda giriş/şifre değişimi ve Safari/Firefox hedef sürümleri.
+- [ ] Operatör kurtarma/audit ve üretim politika kararları; gerçek iş verisi veya stok sistemi henüz hazır değil.
+
+Önceki yerel Docker maddeleri çalıştırılmadı; kullanıcı bulut ortamını tercih etti. Aynı-site domain maddesi Strict modunun eski varsayımıdır; güncel seçim partitioned cookie'dir. Eski checkbox'lar yeni kanıtların yerine geçmez.
+
+- [x] Yayın sonrası gerçek GitHub Pages dosyalarıyla mobil Chrome giriş/yenileme/çıkış; test backend bağlantısı doğrulandı.
+- [ ] Kullanıcı TESTADMIN ile ilk giriş/şifre değişimini denesin; telefon uyumunu bildirsin.
