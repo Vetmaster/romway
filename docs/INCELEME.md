@@ -150,3 +150,5 @@ Yayın: kaynak 9a99d123993c9d88f21c06bd8326023e8e3a7071, gh-pages 04b2f9a70a4389
 ## 11 Ekim — sistem açıklaması
 
 Kullanıcı kararıyla banner/footer açıklaması Depo ve Lojistik Yönetim Sistemi; RO karşılığı Sistem de Management al Depozitelor și Logisticii olarak güncellendi. Yerleşim ve işlevler korunur.
+
+Syntax/web referans, TR/RO anahtar ve diff kontrolü geçti. Yayın: kaynak 80be18146b3ff05664da0923f5042395846896ed, gh-pages 17179f7a993196d598666be617032d0a8a7c8e9b. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #15 taslak; birleştirilmedi. Supabase değişmedi.
