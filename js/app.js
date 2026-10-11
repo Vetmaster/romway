@@ -11,6 +11,7 @@ try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
 let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
 let personnel;
+const desktopMenu=window.matchMedia('(min-width:821px)');
 function render() {
   if(view!=='welcome') workspace=false;
   personnel?.update(view==='welcome'?profile:null);
@@ -20,7 +21,10 @@ function render() {
   const signedIn=view==='welcome';
   $('auth-panel').hidden=signedIn;document.querySelector('.intro').hidden=signedIn;
   $('welcome').hidden=!signedIn||workspace;
-  $('menu-toggle').hidden=!signedIn;
+  document.body.classList.toggle('app-shell',signedIn);
+  $('page-title').textContent=signedIn?text(workspace?'personnel_title':'dashboard_title'):'';
+  $('menu-toggle').hidden=!signedIn||desktopMenu.matches;
+  if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
   $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(profile?.role);
   $('nav-home').setAttribute('aria-current',workspace?'false':'page');
@@ -115,6 +119,7 @@ $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('nav
 $('nav-home').addEventListener('click',showDashboard);
 $('nav-personnel').addEventListener('click',()=>{closeMenu(false);$('personnel-open').click();});
 $('personnel-back').addEventListener('click',showDashboard);
+desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
 personnel=createPersonnel({api,text,run:perform,onOpen:()=>{workspace=true;render();$('personnel-heading').setAttribute('tabindex','-1');$('personnel-heading').focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 render(); restore();
