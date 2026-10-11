@@ -371,3 +371,5 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .app-banner .brand svg {display:block;}
 
 #menu-toggle {font-size:22px;min-width:44px;min-height:44px;padding:6px 10px;}
+
+.banner-subtitle span {display:block;white-space:nowrap;}

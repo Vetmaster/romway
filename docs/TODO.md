@@ -76,3 +76,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] CSS/JS/import adreslerine içerik hash sürümü ve yayında güncellik kontrolü eklendi.
 - [x] Mobil önbellek düzeltmesi Pages üzerinde doğrulandı; PR #17 taslak.
+
+- [x] Logo açıklaması iki sabit, ortalanmış TR/RO satıra bölündü; görünüm ve sürüm kontrolü geçti.
