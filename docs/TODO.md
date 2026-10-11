@@ -124,3 +124,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Banner logosu %25 küçültülüp sola hizalandı; mobil/masaüstü görünümü doğrulandı.
 - [x] Banner açıklaması logo genişliği içinde ortalandı.
 - [x] Banner açıklama yazısı büyütüldü; tek satır ve logo merkezi korunur.
+- [x] Banner açıklaması hafif küçültüldü ve font-weight:700 yapıldı.
