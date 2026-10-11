@@ -27,3 +27,5 @@ Canlı doğrulama: Pages build built, HTTP GET başarılı, HTTPS etkin. Tarayı
 ## 11 Ekim — test girişi
 
 Kullanıcı yeni ve ayrı Supabase projesini ve özel alan adı olmadan GitHub Pages ile devam etmeyi seçti. Varsayılan Strict cookie için önceki domain gereksinimi CHIPS modunda kaldırıldı; bu önceki kayıtları günceller. Test endpoint'i CSP connect-src izin listesine alındı; yalnız public URL web config'inde bulunur. Anahtar/JWT/şifre eklenmedi. Test ortamı etiketi TR/RO gösterilir. Yayın öncesi gerçek CHIPS/Edge/Auth/DB testi ve 23 birim/PostgreSQL testi geçti. Hedef telefonlarda ayrıca denenmesi gerekir.
+
+Son doğrulama: gh-pages 374a081 build built. Gerçek yayındaki HTML/config/app dosyaları mobil Chrome üzerinden yeni sentetik hesapla giriş/yenileme/çıkış testinden geçti. Yayın test projesine bağlıdır; TESTADMIN hesabı kullanıcı denemesi için hazır, ilk şifre değişimi zorunlu. Kaynak PR #3 taslaktır; merge yapılmadı.

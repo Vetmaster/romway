@@ -53,3 +53,6 @@ Stok/finans/lokasyon yetkileri, gerçek Supabase kurulumu veya canlı dağıtım
 - [ ] Operatör kurtarma/audit ve üretim politika kararları; gerçek iş verisi veya stok sistemi henüz hazır değil.
 
 Önceki yerel Docker maddeleri çalıştırılmadı; kullanıcı bulut ortamını tercih etti. Aynı-site domain maddesi Strict modunun eski varsayımıdır; güncel seçim partitioned cookie'dir. Eski checkbox'lar yeni kanıtların yerine geçmez.
+
+- [x] Yayın sonrası gerçek GitHub Pages dosyalarıyla mobil Chrome giriş/yenileme/çıkış; test backend bağlantısı doğrulandı.
+- [ ] Kullanıcı TESTADMIN ile ilk giriş/şifre değişimini denesin; telefon uyumunu bildirsin.

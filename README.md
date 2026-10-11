@@ -29,7 +29,7 @@ Ekran: http://localhost:8000. `web/js/config.js` localhost üzerinde endpoint bo
 Tarayıcı testleri için Chromium kurulduktan sonra `npm run test:browser`. Node, PGlite ve Playwright yalnız geliştirme/test araçlarıdır; üretim uygulaması sade HTML/CSS/JavaScript ve Supabase Deno kodudur. Node sunucu veya PGlite veritabanı üretime eklenmez. Tam test komutları AUTH.md içindedir.
 
 ## Kaynak kod ve yayın
-Herkese açık GitHub deposu: Vetmaster/romway (10 Ekim 2026 kullanıcı onayı). İlk belgeler PR #1'de; bu aşama `feature/auth-foundation` dalında ve belge dalını temel alır. PR'lar otomatik birleştirilmez. GitHub Pages yalnız `web/` çıktısını `gh-pages` dalından yayınlayacak; docs/scripts/supabase dosyaları statik yayına dahil edilmez.
+Herkese açık GitHub deposu: Vetmaster/romway (10 Ekim 2026 kullanıcı onayı). İlk belgeler PR #1'de; gerçek Auth entegrasyonu PR #3/`feature/auth-integration` dalında, PR #2/`feature/auth-foundation` dalını temel alır. PR'lar otomatik birleştirilmez. GitHub Pages yalnız `web/` çıktısını `gh-pages` dalından yayınlayacak; docs/scripts/supabase dosyaları statik yayına dahil edilmez.
 
 Supabase migration ve function kodu **Sasa Futbol/Vetamerikan-shift projelerine uygulanmadı**; yalnız yeni `romway-auth-test` ortamına kuruldu. `supabase/config.toml` yalnız yeni yerel test projesinin yapılandırmasıdır. Browser JWT yerine HttpOnly cookie kullanılır. GitHub Pages/supabase.co için partitioned CHIPS oturumu gerçek Chrome testinde doğrulandı; JS token fallback yoktur. Eski tarayıcı/cihazlar pilot öncesi ayrıca denenmeli. Cloudflare eklenmeyecek; DNS veya ücretli servis kurulmadı.
 

@@ -42,3 +42,7 @@ Resmi kaynaklar: [proje oluşturma](https://supabase.com/docs/reference/api/v1-c
 23 Node/PGlite testi geçti. Gerçek bulut entegrasyonu: pasif hesap/yanlış şifre, zorunlu değişim, eski şifre ve iki eski oturumun reddi, güvenli profil, gerçek Auth JWT ile RPC/özel şema erişim reddi, signup kapatma, çıkış ve test hesabı kapatma geçti. Gerçek DB RLS/istemci SELECT izinleri kontrol edildi. Localhost mobil arayüz gerçek uzak Auth/DB ile TR/RO ve receiver profili üzerinden geçti. GitHub Pages origin testi CHIPS ile gerçek uzak Edge Function'a bağlandı; cookie partitionKey üst siteye bağlı, HttpOnly/Secure ve logout temizliği doğrulandı. Strict modun aynı bağlantıda başarısız olduğu ayrı olumsuz testle gösterildi.
 
 `TESTADMIN` yalnız bu projede super_admin olarak oluşturuldu; 24 saat geçici şifre ve ilk girişte zorunlu değişim var. Geçici şifre kullanıcıya açık Git veya sohbet üzerinden verilmez; repo dışındaki özel dosyada kalır. Stok/personel yönetimi/lokasyon/fiyat API'leri henüz yoktur.
+
+## Yayın sonrası son kontrol
+
+11 Ekim: gh-pages 374a081 dağıtımı built olarak doğrulandı. ROMWAY_TEST_PUBLISHED=true ile HTML/config/app için route override olmadan gerçek yayın dosyaları mobil Chrome'da test edildi: giriş, partitioned HttpOnly cookie, yenileme ve çıkış geçti. Sadece harici font istekleri testte boş CSS ile izole edilir. Codex tarayıcısında Test ortamı etiketi ve etkin sicil/şifre formu görüldü. TESTADMIN şifresi değiştirilmedi; bu hesabı kullanıcı ilk girişte değiştirecek.
