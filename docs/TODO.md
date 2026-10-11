@@ -118,3 +118,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Sevkiyat Yönetimi menü başlığı hazırlık durumuyla eklendi; işlev henüz geliştirilmedi.
 - [x] Personel/lokasyon isimleri profil açar; yenileme ve listeye dönüş doğrulandı.
 - [x] Dört alt sekme, tek satır banner açıklaması, geniş logo ve menü liste adları uygulandı.
+- [x] Lokasyon yalnız ad/otomatik kod ve isteğe bağlı ülke migration’ı yerel testte hazır.
+- [ ] 202610110004 + romway-auth Edge güncellemesini yalnız test projesine uygulama onayı; henüz uygulanmadı/yayınlanmadı.

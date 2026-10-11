@@ -11,10 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anta&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=ed5b8781c74d">
-  <script type="module" src="js/app.js?v=ac34f66d3e7b"></script>
+  <script type="module" src="js/app.js?v=a5febd95bbee"></script>
 </head>
 <body>
-  <header class="app-banner"><span id="app-version" class="app-version"><span class="sr-only" data-i18n="version_label"></span>v2026.10.11.23</span><a class="brand" href="./" aria-label="Romway"><svg viewBox="400 160 735 510" role="img" aria-label="Solea" width="144" height="100"><image href="assets/logo-solea.png" width="1536" height="1024"></image></svg><small class="banner-subtitle" data-i18n="drawer_brand_caption"></small></a><div class="banner-controls"><span class="banner-test" data-i18n="test_environment"></span><label class="language"><span data-i18n="language">Dil</span><select id="language"><option value="tr">Türkçe</option><option value="ro">Română</option></select></label></div></header>
+  <header class="app-banner"><span id="app-version" class="app-version"><span class="sr-only" data-i18n="version_label"></span>v2026.10.11.24</span><a class="brand" href="./" aria-label="Romway"><svg viewBox="400 160 735 510" role="img" aria-label="Solea" width="144" height="100"><image href="assets/logo-solea.png" width="1536" height="1024"></image></svg><small class="banner-subtitle" data-i18n="drawer_brand_caption"></small></a><div class="banner-controls"><span class="banner-test" data-i18n="test_environment"></span><label class="language"><span data-i18n="language">Dil</span><select id="language"><option value="tr">Türkçe</option><option value="ro">Română</option></select></label></div></header>
   <div class="topbar">
     <button id="menu-toggle" class="secondary menu-toggle" type="button" hidden aria-controls="navigation-drawer" aria-expanded="false" data-i18n="menu"></button>
     <strong id="page-title"></strong>
@@ -113,9 +113,7 @@
         <button id="location-toggle" class="personnel-card-toggle" type="button" data-i18n="add_location" aria-expanded="false" aria-controls="location-form"></button>
       <form id="location-form" hidden aria-labelledby="location-heading">
         <h3 id="location-heading" data-i18n="add_location"></h3>
-        <label for="location-code" data-i18n="location_code"></label><input id="location-code" required maxlength="40" pattern="[A-Za-z0-9_-]{1,40}">
         <label for="location-name" data-i18n="location_name"></label><input id="location-name" required maxlength="100">
-        <label for="location-country" data-i18n="country"></label><select id="location-country"><option value="TR">Türkiye</option><option value="RO">România</option></select>
         <button type="submit" data-i18n="add_location"></button>
       </form>
       </div>
