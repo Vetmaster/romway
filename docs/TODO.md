@@ -103,3 +103,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Kullanıcı adı ve rol menünün en altına taşındı; mobil/masaüstü konumu doğrulandı.
 - [x] Personel ekle/lokasyon ekle alt menü kısayolları eklendi; 390/1440 px akışları doğrulandı.
 - [x] Personel/lokasyon ayrı sayfalara ayrıldı; her sayfada ekleme kartı ve ilgili liste var. Mobil/masaüstü akışları doğrulandı.
+- [x] Menü × butonu tamamen kaldırıldı; dış alan/Escape kapanması doğrulandı.
