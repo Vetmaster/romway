@@ -54,3 +54,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Solea logosu Pages yayını ve canlı PNG eşleşmesi ile doğrulandı; PR #9 taslak.
 
 - [x] Mobil personel paneli genişledi, düzenleme sağda kaldı; aktif yeşil/pasif kırmızı rozet ve farklı telefon genişlikleri kontrol edildi.
+- [x] Mobil genişlik/rozet değişikliği Pages built ve gerçek dosya eşleşmesiyle doğrulandı; PR #10 taslak.
