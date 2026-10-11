@@ -106,3 +106,5 @@ Yayın doğrulandı: kaynak 0fce9bebd5e6b420506deb95a390e6e7389cc00e, gh-pages 0
 ## 11 Ekim — dashboard ve çekmece menü
 
 SASA-F/sporx-futbol-okulu index.html (sidebar), styles.css (dashboard-navigation-card/sidebar) ve app.js gezinme kartları salt okunur incelendi. Romway başarılı giriş/oturum geri yükleme sonrası dashboard gösterir. Personel kartı ve modal sol menü aynı personel ekranını açar; admin/super_admin görünürlüğü korunur. Stok/sevkiyat Yakında olarak belirtilir, sayaç üretilmez. 390/1440 px personel tarayıcı testi (iki erişim, menü/Escape, ana ekrana dönüş, mevcut personel işlemleri) ve giriş regresyonu geçti. TR/RO anahtar, syntax/web referans ve diff kontrolleri geçti; mobil/masaüstü görüntüleri incelendi. Yerel Auth simüledir; Supabase veya uzak kayıtlar değiştirilmedi.
+
+Yayın: kaynak 57928a80f20a1419c49f776f2ae9ff810aefc6c3, gh-pages 4d53008a217d7f36c2fa16c4fba0ea5fb5bdc796. Pages built/error=null ve gerçek HTML/CSS/app/personnel/TR/RO SHA-256 eşleşmesi geçti. Kullanıcının yeni izlenmeyen Solea_Logo_Onayli.png dosyası korunarak temiz geçici kopyadan yayınlandı. PR #8 taslak; birleştirilmedi.
