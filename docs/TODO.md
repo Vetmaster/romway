@@ -51,3 +51,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Dashboard/çekmece Pages üzerinde yayınlandı; build ve gerçek dosya eşleşmesi doğrulandı. PR #8 taslak.
 
 - [x] Kullanıcının onaylı Solea logosu üst çubuğa alındı; özgün logo dosyaları korundu, mobil/masaüstü görünüm kontrolü geçti.
+- [x] Solea logosu Pages yayını ve canlı PNG eşleşmesi ile doğrulandı; PR #9 taslak.

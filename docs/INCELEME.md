@@ -114,3 +114,5 @@ Yayın: kaynak 57928a80f20a1419c49f776f2ae9ff810aefc6c3, gh-pages 4d53008a217d7f
 Kullanıcının Solea_Logo_Onayli.png dosyasındaki büyük renkli logo üst çubuğa alındı. Özgün dosya ve önceki Romway varlığı korunur. PNG assets/logo-solea.png olarak birebir kopyalandı; SVG viewBox yalnız büyük logoyu gösterir, dosyanın altındaki alternatif/çevre boşluklarını gizler. Uygulama adı ve veriler değişmez.
 
 Syntax/web referans/diff ve 390/1440 px salt arayüz Chrome kontrolü geçti; mobil ekran görüntüsü incelendi, yatay taşma yok. API bu görsel kontrolde yapılandırılmadı; Supabase işlemi yapılmadı.
+
+Yayın doğrulandı: kaynak 8ad829ced122a0effb1c03d2c36f35b73a047710, gh-pages bf2b45bfe188523bdfd1a755bcc4e92419e12062. Pages built/error=null; HTML/CSS/JS/diller kaynakla eşleşti, canlı Solea PNG onaylı dosyayla birebir aynı. PR #9 taslak, birleştirilmedi.
