@@ -88,3 +88,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Personel kartı +/− işaretleri aşağı/yukarı V ikonuyla değiştirildi.
 - [x] Kart V ikonu Pages üzerinde doğrulandı; PR #21 taslak.
+
+- [x] Menü yolun #2C3238 tonu ve üstte Solea logosuyla hazırlandı; tarih migration’ı gerektirmez.
