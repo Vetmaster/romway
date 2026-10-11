@@ -116,3 +116,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Stok ve depolar açılır menü başlığı eklendi; stok takibi hazırlık olarak gösterilir.
 - [x] Lokasyon ekle Stok ve depolar altına taşındı; mobil/masaüstü doğrulandı.
 - [x] Sevkiyat Yönetimi menü başlığı hazırlık durumuyla eklendi; işlev henüz geliştirilmedi.
+- [x] Personel/lokasyon isimleri profil açar; yenileme ve listeye dönüş doğrulandı.
+- [x] Dört alt sekme, tek satır banner açıklaması, geniş logo ve menü liste adları uygulandı.

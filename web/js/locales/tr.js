@@ -1,4 +1,12 @@
 export default {
+ location_list:'Lokasyon listesi',
+ stock_list:'Stok listesi',
+ staff_profile:'Personel profili',
+ location_profile:'Lokasyon profili',
+ back_to_list:'Listeye dön',
+ not_available:'Bu kayıt bulunamadı veya erişim yetkiniz yok.',
+ status_label:'Durum',
+
  shipment_management:'Sevkiyat Yönetimi',
  stock_tracking_pending:'Stok takibi — Hazırlanıyor',
  drawer_brand_caption:'Depo ve Lojistik Yönetim Sistemi',

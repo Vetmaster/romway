@@ -288,3 +288,9 @@ Lokasyon ekle Personel yönetimi altından Stok ve depolar altına taşındı; y
 ## 11 Ekim — sevkiyat menüsü
 
 Sevkiyat Yönetimi başlığı pasif/Yakında durumuyla menüye eklendi. TR/RO metinleri ayrı dosyalarda; sevkiyat işlevi mevcut sayılmaz. Syntax/web referans/asset/diff kontrolleri uygulanır; Supabase değişikliği yok.
+
+## 11 Ekim — profil sayfaları ve alt sekmeler
+
+Dört alt sekme eklendi: Genel bakış, Personel yönetimi, Stok ve depolar, Sevkiyat yönetimi. SASA-F bottom-nav çizgisel ikon/dört sütun örneği doğrulandı; personel sekmesi rol yetkisine göre görünür. Stok/sevkiyat sayfaları açıkça Yakında içerir, işlev geliştirilmiş sayılmaz. Menü seçenekleri personel/lokasyon/stok listesi olarak adlandırıldı. Banner logo büyütüldü ve alt yazı tek satır oldu; otomatik başlık odağının dikdörtgeni kaldırıldı, form odakları korunur. Personel/lokasyon isimleri yetkili kayıt profillerini açar; profil yenilemesi/geri liste bağlantısı desteklenir. Yetkisiz/bulunamayan kayıt ayrıntı göstermez; kişisel veri localStorage’a konmaz. 390/1440 px personel testleri profil, yenileme, alt sekmeler ve mevcut akışlarla geçti; mobil görüntü incelendi. Syntax/asset/diff kontrolleri geçti. Lokasyonda yalnız ad/otomatik kod ayrı sunucu değişikliği olarak bekliyor; bu arayüz yayını Supabase’e işlem yapmaz.
+
+Profil/sekme yayını v2026.10.11.23 doğrulandı: kaynak be5ebe5, gh-pages dd389bd2ea11906b8e27eb041236765a06e789fb; Pages built/error=null ve gerçek HTML/CSS/JS/TR/RO dosyaları kaynakla eşleşti. PR #46 taslak, birleştirilmedi.

@@ -1,4 +1,12 @@
 export default {
+ location_list:'Lista locațiilor',
+ stock_list:'Lista stocurilor',
+ staff_profile:'Profilul personalului',
+ location_profile:'Profilul locației',
+ back_to_list:'Înapoi la listă',
+ not_available:'Înregistrarea nu există sau nu aveți acces.',
+ status_label:'Stare',
+
  shipment_management:'Gestionarea expedierilor',
  stock_tracking_pending:'Urmărirea stocurilor — În pregătire',
  drawer_brand_caption:'Sistem de Management al Depozitelor și Logisticii',
