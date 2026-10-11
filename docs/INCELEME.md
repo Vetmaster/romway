@@ -248,3 +248,7 @@ Personel ve lokasyon ekleme ayrı uygulama sayfalarına ayrıldı. Personel sayf
 ## 11 Ekim — menü çarpısını kaldırma
 
 Menüdeki × butonu DOM/CSS/JS’den kaldırıldı. Menü açıldığında odak logo butonuna gider; dış alana dokunma ve Escape ile kapanma korunur. 390/1440 px tarayıcı testleri, mobil dış alan/Escape kapanması, syntax/asset/diff kontrolleri geçti. Veritabanı değişikliği yok.
+
+## 11 Ekim — menüde oturum kapatma
+
+Oturumu kapat butonu menünün en altındaki kullanıcı adı/rol satırının sağına taşındı. Aynı buton ve sunucu oturum iptali kullanılır; zorunlu şifre değiştirme ekranında buton üst alanda erişilebilir kalır. TR metni Oturumu kapat, RO Deconectare. 390/1440 px personel tarayıcı testlerinde menüden çıkış, yeniden giriş ve mevcut akışlar geçti; syntax/asset/diff kontrolleri başarılı. Supabase değişikliği yok.

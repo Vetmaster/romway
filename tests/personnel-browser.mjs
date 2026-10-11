@@ -38,6 +38,7 @@ try{
   await context.route('**/js/config.js*',r=>r.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://localhost:8000');await page.locator('#login').waitFor({state:'visible'});
+  const logout=async()=>{if(width<=820)await page.locator('#menu-toggle').click();assert.equal(await page.locator('#logout').evaluate(el=>el.parentElement.id),'drawer-profile');await page.locator('#logout').click();};
   const navigate=async id=>{if(width<=820)await page.locator('#menu-toggle').click();await page.locator('#'+id).click();};
   const login=async(number,password)=>{await page.locator('#employee').fill(number);await page.locator('#password').fill(password);await page.locator('#login button').click();};
   await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
@@ -52,7 +53,7 @@ try{
   if(width<=820){assert.equal(await page.locator('#navigation-drawer').evaluate(el=>el.open),false);await page.locator('#menu-toggle').click();}
   await page.locator('#nav-home').click();await page.locator('#welcome').waitFor({state:'visible'});
   await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
-  await page.locator('#auth-panel').waitFor({state:'hidden'});assert(await page.locator('.intro').isHidden());assert(await page.locator('#logout').isVisible());
+  await page.locator('#auth-panel').waitFor({state:'hidden'});assert(await page.locator('.intro').isHidden());assert.equal(await page.locator('#logout').evaluate(el=>el.parentElement.id),'drawer-profile');
   if(width<=820) await page.locator('#menu-toggle').click();await page.locator('#nav-home').click();assert(await page.locator('#welcome').isVisible());assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('#personnel-section').isHidden());await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
   if(width<=820)await page.locator('#menu-toggle').click();await page.locator('#nav-add-personnel').click();await page.locator('#personnel-form').waitFor({state:'visible'});assert(await page.locator('#location-form').isHidden());assert.equal(await page.evaluate(()=>document.activeElement.id),'personnel-new');
   if(width<=820)await page.locator('#menu-toggle').click();await page.locator('#nav-add-location').click();await page.locator('#location-form').waitFor({state:'visible'});assert(await page.locator('#personnel-form').isHidden());assert.equal(await page.evaluate(()=>document.activeElement.id),'location-toggle');await page.locator('#location-toggle').click();assert(await page.locator('#personnel-section').isHidden());assert(await page.locator('#location-list li').count()>0);await navigate('nav-personnel');await page.locator('#personnel-new').waitFor({state:'visible'});
@@ -78,18 +79,18 @@ try{
   await navigate('nav-add-personnel');await page.locator('#personnel-form').waitFor({state:'visible'});assert(await page.locator('#location-section').isHidden());await page.locator('#personnel-locations').getByText('Browser Test Depot '+width+' (RO)',{exact:true}).waitFor();await page.locator('#personnel-cancel').click();
   const target=page.locator('#personnel-list li').filter({hasText:'MOBILE'+width});await target.getByRole('button').click();assert(await page.locator('#personnel-form').isVisible());assert.equal(await page.locator('#personnel-form-heading').textContent(),'Editează');
   await page.locator('#personnel-active').uncheck();await page.locator('#personnel-save').click();await target.getByText(/Inactiv/).waitFor();
-  await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});assert(await page.locator('#personnel-section').isHidden());
+  await logout();await page.locator('#login').waitFor({state:'visible'});assert(await page.locator('#personnel-section').isHidden());
   await login('MOBILE'+width,temporary);await page.getByText('Numărul de angajat sau parola este incorectă.',{exact:true}).waitFor();
   await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
   await page.locator('#personnel-open').click();
   await page.locator('#personnel-list li').filter({hasText:'MOBILE'+width}).getByRole('button').click();await page.locator('#personnel-active').check();await page.locator('#personnel-save').click();
   await page.locator('#personnel-list li').filter({hasText:'MOBILE'+width}).getByText(/Activ/).waitFor();
-  await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,temporary);await page.locator('#change').waitFor({state:'visible'});
+  await logout();await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,temporary);await page.locator('#change').waitFor({state:'visible'});
   assert(await page.locator('#personnel-open').isHidden());
   await page.locator('#current').fill(temporary);await page.locator('#new').fill('Synthetic-new-personnel-password');await page.locator('#confirm').fill('Synthetic-new-personnel-password');await page.locator('#change button').click();
   await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,'Synthetic-new-personnel-password');await page.locator('#welcome').waitFor({state:'visible'});assert(await page.locator('#personnel-open').isHidden());
   assert.deepEqual(await page.evaluate(()=>Object.keys(localStorage)),['romway.language']);assert.deepEqual(await page.evaluate(()=>Object.keys(sessionStorage)),[]);assert.equal(await page.evaluate(()=>document.cookie),'');assert.deepEqual(errors,[]);
-  await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
+  await logout();await page.locator('#login').waitFor({state:'visible'});await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
   await page.route('http://localhost:8001/auth',async route=>{
    if(route.request().postDataJSON().action!=='personnel-list')return route.continue();
    await route.fulfill({contentType:'application/json',body:JSON.stringify({locations:[],staff:Array.from({length:25},(_,i)=>({id:'fixture-'+i,display_name:'Fixture '+i,employee_number:'FIX'+i,role:'receiver',active:true,location_ids:[],created_at:new Date(2020,0,i+1).toISOString()}))})});

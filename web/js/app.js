@@ -1,7 +1,7 @@
 import {createPersonnel} from './personnel.js?v=af55d485b759';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=6b12f6cfbb7b';
+import tr from './locales/tr.js?v=2253aaffa6d7';
 import ro from './locales/ro.js?v=4c729c12fd80';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
@@ -39,6 +39,8 @@ function render() {
   $('drawer-name').textContent=profile?.display_name??'';
   $('drawer-role').textContent=profile?text(profile.role):'';
   document.querySelector('main').classList.toggle('workspace',signedIn);
+  const logoutHost=view==='change'?document.querySelector('.header-actions'):$('drawer-profile');
+  if($('logout').parentElement!==logoutHost)logoutHost.append($('logout'));
   $('logout').hidden = !['change','welcome'].includes(view);
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
