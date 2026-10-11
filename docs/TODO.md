@@ -67,3 +67,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Banner açıklaması mobilde aşağıya sabitlendi, yeni depo/personel/stok açıklaması TR/RO güncellendi.
 - [x] Mobil açıklama ve yeni TR/RO metin Pages üzerinde doğrulandı; PR #14 taslak.
+
+- [x] Kullanıcı kararıyla depo/lojistik sistem açıklaması TR/RO güncellendi.
