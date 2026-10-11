@@ -42,9 +42,9 @@ header {
   align-items:center;
   flex-shrink:0;
 }
-.brand img {
+.brand svg {
   display:block;
-  width:224px;
+  width:144px;
   height:auto;
 }
 .language {
@@ -233,8 +233,8 @@ footer {
   display:none!important;
 }
 @media(max-width:800px) {
-  .brand img {
-    width:160px;
+  .brand svg {
+    width:120px;
   }
   header {
     padding:22px 24px;
