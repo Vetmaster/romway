@@ -70,3 +70,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Kullanıcı kararıyla depo/lojistik sistem açıklaması TR/RO güncellendi.
 - [x] Depo/lojistik açıklaması Pages üzerinde doğrulandı; PR #15 taslak.
+
+- [x] Menü yazısı yerine üç çizgi, erişilebilir TR/RO ad ve kullanıcı seçimiyle koyu lacivert #183446 arka plan.
+- [x] Menü simgesi/lacivert arka plan Pages üzerinde doğrulandı; PR #16 taslak.

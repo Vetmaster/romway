@@ -1,6 +1,7 @@
 export default {
  dashboard_title:'Prezentare generală',
- menu:'☰ Meniu',
+ menu:'☰',
+ menu_label:'Meniu',
  close_menu:'Închide meniul',
  personnel_card_note:'Gestionați personalul, rolurile și accesul la depozite.',
  open_page:'Deschide pagina →',
