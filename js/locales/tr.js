@@ -1,4 +1,5 @@
 export default {
+ home:'Ana sayfa',
  create_staff:'Personeli kaydet',cancel_staff:'Vazgeç',
 
  personnel_title:"Personel yönetimi",
