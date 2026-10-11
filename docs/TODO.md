@@ -105,3 +105,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Personel/lokasyon ayrı sayfalara ayrıldı; her sayfada ekleme kartı ve ilgili liste var. Mobil/masaüstü akışları doğrulandı.
 - [x] Menü × butonu tamamen kaldırıldı; dış alan/Escape kapanması doğrulandı.
 - [x] Oturumu kapat menüde kullanıcı satırının sağına taşındı; mobil/masaüstü çıkış doğrulandı.
+- [x] Personel alt menüsü kapalı başlar, başlık okla açılıp kapanır; mobil/masaüstü doğrulandı.
