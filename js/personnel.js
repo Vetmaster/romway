@@ -33,7 +33,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
       const names=s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'').filter(Boolean);
       const button=node('button',text('edit_staff'));button.type='button';button.className='secondary';
       button.addEventListener('click',()=>{
-        clearSecret();resetForm();editing=s;$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');$('personnel-form-heading').dataset.i18n='edit_staff';$('personnel-form-heading').textContent=text('edit_staff');$('personnel-number').value=s.employee_number;$('personnel-number').readOnly=true;
+        clearSecret();closeLocation();resetForm();editing=s;$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');$('personnel-form-heading').dataset.i18n='edit_staff';$('personnel-form-heading').textContent=text('edit_staff');$('personnel-number').value=s.employee_number;$('personnel-number').readOnly=true;
         $('personnel-name').value=s.display_name;$('personnel-role').value=s.role;locations(s.location_ids);
         $('personnel-active').checked=s.active;$('personnel-active-label').hidden=false;$('personnel-save').dataset.i18n='save_staff';$('personnel-save').textContent=text('save_staff');$('personnel-new').focus();
       });
@@ -45,7 +45,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function closeLocation(){ $('location-form').reset();$('location-form').hidden=true;$('location-toggle').setAttribute('aria-expanded','false'); }
   $('personnel-search').addEventListener('input',()=>{visibleCount=10;render();});
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
-  $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
+  $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
   async function load() {visibleCount=10;data=await api.call('personnel-list');resetForm();render();}
   $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();}));
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
