@@ -441,7 +441,7 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .bottom-tabs svg {width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
 .bottom-tabs button[aria-current=page] {background:#edf4f8;color:var(--blue);border-radius:8px;}
 body.app-shell {padding-bottom:85px;}
-@media(min-width:821px){.app-shell .bottom-tabs {left:248px;}}
+@media(min-width:821px){.bottom-tabs {display:none;}body.app-shell {padding-bottom:0;}}
 @media(max-width:420px){.bottom-tabs button {font-size:10px;}.app-banner .brand {max-width:calc(100% - 104px);}.app-banner .brand svg {max-width:180px;}}
 
 .app-banner .brand {align-items:flex-start;margin-right:auto;}

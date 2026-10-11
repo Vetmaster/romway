@@ -128,3 +128,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Masaüstünde menü logosu gizlendi; üst banner ve mobil menü logosu korunur.
 
 - Masaüstünde banner üstte sticky konumlandırıldı; sabit sol menünün üst sınırı kaydırma sırasında banner ile aynı hizada kalır. Mobil kuralı korunur.
+
+- Alt sekmeler yalnız 820 px ve altındaki mobil görünümde gösterilir; masaüstünde sekmeler ve ayrılan alt boşluk kaldırıldı.
