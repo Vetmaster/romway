@@ -11,8 +11,8 @@ export async function managePersonnel({backend,staff,sessionHash,body}) {
   if (body.action==='personnel-list') return rpc('list');
   if (!await backend.rpc('romway_consume_attempt',{p_bucket:await hash('personnel:'+staff.id),p_limit:30})) throw new AuthError('rate_limited',429);
   if (body.action==='location-create') {
-    const code=employeeNumber(body.code);
-    return rpc('location',{id:crypto.randomUUID(),code,name:typeof body.name==='string'?body.name.trim():null,country:body.country});
+    const id=crypto.randomUUID(),code='LOC_'+id.replaceAll('-','').toUpperCase();
+    return rpc('location',{id,code,name:typeof body.name==='string'?body.name.trim():null,country:body.country});
   }
   if (body.action==='personnel-update') return rpc('update',{id:body.id,display_name:body.display_name,role:body.role,location_ids:body.location_ids,active:body.active});
   const id=crypto.randomUUID(), number=employeeNumber(body.employee_number);

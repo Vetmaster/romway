@@ -106,3 +106,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Menü × butonu tamamen kaldırıldı; dış alan/Escape kapanması doğrulandı.
 - [x] Oturumu kapat menüde kullanıcı satırının sağına taşındı; mobil/masaüstü çıkış doğrulandı.
 - [x] Personel alt menüsü kapalı başlar, başlık okla açılıp kapanır; mobil/masaüstü doğrulandı.
+- [x] Otomatik sunucu lokasyon kodu ve kodsuz form yerel testte hazır.
+- [ ] Ülke seçimi kararı ve test projesi Edge dağıtım onayı; henüz yayınlanmadı.

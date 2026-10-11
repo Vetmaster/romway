@@ -256,3 +256,7 @@ Oturumu kapat butonu menünün en altındaki kullanıcı adı/rol satırının s
 ## 11 Ekim — açılır alt menü
 
 Personel yönetimi alt menüsü ilk yüklemede kapalıdır. Üst başlık alt menüyü açar/kapatır; aria-expanded/aria-controls ve aşağı/yukarı CSS oku kullanılır. Alt seçenekler ayrı sayfaları açar; çıkışta açılma durumu sıfırlanır. 390/1440 px testlerinde varsayılan kapalılık, iki yönlü geçiş ve mevcut işlemler doğrulandı. Syntax/asset/diff kontrolleri geçti. Supabase değişikliği yok.
+
+## 11 Ekim — otomatik lokasyon kodu taslağı
+
+Lokasyon kodu formdan kaldırıldı; sunucu LOC_ + UUID tabanlı benzersiz kod üretir, kullanıcı kodu dikkate alınmaz. 12 SQL/endpoint testi ve 390/1440 px personel tarayıcı testi kod girmeden ekleme/benzersizlik/ülke doğrulaması ile geçti. Syntax/asset/diff kontrolü başarılı. Ülke seçimi kararı bekliyor; mevcut ülke zorunluluğu korunur. Supabase Edge dağıtımı/Pages yayını yapılmadı.
