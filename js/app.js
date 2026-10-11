@@ -1,8 +1,8 @@
-import {createPersonnel} from './personnel.js?v=cee24677614f';
+import {createPersonnel} from './personnel.js?v=961000c88197';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=a1381204e685';
-import ro from './locales/ro.js?v=47998830811f';
+import tr from './locales/tr.js?v=0856b01e762e';
+import ro from './locales/ro.js?v=cfe0170e933a';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -24,7 +24,13 @@ function render() {
   $('auth-panel').hidden=signedIn;document.querySelector('.intro').hidden=signedIn;
   $('welcome').hidden=!signedIn||workspace;
   document.body.classList.toggle('app-shell',signedIn);
-  $('page-title').textContent=signedIn?text(workspace==='location'?'add_location':workspace?'personnel_title':'dashboard_title'):'';
+  const pageLabels={personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'stock_list',shipment:'shipment_management'};
+  $('page-title').textContent=signedIn?text(pageLabels[workspace]??'dashboard_title'):'';
+  $('pending-section').hidden=!signedIn||!['stock','shipment'].includes(workspace);
+  if(['stock','shipment'].includes(workspace))$('pending-heading').textContent=text(workspace==='stock'?'stock_list':'shipment_management');
+  $('bottom-tabs').hidden=!signedIn;
+  $('tab-personnel').hidden=!['admin','super_admin'].includes(profile?.role);
+  for(const tab of ['dashboard','personnel','stock','shipment'])$('tab-'+tab).setAttribute('aria-current',(tab==='dashboard'?!workspace:tab==='stock'?['location','location-profile','stock'].includes(workspace):tab==='personnel'?['personnel','staff-profile'].includes(workspace):workspace===tab)?'page':'false');
   $('menu-toggle').hidden=!signedIn||desktopMenu.matches;
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
@@ -53,7 +59,7 @@ function render() {
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button,#nav-stock-list,#nav-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -70,9 +76,12 @@ async function perform(fn) {
 function rememberPage(page){history.replaceState(null,'','#'+page);}
 async function restorePage(){
   if(view!=='welcome'||busy)return;
-  const page=location.hash.slice(1);
+  const [page,id]=location.hash.slice(1).split('/');
   if(page==='personnel'&&['admin','super_admin'].includes(profile?.role))await personnel.open('personnel');
   else if(page==='location'&&profile?.role==='super_admin')await personnel.open('location');
+  else if(page==='staff-profile'&&['admin','super_admin'].includes(profile?.role))await personnel.open(page,id);
+  else if(page==='location-profile'&&profile?.role==='super_admin')await personnel.open(page,id);
+  else if(['stock','shipment'].includes(page))showPending(page);
   else showDashboard();
 }
 async function restore() {
@@ -131,7 +140,7 @@ function closeMenu(restoreFocus=true) {
   if(restoreFocus&&!$('menu-toggle').hidden) $('menu-toggle').focus();
 }
 function showDashboard() {
-  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;render();$('dashboard-heading').focus();
+  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;render();$('dashboard-heading').focus();
 }
 $('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');$('nav-brand').focus();});
 $('navigation-drawer').addEventListener('cancel',event=>{event.preventDefault();closeMenu();});
@@ -145,7 +154,15 @@ $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
-personnel=createPersonnel({api,text,run:perform,onOpen:page=>{rememberPage(page);workspace=page;render();const heading=$(page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+function showPending(page){closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':'shipment_management');render();$('pending-heading').focus();}
+$('nav-stock-list').addEventListener('click',()=>showPending('stock'));
+$('nav-shipment').addEventListener('click',()=>showPending('shipment'));
+$('tab-dashboard').addEventListener('click',showDashboard);
+$('tab-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
+$('tab-stock').addEventListener('click',()=>showPending('stock'));
+$('tab-shipment').addEventListener('click',()=>showPending('shipment'));
+personnel=createPersonnel({api,text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+
 let resumePending=false,resuming=false;
 async function resumeCurrentPage(){
   if(resuming||busy||view!=='welcome')return;
