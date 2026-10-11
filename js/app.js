@@ -8,7 +8,7 @@ const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
 let api;
 try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
-let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false;
+let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
 let personnel;
 const desktopMenu=window.matchMedia('(min-width:821px)');
@@ -29,7 +29,9 @@ function render() {
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
   $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(profile?.role);
-  $('nav-personnel-submenu').hidden=$('nav-personnel').hidden;
+  if($('nav-personnel').hidden)submenuExpanded=false;
+  $('nav-personnel-submenu').hidden=$('nav-personnel').hidden||!submenuExpanded;
+  $('nav-personnel').setAttribute('aria-expanded',String(submenuExpanded));
   $('nav-add-location').hidden=!signedIn||profile?.role!=='super_admin';
   $('nav-home').setAttribute('aria-current',workspace?'false':'page');
   $('nav-personnel').setAttribute('aria-current',workspace?'page':'false');
@@ -125,7 +127,7 @@ $('navigation-drawer').addEventListener('close',()=>{$('menu-toggle').setAttribu
 $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('navigation-drawer')){const box=event.target.getBoundingClientRect();if(event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closeMenu();}});
 $('nav-home').addEventListener('click',showDashboard);
 $('nav-brand').addEventListener('click',showDashboard);
-$('nav-personnel').addEventListener('click',()=>{closeMenu(false);$('personnel-open').click();});
+$('nav-personnel').addEventListener('click',()=>{submenuExpanded=!submenuExpanded;render();});
 $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
