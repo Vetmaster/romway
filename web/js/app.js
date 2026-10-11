@@ -8,24 +8,26 @@ const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
 let api;
 try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
-let view = 'login', profile = null, message = '', isError = false, busy = false;
+let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
 let personnel;
 function render() {
+  if(view!=='welcome') workspace=false;
   personnel?.update(view==='welcome'?profile:null);
   document.documentElement.lang = language; $('language').value = language;
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = text(el.dataset.i18n); });
   for (const id of ['login','change','welcome']) $(id).hidden = id !== view;
+  $('auth-panel').hidden=workspace;document.querySelector('.intro').hidden=workspace;
+  document.querySelector('main').classList.toggle('workspace',workspace);$('personnel-back').hidden=!workspace;
   $('logout').hidden = !['change','welcome'].includes(view);
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
-  $('message').textContent = message ? text(message) : '';
-  $('message').className = isError ? 'error' : '';
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#personnel-new,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
-  document.querySelector('.panel').setAttribute('aria-busy',String(busy));
+  for(const [id,visible] of [['message',!workspace],['personnel-message',workspace]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
+  document.querySelectorAll('form input,form select,form button,#logout,#personnel-back,#retry,#personnel-open,#personnel-new,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
 function notify(key, error = false) { message = key; isError = error; render(); }
@@ -54,7 +56,7 @@ async function restore() {
 $('language').addEventListener('change',e => {
   language = locales[e.target.value] ? e.target.value : 'tr';
   try { localStorage.setItem('romway.language',language); } catch { /* Optional preference. */ }
-  render(); personnel.translate();
+  personnel.translate(); render();
 });
 $('login').addEventListener('submit',event => {
   event.preventDefault();
@@ -87,6 +89,7 @@ $('logout').addEventListener('click',() => perform(async () => {
   // Do not claim logout succeeded if the server did not revoke the session.
   await api.call('logout'); profile = null; transition('login'); notify('');
 }));
+$('personnel-back').addEventListener('click',()=>{workspace=false;personnel.clear();$('personnel-section').hidden=true;render();$('personnel-open').focus();});
 $('retry').addEventListener('click',restore);
-personnel=createPersonnel({api,text,run:perform,onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+personnel=createPersonnel({api,text,run:perform,onOpen:()=>{workspace=true;render();$('personnel-heading').setAttribute('tabindex','-1');$('personnel-heading').focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 render(); restore();
