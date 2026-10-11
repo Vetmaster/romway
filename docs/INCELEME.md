@@ -122,3 +122,9 @@ Yayın doğrulandı: kaynak 8ad829ced122a0effb1c03d2c36f35b73a047710, gh-pages b
 Mobil personel paneli dış boşluk 12 px/iç boşluk 14 px ile genişledi; düzenle düğmesi detayların sağ sütununda kalır. Aktif yeşil, pasif kırmızı; durum metni korunur. 360/390/412/432/1440 px render ve taşma/sağ hizalama ölçümü geçti; 412 px panel 388 px genişlikte, örnek satır 75 px yükseklikte. 412 px ekran görüntüsü incelendi. Bunlar CSS viewport ölçüleridir, fiziksel S24 Plus cihaz testi değildir. 390/1440 px yerel personel tarayıcı akışları, syntax/web referans/diff kontrolü geçti; Auth simüledir. Supabase/uzak personel değişmedi.
 
 Yayın doğrulandı: kaynak 9e58e59634363c7a8a9ddd1c969b74073cd89011, gh-pages 228285adefc8ff2913147ee723b308e78aea47eb. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO kaynakla birebir eşleşti. PR #10 taslak; birleştirilmedi.
+
+## 11 Ekim — SASA-F banner/menü yerleşimi ve mobil düzenle düzeltmesi
+
+SASA-F index.html app-banner/topbar/sidebar ve styles.css 821 px sabit menü/820 px çekmece kaynakları yeniden salt okunur incelendi. Banner tam genişlikte üstte, gezinme çubuğu altında; masaüstü menü sürekli açık, mobil menü modal çekmecedir. Menü modu viewport değişimine uyar. Önceki mobil düzenle düğmesi ikinci bilgi satırına yerleşiyordu; sağ sütun artık tüm satır yüksekliğini kapsar ve düğmeyi ortalar. 360/390/412/432/1440 px uzun ad/sicil/iki lokasyon örnekleriyle sağ hizalama/taşma kontrolü geçti; 412 px ve masaüstü görüntüleri incelendi. 390/1440 px personel ve giriş tarayıcı testleri geçti; API/Auth simüledir. Fiziksel S24 Plus testi ve Supabase değişikliği yapılmadı.
+
+Yayın doğrulandı: kaynak 32c23a4ae5d75f1dc3ff6751a8b6d89272eb089b, gh-pages 9698aed51d9c039ae5a4792f47f0443ac09ffe75. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO kaynakla eşleşti. PR #11 taslak; birleştirilmedi.
