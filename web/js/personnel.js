@@ -68,7 +68,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     });
   });
   $('location-form').addEventListener('submit',e=>{
-    e.preventDefault();const payload={code:$('location-code').value.trim(),name:$('location-name').value.trim(),country:$('location-country').value};
+    e.preventDefault();const payload={name:$('location-name').value.trim(),country:$('location-country').value};
     run(async()=>{clearSecret();await api.call('location-create',payload);closeLocation();await load();});
   });
   return {

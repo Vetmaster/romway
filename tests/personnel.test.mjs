@@ -90,11 +90,11 @@ test('wrong Auth ID or revoked creator session never activates the reserved acco
  }
 });
 
-test('super admin can add a location, duplicate code and invalid country are rejected',async()=>{
- const f=await fixture();const body={action:'location-create',code:'EXAMPLE_TR',name:'Example depot',country:'TR'};
- assert.equal((await f.call(body)).status,200);assert.equal((await f.call(body)).body.error,'conflict');
- assert.equal((await f.call({...body,code:'EXAMPLE_BAD',country:'XX'})).body.error,'invalid_request');
- const list=(await f.call({action:'personnel-list'})).body;assert(list.locations.some(l=>l.code==='EXAMPLE_TR'&&l.name==='Example depot'));
+test('super admin location codes are generated uniquely on the server',async()=>{
+ const f=await fixture();const body={action:'location-create',name:'Example depot',country:'TR'};
+ assert.equal((await f.call(body)).status,200);assert.equal((await f.call({...body,code:'CLIENT_CODE'})).status,200);
+ assert.equal((await f.call({...body,country:'XX'})).body.error,'invalid_request');
+ const list=(await f.call({action:'personnel-list'})).body,added=list.locations.filter(l=>l.name==='Example depot');assert.equal(added.length,2);assert.notEqual(added[0].code,added[1].code);assert(added.every(l=>/^LOC_[A-F0-9]{32}$/.test(l.code)));
 });
 
 test('personnel list exposes creation time and orders active/newest before inactive',async()=>{
