@@ -156,3 +156,5 @@ Syntax/web referans, TR/RO anahtar ve diff kontrolü geçti. Yayın: kaynak 80be
 ## 11 Ekim — menü simgesi ve koyu arka plan
 
 Kullanıcı seçimiyle sol menü arka planı #183446 oldu; beyaz metin korunur. Menü düğmesi ve sol menü başlığındaki yazı kaldırıldı, yalnız ☰ görünür. TR/RO aria-label ile erişilebilir ad korunur; mobil hedef en az 44 px.
+
+Syntax/web referans/TR-RO anahtar/diff kontrolleri geçti. Yayın: kaynak 27561b84f0e6162e487025c47758e4f28c852dac, gh-pages a492989e2b45ce9e13975f944024941ddf5b1c5d. Pages built/error=null; gerçek HTML/CSS/JS/dil dosyaları kaynakla eşleşti. PR #16 taslak, birleştirilmedi. Supabase değişmedi.
