@@ -58,3 +58,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] SASA-F banner/ayrı gezinme çubuğu/sabit masaüstü menü ve mobil çekmece yerleşimi; mobil düzenle tüm satırın sağında sabitlendi, uzun metinlerle doğrulandı.
 - [x] SASA-F yerleşimi ve mobil düzenle düzeltmesi Pages built ve gerçek dosya eşleşmesiyle doğrulandı; PR #11 taslak.
+
+- [x] Banner görselindeki tekrar Solea yazısı gizlendi; sağdaki marka/alt metin korundu, mobil/masaüstü kontrol geçti.
+- [x] Banner simgesi Pages üzerinde yayınlandı ve gerçek dosya eşleşmesi doğrulandı; PR #12 taslak.

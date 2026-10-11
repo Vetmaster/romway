@@ -128,3 +128,9 @@ Yayın doğrulandı: kaynak 9e58e59634363c7a8a9ddd1c969b74073cd89011, gh-pages 2
 SASA-F index.html app-banner/topbar/sidebar ve styles.css 821 px sabit menü/820 px çekmece kaynakları yeniden salt okunur incelendi. Banner tam genişlikte üstte, gezinme çubuğu altında; masaüstü menü sürekli açık, mobil menü modal çekmecedir. Menü modu viewport değişimine uyar. Önceki mobil düzenle düğmesi ikinci bilgi satırına yerleşiyordu; sağ sütun artık tüm satır yüksekliğini kapsar ve düğmeyi ortalar. 360/390/412/432/1440 px uzun ad/sicil/iki lokasyon örnekleriyle sağ hizalama/taşma kontrolü geçti; 412 px ve masaüstü görüntüleri incelendi. 390/1440 px personel ve giriş tarayıcı testleri geçti; API/Auth simüledir. Fiziksel S24 Plus testi ve Supabase değişikliği yapılmadı.
 
 Yayın doğrulandı: kaynak 32c23a4ae5d75f1dc3ff6751a8b6d89272eb089b, gh-pages 9698aed51d9c039ae5a4792f47f0443ac09ffe75. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO kaynakla eşleşti. PR #11 taslak; birleştirilmedi.
+
+## 11 Ekim — banner yalnız simge
+
+Banner SVG viewBox büyük logonun yalnız yol/depo simgesini gösterir; görseldeki alt Solea yazısı gizlendi. Sağdaki Solea ve TR/RO depo/malzeme alt metni korunur. Özgün PNG değişmedi. Syntax/web referans/diff ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi. Supabase değişmedi.
+
+Yayın: kaynak e9271af123f0b4ed3296f111cb504659f0facb97, gh-pages ea0bad1501992d81968532dd79b1441718f532f7. Pages built/error=null; gerçek HTML/CSS/JS/dil dosyaları kaynakla eşleşti. PR #12 taslak, birleştirilmedi.
