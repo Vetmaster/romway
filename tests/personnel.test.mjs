@@ -8,7 +8,7 @@ const db=new PGlite(), TR='00000000-0000-4000-8000-000000000001',RO='00000000-00
 const allowed=new Set(['romway_personnel','romway_session','romway_consume_attempt','romway_open_session']);
 before(async()=>{
  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
- for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
 });
 after(()=>db.close());
 async function rpc(name,args){assert(allowed.has(name));const entries=Object.entries(args);return (await db.query(`select public.${name}(${entries.map(([k],i)=>{assert(/^p_[a-z_]+$/.test(k));return `${k}=>$${i+1}`;}).join(',')}) value`,entries.map(([,v])=>v))).rows[0].value;}
@@ -90,11 +90,13 @@ test('wrong Auth ID or revoked creator session never activates the reserved acco
  }
 });
 
-test('super admin can add a location, duplicate code and invalid country are rejected',async()=>{
- const f=await fixture();const body={action:'location-create',code:'EXAMPLE_TR',name:'Example depot',country:'TR'};
- assert.equal((await f.call(body)).status,200);assert.equal((await f.call(body)).body.error,'conflict');
- assert.equal((await f.call({...body,code:'EXAMPLE_BAD',country:'XX'})).body.error,'invalid_request');
- const list=(await f.call({action:'personnel-list'})).body;assert(list.locations.some(l=>l.code==='EXAMPLE_TR'&&l.name==='Example depot'));
+test('name-only locations get server codes and preserve existing countries',async()=>{
+ const f=await fixture();const body={action:'location-create',name:'Name-only depot'};
+ assert.equal((await f.call(body)).status,200);assert.equal((await f.call({...body,code:'CLIENT_CODE'})).status,200);
+ assert.equal((await f.call({...body,country:'XX'})).body.error,'invalid_request');
+ const list=(await f.call({action:'personnel-list'})).body,added=list.locations.filter(l=>l.name===body.name);assert.equal(added.length,2);assert.notEqual(added[0].code,added[1].code);assert(added.every(l=>/^LOC_[A-F0-9]{32}$/.test(l.code)&&l.country===null));
+ assert.equal(list.locations.find(l=>l.id===TR).country,'TR');assert.equal(list.locations.find(l=>l.id===RO).country,'RO');
+ assert.equal((await f.call({...body,name:''})).body.error,'invalid_request');
 });
 
 test('personnel list exposes creation time and orders active/newest before inactive',async()=>{
