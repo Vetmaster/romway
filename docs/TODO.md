@@ -46,3 +46,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Personel satırlarında genişlik korunarak dikey dolgu azaltıldı; mobil dar yan sütun kaldırıldı. 390/1440 px personel tarayıcı kontrolü geçti.
 - [x] Satır yüksekliği düzeltmesi Pages üzerinde built ve gerçek dosya eşleşmesiyle doğrulandı; PR #7 taslak.
+
+- [x] Giriş sonrası dashboard, personel kartı ve soldaki çekmece menü; TR/RO ve 390/1440 px yerel personel/giriş tarayıcı kontrolleri geçti.
+- [x] Dashboard/çekmece Pages üzerinde yayınlandı; build ve gerçek dosya eşleşmesi doğrulandı. PR #8 taslak.

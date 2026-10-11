@@ -1,4 +1,16 @@
 export default {
+ dashboard_title:'Genel bakış',
+ menu:'☰ Menü',
+ close_menu:'Menüyü kapat',
+ personnel_card_note:'Personel, roller ve depo yetkilerini yönetin.',
+ open_page:'Sayfayı aç →',
+ inventory_title:'Stok ve depolar',
+ inventory_note:'Ürünler, partiler ve depo stokları.',
+ shipment_title:'Sevkiyat ve teslim alma',
+ shipment_note:'Depolar arası transferleri takip edin.',
+ coming_soon:'Yakında',
+ account_title:'Hesabınız',
+
  home:'Ana sayfa',
  create_staff:'Personeli kaydet',cancel_staff:'Vazgeç',
 
