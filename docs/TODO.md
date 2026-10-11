@@ -64,3 +64,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Banner logo/Solea/alt metin dikey düzene alındı; yandaki tekrar başlık kaldırıldı.
 - [x] Dikey banner düzeni Pages üzerinde doğrulandı; PR #13 taslak.
+
+- [x] Banner açıklaması mobilde aşağıya sabitlendi, yeni depo/personel/stok açıklaması TR/RO güncellendi.
