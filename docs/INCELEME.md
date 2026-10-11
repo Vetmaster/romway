@@ -268,3 +268,7 @@ Personel ekle/lokasyon ekle sayfalarına girişte kartlar otomatik açılmaz; ya
 ## 11 Ekim — yenilemede mevcut sayfa
 
 Mevcut sayfa URL hash dashboard/personnel/location ile tutulur. Yenilemede me oturum doğrulaması bittikten sonra yetkili sayfa yeniden yüklenir; alt sayfalarda liste API üzerinden tekrar alınır, ekleme kartları kapalıdır. Yetkisiz/bilinmeyen sayfa dashboard’a döner. Çıkış URL’yi dashboard’a sıfırlar; parola/token/veri URL’ye yazılmaz. 390/1440 px tarayıcı testinde personel ve lokasyon yenilemesi ve mevcut akışlar geçti. Syntax/asset/diff kontrolü geçti. Supabase değişikliği yok.
+
+## 11 Ekim — mobil arka plandan dönüş
+
+Visibility hidden→visible ve BFCache pageshow dönüşünde oturum yeniden doğrulanır, mevcut URL sayfası yeniden yüklenir. Checking/dashboard geçişi yapılmaz; rol veya oturum değişirse sunucu yanıtı uygulanır. Geçici parola arka planda temizlenir. Eşzamanlı dönüşler korunur. 390/1440 px tarayıcı testinde visibility simülasyonu ile lokasyon sayfası/URL ve liste yenilemesi doğrulandı; gerçek Android arka plan testi yapılmadı. Syntax/asset/diff ve mevcut personel akışları geçti. Supabase değişikliği yok.
