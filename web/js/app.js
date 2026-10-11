@@ -1,4 +1,4 @@
-import {createPersonnel} from './personnel.js?v=0e98a9616765';
+import {createPersonnel} from './personnel.js?v=af55d485b759';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
 import tr from './locales/tr.js?v=6b12f6cfbb7b';
@@ -24,7 +24,7 @@ function render() {
   $('auth-panel').hidden=signedIn;document.querySelector('.intro').hidden=signedIn;
   $('welcome').hidden=!signedIn||workspace;
   document.body.classList.toggle('app-shell',signedIn);
-  $('page-title').textContent=signedIn?text(workspace?'personnel_title':'dashboard_title'):'';
+  $('page-title').textContent=signedIn?text(workspace==='location'?'add_location':workspace?'personnel_title':'dashboard_title'):'';
   $('menu-toggle').hidden=!signedIn||desktopMenu.matches;
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
@@ -33,6 +33,8 @@ function render() {
   $('nav-add-location').hidden=!signedIn||profile?.role!=='super_admin';
   $('nav-home').setAttribute('aria-current',workspace?'false':'page');
   $('nav-personnel').setAttribute('aria-current',workspace?'page':'false');
+  $('nav-add-personnel').setAttribute('aria-current',workspace==='personnel'?'page':'false');
+  $('nav-add-location').setAttribute('aria-current',workspace==='location'?'page':'false');
   $('dashboard-greeting').textContent=profile?`${text('welcome_title')}, ${profile.display_name}`:'';
   $('drawer-name').textContent=profile?.display_name??'';
   $('drawer-role').textContent=profile?text(profile.role):'';
@@ -43,7 +45,7 @@ function render() {
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
-  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
+  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
   document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
@@ -113,7 +115,7 @@ function closeMenu(restoreFocus=true) {
   if(restoreFocus&&!$('menu-toggle').hidden) $('menu-toggle').focus();
 }
 function showDashboard() {
-  closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;render();$('dashboard-heading').focus();
+  closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;render();$('dashboard-heading').focus();
 }
 $('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');$('menu-close').focus();});
 $('menu-close').addEventListener('click',()=>closeMenu());
@@ -127,5 +129,5 @@ $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
-personnel=createPersonnel({api,text,run:perform,onOpen:()=>{workspace=true;render();$('personnel-heading').setAttribute('tabindex','-1');$('personnel-heading').focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+personnel=createPersonnel({api,text,run:perform,onOpen:page=>{workspace=page;render();const heading=$(page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 render(); restore();
