@@ -228,3 +228,7 @@ Kart açma/düzenleme giriş alanına otomatik odaklanmaz; daha fazla göster bi
 ## 11 Ekim — tek açık kart
 
 Personel/lokasyon kartları karşılıklı kapanır; personel düzenleme de lokasyonu kapatır. Otomatik giriş odağı verilmez. 390/1440 px tarayıcı testinde iki yönlü geçiş ve düzenleme doğrulandı; syntax/asset/diff kontrolü geçti. Veritabanı değişikliği yok.
+
+## 11 Ekim — menü kapatma simgesi
+
+Menüyü kapat yazısı × simgesine dönüştürüldü. TR/RO erişilebilir ad gizli metinde korunur; dokunma alanı 44 px. 390/1440 px tarayıcı kontrolü, mobil simge/erişilebilir adla kapatma ve syntax/asset/diff kontrolleri geçti. Veritabanı değişikliği yok.

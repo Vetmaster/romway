@@ -401,3 +401,5 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .app-version {position:absolute;top:6px;right:24px;color:var(--muted);font-size:10px;font-weight:700;line-height:1;letter-spacing:.03em;}
 .banner-controls {padding-top:12px;}
 @media(max-width:820px) {.app-version {right:14px;font-size:9px;}}
+
+#menu-close {width:44px;min-height:44px;padding:0;flex-shrink:0;font-size:28px;line-height:1;}
