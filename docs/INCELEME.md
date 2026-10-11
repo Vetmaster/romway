@@ -158,3 +158,11 @@ Syntax/web referans, TR/RO anahtar ve diff kontrolü geçti. Yayın: kaynak 80be
 Kullanıcı seçimiyle sol menü arka planı #183446 oldu; beyaz metin korunur. Menü düğmesi ve sol menü başlığındaki yazı kaldırıldı, yalnız ☰ görünür. TR/RO aria-label ile erişilebilir ad korunur; mobil hedef en az 44 px.
 
 Syntax/web referans/TR-RO anahtar/diff kontrolleri geçti. Yayın: kaynak 27561b84f0e6162e487025c47758e4f28c852dac, gh-pages a492989e2b45ce9e13975f944024941ddf5b1c5d. Pages built/error=null; gerçek HTML/CSS/JS/dil dosyaları kaynakla eşleşti. PR #16 taslak, birleştirilmedi. Supabase değişmedi.
+
+## 11 Ekim — mobil önbellek düzeltmesi
+
+Pages CSS yanıtı Cache-Control max-age=600 bildiriyor; telefondaki eski görünümün önbellekten kaynaklanması mümkün, fiziksel cihazda neden doğrulanmadı. CSS/app ve tüm app modül import adreslerine içerik hash sürümleri eklendi. version-assets.mjs hash üretir; yayın öncesi --check sürüm güncelliğini zorunlu kılar. HTML referans kontrolü query bölümünü ayırır; test config rotaları query URL’lerini de kapsar.
+
+İçerik sürümü üretimi/--check, syntax/web referans/diff ve mobil/masaüstü giriş tarayıcı kontrolü geçti; API simüledir. İlk test localhost önizleme portu dolu olduğu için başlatılamadı; yalnız bu oturumda başlatılan loopback sunucusu durdurulup tekrar test geçti.
+
+Yayın: kaynak 7bfb82296ba0060efe027382f6a411cadbd48898, gh-pages bcef1a777b3b686ae7ac73cf7e889a5e21757eb9. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #17 taslak; birleştirilmedi.
