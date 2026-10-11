@@ -198,3 +198,9 @@ Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açık
 Syntax/web referans/diff, içerik sürümü ve 390/1440 px personel tarayıcı testi geçti; masaüstü menü görünümü incelendi. Auth simüledir.
 
 Yayın: kaynak 16be1185789b9c99ee29129ca95c8838a762a86e, gh-pages 19d444572d16c1d1db31968bf75365aa01723871. Pages built/error=null; gerçek dosyalar kaynakla eşleşti. PR #23 taslak; birleştirilmedi. PR #22 migration onayı bekler.
+
+## 11 Ekim — banner sürüm etiketi
+
+SASA-F app-version-label/headerVersionLabel ve APP_VERSION tarih/sıra biçimi kaynakta doğrulandı. Romway sağ üst banner sürümünü v2026.10.11.1 ile başlatır; küçük metin mobilde de görünür. Dil/Test ortamı alanı çakışmayı önlemek için aşağı boşluk alır. TR/RO erişilebilir açıklama eklendi. PR #22 migration kapsamı bu ayrı görünüm yayınına alınmaz.
+
+Syntax/web referans/diff, TR/RO ve 390/1440 px render/taşma kontrolü geçti; mobil görüntü incelendi. Yayın: kaynak 39676b8c33d1b334c96c2bd7579fe8218c354ee7, gh-pages bd11de685c3259058f79e4ec80c992eff6a0c31e. Pages built/error=null; gerçek dosyalar kaynakla eşleşti. PR #24 taslak; birleştirilmedi.
