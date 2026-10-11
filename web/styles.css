@@ -386,6 +386,6 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .personnel-add-card {margin:20px 0;border:1px solid var(--line);border-radius:10px;background:#f6f9fb;overflow:hidden;}
 .personnel-card-toggle {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:16px 18px;background:transparent;color:var(--blue);text-align:left;border:0;border-radius:0;}
 .personnel-card-toggle:hover {background:#e8f2f8;}
-.personnel-card-toggle::after {content:'+';font-size:24px;line-height:1;}
-.personnel-card-toggle[aria-expanded=true]::after {content:'−';}
+.personnel-card-toggle::after {content:'';width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);flex-shrink:0;margin:0 4px 5px;}
+.personnel-card-toggle[aria-expanded=true]::after {transform:rotate(225deg);margin-top:5px;margin-bottom:0;}
 .personnel-add-card #personnel-form {max-width:none;margin:0;padding:0 18px 18px;border-top:1px solid var(--line);}
