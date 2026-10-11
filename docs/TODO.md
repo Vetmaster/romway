@@ -91,3 +91,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Lokasyon açılır kartı, liste araması ve aktif/pasif + tarih sıralaması yerel kod/testte hazır.
 - [x] 202610110003 liste tarih migration’ı kullanıcı onayıyla yalnız romway-auth-test’e uygulandı; kayıt/izin ve gerçek liste sıralaması kontrol edildi. Pages doğrulaması aşağıda kaydedilir.
+- [x] Birleşik lokasyon kartı/arama/sıralama ve mevcut menü/sürüm görünümü Pages üzerinde v2026.10.11.2 olarak doğrulandı; PR #22 taslak.
