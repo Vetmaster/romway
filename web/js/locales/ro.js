@@ -1,4 +1,6 @@
 export default {
+ banner_line_one:'Depozite și Logistică',
+ banner_line_two:'Sistem de Management',
  dashboard_title:'Prezentare generală',
  menu:'☰',
  menu_label:'Meniu',

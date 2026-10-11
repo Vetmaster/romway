@@ -1,4 +1,6 @@
 export default {
+ banner_line_one:'Depo ve Lojistik',
+ banner_line_two:'Yönetim Sistemi',
  dashboard_title:'Genel bakış',
  menu:'☰',
  menu_label:'Menü',

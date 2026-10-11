@@ -166,3 +166,9 @@ Pages CSS yanıtı Cache-Control max-age=600 bildiriyor; telefondaki eski görü
 İçerik sürümü üretimi/--check, syntax/web referans/diff ve mobil/masaüstü giriş tarayıcı kontrolü geçti; API simüledir. İlk test localhost önizleme portu dolu olduğu için başlatılamadı; yalnız bu oturumda başlatılan loopback sunucusu durdurulup tekrar test geçti.
 
 Yayın: kaynak 7bfb82296ba0060efe027382f6a411cadbd48898, gh-pages bcef1a777b3b686ae7ac73cf7e889a5e21757eb9. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #17 taslak; birleştirilmedi.
+
+## 11 Ekim — iki satırlı logo açıklaması
+
+Banner açıklaması iki ayrı çevrilebilir bloktur: TR Depo ve Lojistik / Yönetim Sistemi; RO Depozite și Logistică / Sistem de Management. İki satır ortalanır; footer tek satırlık mevcut açıklamayı korur. İçerik sürümleri yenilendi. Syntax/web referans/diff, TR/RO anahtar ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi.
+
+Yayın: kaynak 1fe8b00a7c3aead0891046f69ee89f18243ce66a, gh-pages 15747861e53b0db4a149b8d70217fb16b48ab2fb. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #18 taslak; birleştirilmedi.
