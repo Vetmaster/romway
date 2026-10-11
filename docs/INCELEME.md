@@ -196,3 +196,5 @@ Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açık
 Özgün PNG yol bölgesi (770,320) RGB 44/50/56, #2C3238 olarak örneklendi; raster yol gradyanlı olduğundan bu temsilî örnek tondur. Menü arka planı bu tona alındı. Menü üstünde Solea logosu eklendi, logo dashboard’a döner; erişilebilir menü adı korunur. Görünüm ayrı dalda hazırlanır; PR #22 tarih migration’ı uygulanmadan yayınlanmaz.
 
 Syntax/web referans/diff, içerik sürümü ve 390/1440 px personel tarayıcı testi geçti; masaüstü menü görünümü incelendi. Auth simüledir.
+
+Yayın: kaynak 16be1185789b9c99ee29129ca95c8838a762a86e, gh-pages 19d444572d16c1d1db31968bf75365aa01723871. Pages built/error=null; gerçek dosyalar kaynakla eşleşti. PR #23 taslak; birleştirilmedi. PR #22 migration onayı bekler.

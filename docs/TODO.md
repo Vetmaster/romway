@@ -90,3 +90,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Kart V ikonu Pages üzerinde doğrulandı; PR #21 taslak.
 
 - [x] Menü yolun #2C3238 tonu ve üstte Solea logosuyla hazırlandı; tarih migration’ı gerektirmez.
+- [x] Yol tonu ve menü logosu Pages üzerinde doğrulandı; PR #23 taslak.
