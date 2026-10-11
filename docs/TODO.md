@@ -119,4 +119,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Personel/lokasyon isimleri profil açar; yenileme ve listeye dönüş doğrulandı.
 - [x] Dört alt sekme, tek satır banner açıklaması, geniş logo ve menü liste adları uygulandı.
 - [x] Lokasyon yalnız ad/otomatik kod ve isteğe bağlı ülke migration’ı yerel testte hazır.
-- [ ] 202610110004 + romway-auth Edge güncellemesini yalnız test projesine uygulama onayı; henüz uygulanmadı/yayınlanmadı.
+- [x] 202610110004 + romway-auth Edge v5 kullanıcı onayıyla yalnız test projesine uygulandı; kayıtlar/izinler ve oturumsuz API reddi doğrulandı.

@@ -298,3 +298,7 @@ Profil/sekme yayını v2026.10.11.23 doğrulandı: kaynak be5ebe5, gh-pages dd38
 ## 11 Ekim — yalnız adla lokasyon ekleme hazır
 
 Lokasyon formu yalnız ad ister; kod LOC_ + UUID ile sunucuda üretilir, kullanıcının gönderdiği kod dikkate alınmaz. 202610110004 country NOT NULL kuralını kaldırır; mevcut ülke/kod/kayıtlar korunur. RPC listesi, rol/lokasyon/oturum kontrolleri aynıdır; ülke verilirse TR/RO doğrulaması korunur. Exact-test-project migration betiği mevcut lokasyonların tamamını ve staff/Auth sayılarını karşılaştırır; çalıştırılmadı. 12 yerel SQL/endpoint testi, 390/1440 px personel tarayıcı testi ve syntax/asset/diff kontrolü geçti; yerel Auth simülasyonu kullanıldı. Supabase migration/Edge dağıtımı ve Pages v2026.10.11.24 yayını onay bekliyor. PR #37 otomatik kod taslağının güncel/ülkesiz kapsamıdır.
+
+## 11 Ekim — PR #47 onaylı dağıtım
+
+Kullanıcı açıkça onayladı. 202610110004 yalnız romway-auth-test’e uygulandı; tüm mevcut lokasyon kayıtları ve staff/Auth sayıları birebir korundu, RPC client yetkileri kapalı kaldı. Supabase paketleme ön kontrolü ardından romway-auth v5 aktif/verify_jwt=false olarak dağıtıldı. Gerçek test API’sinde oturumsuz lokasyon ekleme 401 ve tam Origin kontrolü doğrulandı; test kaydı oluşturulmadı. Country nullable doğrulandı. Önceki 12 SQL/endpoint ve 390/1440 px yerel testler geçti; syntax/asset/diff kontrolleri yeniden geçti. Pages v2026.10.11.24 yayını ayrıca doğrulanır.

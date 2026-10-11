@@ -73,3 +73,5 @@ Lokasyon ekleme kapalı kart olarak personel kartının hemen altındadır; yaln
 
 Lokasyon formu yalnız ad ister; kod LOC_ + UUID ile sunucuda üretilir, kullanıcının gönderdiği kod dikkate alınmaz. 202610110004 country NOT NULL kuralını kaldırır; mevcut ülke/kod/kayıtlar korunur. RPC listesi, rol/lokasyon/oturum kontrolleri aynıdır; ülke verilirse TR/RO doğrulaması korunur. Exact-test-project migration betiği mevcut lokasyonların tamamını ve staff/Auth sayılarını karşılaştırır; çalıştırılmadı. 12 yerel SQL/endpoint testi, 390/1440 px personel tarayıcı testi ve syntax/asset/diff kontrolü geçti; yerel Auth simülasyonu kullanıldı. Supabase migration/Edge dağıtımı ve Pages v2026.10.11.24 yayını onay bekliyor. PR #37 otomatik kod taslağının güncel/ülkesiz kapsamıdır.
 Sunucu fonksiyonunun API üzerinden dağıtım referansı: https://supabase.com/changelog/33720-deploy-and-update-edge-functions-using-the-management-api
+
+11 Ekim kullanıcı onayıyla migration 202610110004 ve Edge v5 yalnız test projesine uygulandı; mevcut kayıtlar korundu. Lokasyon formu yalnız ad ister; kod sunucuda üretilir.
