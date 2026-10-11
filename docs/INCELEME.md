@@ -172,3 +172,9 @@ Yayın: kaynak 7bfb82296ba0060efe027382f6a411cadbd48898, gh-pages bcef1a777b3b68
 Banner açıklaması iki ayrı çevrilebilir bloktur: TR Depo ve Lojistik / Yönetim Sistemi; RO Depozite și Logistică / Sistem de Management. İki satır ortalanır; footer tek satırlık mevcut açıklamayı korur. İçerik sürümleri yenilendi. Syntax/web referans/diff, TR/RO anahtar ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi.
 
 Yayın: kaynak 1fe8b00a7c3aead0891046f69ee89f18243ce66a, gh-pages 15747861e53b0db4a149b8d70217fb16b48ab2fb. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #18 taslak; birleştirilmedi.
+
+## 11 Ekim — üst çubuk kontrolleri
+
+Ana sayfa düğmesi kaldırıldı; Genel bakış menüsü dashboard’a dönüş sağlar. Dil seçimi banner sağında Test ortamı altında; çıkış alt gezinme çubuğunda sağa yaslı, tek satırdır. Dosya sürümleri yenilendi. Syntax/web referans/diff ve 390/1440 px personel tarayıcı testi geçti; mobil görüntü incelendi. API/Auth simüledir; Supabase değişmedi.
+
+Yayın: kaynak 0dbbcccbaf4f0a9b50f99e799b2a9f49c71fa139, gh-pages 9127ce9d70f2831e56cfe6e94a217ab29f199d73. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #19 taslak; birleştirilmedi.
