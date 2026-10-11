@@ -297,3 +297,37 @@ main.workspace {display:block;padding-top:20px;}
 }
 .credential {background:#fff8d5;padding:18px;border-radius:10px;}
 .credential code {display:block;overflow-wrap:anywhere;user-select:all;margin:12px 0;}
+
+.dashboard {width:100%;}
+.dashboard h1 {font-size:32px;margin:8px 0;}
+.dashboard-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0;}
+.dashboard-card {display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%;margin:0;padding:24px;border:1px solid var(--line);border-radius:14px;background:white;color:var(--ink);font:inherit;text-align:left;}
+.dashboard-card strong {font-size:20px;}
+.dashboard-card p {margin:0;}
+.dashboard-card .card-icon {display:grid;place-items:center;width:44px;height:44px;border-radius:10px;background:#e8f2f8;color:var(--blue);font-size:28px;}
+button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
+.card-link {color:var(--blue);font-weight:700;margin-top:auto;}
+.coming-soon {padding:3px 10px;margin-top:auto;border-radius:6px;background:#fff8d5;color:#5a5000;}
+.dashboard-profile {padding:20px 24px;border:1px solid var(--line);border-radius:14px;background:white;}
+.dashboard-profile h2 {font-size:18px;margin:0;}
+.dashboard-profile dl {margin:12px 0 0;max-width:560px;}
+#dashboard-message:empty {display:none;}
+#dashboard-message {padding:12px;background:#fff8d5;border-radius:8px;}
+#dashboard-message.error {background:#fff1f2;color:#9d1422;}
+.navigation-drawer {position:fixed;inset:0 auto 0 0;margin:0;width:min(310px,calc(100vw - 40px));height:100dvh;max-height:none;padding:24px;border:0;background:var(--blue);color:white;}
+.navigation-drawer::backdrop {background:rgba(15,35,49,.45);}
+.drawer-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.drawer-heading button {width:auto;margin:0;padding:10px;font-size:13px;}
+.navigation-drawer nav {display:grid;gap:8px;margin-top:32px;}
+.navigation-drawer nav button {margin:0;text-align:left;border:1px solid transparent;background:transparent;color:white;}
+.navigation-drawer nav button:hover,.navigation-drawer nav button[aria-current=page] {background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.25);}
+.drawer-profile {margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.3);overflow-wrap:anywhere;}
+.drawer-profile small {color:white;}
+.menu-toggle {width:auto;margin:0;padding:10px 14px;}
+@media(max-width:800px) {
+ .dashboard-grid {grid-template-columns:1fr;gap:14px;}
+ .dashboard-card {padding:20px;}
+ header:has(.menu-toggle:not([hidden])) {flex-wrap:wrap;gap:12px;}
+ header:has(.menu-toggle:not([hidden])) .header-actions {flex-basis:100%;}
+ .dashboard h1 {font-size:28px;}
+}

@@ -1,4 +1,16 @@
 export default {
+ dashboard_title:'Prezentare generală',
+ menu:'☰ Meniu',
+ close_menu:'Închide meniul',
+ personnel_card_note:'Gestionați personalul, rolurile și accesul la depozite.',
+ open_page:'Deschide pagina →',
+ inventory_title:'Stocuri și depozite',
+ inventory_note:'Produse, loturi și stocuri în depozite.',
+ shipment_title:'Expediere și recepție',
+ shipment_note:'Urmăriți transferurile între depozite.',
+ coming_soon:'În curând',
+ account_title:'Contul dvs.',
+
  home:'Pagina principală',
  create_staff:'Salvează persoana',cancel_staff:'Anulează',
 
