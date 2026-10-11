@@ -100,3 +100,5 @@ Kompakt görünüm yayınlandı: kaynak 06dcc7e52980633fa1427e24123ede1e644dd55f
 ## 11 Ekim — satır yüksekliği düzeltmesi
 
 `feature/personnel-row-density`: liste/panel genişliği korunur; satır dikey dolgusu 12 px yerine 4 px, ad/sicil aynı hizadadır. Mobilde düzenleme düğmesi için ayrılan yan sütun kaldırıldı; bilgiler tam satır genişliğini kullanır. 44 px düğme hedefi korunur. Syntax/web referans ve diff kontrolü ile 390/1440 px yerel personel tarayıcı testi geçti; ekran görüntüleri incelendi. Auth simüledir; Supabase veya uzak kayıtlar değişmedi. İlk koşuda asenkron panel geçişini erken kontrol eden test takıldı; gizlenmeyi bekleyerek düzeltildi ve tekrar geçti.
+
+Yayın doğrulandı: kaynak 0fce9bebd5e6b420506deb95a390e6e7389cc00e, gh-pages 0a9d338a1ae225b14d9bd5bd19e618b739ace73b. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO HTTP 200 ve SHA-256 eşleşmesi geçti. PR #7 taslak; birleştirilmedi.

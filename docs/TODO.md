@@ -45,3 +45,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Kompakt yönetim görünümü Pages'te yayınlandı; build ve gerçek HTML/CSS/JS/dil dosyaları doğrulandı. PR #6 taslak, birleştirilmedi.
 
 - [x] Personel satırlarında genişlik korunarak dikey dolgu azaltıldı; mobil dar yan sütun kaldırıldı. 390/1440 px personel tarayıcı kontrolü geçti.
+- [x] Satır yüksekliği düzeltmesi Pages üzerinde built ve gerçek dosya eşleşmesiyle doğrulandı; PR #7 taslak.
