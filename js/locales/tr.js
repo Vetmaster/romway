@@ -1,5 +1,7 @@
 export default {
  version_label:'Uygulama sürümü ',
+ search_staff:'Personel ara',
+ staff_sort_note:'Aktifler önce, pasifler sonra; her grupta yeni kayıtlar üstte.',
  banner_line_one:'Depo ve Lojistik',
  banner_line_two:'Yönetim Sistemi',
  dashboard_title:'Genel bakış',

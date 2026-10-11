@@ -390,6 +390,9 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .personnel-card-toggle[aria-expanded=true]::after {transform:rotate(225deg);margin-top:5px;margin-bottom:0;}
 .personnel-add-card #personnel-form {max-width:none;margin:0;padding:0 18px 18px;border-top:1px solid var(--line);}
 
+.personnel-add-card #location-form {max-width:none;margin:0;padding:0 18px 18px;border-top:1px solid var(--line);}
+.list-sort-note {font-size:12px;margin:8px 0;}
+
 .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}
 .drawer-heading .drawer-brand {display:flex;justify-content:center;align-items:center;flex:1;min-width:0;padding:8px;margin:0;background:white;border:0;border-radius:8px;}
 .drawer-brand svg {display:block;width:120px;height:auto;}
