@@ -38,3 +38,7 @@ Opt-in uzak kontrol: `ROMWAY_TEST_PROJECT=ifnjvdjhfhzfxyuorqvz npm run test:clou
 ## Liste ve form düzeni — 11 Ekim kullanıcı isteği
 
 Personel yönetimi açıldığında form kapalı, liste görünürdür. Listenin üstündeki tek “Personel ekle” düğmesi boş formu açar ve sicil alanına odaklanır. Formdaki “Personeli kaydet” hesabı oluşturur; “Vazgeç” kayıt oluşturmadan formu temizleyip kapatır. Listedeki “Düzenle” mevcut personelin formunu açar. Başarılı kayıttan sonra form kapanır ve liste güncellenir; geçici şifre tek seferlik teslim alanında kalır. TR/RO metinleri ayrı dil dosyalarındadır. Bu değişiklik yalnız statik arayüzdedir; Supabase şeması/Edge veya kayıtlar değiştirilmez.
+
+## Kompakt yönetim ekranı
+
+Personel yönetimi açılınca karşılama kartı ve tanıtım bölümü gizlenir; yönetim ekranı üstte başlar. Ana sayfaya dönüş ve çıkış üst çubuktadır. Bildirim/hata metinleri yönetim panelinde görünür. Personeller geniş kartlar yerine ad/sicil, rol/lokasyon/durum ve düzenle düğmesinden oluşan çizgilerle ayrılmış liste satırlarıdır. Telefon görünümünde satır bilgileri iki sıraya yerleşir; düğme sağda kalır. Personel verileri ve sunucu izinleri değişmez.

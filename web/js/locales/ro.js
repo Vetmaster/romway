@@ -1,4 +1,5 @@
 export default {
+ home:'Pagina principală',
  create_staff:'Salvează persoana',cancel_staff:'Anulează',
 
  personnel_title:"Administrarea personalului",

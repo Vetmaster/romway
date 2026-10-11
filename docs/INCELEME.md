@@ -88,3 +88,11 @@ PR #4 inceleme için açık kalır; hiçbir PR birleştirilmedi. Kullanıcının
 35 Node/PGlite testi, syntax/dil anahtarı/web referans kontrolleri ve diff biçimi geçti. 390/1440 px yerel gerçek SQL/HTTP-handler tarayıcı testi geçti; Auth simüledir. Yeni akışta ilk açılışta formun kapalı ve tek ekle düğmesi olduğunu, vazgeçmenin kayıt oluşturmadığını, sicil odağını, kaydetme sonrası kapanışı, düzenlemeyi ve TR/RO geçişini doğruladı. Mevcut ekleme/pasifleştirme/yeniden açma/ilk şifre değiştirme testleri de geçti.
 
 Liste/form düzeni GitHub Pages'te yayınlandı: kaynak 626fccd9812b1070b0e35c9c191d53bec6492362, gh-pages 851c793e8359d0d7e933033c650a8035583e51a1. Pages bu commit için built/error=null bildirdi. Yayındaki HTML/personnel.js/TR/RO dosyaları HTTP 200 ve SHA-256 karşılaştırmasıyla test edilen kaynakla birebir doğrulandı. PR #5 taslak inceleme için açıldı; otomatik merge yapılmadı.
+
+## 11 Ekim — ayrı yönetim görünümü ve kompakt liste
+
+`feature/compact-personnel`: personel yönetimi açılınca karşılama kartı/tanıtım gizlenir; tam genişlikte yönetim, üst çubukta ana sayfa/çıkış ve panel içinde görünür hata/bekleme mesajları vardır. Geniş article kartları semantik ul/li satırlarına dönüştürüldü: ad/sicil, rol/lokasyon/durum, düzenle. Mobil satırlar iki sıralıdır; textContent korunur. Supabase şeması/Edge veya uzak personel kayıtları değiştirilmedi; yeni bulut test hesabı oluşturulmadı.
+
+Syntax/web referans/diff ve TR/RO anahtar eşleşmesi geçti. 390/1440 yerel SQL/HTTP-handler personel tarayıcı testi ve giriş tarayıcı regresyonu geçti; Auth simüledir. Yeni görünümde karşılama/tanıtımın gizli olması, görünür çıkış, ana sayfaya dönüş/yönetimi tekrar açma, lokasyon eksikliğinde hatanın gizli kart yerine yönetimde görünmesi, ekleme/düzenleme/vazgeçme ve TR/RO doğrulandı. Mobil/masaüstü ekran görüntüleri incelendi; taşma görülmedi. Gelecekteki bulut test betiği yeni liste ve mesaj seçicilerine uyarlandı.
+
+Kompakt görünüm yayınlandı: kaynak 06dcc7e52980633fa1427e24123ede1e644dd55f, gh-pages 48938077b4a6f7af32b277f2d76a10f7c2c2a546. Pages bu commit için built/error=null bildirdi. Gerçek yayın HTML/CSS/app/personnel/TR/RO dosyaları HTTP 200 ve SHA-256 ile test edilen kaynakla birebir doğrulandı. PR #6 taslak inceleme için açık; hiçbir PR birleştirilmedi.

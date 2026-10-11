@@ -1,5 +1,5 @@
 // No credentials or personnel data are persisted in browser storage.
-export function createPersonnel({api,text,run,onSessionChange}) {
+export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   const $=id=>document.getElementById(id);
   let role=null,data=null,editing=null;
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
@@ -22,7 +22,9 @@ export function createPersonnel({api,text,run,onSessionChange}) {
     $('location-form').hidden=role!=='super_admin';
     if(!data)return;
     $('personnel-list').replaceChildren(...data.staff.map(s=>{
-      const card=node('article'),title=node('h3',s.display_name),description=node('p',`${s.employee_number} · ${text(s.role)} · ${text(s.active?'active':'inactive')}`);
+      const row=node('li'),identity=node('div'),title=node('strong',s.display_name),number=node('small',s.employee_number),details=node('div');
+      identity.className='staff-identity';identity.append(title,number);details.className='staff-details';
+      const roleLabel=node('span',text(s.role)),status=node('span',text(s.active?'active':'inactive'));status.className='staff-status '+(s.active?'active':'inactive');
       const names=s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'').filter(Boolean);
       const button=node('button',text('edit_staff'));button.type='button';button.className='secondary';
       button.addEventListener('click',()=>{
@@ -30,12 +32,12 @@ export function createPersonnel({api,text,run,onSessionChange}) {
         $('personnel-name').value=s.display_name;$('personnel-role').value=s.role;locations(s.location_ids);
         $('personnel-active').checked=s.active;$('personnel-active-label').hidden=false;$('personnel-save').dataset.i18n='save_staff';$('personnel-save').textContent=text('save_staff');$('personnel-name').focus();
       });
-      card.append(title,description,node('p',names.join(', ')||text('no_locations')),button);return card;
+      details.append(roleLabel,node('span',names.join(', ')||text('no_locations')),status);row.append(identity,details,button);return row;
     }));
-    if(!data.staff.length)$('personnel-list').append(node('p',text('no_staff')));
+    if(!data.staff.length)$('personnel-list').append(node('li',text('no_staff')));
   }
   async function load() {data=await api.call('personnel-list');resetForm();render();}
-  $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();await load();}));
+  $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();await load();onOpen();}));
   $('personnel-new').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');$('personnel-number').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
   $('credential-close').addEventListener('click',clearSecret);
