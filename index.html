@@ -64,19 +64,21 @@
     <section id="personnel-section" class="panel personnel" hidden aria-labelledby="personnel-heading">
       <h2 id="personnel-heading" data-i18n="personnel_title">Personel yönetimi</h2>
       <p data-i18n="personnel_scope"></p>
+      <button id="personnel-new" type="button" data-i18n="add_staff" aria-controls="personnel-form" aria-expanded="false"></button>
       <div id="temporary-credential" class="credential" hidden role="status">
         <p data-i18n="temporary_note"></p><strong id="temporary-number"></strong>
         <code id="temporary-password"></code>
         <button id="credential-close" class="secondary" type="button" data-i18n="hide_password"></button>
       </div>
-      <form id="personnel-form">
+      <form id="personnel-form" hidden aria-labelledby="personnel-form-heading">
+        <h3 id="personnel-form-heading" data-i18n="add_staff"></h3>
         <label for="personnel-number" data-i18n="employee"></label><input id="personnel-number" required maxlength="40" pattern="[A-Za-z0-9_-]{1,40}" autocomplete="off">
         <label for="personnel-name" data-i18n="display_name"></label><input id="personnel-name" required maxlength="100" autocomplete="off">
         <label for="personnel-role" data-i18n="role"></label><select id="personnel-role" required></select>
         <fieldset><legend data-i18n="locations"></legend><div id="personnel-locations" class="checks"></div></fieldset>
         <label id="personnel-active-label" class="check" hidden><input id="personnel-active" type="checkbox"><span data-i18n="active"></span></label>
-        <button id="personnel-save" type="submit" data-i18n="add_staff"></button>
-        <button id="personnel-new" class="secondary" type="button" data-i18n="new_staff"></button>
+        <button id="personnel-save" type="submit" data-i18n="create_staff"></button>
+        <button id="personnel-cancel" class="secondary" type="button" data-i18n="cancel_staff"></button>
       </form>
       <h3 data-i18n="staff_list"></h3><div id="personnel-list" class="staff-list"></div>
       <form id="location-form" hidden>
