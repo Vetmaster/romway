@@ -1,4 +1,5 @@
 export default {
+ start_shipment:'Sevkiyat başlat',
  location_list:'Lokasyon listesi',
  stock_list:'Stok listesi',
  staff_profile:'Personel profili',

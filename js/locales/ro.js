@@ -1,4 +1,5 @@
 export default {
+ start_shipment:'Inițiază expedierea',
  location_list:'Lista locațiilor',
  stock_list:'Lista stocurilor',
  staff_profile:'Profilul personalului',
