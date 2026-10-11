@@ -458,3 +458,6 @@ body.app-shell {padding-bottom:85px;}
 @media(max-width:360px){.app-banner .banner-subtitle {font-size:9px;}}
 html[lang=ro] .app-banner .banner-subtitle {font-size:10px;}
 @media(max-width:420px){html[lang=ro] .app-banner .banner-subtitle {font-size:8px;}}
+
+.app-banner .banner-subtitle {font-size:clamp(9.5px,2vw,13px);font-weight:700;}
+@media(max-width:360px){.app-banner .banner-subtitle {font-size:8.5px;}}

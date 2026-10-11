@@ -316,3 +316,7 @@ Banner açıklaması logo ile aynı genişlikte merkezlendi. Logo sola yaslı ka
 ## 11 Ekim — banner açıklama fontu
 
 TR açıklama fontu mobilde 8→10, büyük ekranda 12→14 px aralığına yükseltildi; çok dar ekran/uzun RO metninde taşmayı sınırlayan ölçüler kullanılır. Tek satır/logo merkez hizası korunur. 390/1440 px statik TR görünüm/yatay taşma kontrolü geçti, mobil görsel incelendi. Syntax/asset/diff kontrolü uygulanır.
+
+## 11 Ekim — kalın banner açıklaması
+
+TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif küçültüldü ve 700 kalınlığına alındı; mevcut tek satır/ortalanmış yerleşim ve uzun RO metin ölçüleri korunur. Syntax/web referans/asset/diff kontrolleri uygulanır.
