@@ -132,3 +132,5 @@ Yayın doğrulandı: kaynak 32c23a4ae5d75f1dc3ff6751a8b6d89272eb089b, gh-pages 9
 ## 11 Ekim — banner yalnız simge
 
 Banner SVG viewBox büyük logonun yalnız yol/depo simgesini gösterir; görseldeki alt Solea yazısı gizlendi. Sağdaki Solea ve TR/RO depo/malzeme alt metni korunur. Özgün PNG değişmedi. Syntax/web referans/diff ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi. Supabase değişmedi.
+
+Yayın: kaynak e9271af123f0b4ed3296f111cb504659f0facb97, gh-pages ea0bad1501992d81968532dd79b1441718f532f7. Pages built/error=null; gerçek HTML/CSS/JS/dil dosyaları kaynakla eşleşti. PR #12 taslak, birleştirilmedi.
