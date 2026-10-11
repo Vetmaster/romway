@@ -78,3 +78,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Mobil önbellek düzeltmesi Pages üzerinde doğrulandı; PR #17 taslak.
 
 - [x] Logo açıklaması iki sabit, ortalanmış TR/RO satıra bölündü; görünüm ve sürüm kontrolü geçti.
+- [x] İki satırlı banner açıklaması Pages üzerinde doğrulandı; PR #18 taslak.
