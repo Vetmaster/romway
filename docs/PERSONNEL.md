@@ -58,3 +58,7 @@ Banner üstte tam genişliktedir; altında ayrı gezinme çubuğu bulunur. 821 p
 ## Banner kontrolleri
 
 Üst çubuktaki Ana sayfa düğmesi kaldırıldı; dashboard’a sol menüdeki Genel bakış ile dönülür. Dil seçimi banner sağında Test ortamı altında, çıkış düğmesi gezinme çubuğunda sağa yaslı ve tek satırdır.
+
+## Açılır personel kartı
+
+Personel ekleme alanı kapalı kart olarak açılır. Başlık ilk basışta formu açar, ikinci basışta kayıt oluşturmadan temizleyip kapatır. Açık/kapalı durumu aria-expanded ve +/− ile belirtilir; klavye düğmesi ve odağı korunur. Kaydet/vazgeç sonrası form kapanır; geçici şifre teslim alanı kart dışında korunur. Düzenle mevcut formu açmaya devam eder.
