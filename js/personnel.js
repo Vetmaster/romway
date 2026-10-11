@@ -48,7 +48,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');$('location-code').focus();}});
   async function load() {visibleCount=20;data=await api.call('personnel-list');resetForm();render();}
   $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();}));
-  $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');$('personnel-number').focus();}else $('personnel-new').focus();});
+  $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');$('personnel-number').focus();}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
   $('credential-close').addEventListener('click',clearSecret);
   $('personnel-form').addEventListener('submit',e=>{
