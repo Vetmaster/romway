@@ -324,3 +324,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 ## 11 Ekim — masaüstü menü logosu
 
 821 px ve üzeri oturumlu görünümde menü logo başlığı gizlenir; üst banner ve mobil menü logosu korunur. Syntax/web referans/asset/diff kontrolleri uygulanır.
+
+- Masaüstünde banner üstte sticky konumlandırıldı; sabit sol menünün üst sınırı kaydırma sırasında banner ile aynı hizada kalır. Mobil kuralı korunur.

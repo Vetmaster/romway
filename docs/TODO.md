@@ -126,3 +126,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Banner açıklama yazısı büyütüldü; tek satır ve logo merkezi korunur.
 - [x] Banner açıklaması hafif küçültüldü ve font-weight:700 yapıldı.
 - [x] Masaüstünde menü logosu gizlendi; üst banner ve mobil menü logosu korunur.
+
+- Masaüstünde banner üstte sticky konumlandırıldı; sabit sol menünün üst sınırı kaydırma sırasında banner ile aynı hizada kalır. Mobil kuralı korunur.
