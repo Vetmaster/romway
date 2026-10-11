@@ -20,9 +20,13 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     $('personnel-new').setAttribute('aria-label',text('add_staff'));
     const visible=!!role;$('personnel-open').hidden=!visible;
     if(!visible) {$('personnel-section').hidden=true;return;}
-    $('location-form').hidden=role!=='super_admin';
+    $('location-card').hidden=role!=='super_admin';
+    $('location-toggle').setAttribute('aria-label',text('add_location'));
     if(!data)return;
-    $('personnel-list').replaceChildren(...data.staff.map(s=>{
+    const normalize=value=>value.toLocaleLowerCase(document.documentElement.lang).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i');
+    const query=normalize($('personnel-search').value.trim());
+    const filtered=data.staff.filter(s=>normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)).sort((a,b)=>Number(b.active)-Number(a.active)||(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0));
+    $('personnel-list').replaceChildren(...filtered.map(s=>{
       const row=node('li'),identity=node('div'),title=node('strong',s.display_name),number=node('small',s.employee_number),details=node('div');
       identity.className='staff-identity';identity.append(title,number);details.className='staff-details';
       const roleLabel=node('span',text(s.role)),status=node('span',text(s.active?'active':'inactive'));status.className='staff-status '+(s.active?'active':'inactive');
@@ -35,10 +39,13 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
       });
       details.append(roleLabel,node('span',names.join(', ')||text('no_locations')),status);row.append(identity,details,button);return row;
     }));
-    if(!data.staff.length)$('personnel-list').append(node('li',text('no_staff')));
+    if(!filtered.length)$('personnel-list').append(node('li',text('no_staff')));
   }
+  function closeLocation(){ $('location-form').reset();$('location-form').hidden=true;$('location-toggle').setAttribute('aria-expanded','false'); }
+  $('personnel-search').addEventListener('input',render);
+  $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');$('location-code').focus();}});
   async function load() {data=await api.call('personnel-list');resetForm();render();}
-  $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();await load();onOpen();}));
+  $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();}));
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');$('personnel-number').focus();}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
   $('credential-close').addEventListener('click',clearSecret);
@@ -57,12 +64,12 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   });
   $('location-form').addEventListener('submit',e=>{
     e.preventDefault();const payload={code:$('location-code').value.trim(),name:$('location-name').value.trim(),country:$('location-country').value};
-    run(async()=>{clearSecret();await api.call('location-create',payload);$('location-form').reset();await load();});
+    run(async()=>{clearSecret();await api.call('location-create',payload);closeLocation();await load();});
   });
   return {
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
-      if(next!==role || !profile){role=next;data=null;editing=null;clearSecret();$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;}
+      if(next!==role || !profile){role=next;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;}
       render();
     },
     translate(){const selected=$('personnel-role').value;options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));$('personnel-role').value=selected;render();},

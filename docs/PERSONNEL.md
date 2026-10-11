@@ -62,3 +62,9 @@ Banner üstte tam genişliktedir; altında ayrı gezinme çubuğu bulunur. 821 p
 ## Açılır personel kartı
 
 Personel ekleme alanı kapalı kart olarak açılır. Başlık ilk basışta formu açar, ikinci basışta kayıt oluşturmadan temizleyip kapatır. Açık/kapalı durumu aria-expanded ve +/− ile belirtilir; klavye düğmesi ve odağı korunur. Kaydet/vazgeç sonrası form kapanır; geçici şifre teslim alanı kart dışında korunur. Düzenle mevcut formu açmaya devam eder.
+
+## Lokasyon kartı, arama ve sıralama
+
+Lokasyon ekleme kapalı kart olarak personel kartının hemen altındadır; yalnız super_admin görür. Başlık formu açıp kapatır; başarılı kayıt kapatır. Liste altta, arama ad/sicil/rol/durum/lokasyon metinlerinde Türkçe/Romence karakterleri normalleştirerek çalışır; veriler depolanmaz. Aktifler önce, pasifler sonra; her grup created_at azalan sıralanır. created_at sunucu yanıtına 202610110003 migration ile eklenir; önceki API tarih içermediği için migration uygulanmadan kronolojik sıralama doğrulanmış sayılmaz.
+
+202610110003 migration kullanıcı onayıyla yalnız romway-auth-test’e uygulandı; gerçek liste tarihi/sıralaması ve kayıt sayıları doğrulandı. Önceki onay bekleme kayıtları tarihsel durumdur.

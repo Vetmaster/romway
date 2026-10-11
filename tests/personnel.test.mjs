@@ -8,7 +8,7 @@ const db=new PGlite(), TR='00000000-0000-4000-8000-000000000001',RO='00000000-00
 const allowed=new Set(['romway_personnel','romway_session','romway_consume_attempt','romway_open_session']);
 before(async()=>{
  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
- for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
 });
 after(()=>db.close());
 async function rpc(name,args){assert(allowed.has(name));const entries=Object.entries(args);return (await db.query(`select public.${name}(${entries.map(([k],i)=>{assert(/^p_[a-z_]+$/.test(k));return `${k}=>$${i+1}`;}).join(',')}) value`,entries.map(([,v])=>v))).rows[0].value;}
@@ -95,4 +95,15 @@ test('super admin can add a location, duplicate code and invalid country are rej
  assert.equal((await f.call(body)).status,200);assert.equal((await f.call(body)).body.error,'conflict');
  assert.equal((await f.call({...body,code:'EXAMPLE_BAD',country:'XX'})).body.error,'invalid_request');
  const list=(await f.call({action:'personnel-list'})).body;assert(list.locations.some(l=>l.code==='EXAMPLE_TR'&&l.name==='Example depot'));
+});
+
+test('personnel list exposes creation time and orders active/newest before inactive',async()=>{
+ const f=await fixture(),ids=[];
+ for(const [active,date] of [[true,'2020-01-01'],[true,'2021-01-01'],[false,'2022-01-01']]){
+  const payload=create();const result=await f.call(payload);assert.equal(result.status,200);
+  const id=(await db.query('select id from romway_private.staff where employee_number=$1',[payload.employee_number])).rows[0].id;ids.push(id);
+  await db.query('update romway_private.staff set active=$2,created_at=$3 where id=$1',[id,active,date]);
+ }
+ const response=await f.call({action:'personnel-list'});assert.equal(response.status,200);
+ const rows=response.body.staff.filter(s=>ids.includes(s.id));assert.deepEqual(rows.map(s=>s.id),[ids[1],ids[0],ids[2]]);assert(rows.every(s=>Number.isFinite(Date.parse(s.created_at))));
 });

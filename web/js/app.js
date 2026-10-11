@@ -1,8 +1,8 @@
-import {createPersonnel} from './personnel.js?v=f6bacc75953d';
+import {createPersonnel} from './personnel.js?v=7e959477608d';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=173ffe75aed0';
-import ro from './locales/ro.js?v=1fed967cbfec';
+import tr from './locales/tr.js?v=d797a11e3c3b';
+import ro from './locales/ro.js?v=7fd002ed1361';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -42,7 +42,7 @@ function render() {
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-personnel,#personnel-new,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#personnel-new,#location-toggle,#personnel-search,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -119,6 +119,7 @@ $('navigation-drawer').addEventListener('cancel',event=>{event.preventDefault();
 $('navigation-drawer').addEventListener('close',()=>{$('menu-toggle').setAttribute('aria-expanded','false');});
 $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('navigation-drawer')){const box=event.target.getBoundingClientRect();if(event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closeMenu();}});
 $('nav-home').addEventListener('click',showDashboard);
+$('nav-brand').addEventListener('click',showDashboard);
 $('nav-personnel').addEventListener('click',()=>{closeMenu(false);$('personnel-open').click();});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
