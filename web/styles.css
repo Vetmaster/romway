@@ -406,3 +406,6 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 
 .navigation-drawer[open] {display:flex;flex-direction:column;gap:20px;overflow-y:auto;}
 .drawer-heading,.navigation-drawer nav {flex-shrink:0;}
+
+.nav-submenu {display:grid;gap:4px;margin-left:18px;padding-left:10px;border-left:1px solid rgba(255,255,255,.3);}
+.navigation-drawer .nav-submenu button {font-size:14px;padding:10px 12px;}
