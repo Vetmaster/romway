@@ -44,9 +44,9 @@ try{
   await mkdir('test-results',{recursive:true});await page.screenshot({path:`test-results/dashboard-${width}.png`,fullPage:true});
   if(width<=820){
     await page.locator('#menu-toggle').click();assert(await page.locator('#navigation-drawer').evaluate(el=>el.open));
-    assert.equal(await page.locator('#menu-close [aria-hidden]').textContent(),'×');await page.getByRole('button',{name:'Menüyü kapat',exact:true}).click();await page.locator('#navigation-drawer').waitFor({state:'hidden'});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
+    assert(await page.locator('.drawer-profile').evaluate(el=>{const panel=el.closest('dialog').getBoundingClientRect(),box=el.getBoundingClientRect();return panel.bottom-box.bottom<30;}));assert.equal(await page.locator('#menu-close [aria-hidden]').textContent(),'×');await page.getByRole('button',{name:'Menüyü kapat',exact:true}).click();await page.locator('#navigation-drawer').waitFor({state:'hidden'});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
     await page.locator('#menu-toggle').click();
-  }else{assert(await page.locator('#navigation-drawer').isVisible());assert(await page.locator('#menu-toggle').isHidden());}
+  }else{assert(await page.locator('#navigation-drawer').isVisible());assert(await page.locator('.drawer-profile').evaluate(el=>{const panel=el.closest('dialog').getBoundingClientRect(),box=el.getBoundingClientRect();return panel.bottom-box.bottom<30;}));assert(await page.locator('#menu-toggle').isHidden());}
   await page.locator('#nav-personnel').click();await page.locator('#welcome').waitFor({state:'hidden'});
   if(width<=820){assert.equal(await page.locator('#navigation-drawer').evaluate(el=>el.open),false);await page.locator('#menu-toggle').click();}
   await page.locator('#nav-home').click();await page.locator('#welcome').waitFor({state:'visible'});

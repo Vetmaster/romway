@@ -100,3 +100,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Kullanıcı kararıyla personel liste adımı 20’den 10’a indirildi; ilk açılış/arama sıfırlaması/daha fazla göster 10 kayıt kullanır.
 - [x] Personel/lokasyon/düzenleme geçişlerinde aynı anda tek kart açık kalır; mobil/masaüstü doğrulandı.
 - [x] Menü kapatma × simgesi ve erişilebilir TR/RO ad eklendi; tarayıcı kontrolü geçti.
+- [x] Kullanıcı adı ve rol menünün en altına taşındı; mobil/masaüstü konumu doğrulandı.
