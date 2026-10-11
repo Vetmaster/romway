@@ -95,3 +95,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Personel listesi ilk 20 kayıtla başlar; Daha fazla göster her basışta 20 ekler. Arama sıfırlaması ve 390/1440 px tarayıcı kontrolleri geçti.
 - [x] 20 kayıt sonrası Daha fazla göster Pages v2026.10.11.3 üzerinde doğrulandı; PR #25 taslak.
 - [x] Personel ekleme açıldığında lokasyon kartı otomatik kapanır; 390/1440 px geçiş testi geçti.
+- [x] Kart geçişi Pages v2026.10.11.4 üzerinde yayınlandı ve dosya eşleşmesi doğrulandı.
