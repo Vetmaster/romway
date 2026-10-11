@@ -14,9 +14,10 @@
 - [x] SQL içi oturum/rol/lokasyon kontrolü, RLS/service-only RPC, rezervasyon/aktivasyon, eski oturum iptali ve secretsiz audit; kayıt silinmez.
 
 ## Personel aşamasında doğrulanması / uygulanması gereken
-- [ ] Yerel kontroller sonrası kullanıcı onayıyla yalnız ayrı romway-auth-test projesine **yeni personel migration/Edge** uygulama. Şu anda uygulanmış değildir.
-- [ ] Yeni personel oluşturma/rol/lokasyon/pasifleştirme için gerçek Supabase Auth/Edge/DB entegrasyonu; yerel testlerin Auth kısmı simüledir.
-- [ ] Gerçek PostgreSQL'de çok bağlantılı eşzamanlı yönetim işlemleri ve yarım Auth oluşturma kurtarma doğrulaması.
+- [x] Kullanıcı açık onayıyla yalnız romway-auth-test projesine yeni personel migration/Edge uygulandı; önceki staff/Auth kayıt sayıları korundu.
+- [x] Gerçek Supabase Auth/Edge/DB personel ekleme, zorunlu değişim, admin rol/lokasyon sınırları, lokasyon/aktiflik oturum iptali, RPC/JWT reddi ve audit doğrulandı.
+- [x] Gerçek Edge/DB ile aynı sicille eşzamanlı iki oluşturma isteği: bir başarılı hesap ve bir conflict.
+- [ ] Kısmi Auth oluşturma için operatör kurtarma prosedürü; daha geniş eşzamanlı düzenleme/aktivasyon senaryoları.
 - [ ] Doğrulama sonrası yeni ekranı GitHub Pages test önizlemesine yayınla; yayımdaki sürüm şu anda önceki giriş aşamasıdır.
 - [ ] Taslak PR'ları incele; otomatik merge yapılmaz.
 
@@ -36,4 +37,4 @@
 6. Yakıt tankları, dolumlar, istasyon alımları ve ölçüm kuralları.
 7. Raporlar/tarihler, yedek geri yükleme ve tek depo pilotu.
 
-Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı kullanıldı. Bildirimler ve çevrimdışı stok kapsam dışıdır. Personel migration dosyasının varlığı uzakta kurulmuş olduğunu göstermez. Yerel test kanıtları ve sınırları INCELEME.md/PERSONNEL.md içindedir.
+Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı kullanıldı. Bildirimler ve çevrimdışı stok kapsam dışıdır. Personel migration ve Edge bu ayrı test projesinde kuruldu; dosya varlığı tek başına başka özelliklerin tamamlandığına kanıt değildir. Yerel test kanıtları ve sınırları INCELEME.md/PERSONNEL.md içindedir.

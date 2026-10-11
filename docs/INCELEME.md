@@ -60,3 +60,13 @@ Kanıtlar:
 - Yeni personel tarayıcı testi 390/1440 px gerçek SQL ve HTTP handler ile çalışır; Auth API simüledir. Ekleme, düzenleme, kapatma/yeniden açma, yeni personelde zorunlu şifre değişimi, TR/RO, XSS-safe metin, şifreyi gizleyince DOM temizliği ve yalnız dil tercihi depolama doğrulandı. Mobil ekran görüntüsü görsel olarak incelendi; taşma görülmedi.
 
 Yapılmayanlar: yeni migration veya Edge dağıtımı, bu personel aşamasının gerçek uzak Auth entegrasyonu, yeni ekranın GitHub Pages yayını, PR merge. Test projesi istisnası önceki giriş aşamasını kapsar; yeni yönetim migration/dağıtımı için somut ayrı onay beklenir. Gerçek PostgreSQL çok bağlantılı eşzamanlılık, şifre sıfırlama/operatör kurtarma, audit görüntüleme/saklama, araç/stok/finans sistemi henüz tamamlanmış değildir. Yerel SQL testleri çok bağlantılı uzak PostgreSQL kanıtı sayılmaz.
+
+## 11 Ekim — personel test dağıtımı için açık kullanıcı onayı
+
+Kullanıcı, PR #4 kapsamındaki personel migration/Edge kurulumu, gerçek entegrasyon ve ardından GitHub Pages test yayını için “Onaylıyorum” dedi. Bu izin AGENTS.md/PERSONNEL.md içinde kaydedildi; gerçek iş verisi veya diğer projeler kapsam dışındadır.
+
+`deploy-test-personnel.mjs` exact project opt-in, proje adı/oluşturma tarihi/sağlık ve üç tabloluk önceki şema kontrolünden sonra yeni migration'ı yalnız ifnjvdjhfhzfxyuorqvz'ye uyguladı. Önce/sonra staff ve Auth kullanıcı sayıları eşit kaldı. İki temsili depo eklendi; service-only RPC ve dört yeni kapalı RLS tablosu kuruldu. Edge API bundling ile aynı test projesinde güncellendi. TESTADMIN hesabının şifresine dokunulmadı.
+
+Gerçek Edge/Auth/DB personel testleri geçti: Auth UUID rezervasyonu, otomatik geçici şifre, zorunlu ilk değişim, admin rol/lokasyon sınırları, dış kapsam ve rol yükseltme reddi, lokasyon değişikliğiyle eski oturum iptali, pasif hesabın login reddi, kendini kapatma koruması, anon ve gerçek JWT ile yönetim RPC reddi, audit. Aynı sicille eşzamanlı iki HTTP isteğinde bir 200/bir 409 ve tek personel oluştu. Yedi özel tablonun RLS ve client SELECT izinleri gerçek DB üzerinden doğrulandı.
+
+Gerçek GitHub Pages origin üzerinde güncel web dosyalarıyla 390 px mobil önizleme de geçti: personel oluşturma/pasifleştirme, TR/RO, CHIPS HttpOnly oturum, şifreyi gizleyince DOM temizliği, yalnız dil tercihi localStorage ve çıkış. Bu önizleme yayın sonrası testten ayrıdır; bu testte web dosyaları test tarayıcısında güncel yerel dosyalardan yönlendirildi. İlk önizleme denemesi önceki yayın CSS'ini kullandığından taşma kontrolünde durdu; test CSS yönlendirmesi düzeltilince geçti. Uygulama kodunda veya veri yetkilerinde bypass eklenmedi. Her iki koşunun sentetik IT_P_ hesapları pasifleştirildi; Auth/staff/audit kayıtları korunur.

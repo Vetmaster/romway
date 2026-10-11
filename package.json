@@ -8,7 +8,8 @@
     "dev": "node scripts/serve.mjs",
     "test:browser": "node tests/browser.mjs",
     "test:cloud": "node scripts/test-cloud-auth.mjs",
-    "test:personnel-browser": "node tests/personnel-browser.mjs"
+    "test:personnel-browser": "node tests/personnel-browser.mjs",
+    "test:cloud-personnel": "node scripts/test-cloud-personnel.mjs"
   },
   "engines": {
     "node": ">=22"

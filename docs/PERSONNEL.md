@@ -1,6 +1,6 @@
 # Personel yönetimi — inceleme aşaması
 
-Bu aşama sicil/şifre girişini korur; stok, araç, yakıt veya şifre sıfırlama eklemez. Kod `feature/personnel-management` dalında hazırlanır. Yeni migration dosyası henüz uzaktaki hiçbir Supabase projesine uygulanmamıştır; mevcut GitHub Pages yayını önceki giriş sürümünü kullanır.
+Bu aşama sicil/şifre girişini korur; stok, araç, yakıt veya şifre sıfırlama eklemez. Kod `feature/personnel-management` dalında hazırlanır. Kullanıcının 11 Ekim açık onayıyla yeni migration ve Edge yalnız romway-auth-test projesine uygulandı. Gerçek API ve mobil önizleme testleri geçti; GitHub Pages yayını ve yayın sonrası doğrulama bu onaylı adımın devamıdır.
 
 ## Kesinleşen yetki düzeni
 
@@ -31,4 +31,6 @@ Temsili lokasyonlar kullanıcı isteğiyle `TR_TEST / Türkiye Test Deposu` ve `
 
 `npm test` SQL ve endpoint yetkilerini; `npm run test:personnel-browser` PGlite + gerçek HTTP handler üzerinde 390/1440 px arayüz, TR/RO, ekleme/düzenleme/pasifleştirme/yeniden aktifleştirme, zorunlu şifre değişimi, textContent ve depolama sınırlarını test eder. Bu yeni akışın Auth API'si tarayıcı testinde simüledir. `npm run test:browser` giriş regresyonudur.
 
-Yeni migration/Edge dağıtımı mevcut izin kapsamından ayrı değerlendirilir: AGENTS.md'deki test projesi istisnası giriş şeması/fonksiyonu içindir. İncelenebilir kod/PR ve yerel testler tamamlandıktan sonra **yalnız romway-auth-test** için kullanıcı onayı alınır. Sasa-F/Vetamerikan-shift projelerine dokunulmaz. Sonra gerçek Auth personel entegrasyonu doğrulanır; bu doğrulamadan önce yeni ekran Pages'e yayınlanmaz. Otomatik PR merge yapılmaz.
+Kullanıcı PR #4 kapsamındaki personel migration/Edge, gerçek entegrasyon ve başarılı doğrulama sonrası Pages yayınını açıkça onayladı. Yalnız romway-auth-test değişti; Sasa-F/Vetamerikan-shift projelerine dokunulmadı. Önce gerçek Edge/Auth/DB API ve mobil önizleme geçti; ardından Pages yayını yapılır. Otomatik PR merge yapılmaz.
+
+Opt-in uzak kontrol: `ROMWAY_TEST_PROJECT=ifnjvdjhfhzfxyuorqvz npm run test:cloud-personnel`. Yayın sonrası ayrıca `ROMWAY_TEST_PUBLISHED=true` kullanılır; bu mod HTML/JS/CSS yönlendirmesi yapmadan gerçek yayın dosyalarını test eder. Test yalnız bu koşunun rastgele IT_P_ sicillerini oluşturur ve sonunda pasifleştirir; TESTADMIN şifresi okunmaz/değişmez, geçmiş silinmez. Anahtarlar repo dışındaki özel dosyalarda kalır. Gerçek API testinde aynı sicille eşzamanlı iki çağrı yalnız bir personel oluşturdu; doğrudan anon/JWT yönetim RPC'si reddedildi.

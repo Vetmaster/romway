@@ -20,7 +20,7 @@
 - Super_admin tüm personeli yönetir. Admin yalnız kendi lokasyonlarının tamamı içinde kalan purchasing/receiver personelini yönetir; hedefin eski ve yeni lokasyonları sunucuda doğrulanır.
 - Kullanıcı temsili lokasyon isimlerini onayladı: Türkiye Test Deposu / Romanya Test Deposu. Bunlar gerçek iş verisi sayılmaz.
 - Geçici şifre yöneticiye tek seferlik işlem yanıtında teslim edilir; statik kaynak/config, günlük veya tarayıcı deposunda saklanmaz.
-- Yeni personel migration/Edge dağıtımı henüz yetkilendirilmedi; inceleme ve yerel kontrollerden sonra yalnız ayrı test projesi için somut kapsam sunulur.
+- 11 Ekim kullanıcı PR #4 kapsamındaki personel migration/Edge işlemlerini yalnız romway-auth-test projesine uygulamayı, gerçek entegrasyonla doğrulamayı ve ardından GitHub Pages test önizlemesine yayınlamayı açıkça onayladı. Diğer projeler ve gerçek iş verisi kapsam dışıdır; otomatik merge yapılmaz.
 
 ## Güvenlik
 - Şifre, token ve service_role anahtarını kaynak kod, statik çıktı, tarayıcı yapılandırması veya günlüklerde tutma. Kullanıcıya elle token kopyalama akışı sunma.
