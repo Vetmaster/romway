@@ -8,7 +8,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function locations(selected=[]) {
     $('personnel-locations').replaceChildren(...(data?.locations??[]).map(l=>{
       const label=node('label'),input=node('input');input.type='checkbox';input.value=l.id;input.checked=selected.includes(l.id);
-      label.append(input,node('span',`${l.name} (${l.country})`));return label;
+      label.append(input,node('span',l.name));return label;
     }));
   }
   function resetForm() {
@@ -90,7 +90,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     });
   });
   $('location-form').addEventListener('submit',e=>{
-    e.preventDefault();const payload={code:$('location-code').value.trim(),name:$('location-name').value.trim(),country:$('location-country').value};
+    e.preventDefault();const payload={name:$('location-name').value.trim()};
     run(async()=>{clearSecret();await api.call('location-create',payload);closeLocation();await load();});
   });
   return {
