@@ -216,3 +216,7 @@ Yayın v2026.10.11.3 doğrulandı: kaynak b36cae7, gh-pages 913717dcbfa2c4686ed6
 Personel ekleme kartı açılırken mevcut closeLocation yordamı lokasyon kartını kapatır ve aria-expanded=false yapar. 390/1440 px tarayıcı testinde açık lokasyondan personel eklemeye geçiş doğrulandı; mevcut akışlar ve syntax/asset/diff kontrolleri geçti. Veritabanına işlem yapılmadı.
 
 Pages v2026.10.11.4 doğrulandı: kaynak 15b8b19, yayın afd1e4060b94ebbf04fe7cef1adaf8f49917477c; built/error=null ve gerçek dosyalar kaynakla eşleşti. PR #26 taslak, birleştirilmedi.
+
+## 11 Ekim — kartlarda otomatik klavye
+
+Kart açma/düzenleme giriş alanına otomatik odaklanmaz; daha fazla göster bitişinde de girişe odak verilmez. 390/1440 px tarayıcı kontrolleri, butonda odak ve alan tıklaması doğrulaması geçti. Gerçek telefon klavyesi ayrıca cihazda gözlenmelidir. Syntax/asset/diff kontrolleri geçti; veritabanı değişikliği yok.
