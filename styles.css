@@ -336,8 +336,8 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 }
 
 /* SASA-F: banner above a separate topbar; desktop sidebar, mobile drawer. */
-.app-banner {max-width:none;min-height:96px;padding:12px 24px;background:white;border-bottom:1px solid var(--line);gap:16px;}
-.app-banner .brand {gap:16px;min-width:0;text-decoration:none;}
+.app-banner {max-width:none;min-height:116px;padding:12px 24px;background:white;border-bottom:1px solid var(--line);gap:16px;}
+.app-banner .brand {flex-direction:column;align-items:center;gap:4px;min-width:0;text-decoration:none;}
 .app-banner .brand svg {width:100px;flex-shrink:0;}
 .banner-copy {display:block;color:var(--ink);}
 .banner-copy strong {font-family:"Anta",var(--font);font-size:26px;}
@@ -350,13 +350,13 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 @media(min-width:821px) {
  body.app-shell {padding-left:248px;}
  .app-shell .app-banner {position:relative;z-index:31;margin-left:-248px;width:calc(100% + 248px);}
- .app-shell .navigation-drawer {top:96px;width:248px;height:calc(100dvh - 96px);padding:24px 16px;}
+ .app-shell .navigation-drawer {top:116px;width:248px;height:calc(100dvh - 116px);padding:24px 16px;}
  .app-shell #menu-close {display:none;}
  .app-shell .drawer-heading {font-size:16px;}
 }
 @media(max-width:820px) {
  .app-banner {padding:10px 14px;}
- .app-banner .brand {gap:10px;}
+ .app-banner .brand {gap:4px;}
  .app-banner .brand svg {width:80px;}
  .banner-copy strong {font-size:22px;}
  .banner-copy small {font-size:11px;max-width:140px;}
@@ -364,3 +364,6 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
  .topbar #page-title {flex:1;font-size:16px;}
  .topbar .header-actions {flex-basis:100%;justify-content:flex-end;}
 }
+
+.banner-subtitle {margin:0;color:var(--muted);font-size:12px;text-align:center;}
+@media(max-width:820px) {.banner-subtitle {font-size:11px;}}
