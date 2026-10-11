@@ -208,3 +208,5 @@ Yayın doğrulandı: kaynak 95f5a730c3f4a3238ca2c2592c430a2a47627afa, gh-pages 6
 ## 11 Ekim — personel listesini kademeli gösterme
 
 Yetkili liste ilk 20 kayıtla gösterilir; buton 20 ekler ve son kayıtta gizlenir. Arama/yeni liste yüklemesi limiti sıfırlar; sıralama korunur. TR/RO metinleri ayrı dosyalarda. 390/1440 px tarayıcı testinde 45 sentetik kayıt ile 20/40/45 geçişi, buton gizlenmesi ve arama sıfırlaması doğrulandı; mevcut personel akışları geçti. Syntax/web referans/asset/diff kontrolü geçti. Veritabanı değişikliği yok.
+
+Yayın v2026.10.11.3 doğrulandı: kaynak b36cae7, gh-pages 913717dcbfa2c4686ed6ee589105b6fe1f873841. Pages built/error=null; gerçek HTML/CSS/JS/TR/RO kaynakla birebir eşleşti. PR #25 taslak, birleştirilmedi.
