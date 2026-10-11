@@ -84,6 +84,16 @@ try{
   await page.locator('#current').fill(temporary);await page.locator('#new').fill('Synthetic-new-personnel-password');await page.locator('#confirm').fill('Synthetic-new-personnel-password');await page.locator('#change button').click();
   await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,'Synthetic-new-personnel-password');await page.locator('#welcome').waitFor({state:'visible'});assert(await page.locator('#personnel-open').isHidden());
   assert.deepEqual(await page.evaluate(()=>Object.keys(localStorage)),['romway.language']);assert.deepEqual(await page.evaluate(()=>Object.keys(sessionStorage)),[]);assert.equal(await page.evaluate(()=>document.cookie),'');assert.deepEqual(errors,[]);
+  await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
+  await page.route('http://localhost:8001/auth',async route=>{
+   if(route.request().postDataJSON().action!=='personnel-list')return route.continue();
+   await route.fulfill({contentType:'application/json',body:JSON.stringify({locations:[],staff:Array.from({length:45},(_,i)=>({id:'fixture-'+i,display_name:'Fixture '+i,employee_number:'FIX'+i,role:'receiver',active:true,location_ids:[],created_at:new Date(2020,0,i+1).toISOString()}))})});
+  });
+  await page.locator('#personnel-open').click();await page.locator('#personnel-more').waitFor({state:'visible'});assert.equal(await page.locator('#personnel-list li').count(),20);
+  await page.locator('#personnel-more').click();assert.equal(await page.locator('#personnel-list li').count(),40);
+  await page.locator('#personnel-more').click();assert.equal(await page.locator('#personnel-list li').count(),45);assert(await page.locator('#personnel-more').isHidden());
+  await page.locator('#personnel-search').fill('FIX44');assert.equal(await page.locator('#personnel-list li').count(),1);assert(await page.locator('#personnel-more').isHidden());
+  await page.locator('#personnel-search').fill('');assert.equal(await page.locator('#personnel-list li').count(),20);assert(await page.locator('#personnel-more').isVisible());
   await context.close();
  }
  console.log('Personnel browser checks passed at 390/1440: actual SQL + HTTP handler, simulated Auth, TR/RO, create/edit/deactivate/reactivate, forced change, XSS, credential clearing and storage.');
