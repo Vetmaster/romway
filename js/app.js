@@ -34,7 +34,7 @@ function render() {
   $('dashboard-greeting').textContent=profile?`${text('welcome_title')}, ${profile.display_name}`:'';
   $('drawer-name').textContent=profile?.display_name??'';
   $('drawer-role').textContent=profile?text(profile.role):'';
-  document.querySelector('main').classList.toggle('workspace',signedIn);$('personnel-back').hidden=!workspace;
+  document.querySelector('main').classList.toggle('workspace',signedIn);
   $('logout').hidden = !['change','welcome'].includes(view);
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
@@ -42,7 +42,7 @@ function render() {
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#personnel-back,#retry,#personnel-open,#nav-home,#nav-personnel,#personnel-new,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-personnel,#personnel-new,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -120,7 +120,6 @@ $('navigation-drawer').addEventListener('close',()=>{$('menu-toggle').setAttribu
 $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('navigation-drawer')){const box=event.target.getBoundingClientRect();if(event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closeMenu();}});
 $('nav-home').addEventListener('click',showDashboard);
 $('nav-personnel').addEventListener('click',()=>{closeMenu(false);$('personnel-open').click();});
-$('personnel-back').addEventListener('click',showDashboard);
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
 personnel=createPersonnel({api,text,run:perform,onOpen:()=>{workspace=true;render();$('personnel-heading').setAttribute('tabindex','-1');$('personnel-heading').focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
