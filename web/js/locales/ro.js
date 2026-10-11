@@ -1,4 +1,5 @@
 export default {
+ version_label:'Versiunea aplicației ',
  search_staff:'Caută personal',
  staff_sort_note:'Activi înaintea celor inactivi; cele mai noi înregistrări primele în fiecare grup.',
  banner_line_one:'Depozite și Logistică',

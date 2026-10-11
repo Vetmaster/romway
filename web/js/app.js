@@ -1,8 +1,8 @@
 import {createPersonnel} from './personnel.js?v=7e959477608d';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=5dc6b663a904';
-import ro from './locales/ro.js?v=563de2cbd5d5';
+import tr from './locales/tr.js?v=d797a11e3c3b';
+import ro from './locales/ro.js?v=7fd002ed1361';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }

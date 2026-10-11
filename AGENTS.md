@@ -45,3 +45,6 @@
 
 ## Statik dosya önbelleği
 - Web değişikliklerinden sonra commit öncesinde `node scripts/version-assets.mjs` çalıştır. İçerik hash’li CSS/JS/import URL’leri yeni dosya yüklemesini sağlar. Yayın betiği sürümlerin güncelliğini kontrol eder; eski sürümle yayın yapmaz.
+
+## Yayın sürümü
+- Banner vYYYY.MM.DD.N gösterir; yeni web yayını hazırlarken kullanıcı zaman dilimine göre tarih/günlük sıra numarasını güncelle, sonra asset sürümlerini üret.

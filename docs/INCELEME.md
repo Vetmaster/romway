@@ -196,3 +196,5 @@ Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açık
 Lokasyon kartı personel kartının altına taşındı; başlangıçta kapalı, super_admin görünürlüğü korunur. Liste araması ad/sicil/rol/durum/lokasyon metinlerini normalleştirir. Aktif/pasif grupları ve created_at azalan sıralama eklendi. Mevcut RPC tarih döndürmediğinden yeni 202610110003 migration dosyası yalnız liste yanıtına created_at ekler ve SQL listesini sıralar; diğer yetki/işlem yolları korunur. Exact-test-project opt-in deploy betiği hazır, çalıştırılmadı. 12 yerel SQL/endpoint testi (tarih alanı ve aktif/yeni/pasif sırası dahil), TR/RO anahtar ve 390/1440 px personel tarayıcı testleri geçti; mobil görüntü incelendi. Auth simüledir. Supabase dağıtımı ve Pages yayını onay bekliyor.
 
 PR #23 ile yayınlanan #2C3238 yol tonu/menü logosu, bekleyen PR #22 taslağına da taşındı; sonraki yayında menü görünümü korunur. PR #22 migration onayı hâlâ beklenir, bu birleşik taslak yayınlanmadı.
+
+PR #24 ile yayınlanan sürüm etiketi, bekleyen PR #22 taslağına v2026.10.11.2 olarak taşındı. Taslak yayınlanmadı; migration onayı hâlâ bekler.
