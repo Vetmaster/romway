@@ -244,3 +244,7 @@ Personel yönetimi altında girintili Personel ekle ve Lokasyon ekle kısayollar
 ## 11 Ekim — ayrı yönetim sayfaları
 
 Personel ve lokasyon ekleme ayrı uygulama sayfalarına ayrıldı. Personel sayfasında ekleme kartı ve mevcut aramalı/10 kayıtlık liste, lokasyon sayfasında ekleme kartı ve yetkili lokasyonların ad/kod/ülke listesi bulunur. Menü kısayolları ilgili sayfayı açar. Dashboard/personel yönetimi personel sayfasına gider; lokasyon yalnız super_admin erişiminde kalır. Sayfa değişiminde diğer sayfa/kart gizlenir ve geçici parola temizlenir; otomatik giriş odağı yoktur. 390/1440 px tarayıcı testinde ayrı sayfalar, lokasyon ekleme sonrası liste güncellemesi, personel atama seçenekleri ve mevcut akışlar geçti. Syntax/asset/diff kontrolleri geçti; Supabase değişikliği yok.
+
+## 11 Ekim — menü çarpısını kaldırma
+
+Menüdeki × butonu DOM/CSS/JS’den kaldırıldı. Menü açıldığında odak logo butonuna gider; dış alana dokunma ve Escape ile kapanma korunur. 390/1440 px tarayıcı testleri, mobil dış alan/Escape kapanması, syntax/asset/diff kontrolleri geçti. Veritabanı değişikliği yok.
