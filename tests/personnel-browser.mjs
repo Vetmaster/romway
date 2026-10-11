@@ -44,7 +44,7 @@ try{
   await mkdir('test-results',{recursive:true});await page.screenshot({path:`test-results/dashboard-${width}.png`,fullPage:true});
   if(width<=820){
     await page.locator('#menu-toggle').click();assert(await page.locator('#navigation-drawer').evaluate(el=>el.open));
-    await page.keyboard.press('Escape');await page.locator('#navigation-drawer').waitFor({state:'hidden'});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
+    assert.equal(await page.locator('#menu-close [aria-hidden]').textContent(),'×');await page.getByRole('button',{name:'Menüyü kapat',exact:true}).click();await page.locator('#navigation-drawer').waitFor({state:'hidden'});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
     await page.locator('#menu-toggle').click();
   }else{assert(await page.locator('#navigation-drawer').isVisible());assert(await page.locator('#menu-toggle').isHidden());}
   await page.locator('#nav-personnel').click();await page.locator('#welcome').waitFor({state:'hidden'});
