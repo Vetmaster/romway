@@ -232,3 +232,7 @@ Personel/lokasyon kartları karşılıklı kapanır; personel düzenleme de loka
 ## 11 Ekim — menü kapatma simgesi
 
 Menüyü kapat yazısı × simgesine dönüştürüldü. TR/RO erişilebilir ad gizli metinde korunur; dokunma alanı 44 px. 390/1440 px tarayıcı kontrolü, mobil simge/erişilebilir adla kapatma ve syntax/asset/diff kontrolleri geçti. Veritabanı değişikliği yok.
+
+## 11 Ekim — menü altındaki kullanıcı bilgileri
+
+Oturum açan kişinin adı/rolü menünün en altına taşındı. SASA-F yerel styles.css sidebar/main-nav/sidebar-footer düzeni doğrulandı. Açık dialog flex sütun; profil auto üst boşlukla alta yerleşir, kapalı dialog gizli kalır. 390/1440 px tarayıcı testinde profilin alt kenara uzaklığı doğrulandı; mevcut akışlar ve syntax/asset/diff kontrolleri geçti.
