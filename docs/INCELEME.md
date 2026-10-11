@@ -240,3 +240,7 @@ Oturum açan kişinin adı/rolü menünün en altına taşındı. SASA-F yerel s
 ## 11 Ekim — personel alt menüsü
 
 Personel yönetimi altında girintili Personel ekle ve Lokasyon ekle kısayolları eklendi. Personel admin/super_admin, lokasyon yalnız super_admin görünür; mevcut sunucu yetkileri korunur. Kısayol liste yüklemesi bittikten sonra ilgili kartı açar, diğer kart kapanır ve giriş alanına odak verilmez. 390/1440 px tarayıcı testlerinde iki kısayol/kart/odak ve mevcut akışlar geçti. Syntax/asset/diff kontrolleri başarılı. Veritabanı değişikliği yok.
+
+## 11 Ekim — ayrı yönetim sayfaları
+
+Personel ve lokasyon ekleme ayrı uygulama sayfalarına ayrıldı. Personel sayfasında ekleme kartı ve mevcut aramalı/10 kayıtlık liste, lokasyon sayfasında ekleme kartı ve yetkili lokasyonların ad/kod/ülke listesi bulunur. Menü kısayolları ilgili sayfayı açar. Dashboard/personel yönetimi personel sayfasına gider; lokasyon yalnız super_admin erişiminde kalır. Sayfa değişiminde diğer sayfa/kart gizlenir ve geçici parola temizlenir; otomatik giriş odağı yoktur. 390/1440 px tarayıcı testinde ayrı sayfalar, lokasyon ekleme sonrası liste güncellemesi, personel atama seçenekleri ve mevcut akışlar geçti. Syntax/asset/diff kontrolleri geçti; Supabase değişikliği yok.
