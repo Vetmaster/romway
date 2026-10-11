@@ -10,7 +10,7 @@ export function createApi(endpoint, fetcher = fetch) {
     async call(action, payload = {}) {
       if (!url) throw new Error('not_configured');
       let response;
-      try { response = await fetcher(url.href,{method:'POST',credentials:'include',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,action}),signal:AbortSignal.timeout(15000)}); }
+      try { response = await fetcher(url.href,{method:'POST',credentials:'include',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,action}),signal:AbortSignal.timeout(action === 'personnel-create' ? 45000 : 15000)}); }
       catch { throw new Error('service_unavailable'); }
       let data;
       try { data = await response.json(); } catch { throw new Error('service_unavailable'); }

@@ -1,3 +1,4 @@
+import {createPersonnel} from './personnel.js';
 import {config} from './config.js';
 import {createApi} from './api.js';
 import tr from './locales/tr.js';
@@ -9,7 +10,9 @@ let api;
 try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
 let view = 'login', profile = null, message = '', isError = false, busy = false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
+let personnel;
 function render() {
+  personnel?.update(view==='welcome'?profile:null);
   document.documentElement.lang = language; $('language').value = language;
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = text(el.dataset.i18n); });
   for (const id of ['login','change','welcome']) $(id).hidden = id !== view;
@@ -21,7 +24,7 @@ function render() {
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   $('message').textContent = message ? text(message) : '';
   $('message').className = isError ? 'error' : '';
-  document.querySelectorAll('form input,form button,#logout,#retry').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#personnel-new,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelector('.panel').setAttribute('aria-busy',String(busy));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -29,7 +32,7 @@ function notify(key, error = false) { message = key; isError = error; render(); 
 async function perform(fn) {
   if (busy) return;
   busy = true; notify('busy');
-  try { await fn(); }
+  try { await fn(); if(message==='busy') notify(''); }
   catch (e) {
     if (e.message === 'session_expired' || e.message === 'recovery_required') { profile = null; transition('login'); }
     notify(e.message, true);
@@ -51,7 +54,7 @@ async function restore() {
 $('language').addEventListener('change',e => {
   language = locales[e.target.value] ? e.target.value : 'tr';
   try { localStorage.setItem('romway.language',language); } catch { /* Optional preference. */ }
-  render();
+  render(); personnel.translate();
 });
 $('login').addEventListener('submit',event => {
   event.preventDefault();
@@ -85,4 +88,5 @@ $('logout').addEventListener('click',() => perform(async () => {
   await api.call('logout'); profile = null; transition('login'); notify('');
 }));
 $('retry').addEventListener('click',restore);
+personnel=createPersonnel({api,text,run:perform,onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 render(); restore();

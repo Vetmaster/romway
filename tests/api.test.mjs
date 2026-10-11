@@ -46,3 +46,10 @@ test('backend distinguishes wrong credentials from Auth outage/rate limits',asyn
     else await assert.rejects(backend.verifyPassword('staff@identity.invalid','wrong'),new RegExp(expected));
   }
 });
+
+test('Auth creation uses the reserved ID only when explicitly supplied, credentials stay server-side',async()=>{
+ const requests=[];const backend=createBackend({url:'https://project.example.com',publicKey:'synthetic-public',serviceKey:'synthetic-server'},async(url,options)=>{requests.push(JSON.parse(options.body));assert.equal(options.headers.Authorization,'Bearer synthetic-server');return Response.json({id:'reserved-id'});});
+ await backend.createUser('staff-reserved-id@identity.invalid','synthetic-password','reserved-id');
+ await backend.createUser('staff-bootstrap@identity.invalid','synthetic-password');
+ assert.equal(requests[0].id,'reserved-id');assert(!('id' in requests[1]));assert.equal(requests[0].email_confirm,true);
+});

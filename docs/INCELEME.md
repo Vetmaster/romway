@@ -46,3 +46,17 @@ Kullanıcı Docker yerine yeni bulut test projesini seçti. Ücretsiz kuruluş p
 TESTADMIN ayrı test projesinde etkinleştirildi; geçici şifre repo dışında 0600 dosyada, ilk değişim zorunlu. Gerçek personel/depo verisi yok; kurtarma/audit/üretim politikası henüz tamamlanmadı. Yeni kod feature/auth-integration dalında incelenir; otomatik merge yok.
 
 Yayın sonrası: GitHub Pages built, gerçek yayın modunda mobil CHIPS/Edge/Auth/DB giriş/yenileme/çıkış geçti. Etkin sicil/şifre formu Codex tarayıcısında görüldü. Yerel çalışma ağacı temiz tutuldu; PR #3 taslak olarak açıldı. TESTADMIN hesabının geçici şifresi değiştirilmedi, kullanıcının denemesi beklenir.
+
+## 11 Ekim 2026 — personel aşaması / güncel durum
+
+`feature/personnel-management` dalında personel ekleme, rol/lokasyon düzenleme, pasifleştirme/aktifleştirme ve super_admin lokasyon ekleme hazırlanmıştır. Önceki tarihli "kod yok / gerçek Auth yok" maddeleri tarihsel envanterdir; güncel giriş doğrulaması yukarıdaki 11 Ekim kaydıdır. Kullanıcının TESTADMIN karşılama ekranı Codex tarayıcısında görüldü; kullanıcının yeni şifresi okunmadı/değiştirilmedi. Kendi telefonu/Safari/Firefox henüz doğrulanmadı.
+
+Yeni personel migration dosyası, yönetim RPC'si, Edge modülü, web modülü ve TR/RO metinleri eklendi. Yönetim yetkisi SQL içinde opaque oturum üzerinden uygulanır; admin eski/yeni lokasyonların tamamında yetkili olmalı ve yalnız purchasing/receiver yönetebilir. Geçici şifre server-side rastgele, yalnız bir kez teslim edilir; audit/depo/source içinde tutulmaz. Başarısız Auth oluşturma erişim açmaz, rezervasyon ve geçmiş korunur. Pasifleştirme/rol/lokasyon değişimi oturumları iptal eder.
+
+Kanıtlar:
+- `npm test`: 35 Node/PGlite testi geçti. Yeni yetki, rol yükseltme/lokasyon aşımı reddi, zorunlu değişim, iki aşamalı rezervasyon/aktivasyon, yarım Auth, yanlış Auth UUID, oluşturma sırasında yetki/oturum kaybı, aynı sicille çift istek, oturum iptali, RLS/RPC izinleri, lokasyon ekleme ve secretsiz audit dahil.
+- `npm run check` ve `git diff --check`: syntax, web referansları, sınırlı credential kontrolleri ve diff biçimi geçti. Kapsamlı secret/güvenlik denetimi değildir.
+- Giriş tarayıcı regresyonu geçti; mevcut HttpOnly/CHIPS giriş kodu korunur.
+- Yeni personel tarayıcı testi 390/1440 px gerçek SQL ve HTTP handler ile çalışır; Auth API simüledir. Ekleme, düzenleme, kapatma/yeniden açma, yeni personelde zorunlu şifre değişimi, TR/RO, XSS-safe metin, şifreyi gizleyince DOM temizliği ve yalnız dil tercihi depolama doğrulandı. Mobil ekran görüntüsü görsel olarak incelendi; taşma görülmedi.
+
+Yapılmayanlar: yeni migration veya Edge dağıtımı, bu personel aşamasının gerçek uzak Auth entegrasyonu, yeni ekranın GitHub Pages yayını, PR merge. Test projesi istisnası önceki giriş aşamasını kapsar; yeni yönetim migration/dağıtımı için somut ayrı onay beklenir. Gerçek PostgreSQL çok bağlantılı eşzamanlılık, şifre sıfırlama/operatör kurtarma, audit görüntüleme/saklama, araç/stok/finans sistemi henüz tamamlanmış değildir. Yerel SQL testleri çok bağlantılı uzak PostgreSQL kanıtı sayılmaz.

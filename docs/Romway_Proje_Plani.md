@@ -80,3 +80,6 @@ Kullanıcı Sasa-F gibi GitHub Pages üzerinden devam etmeyi açıkça seçti. B
 ## 11 Ekim 2026 — ayrı Auth test projesi ve GitHub Pages
 
 Kullanıcı yeni ve ayrı Supabase test projesini seçti; yalnız yeni romway-auth-test ortamına giriş şeması/fonksiyonu kuruldu. Mevcut projeler korunur. Kullanıcı özel alan adı olmadan GitHub Pages ile devam eder. Ücretsiz partitioned HttpOnly cookie (CHIPS) seçeneği opt-in eklenip gerçek Chrome/Edge/Auth/DB ile doğrulandı; JWT/şifre JavaScript deposuna verilmez. Yayın test ortamına bağlı giriş önizlemesidir. Gerçek personel/stok/finans verisi ve üretim pilotu henüz kapsamda değildir. Telefon/Safari/Firefox sürüm doğrulaması ve kurtarma/audit işleri devam eder.
+
+## 11 Ekim — personel yönetimi kararları
+Kullanıcı, super_admin'ın tüm personeli; adminin yalnız atanmış lokasyonlarının tamamı içinde kalan purchasing/receiver personelini yönetmesini onayladı. Admin/super_admin rollerini yalnız super_admin atar. İlk lokasyon adları belli olmadığı için temsili Türkiye Test Deposu / Romanya Test Deposu seçildi. Personel ekleme, rol/lokasyon düzenleme, pasifleştirme ve lokasyon ekleme ayrı aşamadır; araç/stok ve şifre sıfırlama bu PR'a eklenmez. Uygulama ve kurtarma sınırları `PERSONNEL.md` içindedir.

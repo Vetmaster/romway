@@ -1,0 +1,68 @@
+import {chromium} from 'playwright';
+import {PGlite} from '@electric-sql/pglite';
+import {readFile,mkdir} from 'node:fs/promises';
+import {spawn} from 'node:child_process';
+import {createServer} from 'node:http';
+import assert from 'node:assert/strict';
+import {createHandler} from '../supabase/functions/romway-auth/handler.js';
+const db=new PGlite(),users=new Map(),TR='00000000-0000-4000-8000-000000000001';
+let browser,httpServer,staticServer;
+try{
+ await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ const admin=crypto.randomUUID(),email=`staff-${admin}@identity.invalid`;
+ users.set(email,{id:admin,password:'Synthetic-admin-password'});
+ await db.query('insert into auth.users values($1)',[admin]);
+ await db.query("insert into romway_private.staff(id,employee_number,auth_email,display_name,role,active,password_change_required) values($1,'BROWSERADMIN',$2,'Browser Admin','super_admin',true,false)",[admin,email]);
+ const names=new Set(['romway_staff_for_login','romway_consume_attempt','romway_open_session','romway_session','romway_revoke_session','romway_begin_password','romway_finish_password','romway_personnel']);
+ const backend={
+  async rpc(name,args){assert(names.has(name));const entries=Object.entries(args);return (await db.query(`select public.${name}(${entries.map(([k],i)=>{assert(/^p_[a-z_]+$/.test(k));return `${k}=>$${i+1}`;}).join(',')}) value`,entries.map(([,v])=>v))).rows[0].value;},
+  async verifyPassword(e,p){const u=users.get(e);return u?.password===p?u.id:null;},
+  async createUser(e,p,id){await db.query('insert into auth.users values($1)',[id]);users.set(e,{id,password:p});return {id};},
+  async updatePassword(id,p){for(const u of users.values())if(u.id===id)u.password=p;},
+ };
+ const handler=createHandler({backend,appOrigin:'http://localhost:8000',local:true});
+ httpServer=createServer(async(req,res)=>{
+  let body='';for await(const c of req)body+=c;
+  const response=await handler(new Request('http://localhost:8001'+req.url,{method:req.method,headers:req.headers,...(body?{body}:{})}));
+  res.writeHead(response.status,Object.fromEntries(response.headers));res.end(await response.text());
+ });
+ await new Promise(resolve=>httpServer.listen(8001,'127.0.0.1',resolve));
+ staticServer=spawn(process.execPath,['scripts/serve.mjs'],{stdio:['ignore','pipe','inherit']});
+ await new Promise((resolve,reject)=>{staticServer.stdout.once('data',resolve);staticServer.once('exit',code=>reject(Error('Preview exit '+code)));});
+ browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH}:{})});
+ for(const width of [390,1440]){
+  const context=await browser.newContext({viewport:{width,height:1000}});await context.grantPermissions(['local-network-access'],{origin:'http://localhost:8000'});
+  await context.route('https://fonts.googleapis.com/**',r=>r.fulfill({contentType:'text/css',body:''}));
+  await context.route('http://localhost:8000/',async r=>{const response=await r.fetch();await r.fulfill({response,body:(await response.text()).replace("connect-src 'self'","connect-src 'self' http://localhost:8001")});});
+  await context.route('**/js/config.js',r=>r.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));
+  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://localhost:8000');await page.locator('#login').waitFor({state:'visible'});
+  const login=async(number,password)=>{await page.locator('#employee').fill(number);await page.locator('#password').fill(password);await page.locator('#login button').click();};
+  await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
+  await page.locator('#personnel-open').click();await page.locator('#personnel-number').waitFor({state:'visible'});
+  await page.locator('#personnel-number').fill('MOBILE'+width);await page.locator('#personnel-name').fill('<img src=x onerror=alert(1)>');
+  await page.locator(`#personnel-locations input[value="${TR}"]`).check();await page.locator('#personnel-save').click();
+  await page.locator('#temporary-credential').waitFor({state:'visible'});await page.locator('#message').waitFor({state:'hidden'});const temporary=await page.locator('#temporary-password').textContent();assert.match(temporary,/^[a-f0-9]{64}$/);
+  assert.equal(await page.locator('#personnel-list img').count(),0);assert.equal(await page.locator('#personnel-number').inputValue(),'');
+  await page.locator('#language').selectOption('ro');assert.equal(await page.locator('#personnel-heading').textContent(),'Administrarea personalului');
+  assert.equal(await page.locator('#personnel-list img').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await mkdir('test-results',{recursive:true});await page.screenshot({path:`test-results/personnel-${width}.png`,fullPage:true});
+  await page.locator('#credential-close').click();assert.equal(await page.locator('#temporary-password').textContent(),'');
+  await page.locator('#location-code').fill('BROWSER_'+width);await page.locator('#location-name').fill('Browser Test Depot '+width);await page.locator('#location-country').selectOption('RO');await page.locator('#location-form button').click();await page.locator('#personnel-locations').getByText('Browser Test Depot '+width+' (RO)',{exact:true}).waitFor();
+  const target=page.locator('#personnel-list article').filter({hasText:'MOBILE'+width});await target.getByRole('button').click();
+  await page.locator('#personnel-active').uncheck();await page.locator('#personnel-save').click();await target.getByText(/Inactiv/).waitFor();
+  await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});assert(await page.locator('#personnel-section').isHidden());
+  await login('MOBILE'+width,temporary);await page.getByText('Numărul de angajat sau parola este incorectă.',{exact:true}).waitFor();
+  await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});await page.locator('#personnel-open').click();
+  await page.locator('#personnel-list article').filter({hasText:'MOBILE'+width}).getByRole('button').click();await page.locator('#personnel-active').check();await page.locator('#personnel-save').click();
+  await page.locator('#personnel-list article').filter({hasText:'MOBILE'+width}).getByText(/Activ/).waitFor();
+  await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,temporary);await page.locator('#change').waitFor({state:'visible'});
+  assert(await page.locator('#personnel-open').isHidden());
+  await page.locator('#current').fill(temporary);await page.locator('#new').fill('Synthetic-new-personnel-password');await page.locator('#confirm').fill('Synthetic-new-personnel-password');await page.locator('#change button').click();
+  await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,'Synthetic-new-personnel-password');await page.locator('#welcome').waitFor({state:'visible'});assert(await page.locator('#personnel-open').isHidden());
+  assert.deepEqual(await page.evaluate(()=>Object.keys(localStorage)),['romway.language']);assert.deepEqual(await page.evaluate(()=>Object.keys(sessionStorage)),[]);assert.equal(await page.evaluate(()=>document.cookie),'');assert.deepEqual(errors,[]);
+  await context.close();
+ }
+ console.log('Personnel browser checks passed at 390/1440: actual SQL + HTTP handler, simulated Auth, TR/RO, create/edit/deactivate/reactivate, forced change, XSS, credential clearing and storage.');
+}finally{await browser?.close();if(httpServer)await new Promise(r=>httpServer.close(r));staticServer?.kill();await db.close();}

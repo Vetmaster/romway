@@ -38,8 +38,8 @@ export function createBackend({url, serviceKey, publicKey, local = false}, fetch
       });
       if (!response.ok) throw new AuthError('recovery_required', 503);
     },
-    async createUser(email, password) {
-      return request('/auth/v1/admin/users', {email,password,email_confirm:true});
+    async createUser(email, password, id) {
+      return request('/auth/v1/admin/users', {...(id ? {id} : {}),email,password,email_confirm:true});
     },
   };
 }
