@@ -448,3 +448,6 @@ body.app-shell {padding-bottom:85px;}
 .app-banner .brand svg {width:75%;max-width:165px;}
 .banner-subtitle {text-align:left;}
 @media(max-width:420px){.app-banner .brand svg {max-width:135px;}}
+
+.app-banner .banner-subtitle {width:75%;max-width:165px;text-align:center;}
+@media(max-width:420px){.app-banner .banner-subtitle {max-width:135px;}}
