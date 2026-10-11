@@ -19,10 +19,12 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function render() {
     $('personnel-new').setAttribute('aria-label',text('add_staff'));
     const visible=!!role;$('personnel-open').hidden=!visible;
-    if(!visible) {$('personnel-section').hidden=true;return;}
+    if(!visible) {$('personnel-section').hidden=true;$('location-section').hidden=true;return;}
     $('location-card').hidden=role!=='super_admin';
     $('location-toggle').setAttribute('aria-label',text('add_location'));
     if(!data)return;
+    $('location-list').replaceChildren(...data.locations.map(l=>{const row=node('li');row.append(node('strong',l.name),node('small',l.code),node('span',l.country));return row;}));
+    if(!data.locations.length)$('location-list').append(node('li',text('no_locations')));
     const normalize=value=>value.toLocaleLowerCase(document.documentElement.lang).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i');
     const query=normalize($('personnel-search').value.trim());
     const filtered=data.staff.filter(s=>normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)).sort((a,b)=>Number(b.active)-Number(a.active)||(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0));
@@ -47,7 +49,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
   async function load() {visibleCount=10;data=await api.call('personnel-list');resetForm();render();}
-  async function open(card){if(!role || (card==='location'&&role!=='super_admin'))return;let loaded=false;await run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();loaded=true;});if(loaded&&card){const toggle=$(card==='location'?'location-toggle':'personnel-new');toggle.click();toggle.focus();toggle.scrollIntoView({block:'nearest'});}}
+  async function open(card){if(!role || (card==='location'&&role!=='super_admin'))return;let loaded=false;await run(async()=>{$('personnel-section').hidden=card==='location';$('location-section').hidden=card!=='location';clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen(card==='location'?'location':'personnel');loaded=true;});if(loaded&&card){const toggle=$(card==='location'?'location-toggle':'personnel-new');toggle.click();toggle.focus();toggle.scrollIntoView({block:'nearest'});}}
   $('personnel-open').addEventListener('click',()=>open());
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
@@ -73,7 +75,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     open,
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
-      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;}
+      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();}
       render();
     },
     translate(){const selected=$('personnel-role').value;options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));$('personnel-role').value=selected;render();},
