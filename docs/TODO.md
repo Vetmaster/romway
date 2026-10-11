@@ -120,3 +120,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Dört alt sekme, tek satır banner açıklaması, geniş logo ve menü liste adları uygulandı.
 - [x] Lokasyon yalnız ad/otomatik kod ve isteğe bağlı ülke migration’ı yerel testte hazır.
 - [x] 202610110004 + romway-auth Edge v5 kullanıcı onayıyla yalnız test projesine uygulandı; kayıtlar/izinler ve oturumsuz API reddi doğrulandı.
+- [x] Yalnız ad/otomatik kod lokasyon formu Pages v2026.10.11.24 üzerinde doğrulandı.
