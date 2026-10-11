@@ -47,7 +47,8 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
   async function load() {visibleCount=10;data=await api.call('personnel-list');resetForm();render();}
-  $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();}));
+  async function open(card){if(!role || (card==='location'&&role!=='super_admin'))return;let loaded=false;await run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();loaded=true;});if(loaded&&card){const toggle=$(card==='location'?'location-toggle':'personnel-new');toggle.click();toggle.focus();toggle.scrollIntoView({block:'nearest'});}}
+  $('personnel-open').addEventListener('click',()=>open());
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
   $('credential-close').addEventListener('click',clearSecret);
@@ -69,6 +70,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     run(async()=>{clearSecret();await api.call('location-create',payload);closeLocation();await load();});
   });
   return {
+    open,
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
       if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;}

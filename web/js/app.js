@@ -1,4 +1,4 @@
-import {createPersonnel} from './personnel.js?v=c88a577d78e1';
+import {createPersonnel} from './personnel.js?v=0e98a9616765';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
 import tr from './locales/tr.js?v=6b12f6cfbb7b';
@@ -29,6 +29,8 @@ function render() {
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
   $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(profile?.role);
+  $('nav-personnel-submenu').hidden=$('nav-personnel').hidden;
+  $('nav-add-location').hidden=!signedIn||profile?.role!=='super_admin';
   $('nav-home').setAttribute('aria-current',workspace?'false':'page');
   $('nav-personnel').setAttribute('aria-current',workspace?'page':'false');
   $('dashboard-greeting').textContent=profile?`${text('welcome_title')}, ${profile.display_name}`:'';
@@ -42,7 +44,7 @@ function render() {
   if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button').forEach(el => { el.disabled = busy || !api.configured; });
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -121,6 +123,8 @@ $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('nav
 $('nav-home').addEventListener('click',showDashboard);
 $('nav-brand').addEventListener('click',showDashboard);
 $('nav-personnel').addEventListener('click',()=>{closeMenu(false);$('personnel-open').click();});
+$('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
+$('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
 personnel=createPersonnel({api,text,run:perform,onOpen:()=>{workspace=true;render();$('personnel-heading').setAttribute('tabindex','-1');$('personnel-heading').focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});

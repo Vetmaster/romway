@@ -101,3 +101,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Personel/lokasyon/düzenleme geçişlerinde aynı anda tek kart açık kalır; mobil/masaüstü doğrulandı.
 - [x] Menü kapatma × simgesi ve erişilebilir TR/RO ad eklendi; tarayıcı kontrolü geçti.
 - [x] Kullanıcı adı ve rol menünün en altına taşındı; mobil/masaüstü konumu doğrulandı.
+- [x] Personel ekle/lokasyon ekle alt menü kısayolları eklendi; 390/1440 px akışları doğrulandı.

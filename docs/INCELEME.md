@@ -236,3 +236,7 @@ Menüyü kapat yazısı × simgesine dönüştürüldü. TR/RO erişilebilir ad 
 ## 11 Ekim — menü altındaki kullanıcı bilgileri
 
 Oturum açan kişinin adı/rolü menünün en altına taşındı. SASA-F yerel styles.css sidebar/main-nav/sidebar-footer düzeni doğrulandı. Açık dialog flex sütun; profil auto üst boşlukla alta yerleşir, kapalı dialog gizli kalır. 390/1440 px tarayıcı testinde profilin alt kenara uzaklığı doğrulandı; mevcut akışlar ve syntax/asset/diff kontrolleri geçti.
+
+## 11 Ekim — personel alt menüsü
+
+Personel yönetimi altında girintili Personel ekle ve Lokasyon ekle kısayolları eklendi. Personel admin/super_admin, lokasyon yalnız super_admin görünür; mevcut sunucu yetkileri korunur. Kısayol liste yüklemesi bittikten sonra ilgili kartı açar, diğer kart kapanır ve giriş alanına odak verilmez. 390/1440 px tarayıcı testlerinde iki kısayol/kart/odak ve mevcut akışlar geçti. Syntax/asset/diff kontrolleri başarılı. Veritabanı değişikliği yok.
