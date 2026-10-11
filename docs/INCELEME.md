@@ -224,3 +224,7 @@ Kart açma/düzenleme giriş alanına otomatik odaklanmaz; daha fazla göster bi
 ## 11 Ekim — 10 kayıtlık liste
 
 İlk görünüm ve liste adımı 10 kayıt oldu. 390/1440 px tarayıcı testinde 25 sentetik kayıtla 10/20/25 geçişi, buton gizlenmesi ve arama sıfırlaması doğrulandı. Syntax/asset/diff kontrolleri geçti. Veritabanı değişikliği yok.
+
+## 11 Ekim — tek açık kart
+
+Personel/lokasyon kartları karşılıklı kapanır; personel düzenleme de lokasyonu kapatır. Otomatik giriş odağı verilmez. 390/1440 px tarayıcı testinde iki yönlü geçiş ve düzenleme doğrulandı; syntax/asset/diff kontrolü geçti. Veritabanı değişikliği yok.
