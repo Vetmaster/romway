@@ -1,4 +1,5 @@
 export default {
+ stock_tracking_pending:'Stok takibi — Hazırlanıyor',
  drawer_brand_caption:'Depo ve Lojistik Yönetim Sistemi',
  version_label:'Uygulama sürümü ',
  show_more_staff:'Daha fazla göster',

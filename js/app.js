@@ -1,14 +1,14 @@
 import {createPersonnel} from './personnel.js?v=cee24677614f';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=9038de891ffb';
-import ro from './locales/ro.js?v=cc19523a67bb';
+import tr from './locales/tr.js?v=7d594c1cf728';
+import ro from './locales/ro.js?v=8a7145c99510';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
 let api;
 try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
-let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false;
+let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false, inventoryExpanded=false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
 let personnel;
 const desktopMenu=window.matchMedia('(min-width:821px)');
@@ -28,6 +28,9 @@ function render() {
   $('menu-toggle').hidden=!signedIn||desktopMenu.matches;
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
   if(!signedIn) closeMenu(false);
+  if(!signedIn)inventoryExpanded=false;
+  $('nav-inventory-submenu').hidden=!inventoryExpanded;
+  $('nav-inventory').setAttribute('aria-expanded',String(inventoryExpanded));
   $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(profile?.role);
   if($('nav-personnel').hidden)submenuExpanded=false;
   $('nav-personnel-submenu').hidden=$('nav-personnel').hidden||!submenuExpanded;
@@ -136,6 +139,7 @@ $('navigation-drawer').addEventListener('close',()=>{$('menu-toggle').setAttribu
 $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('navigation-drawer')){const box=event.target.getBoundingClientRect();if(event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closeMenu();}});
 $('nav-home').addEventListener('click',showDashboard);
 $('nav-brand').addEventListener('click',showDashboard);
+$('nav-inventory').addEventListener('click',()=>{inventoryExpanded=!inventoryExpanded;render();});
 $('nav-personnel').addEventListener('click',()=>{submenuExpanded=!submenuExpanded;render();});
 $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
