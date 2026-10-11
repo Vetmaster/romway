@@ -1,3 +1,4 @@
 // Public endpoint only. No key, password or token belongs in this file.
-// Local test: http://localhost:54321/functions/v1/romway-auth
-export const config = Object.freeze({authEndpoint: ''});
+// Only the published preview connects to the isolated test project. Local preview stays offline.
+export const config = Object.freeze({authEndpoint: location.origin === 'https://vetmaster.github.io'
+  ? 'https://ifnjvdjhfhzfxyuorqvz.supabase.co/functions/v1/romway-auth' : ''});
