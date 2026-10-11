@@ -1,7 +1,7 @@
 // No credentials or personnel data are persisted in browser storage.
 export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   const $=id=>document.getElementById(id);
-  let role=null,data=null,editing=null,visibleCount=20;
+  let role=null,data=null,editing=null,visibleCount=10;
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
   function clearSecret() {$('temporary-credential').hidden=true;$('temporary-password').textContent='';$('temporary-number').textContent='';}
   function options(select,values) {select.replaceChildren(...values.map(([value,label])=>{const o=node('option',label);o.value=value;return o;}));}
@@ -43,10 +43,10 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     if(!filtered.length)$('personnel-list').append(node('li',text('no_staff')));
   }
   function closeLocation(){ $('location-form').reset();$('location-form').hidden=true;$('location-toggle').setAttribute('aria-expanded','false'); }
-  $('personnel-search').addEventListener('input',()=>{visibleCount=20;render();});
-  $('personnel-more').addEventListener('click',()=>{visibleCount+=20;render();if($('personnel-more').hidden)$('personnel-new').focus();});
+  $('personnel-search').addEventListener('input',()=>{visibleCount=10;render();});
+  $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
-  async function load() {visibleCount=20;data=await api.call('personnel-list');resetForm();render();}
+  async function load() {visibleCount=10;data=await api.call('personnel-list');resetForm();render();}
   $('personnel-open').addEventListener('click',()=>run(async()=>{$('personnel-section').hidden=false;clearSecret();closeLocation();$('personnel-search').value='';await load();onOpen();}));
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
@@ -71,7 +71,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   return {
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
-      if(next!==role || !profile){role=next;visibleCount=20;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;}
+      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;}
       render();
     },
     translate(){const selected=$('personnel-role').value;options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));$('personnel-role').value=selected;render();},

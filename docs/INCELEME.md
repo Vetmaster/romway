@@ -220,3 +220,7 @@ Pages v2026.10.11.4 doğrulandı: kaynak 15b8b19, yayın afd1e4060b94ebbf04fe7ce
 ## 11 Ekim — kartlarda otomatik klavye
 
 Kart açma/düzenleme giriş alanına otomatik odaklanmaz; daha fazla göster bitişinde de girişe odak verilmez. 390/1440 px tarayıcı kontrolleri, butonda odak ve alan tıklaması doğrulaması geçti. Gerçek telefon klavyesi ayrıca cihazda gözlenmelidir. Syntax/asset/diff kontrolleri geçti; veritabanı değişikliği yok.
+
+## 11 Ekim — 10 kayıtlık liste
+
+İlk görünüm ve liste adımı 10 kayıt oldu. 390/1440 px tarayıcı testinde 25 sentetik kayıtla 10/20/25 geçişi, buton gizlenmesi ve arama sıfırlaması doğrulandı. Syntax/asset/diff kontrolleri geçti. Veritabanı değişikliği yok.
