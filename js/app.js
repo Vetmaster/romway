@@ -142,5 +142,19 @@ $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.o
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
 personnel=createPersonnel({api,text,run:perform,onOpen:page=>{rememberPage(page);workspace=page;render();const heading=$(page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+let resumePending=false,resuming=false;
+async function resumeCurrentPage(){
+  if(resuming||busy||view!=='welcome')return;
+  resuming=true;
+  try{
+    await perform(async()=>{const result=await api.call('me');profile=result.profile??null;transition(result.password_change_required?'change':'welcome');});
+    await restorePage();
+  }finally{resuming=false;}
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden'){resumePending=true;personnel.clear();}
+  else if(resumePending){resumePending=false;resumeCurrentPage();}
+});
+window.addEventListener('pageshow',event=>{if(event.persisted)resumeCurrentPage();});
 window.addEventListener('hashchange',restorePage);
 render(); restore();
