@@ -61,3 +61,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Banner görselindeki tekrar Solea yazısı gizlendi; sağdaki marka/alt metin korundu, mobil/masaüstü kontrol geçti.
 - [x] Banner simgesi Pages üzerinde yayınlandı ve gerçek dosya eşleşmesi doğrulandı; PR #12 taslak.
+
+- [x] Banner logo/Solea/alt metin dikey düzene alındı; yandaki tekrar başlık kaldırıldı.
+- [x] Dikey banner düzeni Pages üzerinde doğrulandı; PR #13 taslak.

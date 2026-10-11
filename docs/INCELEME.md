@@ -134,3 +134,9 @@ Yayın doğrulandı: kaynak 32c23a4ae5d75f1dc3ff6751a8b6d89272eb089b, gh-pages 9
 Banner SVG viewBox büyük logonun yalnız yol/depo simgesini gösterir; görseldeki alt Solea yazısı gizlendi. Sağdaki Solea ve TR/RO depo/malzeme alt metni korunur. Özgün PNG değişmedi. Syntax/web referans/diff ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi. Supabase değişmedi.
 
 Yayın: kaynak e9271af123f0b4ed3296f111cb504659f0facb97, gh-pages ea0bad1501992d81968532dd79b1441718f532f7. Pages built/error=null; gerçek HTML/CSS/JS/dil dosyaları kaynakla eşleşti. PR #12 taslak, birleştirilmedi.
+
+## 11 Ekim — dikey banner logosu
+
+Kullanıcı önceki banner düzenini değiştirdi: büyük Solea logonun kendi alt yazısıyla gösterilir, yandaki ayrı Solea başlığı kaldırılır. TR/RO depo/malzeme alt metni logonun hemen altında ortalanır. Banner/masaüstü menü başlangıcı 116 px ile hizalandı. Syntax/web referans/diff ve 390/1440 px Chrome görünüm/taşma kontrolü geçti; mobil görüntü incelendi. Supabase/veri değişikliği yoktur.
+
+Yayın doğrulandı: kaynak 5a7b9819c407a96262b02977cb05904e5c125948, gh-pages b81c1e3a648bea081c00ae89113fc2dfec4f5177. Pages built/error=null ve gerçek HTML/CSS/JS/dil eşleşmesi geçti. PR #13 taslak; birleştirilmedi.
