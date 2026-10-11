@@ -451,3 +451,10 @@ body.app-shell {padding-bottom:85px;}
 
 .app-banner .banner-subtitle {width:75%;max-width:165px;text-align:center;}
 @media(max-width:420px){.app-banner .banner-subtitle {max-width:135px;}}
+
+.app-banner .banner-subtitle {width:max-content;max-width:none;align-self:flex-start;font-size:clamp(10px,2.1vw,14px);position:relative;left:min(37.5%,82.5px);transform:translateX(-50%);}
+@media(max-width:420px){.app-banner .banner-subtitle {left:min(37.5%,67.5px);}}
+
+@media(max-width:360px){.app-banner .banner-subtitle {font-size:9px;}}
+html[lang=ro] .app-banner .banner-subtitle {font-size:10px;}
+@media(max-width:420px){html[lang=ro] .app-banner .banner-subtitle {font-size:8px;}}

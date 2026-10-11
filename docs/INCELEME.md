@@ -312,3 +312,7 @@ Pages v2026.10.11.24 doğrulandı: kaynak 41bd7e1, gh-pages 7bcd078f7750e5c29b39
 ## 11 Ekim — logo açıklaması ortalama
 
 Banner açıklaması logo ile aynı genişlikte merkezlendi. Logo sola yaslı kalır. Syntax/web referans/asset/diff kontrolleri uygulanır.
+
+## 11 Ekim — banner açıklama fontu
+
+TR açıklama fontu mobilde 8→10, büyük ekranda 12→14 px aralığına yükseltildi; çok dar ekran/uzun RO metninde taşmayı sınırlayan ölçüler kullanılır. Tek satır/logo merkez hizası korunur. 390/1440 px statik TR görünüm/yatay taşma kontrolü geçti, mobil görsel incelendi. Syntax/asset/diff kontrolü uygulanır.
