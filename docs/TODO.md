@@ -123,3 +123,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Yalnız ad/otomatik kod lokasyon formu Pages v2026.10.11.24 üzerinde doğrulandı.
 - [x] Banner logosu %25 küçültülüp sola hizalandı; mobil/masaüstü görünümü doğrulandı.
 - [x] Banner açıklaması logo genişliği içinde ortalandı.
+- [x] Banner açıklama yazısı büyütüldü; tek satır ve logo merkezi korunur.
