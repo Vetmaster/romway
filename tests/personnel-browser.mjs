@@ -9,7 +9,7 @@ const db=new PGlite(),users=new Map(),TR='00000000-0000-4000-8000-000000000001';
 let browser,httpServer,staticServer;
 try{
  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
- for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
  const admin=crypto.randomUUID(),email=`staff-${admin}@identity.invalid`;
  users.set(email,{id:admin,password:'Synthetic-admin-password'});
  await db.query('insert into auth.users values($1)',[admin]);
@@ -63,12 +63,14 @@ try{
   await page.locator('#personnel-save').click();await page.locator('#personnel-message').getByText('İstek tamamlanamadı.',{exact:true}).waitFor();assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('#personnel-form').isVisible());
   await page.locator(`#personnel-locations input[value="${TR}"]`).check();await page.locator('#personnel-save').click();
   await page.locator('#temporary-credential').waitFor({state:'visible'});await page.locator('#personnel-message').waitFor({state:'hidden'});const temporary=await page.locator('#temporary-password').textContent();assert.match(temporary,/^[a-f0-9]{64}$/);
+  await page.locator('#personnel-search').fill('MOBILE'+width);assert.equal(await page.locator('#personnel-list li').count(),1);await page.locator('#personnel-search').fill('NOT_FOUND_SEARCH');await page.locator('#personnel-list').getByText('Bu kapsamda personel bulunmuyor.').count();await page.locator('#personnel-search').fill('');
   assert.equal(await page.locator('#personnel-list img').count(),0);assert.equal(await page.locator('#personnel-number').inputValue(),'');assert(await page.locator('#personnel-form').isHidden());
   await page.locator('#language').selectOption('ro');assert.equal(await page.locator('#personnel-heading').textContent(),'Administrarea personalului');
+  await page.locator('#personnel-search').fill('MOBILE'+width);assert.equal(await page.locator('#personnel-list li').count(),1);await page.locator('#personnel-search').fill('NOT_FOUND_SEARCH');await page.locator('#personnel-list').getByText('Bu kapsamda personel bulunmuyor.').count();await page.locator('#personnel-search').fill('');
   assert.equal(await page.locator('#personnel-list img').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await mkdir('test-results',{recursive:true});await page.screenshot({path:`test-results/personnel-${width}.png`,fullPage:true});
   await page.locator('#credential-close').click();assert.equal(await page.locator('#temporary-password').textContent(),'');
-  await page.locator('#location-code').fill('BROWSER_'+width);await page.locator('#location-name').fill('Browser Test Depot '+width);await page.locator('#location-country').selectOption('RO');await page.locator('#location-form button').click();await page.locator('#personnel-message').waitFor({state:'hidden'});assert(await page.locator('#personnel-form').isHidden());await page.locator('#personnel-new').click();await page.locator('#personnel-locations').getByText('Browser Test Depot '+width+' (RO)',{exact:true}).waitFor();await page.locator('#personnel-cancel').click();
+  assert(await page.locator('#location-form').isHidden());await page.locator('#location-toggle').click();await page.locator('#location-code').fill('BROWSER_'+width);await page.locator('#location-name').fill('Browser Test Depot '+width);await page.locator('#location-country').selectOption('RO');await page.locator('#location-form button').click();await page.locator('#personnel-message').waitFor({state:'hidden'});assert(await page.locator('#personnel-form').isHidden());await page.locator('#personnel-new').click();await page.locator('#personnel-locations').getByText('Browser Test Depot '+width+' (RO)',{exact:true}).waitFor();await page.locator('#personnel-cancel').click();
   const target=page.locator('#personnel-list li').filter({hasText:'MOBILE'+width});await target.getByRole('button').click();assert(await page.locator('#personnel-form').isVisible());assert.equal(await page.locator('#personnel-form-heading').textContent(),'Editează');
   await page.locator('#personnel-active').uncheck();await page.locator('#personnel-save').click();await target.getByText(/Inactiv/).waitFor();
   await page.locator('#logout').click();await page.locator('#login').waitFor({state:'visible'});assert(await page.locator('#personnel-section').isHidden());

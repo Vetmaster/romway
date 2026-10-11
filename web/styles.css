@@ -389,3 +389,6 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .personnel-card-toggle::after {content:'';width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);flex-shrink:0;margin:0 4px 5px;}
 .personnel-card-toggle[aria-expanded=true]::after {transform:rotate(225deg);margin-top:5px;margin-bottom:0;}
 .personnel-add-card #personnel-form {max-width:none;margin:0;padding:0 18px 18px;border-top:1px solid var(--line);}
+
+.personnel-add-card #location-form {max-width:none;margin:0;padding:0 18px 18px;border-top:1px solid var(--line);}
+.list-sort-note {font-size:12px;margin:8px 0;}

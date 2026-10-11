@@ -190,3 +190,7 @@ Yayın: kaynak c17fc5caf27e719f7ba56c79c5b8e5e611cdf6e8, gh-pages 83fcc94098edf1
 Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açıkken yukarı bakan V ikonu kullanılır. aria-expanded ve erişilebilir ad korunur.
 
 İçerik sürüm/syntax/web referans/diff kontrolü geçti. Yayın: kaynak 5c3946afe142c392032dfa3a5db60a4d327406d6, gh-pages 9ffa4105394dcddc7bc6e0ed7816aa3b684b1f5f. Pages built/error=null; gerçek dosyalar kaynakla eşleşti. PR #21 taslak; birleştirilmedi.
+
+## 11 Ekim — lokasyon kartı, personel arama/sıralama
+
+Lokasyon kartı personel kartının altına taşındı; başlangıçta kapalı, super_admin görünürlüğü korunur. Liste araması ad/sicil/rol/durum/lokasyon metinlerini normalleştirir. Aktif/pasif grupları ve created_at azalan sıralama eklendi. Mevcut RPC tarih döndürmediğinden yeni 202610110003 migration dosyası yalnız liste yanıtına created_at ekler ve SQL listesini sıralar; diğer yetki/işlem yolları korunur. Exact-test-project opt-in deploy betiği hazır, çalıştırılmadı. 12 yerel SQL/endpoint testi (tarih alanı ve aktif/yeni/pasif sırası dahil), TR/RO anahtar ve 390/1440 px personel tarayıcı testleri geçti; mobil görüntü incelendi. Auth simüledir. Supabase dağıtımı ve Pages yayını onay bekliyor.

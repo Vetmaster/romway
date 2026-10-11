@@ -88,3 +88,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Personel kartı +/− işaretleri aşağı/yukarı V ikonuyla değiştirildi.
 - [x] Kart V ikonu Pages üzerinde doğrulandı; PR #21 taslak.
+
+- [x] Lokasyon açılır kartı, liste araması ve aktif/pasif + tarih sıralaması yerel kod/testte hazır.
+- [ ] 202610110003 liste tarih migration’ı için test Supabase onayı, uygulama ve ardından Pages yayını.
