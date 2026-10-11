@@ -280,3 +280,7 @@ Menü logosu altındaki DPB ifadesi Depo ve Lojistik Yönetim Sistemi olarak de�
 ## 11 Ekim — stok ve depolar menüsü
 
 Mevcut menüde Depo yönetimi bulunmadığı doğrulandı; önceki kullanıcı isteği Stok ve depolar adıyla eklendi. Varsayılan kapalı okla açılan alt menüde Stok takibi — Hazırlanıyor pasif seçenek bulunur. TR/RO ayrı metinler; lokasyon mevcut personel alt menüsünde korunur. Syntax/web referans/asset/diff kontrolleri geçti; stok işlevi geliştirilmiş sayılmaz, Supabase değişikliği yok.
+
+## 11 Ekim — lokasyon menüsü taşıma
+
+Lokasyon ekle Personel yönetimi altından Stok ve depolar altına taşındı; yalnız super_admin görünürlüğü ve sunucu yetkileri korunur. 390/1440 px tarayıcı testleri yeni menüden geçiş/ekleme/yenileme ve mevcut akışlarla geçti; syntax/asset/diff kontrolleri başarılı. Supabase değişikliği yok.

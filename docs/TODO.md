@@ -114,3 +114,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [ ] Gerçek Android cihazda arka plandan dönüş gözlemi.
 - [x] Menü logo açıklaması Depo ve Lojistik Yönetim Sistemi olarak düzeltildi.
 - [x] Stok ve depolar açılır menü başlığı eklendi; stok takibi hazırlık olarak gösterilir.
+- [x] Lokasyon ekle Stok ve depolar altına taşındı; mobil/masaüstü doğrulandı.
