@@ -304,3 +304,7 @@ Lokasyon formu yalnız ad ister; kod LOC_ + UUID ile sunucuda üretilir, kullan�
 Kullanıcı açıkça onayladı. 202610110004 yalnız romway-auth-test’e uygulandı; tüm mevcut lokasyon kayıtları ve staff/Auth sayıları birebir korundu, RPC client yetkileri kapalı kaldı. Supabase paketleme ön kontrolü ardından romway-auth v5 aktif/verify_jwt=false olarak dağıtıldı. Gerçek test API’sinde oturumsuz lokasyon ekleme 401 ve tam Origin kontrolü doğrulandı; test kaydı oluşturulmadı. Country nullable doğrulandı. Önceki 12 SQL/endpoint ve 390/1440 px yerel testler geçti; syntax/asset/diff kontrolleri yeniden geçti. Pages v2026.10.11.24 yayını ayrıca doğrulanır.
 
 Pages v2026.10.11.24 doğrulandı: kaynak 41bd7e1, gh-pages 7bcd078f7750e5c29b3967af4a13191008d80c13; built/error=null ve gerçek HTML/CSS/JS/TR/RO kaynakla eşleşti. PR #47 taslak, birleştirilmedi.
+
+## 11 Ekim — banner logosu boyutu
+
+Üst banner logosu önceki ölçülerin %75’ine indirildi (220→165 px, küçük mobil 180→135 px) ve açıklamasıyla sola hizalandı. Menü logosu korunur. 390/1440 px statik tarayıcı görünümü/yatay taşma kontrolü geçti; mobil görsel incelendi. Syntax/asset/diff kontrolleri başarılı.
