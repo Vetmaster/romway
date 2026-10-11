@@ -184,3 +184,7 @@ Yayın: kaynak 0dbbcccbaf4f0a9b50f99e799b2a9f49c71fa139, gh-pages 9127ce9d70f283
 Kapalı gelen kart başlığı formu açıp kapatır; +/− ve aria-expanded durumu belirtir. İkinci basış kayıt oluşturmadan formu temizler. Tek seferlik geçici şifre alanı kart dışında korunur. 390/1440 px personel tarayıcı testi (ikinci basışla kapanma dahil) geçti; mobil görüntü incelendi. Syntax/web referans/diff ve içerik sürüm kontrolü geçti. API/Auth simüledir; Supabase değişmedi.
 
 Yayın: kaynak c17fc5caf27e719f7ba56c79c5b8e5e611cdf6e8, gh-pages 83fcc94098edf1ef9779ddfaf1cf094299c6d31a. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #20 taslak; birleştirilmedi.
+
+## 11 Ekim — kart açma/kapatma oku
+
+Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açıkken yukarı bakan V ikonu kullanılır. aria-expanded ve erişilebilir ad korunur.

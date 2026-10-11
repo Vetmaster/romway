@@ -85,3 +85,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Personel ekleme alanı kapalı gelen açılır/kapanır karta dönüştürüldü; mobil/masaüstü akış testi geçti.
 - [x] Açılır personel kartı Pages üzerinde doğrulandı; PR #20 taslak.
+
+- [x] Personel kartı +/− işaretleri aşağı/yukarı V ikonuyla değiştirildi.
