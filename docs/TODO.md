@@ -110,3 +110,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [ ] Personel/lokasyon adına basılınca profil sayfası açılması.
 - [x] Personel/lokasyon ekleme kartları sayfa girişinde kapalı kalır; mobil/masaüstü doğrulandı.
 - [x] Yenilemede mevcut yetkili sayfa yeniden açılır; personel/lokasyon mobil/masaüstü kontrolleri geçti.
+- [x] Arka plandan dönüşte mevcut sayfa yenilenir; visibility simülasyonu geçti.
+- [ ] Gerçek Android cihazda arka plandan dönüş gözlemi.
