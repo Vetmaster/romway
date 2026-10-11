@@ -96,3 +96,9 @@ Liste/form düzeni GitHub Pages'te yayınlandı: kaynak 626fccd9812b1070b0e35c9c
 Syntax/web referans/diff ve TR/RO anahtar eşleşmesi geçti. 390/1440 yerel SQL/HTTP-handler personel tarayıcı testi ve giriş tarayıcı regresyonu geçti; Auth simüledir. Yeni görünümde karşılama/tanıtımın gizli olması, görünür çıkış, ana sayfaya dönüş/yönetimi tekrar açma, lokasyon eksikliğinde hatanın gizli kart yerine yönetimde görünmesi, ekleme/düzenleme/vazgeçme ve TR/RO doğrulandı. Mobil/masaüstü ekran görüntüleri incelendi; taşma görülmedi. Gelecekteki bulut test betiği yeni liste ve mesaj seçicilerine uyarlandı.
 
 Kompakt görünüm yayınlandı: kaynak 06dcc7e52980633fa1427e24123ede1e644dd55f, gh-pages 48938077b4a6f7af32b277f2d76a10f7c2c2a546. Pages bu commit için built/error=null bildirdi. Gerçek yayın HTML/CSS/app/personnel/TR/RO dosyaları HTTP 200 ve SHA-256 ile test edilen kaynakla birebir doğrulandı. PR #6 taslak inceleme için açık; hiçbir PR birleştirilmedi.
+
+## 11 Ekim — satır yüksekliği düzeltmesi
+
+`feature/personnel-row-density`: liste/panel genişliği korunur; satır dikey dolgusu 12 px yerine 4 px, ad/sicil aynı hizadadır. Mobilde düzenleme düğmesi için ayrılan yan sütun kaldırıldı; bilgiler tam satır genişliğini kullanır. 44 px düğme hedefi korunur. Syntax/web referans ve diff kontrolü ile 390/1440 px yerel personel tarayıcı testi geçti; ekran görüntüleri incelendi. Auth simüledir; Supabase veya uzak kayıtlar değişmedi. İlk koşuda asenkron panel geçişini erken kontrol eden test takıldı; gizlenmeyi bekleyerek düzeltildi ve tekrar geçti.
+
+Yayın doğrulandı: kaynak 0fce9bebd5e6b420506deb95a390e6e7389cc00e, gh-pages 0a9d338a1ae225b14d9bd5bd19e618b739ace73b. Pages built/error=null; gerçek HTML/CSS/app/personnel/TR/RO HTTP 200 ve SHA-256 eşleşmesi geçti. PR #7 taslak; birleştirilmedi.

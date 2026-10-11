@@ -41,7 +41,7 @@ try{
   const login=async(number,password)=>{await page.locator('#employee').fill(number);await page.locator('#password').fill(password);await page.locator('#login button').click();};
   await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
   await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
-  assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('.intro').isHidden());assert(await page.locator('#logout').isVisible());
+  await page.locator('#auth-panel').waitFor({state:'hidden'});assert(await page.locator('.intro').isHidden());assert(await page.locator('#logout').isVisible());
   await page.locator('#personnel-back').click();assert(await page.locator('#auth-panel').isVisible());assert(await page.locator('#personnel-section').isHidden());await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
   assert(await page.locator('#personnel-form').isHidden());assert.equal(await page.getByRole('button',{name:'Personel ekle',exact:true}).count(),1);
   await page.locator('#personnel-new').click();await page.locator('#personnel-number').fill('CANCEL'+width);await page.locator('#personnel-cancel').click();

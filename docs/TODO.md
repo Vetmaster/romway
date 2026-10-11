@@ -43,3 +43,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Liste/form düzeni Pages'te yayınlandı; build ve gerçek yayın dosyalarının kaynakla eşleşmesi doğrulandı. PR #5 taslak, birleştirilmedi.
 - [x] Personel yönetiminde karşılama/tanıtım gizlendi; ana sayfa/çıkış üst çubukta, hatalar görünür yönetim panelinde. Kompakt satır listesi ve mobil/masaüstü kontroller geçti.
 - [x] Kompakt yönetim görünümü Pages'te yayınlandı; build ve gerçek HTML/CSS/JS/dil dosyaları doğrulandı. PR #6 taslak, birleştirilmedi.
+
+- [x] Personel satırlarında genişlik korunarak dikey dolgu azaltıldı; mobil dar yan sütun kaldırıldı. 390/1440 px personel tarayıcı kontrolü geçti.
+- [x] Satır yüksekliği düzeltmesi Pages üzerinde built ve gerçek dosya eşleşmesiyle doğrulandı; PR #7 taslak.

@@ -41,4 +41,4 @@ Personel yönetimi açıldığında form kapalı, liste görünürdür. Listenin
 
 ## Kompakt yönetim ekranı
 
-Personel yönetimi açılınca karşılama kartı ve tanıtım bölümü gizlenir; yönetim ekranı üstte başlar. Ana sayfaya dönüş ve çıkış üst çubuktadır. Bildirim/hata metinleri yönetim panelinde görünür. Personeller geniş kartlar yerine ad/sicil, rol/lokasyon/durum ve düzenle düğmesinden oluşan çizgilerle ayrılmış liste satırlarıdır. Telefon görünümünde satır bilgileri iki sıraya yerleşir; düğme sağda kalır. Personel verileri ve sunucu izinleri değişmez.
+Personel yönetimi açılınca karşılama kartı ve tanıtım bölümü gizlenir; yönetim ekranı üstte başlar. Ana sayfaya dönüş ve çıkış üst çubuktadır. Bildirim/hata metinleri yönetim panelinde görünür. Personeller geniş kartlar yerine ad/sicil, rol/lokasyon/durum ve düzenle düğmesinden oluşan çizgilerle ayrılmış liste satırlarıdır. Satırların yatay genişliği korunur; dikey dolgu 12 px yerine 4 px olur. Ad ve sicil uygun genişlikte aynı hizadadır. Telefonda bilgiler tüm satır genişliğini kullanır; düzenleme düğmesi dar bir yan sütun ayırmadan akışa katılır. 44 px düğme hedefi korunur. Personel verileri ve sunucu izinleri değişmez.
