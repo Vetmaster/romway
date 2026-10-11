@@ -84,3 +84,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Üst çubuk kontrolleri Pages üzerinde doğrulandı; PR #19 taslak.
 
 - [x] Personel ekleme alanı kapalı gelen açılır/kapanır karta dönüştürüldü; mobil/masaüstü akış testi geçti.
+- [x] Açılır personel kartı Pages üzerinde doğrulandı; PR #20 taslak.
