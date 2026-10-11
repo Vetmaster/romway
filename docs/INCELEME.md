@@ -260,3 +260,7 @@ Personel yönetimi alt menüsü ilk yüklemede kapalıdır. Üst başlık alt me
 ## 11 Ekim — menü logo açıklaması
 
 Menü logosunun altına TR DPB Lojistik Yönetim Sistemi / RO DPB Sistem de Management Logistic yazısı eklendi. CSS sütun düzeniyle metin logo altında ortalanır. Syntax/web referans/asset/diff kontrolleri geçti. Bekleyen PR #37 sunucu değişikliği bu yayına dahil edilmedi; personel/lokasyon profil isteği henüz uygulanmadı.
+
+## 11 Ekim — sayfa kartları kapalı
+
+Personel ekle/lokasyon ekle sayfalarına girişte kartlar otomatik açılmaz; yalnız başlığa basılınca açılır. Sayfaya tekrar giriş kartları sıfırlar; listeler görünür kalır. 390/1440 px testlerinde varsayılan kapalılık, aria-expanded=false ve elle açma doğrulandı; mevcut akışlar ve syntax/asset/diff kontrolleri geçti. Supabase değişikliği yok.
