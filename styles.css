@@ -443,3 +443,8 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 body.app-shell {padding-bottom:85px;}
 @media(min-width:821px){.app-shell .bottom-tabs {left:248px;}}
 @media(max-width:420px){.bottom-tabs button {font-size:10px;}.app-banner .brand {max-width:calc(100% - 104px);}.app-banner .brand svg {max-width:180px;}}
+
+.app-banner .brand {align-items:flex-start;margin-right:auto;}
+.app-banner .brand svg {width:75%;max-width:165px;}
+.banner-subtitle {text-align:left;}
+@media(max-width:420px){.app-banner .brand svg {max-width:135px;}}
