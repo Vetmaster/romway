@@ -87,3 +87,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Açılır personel kartı Pages üzerinde doğrulandı; PR #20 taslak.
 
 - [x] Personel kartı +/− işaretleri aşağı/yukarı V ikonuyla değiştirildi.
+- [x] Kart V ikonu Pages üzerinde doğrulandı; PR #21 taslak.

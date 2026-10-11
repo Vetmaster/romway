@@ -188,3 +188,5 @@ Yayın: kaynak c17fc5caf27e719f7ba56c79c5b8e5e611cdf6e8, gh-pages 83fcc94098edf1
 ## 11 Ekim — kart açma/kapatma oku
 
 Personel kartındaki +/− yerine CSS çizgileriyle kapalıyken aşağı, açıkken yukarı bakan V ikonu kullanılır. aria-expanded ve erişilebilir ad korunur.
+
+İçerik sürüm/syntax/web referans/diff kontrolü geçti. Yayın: kaynak 5c3946afe142c392032dfa3a5db60a4d327406d6, gh-pages 9ffa4105394dcddc7bc6e0ed7816aa3b684b1f5f. Pages built/error=null; gerçek dosyalar kaynakla eşleşti. PR #21 taslak; birleştirilmedi.
