@@ -267,3 +267,15 @@ footer {
     display:none;
   }
 }
+
+.personnel {grid-column:1 / -1; width:100%;}
+.personnel form {max-width:560px;}
+.personnel select {width:100%; margin-top:6px;}
+fieldset {border:1px solid var(--line);border-radius:8px;margin-top:20px;}
+.checks label,.check {display:flex;align-items:center;gap:12px;}
+.checks input,.check input {width:auto;margin:0;}
+.staff-list {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.staff-list article {padding:16px;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere;}
+.staff-list h3 {margin:0;}
+.credential {background:#fff8d5;padding:18px;border-radius:10px;}
+.credential code {display:block;overflow-wrap:anywhere;user-select:all;margin:12px 0;}

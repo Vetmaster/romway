@@ -54,11 +54,38 @@
       </form>
       <div id="welcome" hidden>
         <dl><dt data-i18n="employee">Sicil numarası</dt><dd id="staff-number"></dd><dt data-i18n="role">Rol</dt><dd id="staff-role"></dd></dl>
+        <button id="personnel-open" type="button" hidden data-i18n="personnel_title">Personel yönetimi</button>
         <p data-i18n="welcome_note">Çalışma alanınız hazır. Depo ve malzeme ekranları sonraki aşamalarda eklenecek.</p>
       </div>
       <button id="logout" class="secondary" type="button" hidden data-i18n="logout">Çıkış yap</button>
       <button id="retry" class="secondary" type="button" hidden data-i18n="retry">Tekrar dene</button>
       <noscript>JavaScript gerekli / Este necesar JavaScript.</noscript>
+    </section>
+    <section id="personnel-section" class="panel personnel" hidden aria-labelledby="personnel-heading">
+      <h2 id="personnel-heading" data-i18n="personnel_title">Personel yönetimi</h2>
+      <p data-i18n="personnel_scope"></p>
+      <div id="temporary-credential" class="credential" hidden role="status">
+        <p data-i18n="temporary_note"></p><strong id="temporary-number"></strong>
+        <code id="temporary-password"></code>
+        <button id="credential-close" class="secondary" type="button" data-i18n="hide_password"></button>
+      </div>
+      <form id="personnel-form">
+        <label for="personnel-number" data-i18n="employee"></label><input id="personnel-number" required maxlength="40" pattern="[A-Za-z0-9_-]{1,40}" autocomplete="off">
+        <label for="personnel-name" data-i18n="display_name"></label><input id="personnel-name" required maxlength="100" autocomplete="off">
+        <label for="personnel-role" data-i18n="role"></label><select id="personnel-role" required></select>
+        <fieldset><legend data-i18n="locations"></legend><div id="personnel-locations" class="checks"></div></fieldset>
+        <label id="personnel-active-label" class="check" hidden><input id="personnel-active" type="checkbox"><span data-i18n="active"></span></label>
+        <button id="personnel-save" type="submit" data-i18n="add_staff"></button>
+        <button id="personnel-new" class="secondary" type="button" data-i18n="new_staff"></button>
+      </form>
+      <h3 data-i18n="staff_list"></h3><div id="personnel-list" class="staff-list"></div>
+      <form id="location-form" hidden>
+        <h3 data-i18n="add_location"></h3>
+        <label for="location-code" data-i18n="location_code"></label><input id="location-code" required maxlength="40" pattern="[A-Za-z0-9_-]{1,40}">
+        <label for="location-name" data-i18n="location_name"></label><input id="location-name" required maxlength="100">
+        <label for="location-country" data-i18n="country"></label><select id="location-country"><option value="TR">Türkiye</option><option value="RO">România</option></select>
+        <button type="submit" data-i18n="add_location"></button>
+      </form>
     </section>
   </main>
   <footer><span>Romway</span><span data-i18n="footer">Depo ve malzeme takibi</span></footer>

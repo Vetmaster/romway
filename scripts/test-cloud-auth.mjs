@@ -33,7 +33,7 @@ assert(project.name==='romway-auth-test' && project.created_at.startsWith('2026-
 const authConfig=await management('/config/auth');
 assert(authConfig.disable_signup===true,'Signup must be disabled before tests');
 const permissions=await management('/database/query',{query:"select bool_and(c.relrowsecurity) as rls, bool_and(not has_table_privilege('anon',c.oid,'SELECT') and not has_table_privilege('authenticated',c.oid,'SELECT')) as client_denied, count(*)::integer as tables from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='romway_private' and c.relkind='r'"});
-assert(permissions[0].tables===3 && permissions[0].rls && permissions[0].client_denied,'Real database RLS/grants must deny client access');
+assert(permissions[0].tables===7 && permissions[0].rls && permissions[0].client_denied,'Real database RLS/grants must deny client access');
 const backend=createBackend({url:config.url,serviceKey:config.service_key,publicKey:config.public_key});
 const endpoint=config.url+'/functions/v1/romway-auth';
 async function call(body,cookie,requestOrigin=origin,extra={}) {
@@ -167,12 +167,12 @@ try {
   await crossSite.route('https://fonts.googleapis.com/**',r=>r.fulfill({contentType:'text/css',body:''}));
   if(!published) {
     await crossPage.route('https://vetmaster.github.io/romway/',async route=>{
-    const response=await route.fetch();const html=await response.text();
+    const response=await route.fetch();const html=await readFile(join(root,'index.html'),'utf8');
     await route.fulfill({response,body:html.replace("connect-src 'self'",`connect-src 'self' ${config.url}`)});
   });
   await crossPage.route('**/romway/js/**',async r=>{
     const name=new URL(r.request().url()).pathname.split('/romway/js/')[1];
-    assert(['config.js','app.js','api.js','locales/tr.js','locales/ro.js'].includes(name),'Unexpected web module');
+    assert(['config.js','app.js','api.js','personnel.js','locales/tr.js','locales/ro.js'].includes(name),'Unexpected web module');
     const body=name==='config.js'?`export const config={authEndpoint:'${endpoint}'};`:await readFile(join(root,'js',name),'utf8');
     await r.fulfill({contentType:'text/javascript',body});
   });

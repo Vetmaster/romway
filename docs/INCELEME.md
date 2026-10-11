@@ -46,3 +46,37 @@ Kullanıcı Docker yerine yeni bulut test projesini seçti. Ücretsiz kuruluş p
 TESTADMIN ayrı test projesinde etkinleştirildi; geçici şifre repo dışında 0600 dosyada, ilk değişim zorunlu. Gerçek personel/depo verisi yok; kurtarma/audit/üretim politikası henüz tamamlanmadı. Yeni kod feature/auth-integration dalında incelenir; otomatik merge yok.
 
 Yayın sonrası: GitHub Pages built, gerçek yayın modunda mobil CHIPS/Edge/Auth/DB giriş/yenileme/çıkış geçti. Etkin sicil/şifre formu Codex tarayıcısında görüldü. Yerel çalışma ağacı temiz tutuldu; PR #3 taslak olarak açıldı. TESTADMIN hesabının geçici şifresi değiştirilmedi, kullanıcının denemesi beklenir.
+
+## 11 Ekim 2026 — personel aşaması / güncel durum
+
+`feature/personnel-management` dalında personel ekleme, rol/lokasyon düzenleme, pasifleştirme/aktifleştirme ve super_admin lokasyon ekleme hazırlanmıştır. Önceki tarihli "kod yok / gerçek Auth yok" maddeleri tarihsel envanterdir; güncel giriş doğrulaması yukarıdaki 11 Ekim kaydıdır. Kullanıcının TESTADMIN karşılama ekranı Codex tarayıcısında görüldü; kullanıcının yeni şifresi okunmadı/değiştirilmedi. Kendi telefonu/Safari/Firefox henüz doğrulanmadı.
+
+Yeni personel migration dosyası, yönetim RPC'si, Edge modülü, web modülü ve TR/RO metinleri eklendi. Yönetim yetkisi SQL içinde opaque oturum üzerinden uygulanır; admin eski/yeni lokasyonların tamamında yetkili olmalı ve yalnız purchasing/receiver yönetebilir. Geçici şifre server-side rastgele, yalnız bir kez teslim edilir; audit/depo/source içinde tutulmaz. Başarısız Auth oluşturma erişim açmaz, rezervasyon ve geçmiş korunur. Pasifleştirme/rol/lokasyon değişimi oturumları iptal eder.
+
+Kanıtlar:
+- `npm test`: 35 Node/PGlite testi geçti. Yeni yetki, rol yükseltme/lokasyon aşımı reddi, zorunlu değişim, iki aşamalı rezervasyon/aktivasyon, yarım Auth, yanlış Auth UUID, oluşturma sırasında yetki/oturum kaybı, aynı sicille çift istek, oturum iptali, RLS/RPC izinleri, lokasyon ekleme ve secretsiz audit dahil.
+- `npm run check` ve `git diff --check`: syntax, web referansları, sınırlı credential kontrolleri ve diff biçimi geçti. Kapsamlı secret/güvenlik denetimi değildir.
+- Giriş tarayıcı regresyonu geçti; mevcut HttpOnly/CHIPS giriş kodu korunur.
+- Yeni personel tarayıcı testi 390/1440 px gerçek SQL ve HTTP handler ile çalışır; Auth API simüledir. Ekleme, düzenleme, kapatma/yeniden açma, yeni personelde zorunlu şifre değişimi, TR/RO, XSS-safe metin, şifreyi gizleyince DOM temizliği ve yalnız dil tercihi depolama doğrulandı. Mobil ekran görüntüsü görsel olarak incelendi; taşma görülmedi.
+
+Yapılmayanlar: yeni migration veya Edge dağıtımı, bu personel aşamasının gerçek uzak Auth entegrasyonu, yeni ekranın GitHub Pages yayını, PR merge. Test projesi istisnası önceki giriş aşamasını kapsar; yeni yönetim migration/dağıtımı için somut ayrı onay beklenir. Gerçek PostgreSQL çok bağlantılı eşzamanlılık, şifre sıfırlama/operatör kurtarma, audit görüntüleme/saklama, araç/stok/finans sistemi henüz tamamlanmış değildir. Yerel SQL testleri çok bağlantılı uzak PostgreSQL kanıtı sayılmaz.
+
+## 11 Ekim — personel test dağıtımı için açık kullanıcı onayı
+
+Kullanıcı, PR #4 kapsamındaki personel migration/Edge kurulumu, gerçek entegrasyon ve ardından GitHub Pages test yayını için “Onaylıyorum” dedi. Bu izin AGENTS.md/PERSONNEL.md içinde kaydedildi; gerçek iş verisi veya diğer projeler kapsam dışındadır.
+
+`deploy-test-personnel.mjs` exact project opt-in, proje adı/oluşturma tarihi/sağlık ve üç tabloluk önceki şema kontrolünden sonra yeni migration'ı yalnız ifnjvdjhfhzfxyuorqvz'ye uyguladı. Önce/sonra staff ve Auth kullanıcı sayıları eşit kaldı. İki temsili depo eklendi; service-only RPC ve dört yeni kapalı RLS tablosu kuruldu. Edge API bundling ile aynı test projesinde güncellendi. TESTADMIN hesabının şifresine dokunulmadı.
+
+Gerçek Edge/Auth/DB personel testleri geçti: Auth UUID rezervasyonu, otomatik geçici şifre, zorunlu ilk değişim, admin rol/lokasyon sınırları, dış kapsam ve rol yükseltme reddi, lokasyon değişikliğiyle eski oturum iptali, pasif hesabın login reddi, kendini kapatma koruması, anon ve gerçek JWT ile yönetim RPC reddi, audit. Aynı sicille eşzamanlı iki HTTP isteğinde bir 200/bir 409 ve tek personel oluştu. Yedi özel tablonun RLS ve client SELECT izinleri gerçek DB üzerinden doğrulandı.
+
+Gerçek GitHub Pages origin üzerinde güncel web dosyalarıyla 390 px mobil önizleme de geçti: personel oluşturma/pasifleştirme, TR/RO, CHIPS HttpOnly oturum, şifreyi gizleyince DOM temizliği, yalnız dil tercihi localStorage ve çıkış. Bu önizleme yayın sonrası testten ayrıdır; bu testte web dosyaları test tarayıcısında güncel yerel dosyalardan yönlendirildi. İlk önizleme denemesi önceki yayın CSS'ini kullandığından taşma kontrolünde durdu; test CSS yönlendirmesi düzeltilince geçti. Uygulama kodunda veya veri yetkilerinde bypass eklenmedi. Her iki koşunun sentetik IT_P_ hesapları pasifleştirildi; Auth/staff/audit kayıtları korunur.
+
+## Personel yayın sonrası sonucu — 11 Ekim
+
+Giriş regresyonu yeni yedi tabloluk şemayla gerçek Auth/DB/Edge üzerinde yeniden geçti: kapalı/yanlış hesap, ilk değişim, eski şifre/oturum iptali, doğrudan JWT/RPC/özel şema reddi, signup kapatma ve çıkış. Mobil localhost ve GitHub Pages origin CHIPS yenileme/çıkış kontrolleri geçti. Sadece bu testin sentetik hesapları pasifleştirildi.
+
+8ef19361d069ba1b0f48196ecc1fa7fbed6fa197 kaynak commit'inin web ağacı, geçmiş korunarak 1a75e80dd4e966b68ed9c950548288e5a94e1c2c gh-pages commit'iyle yayınlandı. GitHub Pages API bu commit için built/error=null ve HTTPS enforced bildirdi. https://vetmaster.github.io/romway/ yeni personel ekranını sunar. Source dokümanları, özel anahtarlar veya kullanıcı şifre dosyaları Pages ağacına alınmadı.
+
+`ROMWAY_TEST_PROJECT=ifnjvdjhfhzfxyuorqvz ROMWAY_TEST_PUBLISHED=true npm run test:cloud-personnel` geçti. Bu mod gerçek Pages HTML/JS/CSS dosyalarını değiştirmeden gerçek Edge/Auth/DB ile 390 px mobil personel oluşturma/pasifleştirme, TR/RO, HttpOnly/partitioned cookie, geçici şifre DOM temizliği, yalnız dil tercihi depolama ve logout doğruladı. Auth test doubles kullanılmadı; sadece dış font ağı test bağlamında izole edildi. Uzak API rol/lokasyon/eşzamanlı sicil/RLS/JWT/audit kontrolleri de bu koşuda tekrar geçti. Koşunun sentetik hesapları pasifleştirildi; hiç kayıt/hesap/proje silinmedi, TESTADMIN şifresine işlem yapılmadı.
+
+PR #4 inceleme için açık kalır; hiçbir PR birleştirilmedi. Kullanıcının gerçek telefon/Safari/Firefox cihaz doğrulaması ve operatör şifre sıfırlama/kurtarma sonraki aşamalardır.

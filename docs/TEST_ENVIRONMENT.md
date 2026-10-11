@@ -46,3 +46,7 @@ Resmi kaynaklar: [proje oluşturma](https://supabase.com/docs/reference/api/v1-c
 ## Yayın sonrası son kontrol
 
 11 Ekim: gh-pages 374a081 dağıtımı built olarak doğrulandı. ROMWAY_TEST_PUBLISHED=true ile HTML/config/app için route override olmadan gerçek yayın dosyaları mobil Chrome'da test edildi: giriş, partitioned HttpOnly cookie, yenileme ve çıkış geçti. Sadece harici font istekleri testte boş CSS ile izole edilir. Codex tarayıcısında Test ortamı etiketi ve etkin sicil/şifre formu görüldü. TESTADMIN şifresi değiştirilmedi; bu hesabı kullanıcı ilk girişte değiştirecek.
+
+## Personel yönetimi — 11 Ekim açık onay
+
+Kullanıcı PR #4 kapsamındaki yeni personel şeması ve Edge dağıtımını yalnız bu test projesi için onayladı. `scripts/deploy-test-personnel.mjs` exact project opt-in ve eski şema/hesap sayılarını kontrol eder; zaten uygulanmış migration'ı tekrar çalıştırmaz. Yeni geçici test hesapları `scripts/test-cloud-personnel.mjs` tarafından IT_P_ prefix ve koşuya özgü rastgele kimliklerle açılır; sonunda yalnız bu hesaplar pasifleştirilir. Kayıt veya proje silinmez. TESTADMIN yeni şifresi testlerde okunmaz veya değiştirilmez. Yayın sonrası `ROMWAY_TEST_PUBLISHED=true` gerçek Pages dosyalarını yönlendirmesiz doğrular.

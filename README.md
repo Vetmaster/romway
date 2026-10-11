@@ -40,3 +40,7 @@ GitHub CI şablonu `docs/ci/checks.yml.example` içinde hazır. Mevcut GitHub ba
 Telefon önizlemesi için aynı Wi-Fi ağında Mac’in özel ağ IP adresiyle `ROMWAY_PREVIEW_HOST=192.168.x.x npm run dev` başlatılabilir. Telefonda `http://192.168.x.x:8000` açılır. Varsayılan sunucu yalnız localhost kullanır; LAN modu yalnız web/ dosyalarını sunar.
 
 10 Ekim kararı: GitHub Pages önizlemesi. Yayın adımları ve sınırlar [PAGES.md](docs/PAGES.md) içinde.
+
+## Personel yönetimi hazırlığı
+
+Personel yönetimi, temsili lokasyonlar ve sunucu yetkileri kullanıcı onayıyla yalnız ayrı Romway test projesine uygulandı. GitHub Pages test yayını güncellendi; gerçek API ve yönlendirmesiz yayın dosyalarıyla mobil akış doğrulandı. Kanıtlar INCELEME.md içinde tutulur. Yetki, geçici şifre teslimi ve yarım işlem sınırları [PERSONNEL.md](docs/PERSONNEL.md) içindedir. `npm run test:personnel-browser` personel ekranının yerel PostgreSQL/HTTP tarayıcı testidir; Chrome için `PLAYWRIGHT_EXECUTABLE_PATH` kullanılabilir. Bu test Supabase bulutuna veya gerçek kullanıcı hesaplarına yazmaz.

@@ -15,6 +15,13 @@
 - Aynı oturumda kullanıcı özel alan adı olmadan GitHub Pages ile devam etmeyi belirtti. Test projesine bağlı giriş önizlemesi doğrulama sonrası yayınlanabilir; CHIPS modunda Secure/HttpOnly/__Host-/Partitioned cookie ve tam Origin kontrolü korunur. JS token fallback yoktur. Eski Strict/same-site varsayımı bu mod için geçerli değildir. Gerçek iş verisi/pilot ve ücretli özellik/DNS hâlâ ayrı karardır.
 - Testler sentetik veriyle, ayrı yerel/test ortamında çalışır. Deneme ve canlı anahtar/verilerini ayır.
 
+## Personel aşaması — 11 Ekim kullanıcı kararı
+- Sonraki küçük aşama personel ekleme, rol/lokasyon atama, pasifleştirme ve lokasyon eklemedir; stok/araç ve şifre sıfırlama bu PR'a eklenmez.
+- Super_admin tüm personeli yönetir. Admin yalnız kendi lokasyonlarının tamamı içinde kalan purchasing/receiver personelini yönetir; hedefin eski ve yeni lokasyonları sunucuda doğrulanır.
+- Kullanıcı temsili lokasyon isimlerini onayladı: Türkiye Test Deposu / Romanya Test Deposu. Bunlar gerçek iş verisi sayılmaz.
+- Geçici şifre yöneticiye tek seferlik işlem yanıtında teslim edilir; statik kaynak/config, günlük veya tarayıcı deposunda saklanmaz.
+- 11 Ekim kullanıcı PR #4 kapsamındaki personel migration/Edge işlemlerini yalnız romway-auth-test projesine uygulamayı, gerçek entegrasyonla doğrulamayı ve ardından GitHub Pages test önizlemesine yayınlamayı açıkça onayladı. Diğer projeler ve gerçek iş verisi kapsam dışıdır; otomatik merge yapılmaz.
+
 ## Güvenlik
 - Şifre, token ve service_role anahtarını kaynak kod, statik çıktı, tarayıcı yapılandırması veya günlüklerde tutma. Kullanıcıya elle token kopyalama akışı sunma.
 - Personel yalnız sicil/şifre görür; sunucu sicili Supabase Auth'ın posta kutusu olmayan iç e-posta kimliğine eşler. Açık kayıt ve e-posta kurtarma kullanılmaz.

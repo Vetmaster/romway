@@ -1,3 +1,4 @@
+import {managePersonnel,personnelActions} from './personnel.js';
 import {AuthError, cookieValue, employeeNumber, hash, password, randomSecret, readJson, safeProfile} from './security.js';
 export function createHandler({backend, appOrigin, local = false, cookieMode = 'strict'}) {
   const origin = new URL(appOrigin);
@@ -20,7 +21,7 @@ export function createHandler({backend, appOrigin, local = false, cookieMode = '
     if (req.method !== 'POST') return reply(405,{error:'invalid_request'});
     try {
       const body = await readJson(req);
-      if (!['login','me','change-password','logout'].includes(body.action)) throw new AuthError('invalid_request');
+      if (!['login','me','change-password','logout',...personnelActions].includes(body.action)) throw new AuthError('invalid_request');
       // Persistent global and account limits: caller-controlled IP headers are not trusted.
       if (body.action === 'login' || body.action === 'change-password') {
         if (!await backend.rpc('romway_consume_attempt',{p_bucket:await hash('auth-global'),p_limit:300})) throw new AuthError('rate_limited',429);
@@ -52,6 +53,7 @@ export function createHandler({backend, appOrigin, local = false, cookieMode = '
         if (staff.password_change_required) return reply(200,{password_change_required:true});
         return reply(200,{password_change_required:false,profile:safeProfile(staff)});
       }
+      if (personnelActions.includes(body.action)) return reply(200,await managePersonnel({backend,staff,sessionHash,body}));
       password(body.password);
       if (typeof body.current_password !== 'string' || body.current_password.length > 128 || !body.current_password) throw new AuthError('invalid_credentials',401);
       if (body.password === body.current_password) throw new AuthError('password_unchanged');
