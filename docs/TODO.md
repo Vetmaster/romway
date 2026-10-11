@@ -108,3 +108,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Personel alt menüsü kapalı başlar, başlık okla açılıp kapanır; mobil/masaüstü doğrulandı.
 - [x] Menü logosu altına DPB açıklaması eklendi.
 - [ ] Personel/lokasyon adına basılınca profil sayfası açılması.
+- [x] Personel/lokasyon ekleme kartları sayfa girişinde kapalı kalır; mobil/masaüstü doğrulandı.
