@@ -1,4 +1,5 @@
 export default {
+ version_label:'Versiunea aplicației ',
  banner_line_one:'Depozite și Logistică',
  banner_line_two:'Sistem de Management',
  dashboard_title:'Prezentare generală',
