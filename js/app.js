@@ -64,6 +64,14 @@ async function perform(fn) {
     notify(e.message, true);
   } finally { busy = false; render(); }
 }
+function rememberPage(page){history.replaceState(null,'','#'+page);}
+async function restorePage(){
+  if(view!=='welcome'||busy)return;
+  const page=location.hash.slice(1);
+  if(page==='personnel'&&['admin','super_admin'].includes(profile?.role))await personnel.open('personnel');
+  else if(page==='location'&&profile?.role==='super_admin')await personnel.open('location');
+  else showDashboard();
+}
 async function restore() {
   if (!api.configured) { transition('login'); notify('not_configured'); return; }
   transition('checking');
@@ -76,6 +84,7 @@ async function restore() {
       profile = null; transition('login'); notify('');
     }
   });
+  await restorePage();
 }
 $('language').addEventListener('change',e => {
   language = locales[e.target.value] ? e.target.value : 'tr';
@@ -96,7 +105,7 @@ $('login').addEventListener('submit',event => {
       throw error;
     }
     profile = result.profile ?? null; transition(result.password_change_required ? 'change' : 'welcome'); notify('');
-  });
+  }).then(restorePage);
 });
 $('change').addEventListener('submit',event => {
   event.preventDefault();
@@ -111,7 +120,7 @@ $('change').addEventListener('submit',event => {
 });
 $('logout').addEventListener('click',() => perform(async () => {
   // Do not claim logout succeeded if the server did not revoke the session.
-  await api.call('logout'); profile = null; transition('login'); notify('');
+  await api.call('logout');rememberPage('dashboard'); profile = null; transition('login'); notify('');
 }));
 function closeMenu(restoreFocus=true) {
   if($('navigation-drawer').open) $('navigation-drawer').close();
@@ -119,7 +128,7 @@ function closeMenu(restoreFocus=true) {
   if(restoreFocus&&!$('menu-toggle').hidden) $('menu-toggle').focus();
 }
 function showDashboard() {
-  closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;render();$('dashboard-heading').focus();
+  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;render();$('dashboard-heading').focus();
 }
 $('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');$('nav-brand').focus();});
 $('navigation-drawer').addEventListener('cancel',event=>{event.preventDefault();closeMenu();});
@@ -132,5 +141,6 @@ $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
-personnel=createPersonnel({api,text,run:perform,onOpen:page=>{workspace=page;render();const heading=$(page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+personnel=createPersonnel({api,text,run:perform,onOpen:page=>{rememberPage(page);workspace=page;render();const heading=$(page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+window.addEventListener('hashchange',restorePage);
 render(); restore();
