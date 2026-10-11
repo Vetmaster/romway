@@ -82,3 +82,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Ana sayfa düğmesi kaldırıldı, dil banner sağına taşındı, çıkış tek satır sağa yaslandı; mobil/masaüstü kontrol geçti.
 - [x] Üst çubuk kontrolleri Pages üzerinde doğrulandı; PR #19 taslak.
+
+- [x] Personel ekleme alanı kapalı gelen açılır/kapanır karta dönüştürüldü; mobil/masaüstü akış testi geçti.

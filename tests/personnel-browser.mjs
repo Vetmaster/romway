@@ -54,6 +54,7 @@ try{
   await page.locator('#auth-panel').waitFor({state:'hidden'});assert(await page.locator('.intro').isHidden());assert(await page.locator('#logout').isVisible());
   if(width<=820) await page.locator('#menu-toggle').click();await page.locator('#nav-home').click();assert(await page.locator('#welcome').isVisible());assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('#personnel-section').isHidden());await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
   assert(await page.locator('#personnel-form').isHidden());assert.equal(await page.getByRole('button',{name:'Personel ekle',exact:true}).count(),1);
+  await page.locator('#personnel-new').click();await page.locator('#personnel-new').click();assert(await page.locator('#personnel-form').isHidden());assert.equal(await page.locator('#personnel-new').getAttribute('aria-expanded'),'false');
   await page.locator('#personnel-new').click();await page.locator('#personnel-number').fill('CANCEL'+width);await page.locator('#personnel-cancel').click();
   assert(await page.locator('#personnel-form').isHidden());assert.equal(await page.locator('#personnel-number').inputValue(),'');
   assert.equal((await db.query('select count(*)::int as n from romway_private.staff where employee_number=$1',['CANCEL'+width])).rows[0].n,0);
