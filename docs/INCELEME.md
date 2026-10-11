@@ -146,3 +146,9 @@ Yayın doğrulandı: kaynak 5a7b9819c407a96262b02977cb05904e5c125948, gh-pages b
 Logo bloğu tüm ekranlarda açıkça flex-column, açıklama block/tam genişlik/210 px sınır ile aşağıda ortalanır. TR açıklama Depo, personel yönetim ve stok takip sistemi, RO karşılığı Sistem de gestionare a depozitelor și personalului și de urmărire a stocurilor olarak güncellendi. Footer aynı dil anahtarını kullanır. Masaüstü banner/menü başlangıcı uzun açıklama için 144 px. Syntax/web referans/diff ve 390/1440 px Chrome taşma/görünüm kontrolü ile TR/RO anahtar kontrolü geçti; mobil görüntü incelendi. Supabase değişmedi.
 
 Yayın: kaynak 9a99d123993c9d88f21c06bd8326023e8e3a7071, gh-pages 04b2f9a70a4389a9ab81f86423693aac231f6e44. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #14 taslak, birleştirilmedi.
+
+## 11 Ekim — sistem açıklaması
+
+Kullanıcı kararıyla banner/footer açıklaması Depo ve Lojistik Yönetim Sistemi; RO karşılığı Sistem de Management al Depozitelor și Logisticii olarak güncellendi. Yerleşim ve işlevler korunur.
+
+Syntax/web referans, TR/RO anahtar ve diff kontrolü geçti. Yayın: kaynak 80be18146b3ff05664da0923f5042395846896ed, gh-pages 17179f7a993196d598666be617032d0a8a7c8e9b. Pages built/error=null; gerçek HTML/CSS/JS/diller kaynakla eşleşti. PR #15 taslak; birleştirilmedi. Supabase değişmedi.
