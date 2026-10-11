@@ -35,7 +35,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:1000}});await context.grantPermissions(['local-network-access'],{origin:'http://localhost:8000'});
   await context.route('https://fonts.googleapis.com/**',r=>r.fulfill({contentType:'text/css',body:''}));
   await context.route('http://localhost:8000/',async r=>{const response=await r.fetch();await r.fulfill({response,body:(await response.text()).replace("connect-src 'self'","connect-src 'self' http://localhost:8001")});});
-  await context.route('**/js/config.js',r=>r.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));
+  await context.route('**/js/config.js*',r=>r.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://localhost:8000');await page.locator('#login').waitFor({state:'visible'});
   const login=async(number,password)=>{await page.locator('#employee').fill(number);await page.locator('#password').fill(password);await page.locator('#login button').click();};

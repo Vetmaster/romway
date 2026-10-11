@@ -25,6 +25,6 @@ for (const path of ['web','scripts','supabase/functions','tests']) {
 const html=await readFile('web/index.html','utf8');
 for (const [,target] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
   if (target==='./'||target.startsWith('https:')) continue;
-  await readFile('web/'+target);
+  await readFile('web/'+target.split('?')[0]);
 }
 console.log('JS syntax, web references and limited secret/credential checks passed.');

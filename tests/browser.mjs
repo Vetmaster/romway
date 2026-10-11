@@ -56,7 +56,7 @@ try {
     const context=await browser.newContext(); await context.grantPermissions(['local-network-access'],{origin:'http://localhost:8000'}); const page=await context.newPage();
     await page.route('http://localhost:8000/',async route => { const response=await route.fetch(); const html=await response.text(); await route.fulfill({response,body:html.replace("connect-src 'self'","connect-src 'self' http://localhost:8001")}); });
     await context.route('https://fonts.googleapis.com/**',route=>route.fulfill({contentType:'text/css',body:''}));
-    await page.route('**/js/config.js',route=>route.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));
+    await page.route('**/js/config.js*',route=>route.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8001/auth'};"}));
     await page.goto('http://localhost:8000');await page.locator('#login').waitFor({state:'visible'});
     await page.locator('#employee').fill('COOKIE1');await page.locator('#password').fill('Synthetic-old-password-1');await page.locator('#login button').click();
     await page.locator('#change').waitFor({state:'visible'});
@@ -74,7 +74,7 @@ try {
   await context.route('https://fonts.googleapis.com/**',route=>route.fulfill({contentType:'text/css',body:''}));
   let stage='logged_out',cookie=null,password='Synthetic-old-password-1',logoutFails=false,meFails=false,cookieBlocked=false;
   const calls=[];
-  await page.route('**/js/config.js',route=>route.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8000/test-auth'};"}));
+  await page.route('**/js/config.js*',route=>route.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8000/test-auth'};"}));
   await page.route('**/test-auth',async route=>{
     const req=route.request(),body=req.postDataJSON(); calls.push(body.action);
     let response={},status=200;

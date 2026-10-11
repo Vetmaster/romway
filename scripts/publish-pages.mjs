@@ -1,5 +1,6 @@
 import {execFileSync} from 'node:child_process';
 const git = (args,options={}) => execFileSync('git',args,{encoding:'utf8',...options});
+execFileSync(process.execPath,['scripts/version-assets.mjs','--check'],{stdio:'inherit'});
 if(git(['status','--porcelain']).trim()) throw new Error('Commit/review source changes before publishing');
 // Fetching preserves any remote history; no force push or source checkout is involved.
 const refs=git(['ls-remote','origin','refs/heads/gh-pages']).trim();

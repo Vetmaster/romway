@@ -42,3 +42,6 @@
 - Tarayıcı deposu yetki veya kalıcı iş verisi için otorite değildir. Deneme ortamında doğrudan rol/lokasyon/fiyat erişim regresyonu çalıştır.
 - Yeni bağımlılıkları sürüm/kilit ve güvenlik açısından değerlendir; Dependabot güncellemelerini test et. CodeQL/secret scanning kullanılabilirliğini doğrulamadan aktif yazma.
 - Mimari, veritabanı, güvenlik, roller ve karar günlüklerini ihtiyaç oldukça ayrı docs dosyalarına ayır.
+
+## Statik dosya önbelleği
+- Web değişikliklerinden sonra commit öncesinde `node scripts/version-assets.mjs` çalıştır. İçerik hash’li CSS/JS/import URL’leri yeni dosya yüklemesini sağlar. Yayın betiği sürümlerin güncelliğini kontrol eder; eski sürümle yayın yapmaz.
