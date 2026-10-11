@@ -49,3 +49,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Giriş sonrası dashboard, personel kartı ve soldaki çekmece menü; TR/RO ve 390/1440 px yerel personel/giriş tarayıcı kontrolleri geçti.
 - [x] Dashboard/çekmece Pages üzerinde yayınlandı; build ve gerçek dosya eşleşmesi doğrulandı. PR #8 taslak.
+
+- [x] Kullanıcının onaylı Solea logosu üst çubuğa alındı; özgün logo dosyaları korundu, mobil/masaüstü görünüm kontrolü geçti.
+- [x] Solea logosu Pages yayını ve canlı PNG eşleşmesi ile doğrulandı; PR #9 taslak.
