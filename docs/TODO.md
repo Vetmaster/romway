@@ -55,3 +55,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Mobil personel paneli genişledi, düzenleme sağda kaldı; aktif yeşil/pasif kırmızı rozet ve farklı telefon genişlikleri kontrol edildi.
 - [x] Mobil genişlik/rozet değişikliği Pages built ve gerçek dosya eşleşmesiyle doğrulandı; PR #10 taslak.
+
+- [x] SASA-F banner/ayrı gezinme çubuğu/sabit masaüstü menü ve mobil çekmece yerleşimi; mobil düzenle tüm satırın sağında sabitlendi, uzun metinlerle doğrulandı.

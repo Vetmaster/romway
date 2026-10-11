@@ -42,12 +42,14 @@ try{
   await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
   assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('.intro').isHidden());
   await mkdir('test-results',{recursive:true});await page.screenshot({path:`test-results/dashboard-${width}.png`,fullPage:true});
-  await page.locator('#menu-toggle').click();assert(await page.locator('#navigation-drawer').evaluate(el=>el.open));
-  await page.keyboard.press('Escape');await page.locator('#navigation-drawer').waitFor({state:'hidden'});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
-  await page.locator('#menu-toggle').click();await page.locator('#nav-personnel').click();await page.locator('#auth-panel').waitFor({state:'hidden'});await page.locator('#personnel-back').waitFor({state:'visible'});
-  assert.equal(await page.locator('#navigation-drawer').evaluate(el=>el.open),false);
-  await page.locator('#menu-toggle').click();await page.locator('#nav-home').click();await page.locator('#welcome').waitFor({state:'visible'});
-
+  if(width<=820){
+    await page.locator('#menu-toggle').click();assert(await page.locator('#navigation-drawer').evaluate(el=>el.open));
+    await page.keyboard.press('Escape');await page.locator('#navigation-drawer').waitFor({state:'hidden'});assert.equal(await page.locator('#menu-toggle').getAttribute('aria-expanded'),'false');
+    await page.locator('#menu-toggle').click();
+  }else{assert(await page.locator('#navigation-drawer').isVisible());assert(await page.locator('#menu-toggle').isHidden());}
+  await page.locator('#nav-personnel').click();await page.locator('#personnel-back').waitFor({state:'visible'});
+  if(width<=820){assert.equal(await page.locator('#navigation-drawer').evaluate(el=>el.open),false);await page.locator('#menu-toggle').click();}
+  await page.locator('#nav-home').click();await page.locator('#welcome').waitFor({state:'visible'});
   await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
   await page.locator('#auth-panel').waitFor({state:'hidden'});assert(await page.locator('.intro').isHidden());assert(await page.locator('#logout').isVisible());
   await page.locator('#personnel-back').click();assert(await page.locator('#welcome').isVisible());assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('#personnel-section').isHidden());await page.locator('#personnel-open').click();await page.locator('#personnel-new').waitFor({state:'visible'});
