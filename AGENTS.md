@@ -11,6 +11,8 @@
 - Dosyaları, veritabanını, Supabase projesini veya geçmiş kayıtları silme. Kullanıcının mevcut değişikliklerini koru.
 - Küçük görevleri ayrı dalda geliştir; ilgili kontrolleri çalıştır, commit/push ve inceleme için PR hazırla. PR'ı otomatik birleştirme.
 - Migration yalnız dosya olarak hazırlanabilir. Mevcut Supabase'e migration, fonksiyon dağıtımı veya veri değişikliği yapma. GitHub Pages önizlemesi kullanıcı tarafından yetkilendirildi. Supabase/DNS ve gerçek giriş yayını ayrıca değerlendirilir.
+- 11 Ekim 2026 kullanıcı yeni ve ayrı Supabase test projesini seçti. Bu oturumda oluşturulan `romway-auth-test` (`ifnjvdjhfhzfxyuorqvz`) için giriş şeması/fonksiyonu ve sentetik entegrasyon verileri yetkilidir. Bu istisna Sasa Futbol, Vetamerikan-shift veya başka projelere uygulanmaz. Test projesi canlı veri için kullanılmaz; ücretli özellik/DNS veya GitHub Pages gerçek giriş bağlantısı bu izin kapsamında değildir.
+- Aynı oturumda kullanıcı özel alan adı olmadan GitHub Pages ile devam etmeyi belirtti. Test projesine bağlı giriş önizlemesi doğrulama sonrası yayınlanabilir; CHIPS modunda Secure/HttpOnly/__Host-/Partitioned cookie ve tam Origin kontrolü korunur. JS token fallback yoktur. Eski Strict/same-site varsayımı bu mod için geçerli değildir. Gerçek iş verisi/pilot ve ücretli özellik/DNS hâlâ ayrı karardır.
 - Testler sentetik veriyle, ayrı yerel/test ortamında çalışır. Deneme ve canlı anahtar/verilerini ayır.
 
 ## Güvenlik

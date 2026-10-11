@@ -72,7 +72,7 @@ try {
   // Test-only routes simulate API outcomes; production config and backend are untouched.
   const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
   await context.route('https://fonts.googleapis.com/**',route=>route.fulfill({contentType:'text/css',body:''}));
-  let stage='logged_out',cookie=null,password='Synthetic-old-password-1',logoutFails=false,meFails=false;
+  let stage='logged_out',cookie=null,password='Synthetic-old-password-1',logoutFails=false,meFails=false,cookieBlocked=false;
   const calls=[];
   await page.route('**/js/config.js',route=>route.fulfill({contentType:'text/javascript',body:"export const config={authEndpoint:'http://localhost:8000/test-auth'};"}));
   await page.route('**/test-auth',async route=>{
@@ -80,7 +80,7 @@ try {
     let response={},status=200;
     if (body.action==='login') {
       if (body.password!==password) {status=401;response={error:'invalid_credentials'};}
-      else {stage=password==='Synthetic-old-password-1'?'change':'welcome';cookie='opaque';response={password_change_required:stage==='change'};}
+      else {stage=password==='Synthetic-old-password-1'?'change':'welcome';cookie=cookieBlocked?null:'opaque';response={password_change_required:stage==='change'};}
     } else if (body.action==='me') {
       if(meFails){status=503;response={error:'service_unavailable'};}
       else if(!cookie){status=401;response={error:'session_expired'};}
@@ -115,6 +115,9 @@ try {
   meFails=true;await page.reload();await page.locator('#retry').waitFor({state:'visible'});
   assert(await page.locator('#welcome').isHidden());
   meFails=false;await page.locator('#retry').click();await page.locator('#login').waitFor({state:'visible'});
+  cookieBlocked=true;await login(password);
+  await page.getByText('Browserul nu a putut păstra sesiunea securizată. Folosiți un browser actualizat și verificați permisiunile cookie.',{exact:true}).waitFor();
+  assert(await page.locator('#welcome').isHidden());assert(await page.locator('#login').isVisible());
   const storage=await page.evaluate(()=>Object.keys(localStorage));
   assert.deepEqual(storage,['romway.language']);
   assert.equal((await page.evaluate(()=>Object.keys(sessionStorage))).length,0);
