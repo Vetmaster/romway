@@ -320,3 +320,7 @@ TR açıklama fontu mobilde 8→10, büyük ekranda 12→14 px aralığına yük
 ## 11 Ekim — kalın banner açıklaması
 
 TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif küçültüldü ve 700 kalınlığına alındı; mevcut tek satır/ortalanmış yerleşim ve uzun RO metin ölçüleri korunur. Syntax/web referans/asset/diff kontrolleri uygulanır.
+
+## 11 Ekim — masaüstü menü logosu
+
+821 px ve üzeri oturumlu görünümde menü logo başlığı gizlenir; üst banner ve mobil menü logosu korunur. Syntax/web referans/asset/diff kontrolleri uygulanır.
