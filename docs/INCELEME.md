@@ -264,3 +264,7 @@ Menü logosunun altına TR DPB Lojistik Yönetim Sistemi / RO DPB Sistem de Mana
 ## 11 Ekim — sayfa kartları kapalı
 
 Personel ekle/lokasyon ekle sayfalarına girişte kartlar otomatik açılmaz; yalnız başlığa basılınca açılır. Sayfaya tekrar giriş kartları sıfırlar; listeler görünür kalır. 390/1440 px testlerinde varsayılan kapalılık, aria-expanded=false ve elle açma doğrulandı; mevcut akışlar ve syntax/asset/diff kontrolleri geçti. Supabase değişikliği yok.
+
+## 11 Ekim — yenilemede mevcut sayfa
+
+Mevcut sayfa URL hash dashboard/personnel/location ile tutulur. Yenilemede me oturum doğrulaması bittikten sonra yetkili sayfa yeniden yüklenir; alt sayfalarda liste API üzerinden tekrar alınır, ekleme kartları kapalıdır. Yetkisiz/bilinmeyen sayfa dashboard’a döner. Çıkış URL’yi dashboard’a sıfırlar; parola/token/veri URL’ye yazılmaz. 390/1440 px tarayıcı testinde personel ve lokasyon yenilemesi ve mevcut akışlar geçti. Syntax/asset/diff kontrolü geçti. Supabase değişikliği yok.
