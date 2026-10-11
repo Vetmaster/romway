@@ -14,7 +14,7 @@
   <script type="module" src="js/app.js"></script>
 </head>
 <body>
-  <header><a class="brand" href="./" aria-label="Romway"><img src="assets/logo-romway.png" alt="Romway" width="288" height="75"></a>
+  <header><button id="menu-toggle" class="secondary menu-toggle" type="button" hidden aria-controls="navigation-drawer" aria-expanded="false" data-i18n="menu"></button><a class="brand" href="./" aria-label="Romway"><img src="assets/logo-romway.png" alt="Romway" width="288" height="75"></a>
     <div class="header-actions">
     <button id="personnel-back" class="secondary" type="button" hidden data-i18n="home"></button>
     <button id="logout" class="secondary" type="button" hidden data-i18n="logout"></button>
@@ -23,6 +23,11 @@
     </label>
     </div>
   </header>
+  <dialog id="navigation-drawer" class="navigation-drawer" aria-labelledby="drawer-title">
+    <div class="drawer-heading"><strong id="drawer-title" data-i18n="menu"></strong><button id="menu-close" class="secondary" type="button" data-i18n="close_menu"></button></div>
+    <nav aria-labelledby="drawer-title"><button id="nav-home" type="button" data-i18n="dashboard_title"></button><button id="nav-personnel" type="button" hidden data-i18n="personnel_title"></button></nav>
+    <div class="drawer-profile"><strong id="drawer-name"></strong><small id="drawer-role"></small></div>
+  </dialog>
   <p class="environment" data-i18n="test_environment">Test ortamı</p>
   <main>
     <section class="intro" aria-labelledby="headline">
@@ -56,13 +61,25 @@
         <input id="confirm" type="password" autocomplete="new-password" required minlength="12" maxlength="128">
         <button type="submit" data-i18n="change">Şifreyi değiştir</button>
       </form>
-      <div id="welcome" hidden>
-        <dl><dt data-i18n="employee">Sicil numarası</dt><dd id="staff-number"></dd><dt data-i18n="role">Rol</dt><dd id="staff-role"></dd></dl>
-        <button id="personnel-open" type="button" hidden data-i18n="personnel_title">Personel yönetimi</button>
-        <p data-i18n="welcome_note">Çalışma alanınız hazır. Depo ve malzeme ekranları sonraki aşamalarda eklenecek.</p>
-      </div>
       <button id="retry" class="secondary" type="button" hidden data-i18n="retry">Tekrar dene</button>
       <noscript>JavaScript gerekli / Este necesar JavaScript.</noscript>
+    </section>
+    <section id="welcome" class="dashboard" hidden aria-labelledby="dashboard-heading">
+      <p class="eyebrow" data-i18n="workspace"></p>
+      <h1 id="dashboard-heading" data-i18n="dashboard_title" tabindex="-1"></h1>
+      <p id="dashboard-greeting"></p>
+      <p id="dashboard-message" role="status" aria-live="polite"></p>
+      <div class="dashboard-grid">
+        <button id="personnel-open" class="dashboard-card" type="button" hidden>
+          <span class="card-icon" aria-hidden="true">♙</span>
+          <strong data-i18n="personnel_title"></strong>
+          <span data-i18n="personnel_card_note"></span>
+          <span class="card-link" data-i18n="open_page"></span>
+        </button>
+        <article class="dashboard-card"><span class="card-icon" aria-hidden="true">▦</span><strong data-i18n="inventory_title"></strong><p data-i18n="inventory_note"></p><small class="coming-soon" data-i18n="coming_soon"></small></article>
+        <article class="dashboard-card"><span class="card-icon" aria-hidden="true">⇄</span><strong data-i18n="shipment_title"></strong><p data-i18n="shipment_note"></p><small class="coming-soon" data-i18n="coming_soon"></small></article>
+      </div>
+      <div class="dashboard-profile"><h2 data-i18n="account_title"></h2><dl><dt data-i18n="employee"></dt><dd id="staff-number"></dd><dt data-i18n="role"></dt><dd id="staff-role"></dd></dl></div>
     </section>
     <section id="personnel-section" class="panel personnel" hidden aria-labelledby="personnel-heading">
       <h2 id="personnel-heading" data-i18n="personnel_title">Personel yönetimi</h2>

@@ -106,8 +106,9 @@ try {
   await page.locator('#current').fill(password);await page.locator('#new').fill('Synthetic-new-password-2');await page.locator('#confirm').fill('Synthetic-new-password-2');
   await page.locator('#change button').click();await page.getByText('Şifreniz değiştirildi. Yeni şifrenizle yeniden giriş yapın.',{exact:true}).waitFor();
   await login(password);await page.locator('#welcome').waitFor({state:'visible'});
-  assert.equal(await page.locator('#panel-title img').count(),0);
-  assert.match(await page.locator('#panel-title').textContent(),/<img/);
+  assert.equal(await page.locator('#dashboard-greeting img').count(),0);
+  assert.match(await page.locator('#dashboard-greeting').textContent(),/<img/);
+  assert(await page.locator('#nav-personnel').isHidden());assert(await page.locator('#personnel-open').isHidden());
   await page.locator('#language').selectOption('ro');assert.equal(await page.locator('#staff-role').textContent(),'Recepție');
   logoutFails=true;await page.locator('#logout').click();await page.getByText('Conexiunea nu a putut fi stabilită. Încercați din nou.',{exact:true}).waitFor();
   assert(await page.locator('#welcome').isVisible());

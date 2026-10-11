@@ -42,3 +42,7 @@ Personel yönetimi açıldığında form kapalı, liste görünürdür. Listenin
 ## Kompakt yönetim ekranı
 
 Personel yönetimi açılınca karşılama kartı ve tanıtım bölümü gizlenir; yönetim ekranı üstte başlar. Ana sayfaya dönüş ve çıkış üst çubuktadır. Bildirim/hata metinleri yönetim panelinde görünür. Personeller geniş kartlar yerine ad/sicil, rol/lokasyon/durum ve düzenle düğmesinden oluşan çizgilerle ayrılmış liste satırlarıdır. Satırların yatay genişliği korunur; dikey dolgu 12 px yerine 4 px olur. Ad ve sicil uygun genişlikte aynı hizadadır. Telefonda bilgiler tüm satır genişliğini kullanır; düzenleme düğmesi dar bir yan sütun ayırmadan akışa katılır. 44 px düğme hedefi korunur. Personel verileri ve sunucu izinleri değişmez.
+
+## Dashboard ve çekmece menü
+
+Giriş/şifre değişimi kuralları korunur; başarılı giriş ve oturum geri yükleme sonrası ilk ekran dashboard olur. SASA-F yerel index.html, styles.css ve app.js kaynaklarındaki gezinme kartı/sol menü yaklaşımı Romway paletine uyarlandı. Personel yönetimine dashboard kartı ve sol çekmece menüden ulaşılır; ikisi de aynı API kontrollü ekranı açar. Kart ve menü öğesi yalnız admin/super_admin için görünür. Stok/sevkiyat kartları henüz işlevsiz ve açıkça Yakında olarak işaretlidir; sahte sayaç yoktur. Modal çekmece klavye odağını sınırlar, Escape/kapatma/dış alan ile kapanır. Menü tercihi veya personel verisi tarayıcı deposuna yazılmaz.
