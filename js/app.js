@@ -142,7 +142,7 @@ function closeMenu(restoreFocus=true) {
 function showDashboard() {
   rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;render();$('dashboard-heading').focus();
 }
-$('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');$('nav-brand').focus();});
+$('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');($('menu-toggle').hidden?$('nav-home'):$('nav-brand')).focus();});
 $('navigation-drawer').addEventListener('cancel',event=>{event.preventDefault();closeMenu();});
 $('navigation-drawer').addEventListener('close',()=>{$('menu-toggle').setAttribute('aria-expanded','false');});
 $('navigation-drawer').addEventListener('click',event=>{if(event.target===$('navigation-drawer')){const box=event.target.getBoundingClientRect();if(event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)closeMenu();}});

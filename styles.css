@@ -461,3 +461,5 @@ html[lang=ro] .app-banner .banner-subtitle {font-size:10px;}
 
 .app-banner .banner-subtitle {font-size:clamp(9.5px,2vw,13px);font-weight:700;}
 @media(max-width:360px){.app-banner .banner-subtitle {font-size:8.5px;}}
+
+@media(min-width:821px){.app-shell .drawer-heading {display:none;}}
