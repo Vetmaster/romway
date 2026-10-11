@@ -349,7 +349,7 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .topbar #page-title {min-width:0;font-size:18px;}
 @media(min-width:821px) {
  body.app-shell {padding-left:248px;}
- .app-shell .app-banner {min-height:144px;position:sticky;top:0;z-index:31;margin-left:-248px;width:calc(100% + 248px);}
+ .app-shell .app-banner {height:144px;min-height:144px;padding-block:2px;position:sticky;top:0;z-index:31;margin-left:-248px;width:calc(100% + 248px);}
  .app-shell .navigation-drawer {top:144px;width:248px;height:calc(100dvh - 144px);padding:24px 16px;}
  .app-shell .drawer-heading {font-size:16px;}
 }
