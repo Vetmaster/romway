@@ -112,3 +112,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Yenilemede mevcut yetkili sayfa yeniden açılır; personel/lokasyon mobil/masaüstü kontrolleri geçti.
 - [x] Arka plandan dönüşte mevcut sayfa yenilenir; visibility simülasyonu geçti.
 - [ ] Gerçek Android cihazda arka plandan dönüş gözlemi.
+- [x] Menü logo açıklaması Depo ve Lojistik Yönetim Sistemi olarak düzeltildi.

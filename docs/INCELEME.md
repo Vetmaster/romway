@@ -272,3 +272,7 @@ Mevcut sayfa URL hash dashboard/personnel/location ile tutulur. Yenilemede me ot
 ## 11 Ekim — mobil arka plandan dönüş
 
 Visibility hidden→visible ve BFCache pageshow dönüşünde oturum yeniden doğrulanır, mevcut URL sayfası yeniden yüklenir. Checking/dashboard geçişi yapılmaz; rol veya oturum değişirse sunucu yanıtı uygulanır. Geçici parola arka planda temizlenir. Eşzamanlı dönüşler korunur. 390/1440 px tarayıcı testinde visibility simülasyonu ile lokasyon sayfası/URL ve liste yenilemesi doğrulandı; gerçek Android arka plan testi yapılmadı. Syntax/asset/diff ve mevcut personel akışları geçti. Supabase değişikliği yok.
+
+## 11 Ekim — menü açıklama metni
+
+Menü logosu altındaki DPB ifadesi Depo ve Lojistik Yönetim Sistemi olarak değiştirildi; RO karşılığı güncellendi. Syntax/web referans/asset/diff kontrolleri uygulanır; Supabase değişikliği yok.

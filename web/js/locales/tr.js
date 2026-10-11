@@ -1,5 +1,5 @@
 export default {
- drawer_brand_caption:'DPB Lojistik Yönetim Sistemi',
+ drawer_brand_caption:'Depo ve Lojistik Yönetim Sistemi',
  version_label:'Uygulama sürümü ',
  show_more_staff:'Daha fazla göster',
  search_staff:'Personel ara',
