@@ -52,3 +52,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Kullanıcının onaylı Solea logosu üst çubuğa alındı; özgün logo dosyaları korundu, mobil/masaüstü görünüm kontrolü geçti.
 - [x] Solea logosu Pages yayını ve canlı PNG eşleşmesi ile doğrulandı; PR #9 taslak.
+
+- [x] Mobil personel paneli genişledi, düzenleme sağda kaldı; aktif yeşil/pasif kırmızı rozet ve farklı telefon genişlikleri kontrol edildi.
