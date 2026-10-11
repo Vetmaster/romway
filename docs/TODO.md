@@ -79,3 +79,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Logo açıklaması iki sabit, ortalanmış TR/RO satıra bölündü; görünüm ve sürüm kontrolü geçti.
 - [x] İki satırlı banner açıklaması Pages üzerinde doğrulandı; PR #18 taslak.
+
+- [x] Ana sayfa düğmesi kaldırıldı, dil banner sağına taşındı, çıkış tek satır sağa yaslandı; mobil/masaüstü kontrol geçti.

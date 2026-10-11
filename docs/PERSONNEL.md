@@ -54,3 +54,7 @@ Mobil personel ekranında dış yatay boşluklar 12 px, panel iç boşluğu 14 p
 ## SASA-F banner/menü yerleşimi ve düğme düzeltmesi
 
 Banner üstte tam genişliktedir; altında ayrı gezinme çubuğu bulunur. 821 px ve üstünde sol menü sürekli açık, daha dar ekranlarda modal çekmece olur. Ekran boyutu değişince menü modu yeniden kurulur. Mobil düzenle düğmesi önceki sürümde ikinci bilgi satırına yerleşiyordu; artık ad/sicil ve detayların tamamını kapsayan sağ sütunda ortalanır. Uzun isim/lokasyon metni sol alanda sarılır, düğme ayrı alt satıra inmez.
+
+## Banner kontrolleri
+
+Üst çubuktaki Ana sayfa düğmesi kaldırıldı; dashboard’a sol menüdeki Genel bakış ile dönülür. Dil seçimi banner sağında Test ortamı altında, çıkış düğmesi gezinme çubuğunda sağa yaslı ve tek satırdır.
