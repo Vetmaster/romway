@@ -1,4 +1,6 @@
 export default {
+ create_staff:'Personeli kaydet',cancel_staff:'Vazgeç',
+
  personnel_title:"Personel yönetimi",
  personnel_scope:"Personel ekleyin, rol ve lokasyonlarını düzenleyin. Pasifleştirilen hesapların oturumları kapatılır.",
  display_name:"Ad soyad",
