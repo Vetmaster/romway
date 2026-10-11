@@ -42,3 +42,4 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - [x] Kullanıcı isteğiyle liste önce açılır; üstte tek Personel ekle düğmesi, kapalı form, kaydet/vazgeç ve listedeki düzenleme akışı. Mobil/masaüstü yerel kontroller geçti.
 - [x] Liste/form düzeni Pages'te yayınlandı; build ve gerçek yayın dosyalarının kaynakla eşleşmesi doğrulandı. PR #5 taslak, birleştirilmedi.
 - [x] Personel yönetiminde karşılama/tanıtım gizlendi; ana sayfa/çıkış üst çubukta, hatalar görünür yönetim panelinde. Kompakt satır listesi ve mobil/masaüstü kontroller geçti.
+- [x] Kompakt yönetim görünümü Pages'te yayınlandı; build ve gerçek HTML/CSS/JS/dil dosyaları doğrulandı. PR #6 taslak, birleştirilmedi.
