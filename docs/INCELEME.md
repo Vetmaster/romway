@@ -308,3 +308,7 @@ Pages v2026.10.11.24 doğrulandı: kaynak 41bd7e1, gh-pages 7bcd078f7750e5c29b39
 ## 11 Ekim — banner logosu boyutu
 
 Üst banner logosu önceki ölçülerin %75’ine indirildi (220→165 px, küçük mobil 180→135 px) ve açıklamasıyla sola hizalandı. Menü logosu korunur. 390/1440 px statik tarayıcı görünümü/yatay taşma kontrolü geçti; mobil görsel incelendi. Syntax/asset/diff kontrolleri başarılı.
+
+## 11 Ekim — logo açıklaması ortalama
+
+Banner açıklaması logo ile aynı genişlikte merkezlendi. Logo sola yaslı kalır. Syntax/web referans/asset/diff kontrolleri uygulanır.
