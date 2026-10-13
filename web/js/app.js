@@ -1,8 +1,9 @@
-import {createPersonnel} from './personnel.js?v=6372c281ccf4';
+import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
+import {createPersonnel} from './personnel.js?v=685714ada27b';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=0e33ca91596f';
-import ro from './locales/ro.js?v=1d4b9cbc8fdd';
+import tr from './locales/tr.js?v=0de132dc045f';
+import ro from './locales/ro.js?v=791a10cbac63';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -10,11 +11,28 @@ let api;
 try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
 let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false, inventoryExpanded=false, shipmentExpanded=false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
+let previewRole='',previewLocation='',previewLocations=[];
+const effectiveProfile=()=>profile&&previewRole?{...profile,role:previewRole}:profile;
+const personnelApi={call:async(action,payload)=>{
+ if(!previewRole)return api.call(action,payload);
+ assertPreviewRead(previewRole,action);
+ if(profile?.role!=='super_admin'||previewRole!=='admin')throw new Error('permission_denied');
+ const result=await api.call(action,payload);
+ return previewPersonnel(result,previewLocation);
+}};
 let personnel;
 const desktopMenu=window.matchMedia('(min-width:821px)');
 function render() {
   if(view!=='welcome') workspace=false;
-  personnel?.update(view==='welcome'?profile:null);
+  if(view!=='welcome'||profile?.role!=='super_admin'){previewRole='';previewLocation='';previewLocations=[];$('preview-location').replaceChildren();}
+  const shownProfile=effectiveProfile();
+  personnel?.update(view==='welcome'?shownProfile:null);
+  $('role-preview').hidden=view!=='welcome'||profile?.role!=='super_admin';
+  $('preview-role').value=previewRole;
+  $('preview-location-label').hidden=previewRole!=='admin';
+  $('preview-location').hidden=previewRole!=='admin';
+  $('preview-note').hidden=!previewRole;
+  $('preview-end').hidden=!previewRole;
   document.documentElement.lang = language; $('language').value = language;
   $('menu-toggle').setAttribute('aria-label',text('menu_label'));
   $('drawer-title').setAttribute('aria-label',text('menu_label'));
@@ -29,7 +47,7 @@ function render() {
   $('pending-section').hidden=!signedIn||!['stock','shipment','shipment-start'].includes(workspace);
   if(['stock','shipment','shipment-start'].includes(workspace))$('pending-heading').textContent=text(pageLabels[workspace]);
   $('bottom-tabs').hidden=!signedIn;
-  $('tab-personnel').hidden=!['admin','super_admin'].includes(profile?.role);
+  $('tab-personnel').hidden=!['admin','super_admin'].includes(shownProfile?.role);
   for(const tab of ['dashboard','personnel','stock','shipment'])$('tab-'+tab).setAttribute('aria-current',(tab==='dashboard'?!workspace:tab==='stock'?['location','location-profile','stock'].includes(workspace):tab==='personnel'?['personnel','staff-profile'].includes(workspace):['shipment','shipment-start'].includes(workspace))?'page':'false');
   $('menu-toggle').hidden=!signedIn||desktopMenu.matches;
   if(signedIn&&desktopMenu.matches&&!$('navigation-drawer').open) $('navigation-drawer').show();
@@ -39,18 +57,18 @@ function render() {
   $('nav-shipment').setAttribute('aria-expanded',String(shipmentExpanded));
   $('nav-inventory-submenu').hidden=!inventoryExpanded;
   $('nav-inventory').setAttribute('aria-expanded',String(inventoryExpanded));
-  $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(profile?.role);
+  $('nav-personnel').hidden=!signedIn||!['super_admin','admin'].includes(shownProfile?.role);
   if($('nav-personnel').hidden)submenuExpanded=false;
   $('nav-personnel-submenu').hidden=$('nav-personnel').hidden||!submenuExpanded;
   $('nav-personnel').setAttribute('aria-expanded',String(submenuExpanded));
-  $('nav-add-location').hidden=!signedIn||profile?.role!=='super_admin';
+  $('nav-add-location').hidden=!signedIn||shownProfile?.role!=='super_admin';
   $('nav-home').setAttribute('aria-current',workspace?'false':'page');
   $('nav-personnel').setAttribute('aria-current',workspace?'page':'false');
   $('nav-add-personnel').setAttribute('aria-current',workspace==='personnel'?'page':'false');
   $('nav-add-location').setAttribute('aria-current',workspace==='location'?'page':'false');
   $('dashboard-greeting').textContent=profile?`${text('welcome_title')}, ${profile.display_name}`:'';
   $('drawer-name').textContent=profile?.display_name??'';
-  $('drawer-role').textContent=profile?text(profile.role):'';
+  $('drawer-role').textContent=profile?text(effectiveProfile().role):'';
   document.querySelector('main').classList.toggle('workspace',signedIn);
   const logoutHost=view==='change'?document.querySelector('.header-actions'):$('drawer-profile');
   if($('logout').parentElement!==logoutHost)logoutHost.append($('logout'));
@@ -58,10 +76,12 @@ function render() {
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
-  if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(profile.role); }
+  if (profile) { $('staff-number').textContent = profile.employee_number; $('staff-role').textContent = text(effectiveProfile().role); }
   else { $('staff-number').textContent = ''; $('staff-role').textContent = ''; }
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
   document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
+  for(const id of ['preview-role','preview-location','preview-end'])$(id).disabled=busy;
+  if(previewRole){document.querySelectorAll('#personnel-form input,#personnel-form select,#personnel-form button,#location-form input,#location-form button,#personnel-new,#location-toggle,#personnel-list button').forEach(el=>el.disabled=true);}
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -79,10 +99,10 @@ function rememberPage(page){history.replaceState(null,'','#'+page);}
 async function restorePage(){
   if(view!=='welcome'||busy)return;
   const [page,id]=location.hash.slice(1).split('/');
-  if(page==='personnel'&&['admin','super_admin'].includes(profile?.role))await personnel.open('personnel');
-  else if(page==='location'&&profile?.role==='super_admin')await personnel.open('location');
-  else if(page==='staff-profile'&&['admin','super_admin'].includes(profile?.role))await personnel.open(page,id);
-  else if(page==='location-profile'&&profile?.role==='super_admin')await personnel.open(page,id);
+  if(page==='personnel'&&['admin','super_admin'].includes(effectiveProfile()?.role))await personnel.open('personnel');
+  else if(page==='location'&&effectiveProfile()?.role==='super_admin')await personnel.open('location');
+  else if(page==='staff-profile'&&['admin','super_admin'].includes(effectiveProfile()?.role))await personnel.open(page,id);
+  else if(page==='location-profile'&&effectiveProfile()?.role==='super_admin')await personnel.open(page,id);
   else if(['stock','shipment','shipment-start'].includes(page))showPending(page);
   else showDashboard();
 }
@@ -164,8 +184,23 @@ $('tab-dashboard').addEventListener('click',showDashboard);
 $('tab-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
 $('tab-stock').addEventListener('click',()=>showPending('stock'));
 $('tab-shipment').addEventListener('click',()=>showPending('shipment'));
-personnel=createPersonnel({api,text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+personnel=createPersonnel({api:personnelApi,isReadonly:()=>Boolean(previewRole),text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 
+async function changePreview(){
+ if(busy||profile?.role!=='super_admin')return;
+ previewRole=$('preview-role').value;previewLocation=$('preview-location').value;
+ showDashboard();
+}
+$('preview-role').addEventListener('change',async()=>{
+ if(profile?.role!=='super_admin'||busy)return;
+ const selected=$('preview-role').value;
+ if(selected==='admin'&&!previewLocations.length){
+  await perform(async()=>{const data=await api.call('personnel-list');previewLocations=data.locations;$('preview-location').replaceChildren(...previewLocations.map(l=>{const o=document.createElement('option');o.value=l.id;o.textContent=l.name;return o;}));});
+ }
+ $('preview-role').value=selected;await changePreview();
+});
+$('preview-location').addEventListener('change',changePreview);
+$('preview-end').addEventListener('click',()=>{$('preview-role').value='';changePreview();});
 let resumePending=false,resuming=false;
 async function resumeCurrentPage(){
   if(resuming||busy||view!=='welcome')return;

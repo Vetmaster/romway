@@ -337,3 +337,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 
 - [x] Nakliye personelinin lokasyonu yalnız bağlı depo/idari kapsam bilgisidir; sevkiyat ve buna bağlı teslim alma dışında operasyon yetkisi yoktur. Planın eski kullanım yetkisi kaldırıldı.
 - [ ] Sevkiyat API geliştirmesinde tüm lokasyonlarda nakliye izni ve diğer operasyonların doğrudan API ile reddi test edilecek.
+
+- Süper admin için salt okunur rol önizlemesi eklendi: admin için depo seçimi ve düşük rol listesi filtresi, satın alma/nakliye için menü görünümü. Gerçek oturum ve sunucu yetkileri değişmez; önizleme bir yetki testi değildir. Yazma API çağrıları önizleme sırasında engellenir; seçim tarayıcı deposunda tutulmaz.

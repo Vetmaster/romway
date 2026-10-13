@@ -1,4 +1,9 @@
 export default {
+preview_title:'Rol görünümünü önizle',
+preview_normal:'Kendi görünümüm',
+preview_readonly:'Salt okunur rol önizlemesi. Gerçek kullanıcı oturumu değişmez; kayıt işlemleri kapalıdır.',
+preview_end:'Önizlemeyi kapat',
+
  start_shipment:'Sevkiyat başlat',
  location_list:'Lokasyon listesi',
  stock_list:'Stok listesi',
