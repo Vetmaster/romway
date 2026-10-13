@@ -1,4 +1,9 @@
 export default {
+preview_title:'Previzualizează rolul',
+preview_normal:'Vizualizarea mea',
+preview_readonly:'Previzualizare doar pentru citire. Sesiunea reală nu se schimbă; modificările sunt blocate.',
+preview_end:'Închide previzualizarea',
+
  start_shipment:'Inițiază expedierea',
  location_list:'Lista locațiilor',
  stock_list:'Lista stocurilor',

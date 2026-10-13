@@ -1,5 +1,5 @@
 // No credentials or personnel data are persisted in browser storage.
-export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
+export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=()=>false}) {
   const $=id=>document.getElementById(id);
   let role=null,data=null,editing=null,visibleCount=10,recordType=null,recordId=null;
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
@@ -39,7 +39,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
         $('personnel-name').value=s.display_name;$('personnel-role').value=s.role;locations(s.location_ids);
         $('personnel-active').checked=s.active;$('personnel-active-label').hidden=false;$('personnel-save').dataset.i18n='save_staff';$('personnel-save').textContent=text('save_staff');$('personnel-new').focus();
       });
-      details.append(roleLabel,node('span',names.join(', ')||text('no_locations')),status);row.append(identity,details,button);return row;
+      details.append(roleLabel,node('span',names.join(', ')||text('no_locations')),status);row.append(identity,details,...(isReadonly()?[]:[button]));return row;
     }));
     $('personnel-more').hidden=filtered.length<=visibleCount;
     if(!filtered.length)$('personnel-list').append(node('li',text('no_staff')));
@@ -77,7 +77,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();$('personnel-new').focus();});
   $('credential-close').addEventListener('click',clearSecret);
   $('personnel-form').addEventListener('submit',e=>{
-    e.preventDefault();clearSecret();
+    e.preventDefault();if(isReadonly())return;clearSecret();
     const payload={display_name:$('personnel-name').value.trim(),role:$('personnel-role').value,
       location_ids:[...$('personnel-locations').querySelectorAll('input:checked')].map(i=>i.value)};
     const target=editing;
@@ -90,7 +90,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     });
   });
   $('location-form').addEventListener('submit',e=>{
-    e.preventDefault();const payload={name:$('location-name').value.trim()};
+    e.preventDefault();if(isReadonly())return;const payload={name:$('location-name').value.trim()};
     run(async()=>{clearSecret();await api.call('location-create',payload);closeLocation();await load();});
   });
   return {
