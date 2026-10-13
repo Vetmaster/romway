@@ -66,5 +66,5 @@ export default {
  checking:'Oturum kontrol ediliyor…',busy:'İşlem sürüyor…',not_configured:'Giriş bağlantısı henüz kurulmadı. Şu an ekranı inceleyebilirsiniz; gerçek giriş kullanıma hazır değildir.',changed:'Şifreniz değiştirildi. Yeni şifrenizle yeniden giriş yapın.',
  invalid_credentials:'Sicil numarası veya şifre hatalı.',session_expired:'Oturum sona erdi. Yeniden giriş yapın.',rate_limited:'Çok fazla deneme. Daha sonra yeniden deneyin.',password_rules:'Şifre 12–128 karakter olmalı.',password_unchanged:'Yeni şifre mevcut şifrenizden farklı olmalı.',password_mismatch:'Yeni şifreler eşleşmiyor.',service_unavailable:'Bağlantı kurulamadı. Tekrar deneyin.',recovery_required:'İşlem tamamlanamadı. Hesabınız kontrol edilene kadar giriş kapalı; yöneticinizle iletişime geçin.',invalid_request:'İstek tamamlanamadı.',origin_denied:'Bu adresten girişe izin verilmiyor.',
  session_unavailable:'Tarayıcı güvenli oturumu sürdüremedi. Güncel tarayıcı kullanın ve çerez izinlerini kontrol edin.',
- super_admin:'Süper yönetici',admin:'Yönetici',purchasing:'Satın alma',receiver:'Teslim alma',
+ super_admin:'Süper yönetici',admin:'Yönetici',purchasing:'Satın alma',receiver:'Nakliye personeli',
 };

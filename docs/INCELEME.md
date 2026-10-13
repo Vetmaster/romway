@@ -330,3 +330,10 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Alt sekmeler yalnız 820 px ve altındaki mobil görünümde gösterilir; masaüstünde sekmeler ve ayrılan alt boşluk kaldırıldı.
 
 - Sevkiyat yönetimine başlangıçta kapalı alt menü ve TR/RO Sevkiyat başlat hazırlık sayfası eklendi; hash ile yenileme korunur. Stok seçimi/sunucuda sevkiyat gönderme henüz uygulanmadı.
+
+- [x] Receiver rolünün TR/RO adı Nakliye personeli / Personal de transport olarak güncellendi; teknik kimlik korundu.
+- [x] Tüm lokasyonlarda teslim alma/nakliye kararı plana ve AGENTS.md içine işlendi; diğer işlemlerin kapsamı korunur.
+- [ ] Stok/sevkiyat sunucu işlemleri geliştirilirken lokasyonlar arası nakliye erişimi, diğer işlem reddi ve fiyat gizliliği test edilecek. Mevcut durumda gerçek sevkiyat altyapısı yoktur.
+
+- [x] Nakliye personelinin lokasyonu yalnız bağlı depo/idari kapsam bilgisidir; sevkiyat ve buna bağlı teslim alma dışında operasyon yetkisi yoktur. Planın eski kullanım yetkisi kaldırıldı.
+- [ ] Sevkiyat API geliştirmesinde tüm lokasyonlarda nakliye izni ve diğer operasyonların doğrudan API ile reddi test edilecek.
