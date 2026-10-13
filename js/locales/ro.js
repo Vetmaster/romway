@@ -66,5 +66,5 @@ export default {
  checking:'Se verifică sesiunea…',busy:'Se procesează…',not_configured:'Conexiunea pentru autentificare nu este încă configurată. Puteți examina ecranul; autentificarea reală nu este încă disponibilă.',changed:'Parola a fost schimbată. Autentificați-vă din nou cu parola nouă.',
  invalid_credentials:'Numărul de angajat sau parola este incorectă.',session_expired:'Sesiunea a expirat. Autentificați-vă din nou.',rate_limited:'Prea multe încercări. Încercați din nou mai târziu.',password_rules:'Parola trebuie să aibă 12–128 de caractere.',password_unchanged:'Parola nouă trebuie să fie diferită de parola actuală.',password_mismatch:'Parolele noi nu coincid.',service_unavailable:'Conexiunea nu a putut fi stabilită. Încercați din nou.',recovery_required:'Operațiunea nu a fost finalizată. Accesul este blocat până la verificarea contului; contactați administratorul.',invalid_request:'Cererea nu a putut fi finalizată.',origin_denied:'Autentificarea nu este permisă de la această adresă.',
  session_unavailable:'Browserul nu a putut păstra sesiunea securizată. Folosiți un browser actualizat și verificați permisiunile cookie.',
- super_admin:'Super administrator',admin:'Administrator',purchasing:'Achiziții',receiver:'Recepție',
+ super_admin:'Super administrator',admin:'Administrator',purchasing:'Achiziții',receiver:'Personal de transport',
 };
