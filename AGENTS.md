@@ -26,7 +26,7 @@
 - Şifre, token ve service_role anahtarını kaynak kod, statik çıktı, tarayıcı yapılandırması veya günlüklerde tutma. Kullanıcıya elle token kopyalama akışı sunma.
 - Personel yalnız sicil/şifre görür; sunucu sicili Supabase Auth'ın posta kutusu olmayan iç e-posta kimliğine eşler. Açık kayıt ve e-posta kurtarma kullanılmaz.
 - Admin hesabı açarken geçici şifre güvenli rastgele üretilir. İlk değişim zorunluluğu, hesap aktifliği ve oturum iptali sunucuda uygulanır; yalnız arayüz engeli yeterli değildir.
-- Her API/RPC/RLS yolunda rol, lokasyon, hesap durumu ve oturum geçerliliğini doğrula. Fiyatlar receiver'a API, QR, rapor veya önbellekle sızmamalı.
+- Her API/RPC/RLS yolunda işlem bazında rol/lokasyon, hesap durumu ve oturum geçerliliğini doğrula. 13 Ekim kararı: receiver = Nakliye personeli; teslim alma ve nakliye/transfer tüm lokasyonlarda yapılabilir. Nakliye personelinin lokasyonu yalnız bağlı depo/idari kapsam bilgisidir. Sevkiyat/transfer ve buna bağlı teslim alma dışında işlem yetkisi yoktur. Ürün ekleme/silme, satın alma, stok düzeltme, kullanım, personel/lokasyon yönetimi ve finans işlemleri sunucuda reddedilir. Diğer rollerin lokasyon sınırı korunur. Henüz olmayan stok/sevkiyat sunucu işlemleri geliştirilirken bu ayrım sunucuda test edilecek. Fiyatlar receiver'a API, QR, rapor veya önbellekle sızmamalı.
 - QR yalnız kimlik referansı taşır; erişim yetkisi veya gizli veri içermez. İlk sürüm çevrimiçidir.
 - Stok hareketleri atomik ve tekrar güvenli olmalı; yetki/finansal değerler tarayıcıdan otorite olarak alınmaz.
 

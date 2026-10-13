@@ -23,7 +23,7 @@ Next.js, Auth.js, Vercel ve Cloudflare Workers eklenmez. 10 Ekim 2026 kullanıc�
 - Giriş yalnız sicil numarası ve şifreyle; kullanıcıdan e-posta/telefon istenmez.
 - Sunucu her personel için posta kutusu olmayan benzersiz e-posta biçimli iç Auth kimliği üretir. Edge Function sicili bu kimliğe eşleyip Supabase Auth ile şifreyi doğrular. Sicil değişse bile personel/Auth kimliği korunur. İç kimlik secret değildir; kullanıcı akışında gösterilmez.
 - Admin hesap açarken otomatik, güvenli rastgele geçici şifre oluşturur; ilk girişte şifre değişimi zorunludur. Posta ile kurtarma yerine yetkili admin sıfırlaması kullanılır. Geçici şifreyle stok/finans erişimi sunucuda engellenir.
-- Roller: `super_admin`, `admin`, `purchasing`, `receiver`. Merkezi admin yönetim erişimi; operasyon personeli atanmış lokasyonlarda çalışır. Fiyat erişimi yalnız super_admin, admin ve purchasing rollerindedir.
+- Roller: `super_admin`, `admin`, `purchasing`, `receiver`. Receiver arayüzde Nakliye personeli (RO: Personal de transport) olarak adlandırılır; teknik rol kimliği korunur. Nakliye personeli tüm lokasyonlarda ürün teslim alabilir ve nakliye/transfer gerçekleştirebilir; bu iki işlem lokasyon ataması gerektirmez. Nakliye personelinin lokasyonu yalnız hangi deponun çalışanı olduğunu belirtir; sevkiyat erişimini sınırlandırmaz ve ek yetki vermez. Bu rol sevkiyat/transfer ve buna bağlı teslim alma dışında işlem yapamaz. Ürün ekleme/silme, satın alma, stok düzeltme, kullanım çıkışı, personel/lokasyon yönetimi ve finans işlemleri bu role kapalıdır. Diğer rollerin lokasyon sınırı korunur. Fiyat erişimi yalnız super_admin, admin ve purchasing rollerindedir.
 - Rol/lokasyon/kayıt/alan izinleri sunucuda ve veritabanında uygulanır; menü gizleme yetki kontrolü değildir. Receiver'a finansal veri hiçbir erişim yolunda verilmez.
 - Şifre/token/service_role anahtarı kaynak kod, tarayıcı yapılandırması ve günlüklerde tutulmaz. Kullanıcıdan token kopyalaması istenmez. Oturum uygulama tarafından yönetilir.
 - Açık kayıt kapalıdır. Giriş denemeleri sınırlandırılır. Kapalı hesap ve eski oturumlar reddedilir. Oturum süreleri ve ilk yönetici kurulum yöntemi test öncesi belgelenecek.
@@ -37,10 +37,10 @@ Next.js, Auth.js, Vercel ve Cloudflare Workers eklenmez. 10 Ekim 2026 kullanıc�
 
 ## Transfer, teslim ve kullanım
 1. İlk satın alan depo alış fiyatını ve alım partisini kaydeder.
-2. Purchasing yetkili kaynak lokasyondan admin onayı olmadan sevkiyat gönderir; kişi/zaman kayıtlıdır.
+2. Purchasing atanmış kaynak lokasyondan, nakliye personeli ise tüm kaynak lokasyonlardan admin onayı olmadan nakliye/transfer yapabilir; kişi, kaynak/hedef ve zaman kayıtlıdır.
 3. Malzeme kaynak depo → yolda → hedef depo şeklinde izlenir. Depolar arası hareket satış değildir; transferdir.
-4. Hedef lokasyondaki yetkili personel QR okuyup miktarı doğrulayarak teslim alır. Sağlam kabul kullanılabilir stoğa girer; hasarlı miktar ayrı tutulur; eksik miktar teslim edilmiş sayılmaz. Uyuşmazlık çözülmeden sorunsuz teslim olarak kapatılmaz.
-5. Departmana teslim ve araç/makinede fiilî kullanım ayrı hareketler olarak izlenir. Miktar, teslim alan/kullanan, departman, araç/makine, işlem yapan ve zaman kaydedilir. Receiver atanmış lokasyonda admin onayı beklemez.
+4. Nakliye personeli lokasyon atamasından bağımsız olarak her hedef lokasyonda QR okuyup miktarı doğrulayarak teslim alır. Sağlam kabul kullanılabilir stoğa girer; hasarlı miktar ayrı tutulur; eksik miktar teslim edilmiş sayılmaz. Uyuşmazlık çözülmeden sorunsuz teslim olarak kapatılmaz.
+5. Departmana teslim ve araç/makinede fiilî kullanım ayrı hareketler olarak izlenir. Miktar, teslim alan/kullanan, departman, araç/makine, işlem yapan ve zaman kaydedilir. Nakliye personeli kullanım çıkışı yapamaz; yetkili diğer rol ayrıca tanımlanır.
 6. Kullanılmamış sağlam iade aynı parti/tekil kimlik ve maliyetle kullanılabilir stoğa döner. Kullanılmış/arızalı parça ayrı durumdadır; admin kararı olmadan kullanılabilir yapılmaz. İade önceki hareketle ilişkilidir.
 7. Tamamlanmış yanlış kayıt/stok farkı düzeltmesi yalnız admin/super_admin tarafından gerekçeyle yapılır; eski kayıt, kişi ve zaman korunur.
 
@@ -90,3 +90,6 @@ Kullanıcı PR #4 kapsamındaki personel şeması/fonksiyonu yalnız ayrı Romwa
 ### 11 Ekim — ana ekran kararı
 
 Başarılı girişten sonra SASA-F yaklaşımına uygun dashboard açılır. Personel yönetimi hem dashboard kartından hem soldaki çekmece menüden erişilir; mevcut rol/lokasyon yetkileri korunur. Stok ve sevkiyat henüz tamamlanmış sayılmaz; dashboard üzerinde Yakında olarak belirtilir.
+
+## 13 Ekim 2026 yetki kararı ve uygulama durumu
+Nakliye personelinin tüm lokasyonlarda teslim alma/nakliye yetkisi kesinleşmiştir. Bu karar henüz mevcut olmayan stok/sevkiyat sunucu işlemlerinde uygulanacak; personel yönetiminin lokasyon kapsamı genişletilmez. Nakliye personelinin bağlı lokasyonu idari personel yönetimi kapsamını belirtir; sevkiyat dışında operasyon yetkisi vermez. Mevcut veri ve roller taşınmaz veya silinmez.
