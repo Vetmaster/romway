@@ -143,3 +143,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Mobil ana ekran ikonu: onaylı logodan kare PNG (192/512), iOS touch icon (180) ve relative /romway/ uyumlu manifest eklendi. Service worker/offline destek eklenmedi. Gerçek cihazda yeniden ekleme kontrolü kullanıcı doğrulaması bekliyor.
 
 - Tema yüzeyleri ayrıştırıldı: gri/mavi sayfa zemini, hafif tonlu paneller, mavi/olive/kırmızı bölüm kartları, renkli açılır kartlar ve dönüşümlü liste satırları. Mevcut yerleşim, mobil düğme hizası ve yetkiler korunur.
+
+- Kullanıcı düzeltmesi: gri-mavi arka plan korundu; bölüm/panel/profil ve açılır kartlar beyaz yapıldı. Renkli üst şeritler kaldırıldı, ikon zeminleri nötrleştirildi.

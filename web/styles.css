@@ -465,21 +465,18 @@ html[lang=ro] .app-banner .banner-subtitle {font-size:10px;}
 @media(min-width:821px){.app-shell .drawer-heading {display:none;}}
 
 /* Surface hierarchy: page, content panels, controls and compact rows. */
-:root {--line:#bccdd7;--muted:#485f6d;--page:#e4ecf1;--surface:#f7f9fb;}
+:root {--line:#bccdd7;--muted:#485f6d;--page:#e4ecf1;--surface:#ffffff;}
 body {background:var(--page);}
 .app-banner {border-bottom:3px solid var(--blue);}
 .topbar {background:#dce8ef;border-bottom-color:#b5cbd8;}
 .panel {background:var(--surface);border-color:#bdced9;box-shadow:0 6px 22px #1834460a;}
 .panel>h2 {color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:12px;}
-.dashboard-card {background:#edf4f8;border-color:#bbcedb;border-top:4px solid var(--blue);box-shadow:0 3px 10px #18344608;}
-.dashboard-card:nth-child(2) {background:#f1f3e8;border-top-color:var(--olive);}
-.dashboard-card:nth-child(3) {background:#f7eeed;border-top-color:var(--red);}
-.dashboard-card:nth-child(2) .card-icon {background:#e3e8ce;color:#525900;}
-.dashboard-card:nth-child(3) .card-icon {background:#f1dcda;color:#a51c26;}
-button.dashboard-card:hover {background:#e0edf5;border-color:var(--blue);}
-.dashboard-profile {background:#eaf0f4;border-color:#bdced9;}
-.personnel-add-card {background:#e7eff5;border-color:#b9cedc;}
-.personnel-card-toggle[aria-expanded=true] {background:#dbe9f2;}
+ .dashboard-card {background:white;border:1px solid #bdced9;box-shadow:0 3px 10px #18344608;}
+.dashboard-card .card-icon {background:#eef2f5;color:var(--ink);}
+button.dashboard-card:hover {background:#f7f9fb;border-color:#8fa8b9;}
+.dashboard-profile {background:white;border-color:#bdced9;}
+.personnel-add-card {background:white;border-color:#bdced9;}
+.personnel-card-toggle[aria-expanded=true] {background:#f3f6f8;}
 .personnel-add-card form {background:var(--surface);}
 .staff-list li {padding-left:8px;padding-right:8px;}
 .staff-list li:nth-child(odd) {background:#eaf0f5;}
