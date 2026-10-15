@@ -1,0 +1,25 @@
+{
+  "id": "./",
+  "name": "Solea — Depo ve Lojistik Yönetim Sistemi",
+  "short_name": "Solea",
+  "lang": "tr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3238",
+  "icons": [
+    {
+      "src": "assets/icon-192-v1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512-v1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

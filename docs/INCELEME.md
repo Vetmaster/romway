@@ -337,3 +337,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 
 - [x] Nakliye personelinin lokasyonu yalnız bağlı depo/idari kapsam bilgisidir; sevkiyat ve buna bağlı teslim alma dışında operasyon yetkisi yoktur. Planın eski kullanım yetkisi kaldırıldı.
 - [ ] Sevkiyat API geliştirmesinde tüm lokasyonlarda nakliye izni ve diğer operasyonların doğrudan API ile reddi test edilecek.
+
+- Mobil ana ekran ikonu: onaylı logodan kare PNG (192/512), iOS touch icon (180) ve relative /romway/ uyumlu manifest eklendi. Service worker/offline destek eklenmedi. Gerçek cihazda yeniden ekleme kontrolü kullanıcı doğrulaması bekliyor.
