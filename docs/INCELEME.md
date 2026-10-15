@@ -343,3 +343,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Tema yüzeyleri ayrıştırıldı: gri/mavi sayfa zemini, hafif tonlu paneller, mavi/olive/kırmızı bölüm kartları, renkli açılır kartlar ve dönüşümlü liste satırları. Mevcut yerleşim, mobil düğme hizası ve yetkiler korunur.
 
 - Kullanıcı düzeltmesi: gri-mavi arka plan korundu; bölüm/panel/profil ve açılır kartlar beyaz yapıldı. Renkli üst şeritler kaldırıldı, ikon zeminleri nötrleştirildi.
+
+- Beyaz dashboard kartlarının mavi/olive/kırmızı üst şeritleri kullanıcı isteğiyle geri getirildi; gri zemin ve beyaz kartlar korunur.

@@ -471,7 +471,9 @@ body {background:var(--page);}
 .topbar {background:#dce8ef;border-bottom-color:#b5cbd8;}
 .panel {background:var(--surface);border-color:#bdced9;box-shadow:0 6px 22px #1834460a;}
 .panel>h2 {color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:12px;}
- .dashboard-card {background:white;border:1px solid #bdced9;box-shadow:0 3px 10px #18344608;}
+.dashboard-card {background:white;border:1px solid #bdced9;border-top:4px solid var(--blue);box-shadow:0 3px 10px #18344608;}
+.dashboard-card:nth-child(2) {border-top-color:var(--olive);}
+.dashboard-card:nth-child(3) {border-top-color:var(--red);}
 .dashboard-card .card-icon {background:#eef2f5;color:var(--ink);}
 button.dashboard-card:hover {background:#f7f9fb;border-color:#8fa8b9;}
 .dashboard-profile {background:white;border-color:#bdced9;}
