@@ -171,3 +171,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Personel formu/liste/profilindeki lokasyon etiketi Bağlı bulunduğu lokasyon (RO: Locația de apartenență) olarak güncellendi; mevcut çoklu lokasyon kayıtları ve sunucu yetkileri değiştirilmedi.
 
 - Bağlı bulunduğu lokasyon profil bilgi satırlarında Durum alanının hemen altına alındı; düzenleme formunda lokasyon seçimi aktiflik alanının altında gösterilir.
+
+- Sıra düzeltmesi: bağlı lokasyon üstte, durum en altta; profil ve düzenleme formunda aynı sıra kullanılır.
