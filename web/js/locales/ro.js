@@ -1,4 +1,6 @@
 export default {
+ active_staff_only:'Afișează doar personalul activ',
+
 preview_title:'Previzualizează rolul',
 preview_normal:'Vizualizarea mea',
 preview_readonly:'Previzualizare doar pentru citire. Sesiunea reală nu se schimbă; modificările sunt blocate.',
