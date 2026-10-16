@@ -522,3 +522,13 @@ input,select {border-color:#8fa8b9;}
 .transport-activity h3:not(:first-child) {margin-top:24px;padding-top:16px;border-top:1px solid var(--line);}
 .transport-location-empty {font-weight:700;margin:0 0 8px;}
 .transport-history-empty {color:var(--muted);margin-bottom:0;}
+
+.role-preview {margin-bottom:20px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 16px;}
+.role-preview label {margin:0;}
+.role-preview select {width:100%;min-width:0;}
+.role-preview #preview-role {grid-column:1;grid-row:2;}
+.role-preview #preview-location-label {grid-column:2;grid-row:1;}
+.role-preview #preview-location {grid-column:2;grid-row:2;}
+.role-preview p {grid-column:1 / -1;margin:4px 0;font-size:13px;}
+.role-preview button {width:auto;justify-self:start;margin:0;grid-column:1 / -1;}
+@media(max-width:820px){.role-preview {grid-template-columns:minmax(0,1fr);}.role-preview #preview-location-label,.role-preview #preview-location {grid-column:1;grid-row:auto;}}
