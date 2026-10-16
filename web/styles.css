@@ -528,3 +528,7 @@ input,select {border-color:#8fa8b9;}
 
 .active-personnel-filter {display:flex;align-items:center;gap:8px;margin:12px 0 8px;cursor:pointer;}
 .active-personnel-filter input {accent-color:var(--blue);flex:0 0 auto;}
+
+/* Bring the sign-in card closer to the header and introductory text. */
+body:not(.app-shell) main {padding-top:16px;align-items:start;row-gap:16px;}
+body:not(.app-shell) .intro {padding-bottom:0;}

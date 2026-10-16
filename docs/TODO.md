@@ -204,3 +204,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Süper admin rol önizleme seçicisi sayfa başlığının sağında aynı satıra taşındı; aşağıdaki depo/açıklama/kapat paneli yalnız önizleme aktifken gösterilir.
 
 - Giriş/şifre ekranındaki dekoratif sarı çizgi ve yalnız ona ait stil kaldırıldı; giriş işlemleri değiştirilmedi.
+
+- Giriş kartı yukarı yaklaştırıldı: oturumsuz görünümde üst boşluk 16 px, dikey aralık 16 px ve intro alt boşluğu sıfır; giriş sonrası yerleşim korunur.
