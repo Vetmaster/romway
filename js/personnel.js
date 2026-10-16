@@ -1,6 +1,6 @@
 import {sortStaff} from './staff-sort.js?v=70f9d7797eed';
 // No credentials or personnel data are persisted in browser storage.
-export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
+export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=()=>false}) {
   const $=id=>document.getElementById(id);
   let role=null,data=null,editing=null,visibleCount=10,recordType=null,recordId=null,sortKey='active',sortDirection='descending';
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
@@ -22,6 +22,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function render() {
     $('personnel-new').setAttribute('aria-label',text('add_staff'));
     const visible=!!role;$('personnel-open').hidden=!visible;
+    $('personnel-new').disabled=isReadonly();$('location-toggle').disabled=isReadonly();
     if(!visible) {$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;return;}
     $('location-card').hidden=role!=='super_admin';
     $('location-toggle').setAttribute('aria-label',text('add_location'));
@@ -61,7 +62,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     if(!recordType?.endsWith('-profile'))return;
     const isStaff=recordType==='staff-profile',item=(isStaff?data.staff:data.locations).find(r=>r.id===recordId);
     $('transport-activity').hidden=!isStaff||item?.role!=='receiver';
-    $('record-edit').hidden=!isStaff||!item||Boolean(editing);
+    $('record-edit').hidden=!isStaff||!item||Boolean(editing)||isReadonly();
     $('record-heading').textContent=text(isStaff?'staff_profile':'location_profile');$('record-details').replaceChildren();$('record-related').replaceChildren();
     $('record-message').textContent=item?'':text('not_available');$('record-back').href=isStaff?'#personnel':'#location';
     $('record-related-heading').textContent=text(isStaff?'locations':'staff_list');
@@ -77,7 +78,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   }
 
   $('record-edit').addEventListener('click',()=>{
-    if(recordType!=='staff-profile'||!role)return;
+    if(recordType!=='staff-profile'||!role||isReadonly())return;
     const staff=data?.staff.find(s=>s.id===recordId);if(!staff)return;
     clearSecret();closeLocation();resetForm();editing=staff;
     $('record-edit-host').append($('personnel-new').closest('.personnel-add-card'));
@@ -95,7 +96,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   $('personnel-role').addEventListener('change',()=>{$('personnel-location-select').required=$('personnel-role').value!=='super_admin';});
   $('credential-close').addEventListener('click',clearSecret);
   $('personnel-form').addEventListener('submit',e=>{
-    e.preventDefault();clearSecret();
+    e.preventDefault();if(isReadonly())return;clearSecret();
     const payload={display_name:$('personnel-name').value.trim(),role:$('personnel-role').value,
       location_ids:$('personnel-location-select').value?[$('personnel-location-select').value]:[]};
     const target=editing;
@@ -108,7 +109,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     });
   });
   $('location-form').addEventListener('submit',e=>{
-    e.preventDefault();const payload={name:$('location-name').value.trim()};
+    e.preventDefault();if(isReadonly())return;const payload={name:$('location-name').value.trim()};
     run(async()=>{clearSecret();await api.call('location-create',payload);closeLocation();await load();});
   });
   return {

@@ -1,4 +1,9 @@
 export default {
+preview_title:'Rol görünümünü önizle',
+preview_normal:'Kendi görünümüm',
+preview_readonly:'Salt okunur rol önizlemesi. Gerçek kullanıcı oturumu değişmez; kayıt işlemleri kapalıdır.',
+preview_end:'Önizlemeyi kapat',
+
 transport_current_location:'Son bilinen konum',
 transport_location_unknown:'Konum henüz bilinmiyor',
 transport_location_source:'Sevkiyat ve teslim alma kayıtlarına göre güncellenir. Bağlı bulunduğu lokasyon, mevcut konumu göstermez.',
