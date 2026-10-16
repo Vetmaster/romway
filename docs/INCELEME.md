@@ -365,3 +365,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Personel listesindeki Düzenle düğmeleri/işlem sütunu kaldırıldı; düzenleme personel profilinden açılır ve aynı profil içinde kaydedilir/iptal edilir. Sunucu rol/lokasyon yetkileri korunur.
 
 - Chromium 390/1440 px sentetik testinde listede düğme olmaması, profilden düzenleme, aynı profilde kaydetme/vazgeçme, yenileme ve taşma kontrolleri geçti.
+
+- Personel formu/liste/profilindeki lokasyon etiketi Bağlı bulunduğu lokasyon (RO: Locația de apartenență) olarak güncellendi; mevcut çoklu lokasyon kayıtları ve sunucu yetkileri değiştirilmedi.
