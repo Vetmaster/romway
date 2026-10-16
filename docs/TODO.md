@@ -202,3 +202,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Personel tablosunun üstüne varsayılan kapalı Sadece aktif personeli göster kutusu eklendi. Filtre arama/sıralama/sayfalama ile birlikte çalışır; değişimde görünür kayıt sayısı 10’a döner ve oturum/rol değişiminde filtre sıfırlanır.
 
 - Süper admin rol önizleme seçicisi sayfa başlığının sağında aynı satıra taşındı; aşağıdaki depo/açıklama/kapat paneli yalnız önizleme aktifken gösterilir.
+
+- Giriş/şifre ekranındaki dekoratif sarı çizgi ve yalnız ona ait stil kaldırıldı; giriş işlemleri değiştirilmedi.
