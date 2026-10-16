@@ -52,3 +52,5 @@
 - 11 Ekim kullanıcı PR #22 created_at liste migration’ını yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulamayı ve ardından lokasyon kartı/arama/sıralama görünümünü yayınlamayı açıkça onayladı. Diğer projeler ve veri silme kapsam dışıdır.
 
 - 11 Ekim kullanıcı PR #47 kapsamında 202610110004 migration’ını ve romway-auth Edge güncellemesini yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulamayı ve ardından yalnız ad/otomatik kod lokasyon formunu yayınlamayı açıkça onayladı. Mevcut kayıtlar korunur; diğer projeler kapsam dışıdır.
+
+- 16 Ekim kararı: personel aynı anda en fazla bir bağlı lokasyona sahiptir; yeni kayıt/değişiklik UI, Edge ve RPC katmanında doğrulanır. Eski çoklu atamalar otomatik silinmez/seçilmez; yetkili kullanıcı tekini seçerek düzeltir. Nakliye operasyon kapsamı bu idari bilgiden bağımsızdır. 16 Ekim kullanıcı onayıyla 202610160005 ve romway-auth Edge güncellemesi yalnız romway-auth-test projesine uygulanabilir; diğer projeler ve kayıt silme kapsam dışıdır.
