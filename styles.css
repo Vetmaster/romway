@@ -115,13 +115,7 @@ h2 {
   max-width:130px;
   background:var(--olive);
 }
-.accent {
-  height:5px;
-  width:65px;
-  background:var(--yellow);
-  position:absolute;
-  bottom:0;
-}
+
 .panel {
   border:1px solid var(--line);
   border-radius:20px;
