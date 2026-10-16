@@ -1,4 +1,10 @@
 export default {
+transport_current_location:'Ultima locație cunoscută',
+transport_location_unknown:'Locația nu este încă cunoscută',
+transport_location_source:'Se actualizează pe baza expedierilor și recepțiilor. Locația de apartenență nu indică poziția actuală.',
+transport_history:'Istoricul deplasărilor',
+transport_history_pending:'Înregistrările expedierilor nu sunt încă conectate. După conectare vor fi afișate plecările, transporturile în curs și recepțiile.',
+
 choose_location:'Selectați locația',
 legacy_multiple_locations:'Această înregistrare are mai multe locații. Selectați o singură locație înainte de salvare.',
 

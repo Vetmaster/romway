@@ -60,6 +60,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function renderRecord(){
     if(!recordType?.endsWith('-profile'))return;
     const isStaff=recordType==='staff-profile',item=(isStaff?data.staff:data.locations).find(r=>r.id===recordId);
+    $('transport-activity').hidden=!isStaff||item?.role!=='receiver';
     $('record-edit').hidden=!isStaff||!item||Boolean(editing);
     $('record-heading').textContent=text(isStaff?'staff_profile':'location_profile');$('record-details').replaceChildren();$('record-related').replaceChildren();
     $('record-message').textContent=item?'':text('not_available');$('record-back').href=isStaff?'#personnel':'#location';
@@ -114,7 +115,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     open,
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
-      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();$('record-profile').hidden=true;$('record-details').replaceChildren();$('record-related').replaceChildren();recordType=null;recordId=null;}
+      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();$('record-profile').hidden=true;$('record-details').replaceChildren();$('record-related').replaceChildren();recordType=null;recordId=null;$('transport-activity').hidden=true;}
       render();
     },
     translate(){const selected=$('personnel-role').value;options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));$('personnel-role').value=selected;render();},
