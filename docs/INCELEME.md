@@ -392,3 +392,7 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - PR #57 rol önizlemesi güncel tablo, tek lokasyon ve profil içi düzenleme ile uyumlandı. Gerçek kullanıcı rolü değişmez; önizleme salt okunur UI simülasyonudur. Sunucu yetki testinin yerine geçmez. Seçim depolanmaz; yenileme/çıkışta sıfırlanır.
 
 - Rol önizlemesi tarayıcı doğrulaması tamamlandı: Chromium 390/1440 px yönetici depo değişimi, süper admin/yönetici kayıtlarının gizlenmesi, doğrudan profil reddi, yazma formu engeli, satın alma/nakliye menüleri, normal görünüme dönüş, yenileme/çıkış sıfırlaması, RO ve taşma kontrolleri geçti. Normal personel profil düzenleme ve tablo testleri ile 4 birim testi de geçti. Supabase dağıtımı yapılmadı; yalnız arayüz önizlemesi.
+
+- Personel tablosunda sicil, ad soyad, rol, bağlı lokasyon ve durum tüm ekranlarda ayrı sütunlarda gösterilir. Mobilde ad altındaki rol/lokasyon tekrarı kaldırıldı; tablo kendi içinde yatay kayar ve satır/sütun çizgileri belirgindir.
+
+- Chromium 390/1440 px beş sütunun görünürlüğü, ad altında tekrarlanmama, mobil tablo içi yatay kaydırma, sayfada taşma olmaması, sıralama/profil işlemleri ve rol önizleme kontrolleri geçti.
