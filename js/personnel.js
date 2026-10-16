@@ -37,7 +37,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
       title.className='profile-name';title.href='#staff-profile/'+encodeURIComponent(s.id);identity.className='staff-identity';identity.append(title);details.className='staff-details';
       const roleLabel=node('span',text(s.role)),status=node('span',text(s.active?'active':'inactive'));status.className='staff-status '+(s.active?'active':'inactive');
       const names=s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'').filter(Boolean);
-      const mobile=node('small',text(s.role)+' · '+(names.join(', ')||text('no_locations')));mobile.className='staff-mobile-details';identity.append(mobile);details.append(roleLabel);details.className='staff-extra-column';const assigned=node('td',names.join(', ')||text('no_locations'));assigned.className='staff-extra-column';const state=node('td');state.append(status);row.append(number,identity,details,assigned,state);return row;
+      details.append(roleLabel);details.className='staff-extra-column';const assigned=node('td',names.join(', ')||text('no_locations'));assigned.className='staff-extra-column';const state=node('td');state.append(status);row.append(number,identity,details,assigned,state);return row;
     }));
     $('personnel-more').hidden=filtered.length<=visibleCount;
     if(!filtered.length){const row=node('tr'),cell=node('td',text('no_staff'));cell.colSpan=5;row.append(cell);$('personnel-list').append(row);}
