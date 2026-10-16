@@ -371,3 +371,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Bağlı bulunduğu lokasyon profil bilgi satırlarında Durum alanının hemen altına alındı; düzenleme formunda lokasyon seçimi aktiflik alanının altında gösterilir.
 
 - Sıra düzeltmesi: bağlı lokasyon üstte, durum en altta; profil ve düzenleme formunda aynı sıra kullanılır.
+
+- Aktif rozeti stok kartının #43856a yeşiline uyarlandı; siyah yazıyla kontrast 4.80:1. Tek lokasyon PR #73 sunucu dağıtım onayı beklediğinden bu yayına dahil edilmedi.
