@@ -516,3 +516,9 @@ input,select {border-color:#8fa8b9;}
 
 .profile-location-values {list-style:none;padding:0;margin:0;}
 .profile-location-values li+li {margin-top:4px;}
+
+.transport-activity {margin:24px 0;padding:18px;border:1px solid var(--line);border-radius:10px;background:#f7f7f7;}
+.transport-activity h3 {font-size:16px;margin:0 0 10px;}
+.transport-activity h3:not(:first-child) {margin-top:24px;padding-top:16px;border-top:1px solid var(--line);}
+.transport-location-empty {font-weight:700;margin:0 0 8px;}
+.transport-history-empty {color:var(--muted);margin-bottom:0;}

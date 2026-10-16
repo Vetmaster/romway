@@ -1,4 +1,10 @@
 export default {
+transport_current_location:'Son bilinen konum',
+transport_location_unknown:'Konum henüz bilinmiyor',
+transport_location_source:'Sevkiyat ve teslim alma kayıtlarına göre güncellenir. Bağlı bulunduğu lokasyon, mevcut konumu göstermez.',
+transport_history:'Hareket geçmişi',
+transport_history_pending:'Sevkiyat kayıtları henüz bu bölüme bağlanmadı. Kayıtlar bağlandığında çıkış, yolda ve teslim alma hareketleri burada görüntülenecek.',
+
 choose_location:'Lokasyon seçin',
 legacy_multiple_locations:'Bu kayıtta birden fazla lokasyon var. Kaydetmek için bağlı bulunacağı tek lokasyonu seçin.',
 
