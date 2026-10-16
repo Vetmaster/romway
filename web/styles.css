@@ -508,3 +508,8 @@ input,select {border-color:#8fa8b9;}
  .staff-table td button {font-size:12px;padding:8px;}
  .staff-table .staff-status {white-space:nowrap;padding:2px 4px;}
 }
+
+#record-edit {width:auto;padding:10px 20px;}
+#record-edit-host .personnel-add-card {margin-top:16px;}
+#record-edit-host #personnel-form {border-top:0;}
+#record-edit-host #personnel-form-heading:focus {outline:none;}

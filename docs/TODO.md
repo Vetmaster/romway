@@ -163,3 +163,7 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Personel listesi erişilebilir tabloya dönüştürüldü; sicil/ad/rol/durum sütunları çift yönlü sıralanır. Varsayılan aktif ve yeniden eskiye korunur; sıralama aranan tüm sonuçlara, 10 kayıt sayfalamasından önce uygulanır. Mobilde rol/lokasyon ad altında gösterilir.
 
 - Personel tablo doğrulaması: iki sıralama birim testi ve izole Chromium 390/1440 px testinde başlık tıklama, doğal sicil sırası, durum yönü, 10/20 kayıt, arama, profil ve yatay taşma kontrolleri geçti. Test sentetik verilerle yapıldı.
+
+- Personel listesindeki Düzenle düğmeleri/işlem sütunu kaldırıldı; düzenleme personel profilinden açılır ve aynı profil içinde kaydedilir/iptal edilir. Sunucu rol/lokasyon yetkileri korunur.
+
+- Chromium 390/1440 px sentetik testinde listede düğme olmaması, profilden düzenleme, aynı profilde kaydetme/vazgeçme, yenileme ve taşma kontrolleri geçti.
