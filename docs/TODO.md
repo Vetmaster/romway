@@ -185,3 +185,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - 16 Ekim kullanıcı onayıyla 202610160005 yalnız romway-auth-test projesine uygulandı; romway-auth v6 ACTIVE. Staff/Auth/lokasyon/atama/istek/denetim verileri öncesi-sonrası karşılaştırılarak korundu. RPC anon/authenticated erişimi kapalı, service_role erişimi korundu. Eski çoklu bağlı 5 personel kaydı değiştirilmedi; düzenleme sırasında tek lokasyon seçilecek. Son aktif yeşil yazı stili bu sürümde korunur.
 
 - Aktif durum yazısı #15803d canlı yeşile ve 700 kalınlığa alındı; çerçeve/dolgu eklenmedi.
+
+- Aktif ve pasif aynı rozet biçimini kullanır; aktif açık yeşil dolgu/#15803d yazı, pasif mevcut kırmızı tonlarıyla gösterilir. Liste ve profil ortak CSS kullanır.
