@@ -206,3 +206,7 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Giriş/şifre ekranındaki dekoratif sarı çizgi ve yalnız ona ait stil kaldırıldı; giriş işlemleri değiştirilmedi.
 
 - Giriş kartı yukarı yaklaştırıldı: oturumsuz görünümde üst boşluk 16 px, dikey aralık 16 px ve intro alt boşluğu sıfır; giriş sonrası yerleşim korunur.
+
+- SASA-F yayındaki openStudentDialog/showModal örneği doğrulandı; Personel ekle başlık sağına taşındı, açılır kart yerine erişilebilir modal pencere açılır. Otomatik giriş odağı yok; kapat/Escape/vazgeç desteklenir. Profil düzenlemesi aynı profilde korunur.
+
+- Chromium 390/1440 px yeni personel modal testi geçti: başlık sağı hizası, açılır kartın yokluğu, modal/odak, kapat/Escape/backdrop/vazgeç, hata tekrar deneme ve tek seferlik şifre yanıtı. Mevcut profil düzenleme ve rol önizlemesi testleri de geçti; gerçek personel verisi kullanılmadı.

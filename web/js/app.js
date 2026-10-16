@@ -1,9 +1,9 @@
 import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
-import {createPersonnel} from './personnel.js?v=f39d557f4685';
+import {createPersonnel} from './personnel.js?v=a21941baf4d1';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=295fbfc9e93c';
-import ro from './locales/ro.js?v=526d7b732f1d';
+import tr from './locales/tr.js?v=235b0a892cd0';
+import ro from './locales/ro.js?v=6c5e6cda04ff';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -77,10 +77,10 @@ function render() {
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
-  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
+  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile'],['personnel-dialog-message',$('personnel-dialog').open]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
   for(const id of ['preview-role','preview-location','preview-end'])$(id).disabled=busy;
-  if(previewRole){document.querySelectorAll('#personnel-form input,#personnel-form select,#personnel-form button,#location-form input,#location-form button,#personnel-new,#location-toggle,#personnel-list button,#record-edit').forEach(el=>el.disabled=true);}
+  if(previewRole){document.querySelectorAll('#personnel-form input,#personnel-form select,#personnel-form button,#location-form input,#location-form button,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-list button,#record-edit').forEach(el=>el.disabled=true);}
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
@@ -183,7 +183,7 @@ $('tab-dashboard').addEventListener('click',showDashboard);
 $('tab-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
 $('tab-stock').addEventListener('click',()=>showPending('stock'));
 $('tab-shipment').addEventListener('click',()=>showPending('shipment'));
-personnel=createPersonnel({api:personnelApi,isReadonly:()=>Boolean(previewRole),text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+personnel=createPersonnel({api:personnelApi,isReadonly:()=>Boolean(previewRole),isBusy:()=>busy,text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 
 async function changePreview(){
  if(busy||profile?.role!=='super_admin')return;

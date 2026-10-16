@@ -532,3 +532,17 @@ input,select {border-color:#8fa8b9;}
 /* Bring the sign-in card closer to the header and introductory text. */
 body:not(.app-shell) main {padding-top:16px;align-items:start;row-gap:16px;}
 body:not(.app-shell) .intro {padding-bottom:0;}
+
+.staff-list-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 8px;}
+.staff-list-heading h3 {margin:0;}
+.staff-list-heading button {width:auto;margin:0;padding:10px 14px;white-space:nowrap;}
+.personnel-dialog {width:min(620px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow-y:auto;border:1px solid var(--line);border-radius:16px;padding:24px;background:white;color:var(--ink);box-shadow:0 18px 60px #18344633;}
+.personnel-dialog::backdrop {background:#18344680;}
+.personnel-dialog .dialog-close {position:absolute;right:12px;top:12px;width:40px;min-height:40px;margin:0;padding:0;font-size:26px;}
+.personnel-dialog #personnel-form {margin:0;}
+.personnel-dialog #personnel-form-heading {padding-right:44px;margin-top:0;}
+.personnel-dialog #personnel-form-heading:focus {outline:none;}
+.personnel-dialog select {width:100%;}
+.personnel-dialog #personnel-dialog-message:empty {display:none;}
+#record-edit-host .personnel-editor {border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:16px;}
+@media(max-width:420px){.staff-list-heading {gap:8px;}.staff-list-heading h3 {font-size:17px;}.staff-list-heading button {font-size:13px;padding:10px;}.personnel-dialog {padding:20px 16px;}}
