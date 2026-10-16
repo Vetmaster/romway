@@ -14,7 +14,7 @@ export default {
  version_label:'Versiunea aplicației ',
  show_more_staff:'Arată mai multe',
  search_staff:'Caută personal',
- staff_sort_note:'Activi înaintea celor inactivi; cele mai noi înregistrări primele în fiecare grup.',
+ staff_sort_note:'Apăsați antetul coloanei pentru sortare; apăsați din nou pentru inversare.',
  banner_line_one:'Depozite și Logistică',
  banner_line_two:'Sistem de Management',
  dashboard_title:'Prezentare generală',

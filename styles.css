@@ -486,3 +486,25 @@ button.dashboard-card:hover {background:#f7f9fb;border-color:#8fa8b9;}
 input,select {border-color:#8fa8b9;}
 .bottom-tabs {background:#edf3f7;border-top-color:#a9c1d0;box-shadow:0 -3px 12px #1834460a;}
 .bottom-tabs button[aria-current=page] {background:#d6e7f2;color:#064d77;}
+
+/* Sortable personnel table, with condensed supporting details on mobile. */
+.staff-table-wrap {overflow-x:auto;margin:12px 0 24px;}
+.staff-table {width:100%;border-collapse:collapse;text-align:left;font-size:14px;}
+.staff-table th {background:#e4e4e4;border-bottom:2px solid #b9c5ce;color:var(--ink);padding:8px;}
+.staff-table th button {display:flex;align-items:center;gap:6px;margin:0;padding:4px 0;width:auto;background:transparent;color:inherit;border:0;font:inherit;font-weight:700;text-align:left;min-height:36px;}
+.staff-table td {padding:6px 8px;border-bottom:1px solid var(--line);overflow-wrap:anywhere;}
+.staff-table tbody tr:nth-child(odd) {background:#f1f4f6;}
+.staff-table tbody tr:nth-child(even) {background:white;}
+.staff-table .staff-identity {display:table-cell;}
+.staff-table td button {width:auto;margin:0;min-height:44px;padding:8px 10px;white-space:nowrap;}
+.staff-mobile-details {display:none;}
+@media(max-width:820px){
+ .staff-table {font-size:12px;}
+ .staff-table th,.staff-table td {padding:6px 4px;}
+ .staff-table .staff-extra-column {display:none;}
+ .staff-mobile-details {display:block;font-size:11px;line-height:1.35;margin-top:3px;}
+ .staff-table .profile-name {font-size:14px;}
+ .staff-table td:last-child {width:1%;}
+ .staff-table td button {font-size:12px;padding:8px;}
+ .staff-table .staff-status {white-space:nowrap;padding:2px 4px;}
+}
