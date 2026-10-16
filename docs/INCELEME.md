@@ -347,3 +347,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Beyaz dashboard kartlarının mavi/olive/kırmızı üst şeritleri kullanıcı isteğiyle geri getirildi; gri zemin ve beyaz kartlar korunur.
 
 - Sayfa arka planı mavimsi gri yerine nötr gri #ededed yapıldı; beyaz kartlar ve renkli üst şeritler korundu.
+
+- Stok ve depolar kartının üst şeridi zeytin yerine #43856a yeşiline alındı; diğer renkler korundu.
