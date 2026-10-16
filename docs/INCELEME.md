@@ -353,3 +353,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Genel bakış/sayfa başlığı şeridinin zemini #d6d6d6 nötr griye alındı; sayfa zemini #ededed renginden daha koyudur.
 
 - Genel bakıştaki Hesabınız kartı ve kaldırılan alanları güncelleyen JS temizlendi; menü altındaki kullanıcı bilgileri korunur.
+
+- Genel bakış/sayfa başlığı şeridi sayfa zeminiyle aynı nötr griye alındı; koyu alt sınır ve gölge kaldırılarak göçük görünüm azaltıldı.
