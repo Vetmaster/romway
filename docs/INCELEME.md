@@ -373,3 +373,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Sıra düzeltmesi: bağlı lokasyon üstte, durum en altta; profil ve düzenleme formunda aynı sıra kullanılır.
 
 - Aktif rozeti stok kartının #43856a yeşiline uyarlandı; siyah yazıyla kontrast 4.80:1. Tek lokasyon PR #73 sunucu dağıtım onayı beklediğinden bu yayına dahil edilmedi.
+
+- Aktif durumu yalnız yeşil yazıyla gösterilir; dolgu, çerçeve ve rozet boşluğu kaldırıldı. Okunabilirlik için aynı yeşil ailesinden koyu #286247 kullanıldı. Pasif durum görünümü korundu.
