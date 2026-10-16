@@ -69,7 +69,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     for(const [label,value] of fields)$('record-details').append(node('dt',label),node('dd',value));
     const related=isStaff?data.locations.filter(l=>item.location_ids.includes(l.id)):data.staff.filter(r=>r.location_ids.includes(item.id));
     const relatedList=isStaff?node('ul'):$('record-related');
-    if(isStaff){relatedList.className='profile-location-values';const value=node('dd');value.append(relatedList);$('record-details').append(node('dt',text('locations')),value,node('dt',text('status_label')),node('dd',text(item.active?'active':'inactive')));}
+    if(isStaff){relatedList.className='profile-location-values';const value=node('dd');value.append(relatedList);const state=node('dd'),badge=node('span',text(item.active?'active':'inactive'));badge.className='staff-status '+(item.active?'active':'inactive');state.append(badge);$('record-details').append(node('dt',text('locations')),value,node('dt',text('status_label')),state);}
     for(const r of related){const row=node('li'),link=node('a',isStaff?r.name:r.display_name);link.className='profile-name';link.href=(isStaff?'#location-profile/':'#staff-profile/')+encodeURIComponent(r.id);if(isStaff&&role!=='super_admin')row.append(node('span',r.name));else row.append(link);relatedList.append(row);}
     if(!related.length)relatedList.append(node('li',text(isStaff?'no_locations':'no_staff')));
   }
