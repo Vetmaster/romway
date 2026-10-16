@@ -28,6 +28,7 @@ function render() {
   const shownProfile=effectiveProfile();
   personnel?.update(view==='welcome'?shownProfile:null);
   $('role-preview').hidden=view!=='welcome'||profile?.role!=='super_admin';
+  $('preview-details').hidden=view!=='welcome'||profile?.role!=='super_admin'||!previewRole;
   $('preview-role').value=previewRole;
   $('preview-location-label').hidden=previewRole!=='admin';
   $('preview-location').hidden=previewRole!=='admin';
