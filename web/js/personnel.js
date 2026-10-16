@@ -31,7 +31,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
     if(!data.locations.length)$('location-list').append(node('li',text('no_locations')));
     const normalize=value=>value.toLocaleLowerCase(document.documentElement.lang).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i');
     const query=normalize($('personnel-search').value.trim());
-    const filtered=sortStaff(data.staff.filter(s=>normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)),sortKey,sortDirection,document.documentElement.lang);
+    const filtered=sortStaff(data.staff.filter(s=>(!$('personnel-active-only').checked||s.active)&&normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)),sortKey,sortDirection,document.documentElement.lang);
     $('personnel-list').replaceChildren(...filtered.slice(0,visibleCount).map(s=>{
       const row=node('tr'),identity=node('td'),title=node('a',s.display_name),number=node('td',s.employee_number),details=node('td');
       title.className='profile-name';title.href='#staff-profile/'+encodeURIComponent(s.id);identity.className='staff-identity';identity.append(title);details.className='staff-details';
@@ -46,6 +46,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
   }
   function closeLocation(){ $('location-form').reset();$('location-form').hidden=true;$('location-toggle').setAttribute('aria-expanded','false'); }
   for(const th of document.querySelectorAll('[data-staff-sort]'))th.querySelector('button').addEventListener('click',()=>{const key=th.dataset.staffSort;sortDirection=key===sortKey?(sortDirection==='ascending'?'descending':'ascending'):(key==='active'?'descending':'ascending');sortKey=key;visibleCount=10;render();});
+  $('personnel-active-only').addEventListener('change',()=>{visibleCount=10;render();});
   $('personnel-search').addEventListener('input',()=>{visibleCount=10;render();});
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
@@ -116,7 +117,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
     open,
     update(profile) {
       const next=['super_admin','admin'].includes(profile?.role)?profile.role:null;
-      if(next!==role || !profile){role=next;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();$('record-profile').hidden=true;$('record-details').replaceChildren();$('record-related').replaceChildren();recordType=null;recordId=null;$('transport-activity').hidden=true;}
+      if(next!==role || !profile){role=next;$('personnel-active-only').checked=false;visibleCount=10;$('personnel-more').hidden=true;data=null;editing=null;clearSecret();closeLocation();$('personnel-search').value='';$('personnel-list').replaceChildren();resetForm();$('personnel-section').hidden=true;$('location-section').hidden=true;$('location-list').replaceChildren();$('record-profile').hidden=true;$('record-details').replaceChildren();$('record-related').replaceChildren();recordType=null;recordId=null;$('transport-activity').hidden=true;}
       render();
     },
     translate(){const selected=$('personnel-role').value;options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));$('personnel-role').value=selected;render();},

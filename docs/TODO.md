@@ -198,3 +198,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Personel tablosunda sicil, ad soyad, rol, bağlı lokasyon ve durum tüm ekranlarda ayrı sütunlarda gösterilir. Mobilde ad altındaki rol/lokasyon tekrarı kaldırıldı; tablo kendi içinde yatay kayar ve satır/sütun çizgileri belirgindir.
 
 - Chromium 390/1440 px beş sütunun görünürlüğü, ad altında tekrarlanmama, mobil tablo içi yatay kaydırma, sayfada taşma olmaması, sıralama/profil işlemleri ve rol önizleme kontrolleri geçti.
+
+- Personel tablosunun üstüne varsayılan kapalı Sadece aktif personeli göster kutusu eklendi. Filtre arama/sıralama/sayfalama ile birlikte çalışır; değişimde görünür kayıt sayısı 10’a döner ve oturum/rol değişiminde filtre sıfırlanır.

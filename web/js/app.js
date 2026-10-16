@@ -1,9 +1,9 @@
 import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
-import {createPersonnel} from './personnel.js?v=dcae45b2af8a';
+import {createPersonnel} from './personnel.js?v=f39d557f4685';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=29873a83c7ec';
-import ro from './locales/ro.js?v=4987cef5c7f5';
+import tr from './locales/tr.js?v=295fbfc9e93c';
+import ro from './locales/ro.js?v=526d7b732f1d';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -77,7 +77,7 @@ function render() {
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
   for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-more,#personnel-list button,#record-edit,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
   for(const id of ['preview-role','preview-location','preview-end'])$(id).disabled=busy;
   if(previewRole){document.querySelectorAll('#personnel-form input,#personnel-form select,#personnel-form button,#location-form input,#location-form button,#personnel-new,#location-toggle,#personnel-list button,#record-edit').forEach(el=>el.disabled=true);}
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
