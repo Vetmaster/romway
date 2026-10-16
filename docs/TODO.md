@@ -149,3 +149,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Beyaz dashboard kartlarının mavi/olive/kırmızı üst şeritleri kullanıcı isteğiyle geri getirildi; gri zemin ve beyaz kartlar korunur.
 
 - Sayfa arka planı mavimsi gri yerine nötr gri #ededed yapıldı; beyaz kartlar ve renkli üst şeritler korundu.
+
+- Stok ve depolar kartının üst şeridi zeytin yerine #43856a yeşiline alındı; diğer renkler korundu.
