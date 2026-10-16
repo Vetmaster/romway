@@ -351,3 +351,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Stok ve depolar kartının üst şeridi zeytin yerine #43856a yeşiline alındı; diğer renkler korundu.
 
 - Genel bakış/sayfa başlığı şeridinin zemini #d6d6d6 nötr griye alındı; sayfa zemini #ededed renginden daha koyudur.
+
+- Genel bakıştaki Hesabınız kartı ve kaldırılan alanları güncelleyen JS temizlendi; menü altındaki kullanıcı bilgileri korunur.
