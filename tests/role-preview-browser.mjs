@@ -9,7 +9,7 @@ async function setup(width,role='super_admin'){
 }
 try{
  for(const width of [390,1440]){
-  const {p,calls,errors}=await setup(width);assert(await p.locator('#role-preview').isVisible());
+  const {p,calls,errors}=await setup(width);assert(await p.locator('#role-preview').isVisible());assert(await p.locator('#preview-details').isHidden());const title=await p.locator('#page-title').boundingBox(),selector=await p.locator('#preview-role').boundingBox();assert(selector.x>title.x);assert(Math.abs(selector.y+selector.height/2-title.y-title.height/2)<10);const bar=await p.locator('.topbar').boundingBox();assert(Math.abs(selector.x+selector.width-(bar.x+bar.width-(width<=820?14:24)))<2);
   await p.selectOption('#preview-role','admin');await p.locator('#preview-note').waitFor();assert.equal(await p.locator('#preview-role').inputValue(),'admin');assert.equal(await p.locator('#preview-location').inputValue(),'L1');
   await p.locator('#personnel-open').click();await p.waitForFunction(()=>document.querySelector('#personnel-list').textContent.includes('Transport One'));assert.equal(await p.locator('#personnel-list tr').count(),1);assert((await p.locator('#personnel-list').textContent()).includes('Transport One'));assert(!(await p.locator('#personnel-list').textContent()).includes('Hidden'));assert(await p.locator('#personnel-new').isDisabled());await p.screenshot({path:'/private/tmp/romway-preview-admin-'+width+'.png',fullPage:true});
   await p.locator('#personnel-list a').click();await p.locator('#record-profile').waitFor();assert(await p.locator('#record-edit').isHidden());await p.locator('#record-edit').dispatchEvent('click');assert(await p.locator('#personnel-form').isHidden());
