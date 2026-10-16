@@ -1,4 +1,6 @@
 export default {
+ active_staff_only:'Sadece aktif personeli göster',
+
 preview_title:'Rol görünümünü önizle',
 preview_normal:'Kendi görünümüm',
 preview_readonly:'Salt okunur rol önizlemesi. Gerçek kullanıcı oturumu değişmez; kayıt işlemleri kapalıdır.',
