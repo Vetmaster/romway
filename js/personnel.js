@@ -1,6 +1,6 @@
 import {sortStaff} from './staff-sort.js?v=70f9d7797eed';
 // No credentials or personnel data are persisted in browser storage.
-export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=()=>false}) {
+export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=()=>false,isBusy=()=>false}) {
   const $=id=>document.getElementById(id);
   let role=null,data=null,editing=null,visibleCount=10,recordType=null,recordId=null,sortKey='active',sortDirection='descending';
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
@@ -14,8 +14,10 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
     if(selected.length>1)$('personnel-locations').append(node('p',text('legacy_multiple_locations')));
   }
   function resetForm() {
-    $('personnel-section').insertBefore($('personnel-new').closest('.personnel-add-card'),$('temporary-credential'));$('personnel-new').hidden=false;
-    editing=null;$('personnel-form').reset();$('personnel-form').hidden=true;$('personnel-new').setAttribute('aria-expanded','false');$('personnel-number').readOnly=false;
+    if($('personnel-dialog').open)$('personnel-dialog').close();
+    $('personnel-dialog').append($('personnel-editor'));$('personnel-new').hidden=false;
+    $('personnel-dialog-message').textContent='';
+    editing=null;$('personnel-form').reset();$('personnel-form').hidden=true;$('personnel-number').readOnly=false;
     options($('personnel-role'),(role==='super_admin'?['receiver','purchasing','admin','super_admin']:['receiver','purchasing']).map(r=>[r,text(r)]));
     locations();$('personnel-active-label').hidden=true;$('personnel-save').dataset.i18n='create_staff';$('personnel-save').textContent=text('create_staff');$('personnel-form-heading').dataset.i18n='add_staff';$('personnel-form-heading').textContent=text('add_staff');
   }
@@ -82,7 +84,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
     if(recordType!=='staff-profile'||!role||isReadonly())return;
     const staff=data?.staff.find(s=>s.id===recordId);if(!staff)return;
     clearSecret();closeLocation();resetForm();editing=staff;
-    $('record-edit-host').append($('personnel-new').closest('.personnel-add-card'));
+    $('record-edit-host').append($('personnel-editor'));
     $('personnel-new').hidden=true;$('personnel-form').hidden=false;
     $('personnel-form-heading').dataset.i18n='edit_staff';$('personnel-form-heading').textContent=text('edit_staff');
     $('personnel-number').value=staff.employee_number;$('personnel-number').readOnly=true;
@@ -92,7 +94,15 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
     $('personnel-form-heading').tabIndex=-1;$('personnel-form-heading').focus();
   });
   $('personnel-open').addEventListener('click',()=>open());
-  $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
+  $('personnel-new').addEventListener('click',()=>{
+    if(!role||isReadonly()||isBusy())return;
+    clearSecret();resetForm();closeLocation();$('personnel-form').hidden=false;
+    $('personnel-dialog').showModal();$('personnel-form-heading').tabIndex=-1;$('personnel-form-heading').focus();
+  });
+  function cancelCreate(){if(isBusy())return;clearSecret();resetForm();$('personnel-new').focus();}
+  $('personnel-dialog-close').addEventListener('click',cancelCreate);
+  $('personnel-dialog').addEventListener('cancel',e=>{e.preventDefault();cancelCreate();});
+  $('personnel-dialog').addEventListener('click',e=>{if(e.target!==$('personnel-dialog'))return;const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)cancelCreate();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();renderRecord();$(recordType==='staff-profile'?'record-edit':'personnel-new').focus();});
   $('personnel-role').addEventListener('change',()=>{$('personnel-location-select').required=$('personnel-role').value!=='super_admin';});
   $('credential-close').addEventListener('click',clearSecret);
