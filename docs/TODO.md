@@ -187,3 +187,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Aktif durum yazısı #15803d canlı yeşile ve 700 kalınlığa alındı; çerçeve/dolgu eklenmedi.
 
 - Aktif ve pasif aynı rozet biçimini kullanır; aktif açık yeşil dolgu/#15803d yazı, pasif mevcut kırmızı tonlarıyla gösterilir. Liste ve profil ortak CSS kullanır.
+
+- [x] Nakliye personeli profiline son bilinen konum ve hareket geçmişi bölümünün boş/hazırlık görünümü eklendi; diğer roller/lokasyon profillerinde gizli.
+- [ ] Sevkiyat altyapısıyla nakliye personeli ataması ve sunucuda çıkış/yolda/teslim kayıtları oluşturulacak; yetkili kapsamdan otomatik son konum/geçmiş okunacak. Gerçek hareket entegrasyonu henüz mevcut değil; bağlı depo konum olarak kullanılmaz.
