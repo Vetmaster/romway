@@ -1,4 +1,9 @@
 export default {
+preview_title:'Previzualizează rolul',
+preview_normal:'Vizualizarea mea',
+preview_readonly:'Previzualizare doar pentru citire. Sesiunea reală nu se schimbă; modificările sunt blocate.',
+preview_end:'Închide previzualizarea',
+
 transport_current_location:'Ultima locație cunoscută',
 transport_location_unknown:'Locația nu este încă cunoscută',
 transport_location_source:'Se actualizează pe baza expedierilor și recepțiilor. Locația de apartenență nu indică poziția actuală.',

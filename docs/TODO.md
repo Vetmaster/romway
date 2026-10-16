@@ -190,3 +190,7 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 
 - [x] Nakliye personeli profiline son bilinen konum ve hareket geçmişi bölümünün boş/hazırlık görünümü eklendi; diğer roller/lokasyon profillerinde gizli.
 - [ ] Sevkiyat altyapısıyla nakliye personeli ataması ve sunucuda çıkış/yolda/teslim kayıtları oluşturulacak; yetkili kapsamdan otomatik son konum/geçmiş okunacak. Gerçek hareket entegrasyonu henüz mevcut değil; bağlı depo konum olarak kullanılmaz.
+
+- PR #57 rol önizlemesi güncel tablo, tek lokasyon ve profil içi düzenleme ile uyumlandı. Gerçek kullanıcı rolü değişmez; önizleme salt okunur UI simülasyonudur. Sunucu yetki testinin yerine geçmez. Seçim depolanmaz; yenileme/çıkışta sıfırlanır.
+
+- Rol önizlemesi tarayıcı doğrulaması tamamlandı: Chromium 390/1440 px yönetici depo değişimi, süper admin/yönetici kayıtlarının gizlenmesi, doğrudan profil reddi, yazma formu engeli, satın alma/nakliye menüleri, normal görünüme dönüş, yenileme/çıkış sıfırlaması, RO ve taşma kontrolleri geçti. Normal personel profil düzenleme ve tablo testleri ile 4 birim testi de geçti. Supabase dağıtımı yapılmadı; yalnız arayüz önizlemesi.
