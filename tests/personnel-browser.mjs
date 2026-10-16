@@ -87,14 +87,14 @@ try{
   await navigate('nav-add-location');await page.locator('#location-list').getByRole('link',{name:'Browser Test Depot '+width,exact:true}).click();await page.locator('#record-profile').waitFor({state:'visible'});assert((await page.locator('#record-details').textContent()).includes('Browser Test Depot '+width));assert((await page.locator('#record-related').textContent()).includes('MOBILE'+width)===false);
   await page.locator('#record-back').click();await page.locator('#location-section').waitFor({state:'visible'});
   await page.locator('#tab-stock').click();assert(await page.locator('#pending-section').isVisible());await page.locator('#tab-shipment').click();assert.equal(await page.locator('#tab-shipment').getAttribute('aria-current'),'page');await page.locator('#tab-personnel').click();await page.locator('#personnel-section').waitFor({state:'visible'});
-  const target=page.locator('#personnel-list tr').filter({hasText:'MOBILE'+width});await target.getByRole('button').click();assert(await page.locator('#personnel-form').isVisible());assert.equal(await page.locator('#personnel-form-heading').textContent(),'Editează');
-  await page.locator('#personnel-active').uncheck();await page.locator('#personnel-save').click();await target.getByText(/Inactiv/).waitFor();
+  const target=page.locator('#personnel-list tr').filter({hasText:'MOBILE'+width});await target.getByRole('link').click();await page.locator('#record-edit').click();assert(await page.locator('#personnel-form').isVisible());assert.equal(await page.locator('#personnel-form-heading').textContent(),'Editează');
+  await page.locator('#personnel-active').uncheck();await page.locator('#personnel-save').click();await page.locator('#record-details').getByText('Inactiv',{exact:true}).waitFor();
   await logout();await page.locator('#login').waitFor({state:'visible'});assert(await page.locator('#personnel-section').isHidden());
   await login('MOBILE'+width,temporary);await page.getByText('Numărul de angajat sau parola este incorectă.',{exact:true}).waitFor();
   await login('BROWSERADMIN','Synthetic-admin-password');await page.locator('#welcome').waitFor({state:'visible'});
   await page.locator('#personnel-open').click();
-  await page.locator('#personnel-list tr').filter({hasText:'MOBILE'+width}).getByRole('button').click();await page.locator('#personnel-active').check();await page.locator('#personnel-save').click();
-  await page.locator('#personnel-list tr').filter({hasText:'MOBILE'+width}).getByText(/Activ/).waitFor();
+  await navigate('nav-add-personnel');await page.locator('#personnel-list tr').filter({hasText:'MOBILE'+width}).getByRole('link').click();await page.locator('#record-edit').click();await page.locator('#personnel-active').check();await page.locator('#personnel-save').click();
+  await page.locator('#record-details').getByText('Activ',{exact:true}).waitFor();
   await logout();await page.locator('#login').waitFor({state:'visible'});await login('MOBILE'+width,temporary);await page.locator('#change').waitFor({state:'visible'});
   assert(await page.locator('#personnel-open').isHidden());
   await page.locator('#current').fill(temporary);await page.locator('#new').fill('Synthetic-new-personnel-password');await page.locator('#confirm').fill('Synthetic-new-personnel-password');await page.locator('#change button').click();
