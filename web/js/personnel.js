@@ -63,12 +63,15 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     $('record-heading').textContent=text(isStaff?'staff_profile':'location_profile');$('record-details').replaceChildren();$('record-related').replaceChildren();
     $('record-message').textContent=item?'':text('not_available');$('record-back').href=isStaff?'#personnel':'#location';
     $('record-related-heading').textContent=text(isStaff?'locations':'staff_list');
+    $('record-related-heading').hidden=isStaff;$('record-related').hidden=isStaff;
     if(!item)return;
     const fields=isStaff?[[text('display_name'),item.display_name],[text('employee'),item.employee_number],[text('role'),text(item.role)],[text('status_label'),text(item.active?'active':'inactive')]]:[[text('location_name'),item.name],[text('location_code'),item.code]];
     for(const [label,value] of fields)$('record-details').append(node('dt',label),node('dd',value));
     const related=isStaff?data.locations.filter(l=>item.location_ids.includes(l.id)):data.staff.filter(r=>r.location_ids.includes(item.id));
-    for(const r of related){const row=node('li'),link=node('a',isStaff?r.name:r.display_name);link.className='profile-name';link.href=(isStaff?'#location-profile/':'#staff-profile/')+encodeURIComponent(r.id);if(isStaff&&role!=='super_admin')row.append(node('span',r.name));else row.append(link);$('record-related').append(row);}
-    if(!related.length)$('record-related').append(node('li',text(isStaff?'no_locations':'no_staff')));
+    const relatedList=isStaff?node('ul'):$('record-related');
+    if(isStaff){relatedList.className='profile-location-values';const value=node('dd');value.append(relatedList);$('record-details').append(node('dt',text('locations')),value);}
+    for(const r of related){const row=node('li'),link=node('a',isStaff?r.name:r.display_name);link.className='profile-name';link.href=(isStaff?'#location-profile/':'#staff-profile/')+encodeURIComponent(r.id);if(isStaff&&role!=='super_admin')row.append(node('span',r.name));else row.append(link);relatedList.append(row);}
+    if(!related.length)relatedList.append(node('li',text(isStaff?'no_locations':'no_staff')));
   }
 
   $('record-edit').addEventListener('click',()=>{
