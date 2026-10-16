@@ -173,3 +173,7 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Bağlı bulunduğu lokasyon profil bilgi satırlarında Durum alanının hemen altına alındı; düzenleme formunda lokasyon seçimi aktiflik alanının altında gösterilir.
 
 - Sıra düzeltmesi: bağlı lokasyon üstte, durum en altta; profil ve düzenleme formunda aynı sıra kullanılır.
+
+- Tek bağlı lokasyon seçimi ile Edge/RPC çoklu lokasyon reddi hazırlandı. 202610160005 migration yalnız dosya olarak hazır; test Supabase dağıtımı bekliyor. Eski çoklu kayıtlar ve geçmiş korunur.
+
+- Yerel doğrulama: 13 SQL/HTTP testi geçti; çoklu yeni kayıt/güncelleme reddi, Auth hesabı oluşturulmaması ve geçmiş korunarak tek lokasyona düzeltme kapsandı. Chromium 390/1440 px testinde eski çoklu kayıtta otomatik seçim olmaması, tekli seçim ve kaydet/vazgeç/yenileme geçti. Test Supabase migration/Edge dağıtımı ve Pages yayını henüz yapılmadı.

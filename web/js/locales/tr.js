@@ -1,4 +1,7 @@
 export default {
+choose_location:'Lokasyon seçin',
+legacy_multiple_locations:'Bu kayıtta birden fazla lokasyon var. Kaydetmek için bağlı bulunacağı tek lokasyonu seçin.',
+
  start_shipment:'Sevkiyat başlat',
  location_list:'Lokasyon listesi',
  stock_list:'Stok listesi',

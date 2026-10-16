@@ -7,10 +7,11 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   function clearSecret() {$('temporary-credential').hidden=true;$('temporary-password').textContent='';$('temporary-number').textContent='';}
   function options(select,values) {select.replaceChildren(...values.map(([value,label])=>{const o=node('option',label);o.value=value;return o;}));}
   function locations(selected=[]) {
-    $('personnel-locations').replaceChildren(...(data?.locations??[]).map(l=>{
-      const label=node('label'),input=node('input');input.type='checkbox';input.value=l.id;input.checked=selected.includes(l.id);
-      label.append(input,node('span',l.name));return label;
-    }));
+    const select=node('select');select.id='personnel-location-select';select.setAttribute('aria-label',text('locations'));
+    options(select,[['',text('choose_location')],...(data?.locations??[]).map(l=>[l.id,l.name])]);
+    select.value=selected.length===1?selected[0]:'';select.required=$('personnel-role').value!=='super_admin';
+    $('personnel-locations').replaceChildren(select);
+    if(selected.length>1)$('personnel-locations').append(node('p',text('legacy_multiple_locations')));
   }
   function resetForm() {
     $('personnel-section').insertBefore($('personnel-new').closest('.personnel-add-card'),$('temporary-credential'));$('personnel-new').hidden=false;
@@ -90,11 +91,12 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   $('personnel-open').addEventListener('click',()=>open());
   $('personnel-new').addEventListener('click',()=>{const opening=$('personnel-form').hidden;clearSecret();resetForm();if(opening){closeLocation();$('personnel-form').hidden=false;$('personnel-new').setAttribute('aria-expanded','true');}else $('personnel-new').focus();});
   $('personnel-cancel').addEventListener('click',()=>{clearSecret();resetForm();renderRecord();$(recordType==='staff-profile'?'record-edit':'personnel-new').focus();});
+  $('personnel-role').addEventListener('change',()=>{$('personnel-location-select').required=$('personnel-role').value!=='super_admin';});
   $('credential-close').addEventListener('click',clearSecret);
   $('personnel-form').addEventListener('submit',e=>{
     e.preventDefault();clearSecret();
     const payload={display_name:$('personnel-name').value.trim(),role:$('personnel-role').value,
-      location_ids:[...$('personnel-locations').querySelectorAll('input:checked')].map(i=>i.value)};
+      location_ids:$('personnel-location-select').value?[$('personnel-location-select').value]:[]};
     const target=editing;
     if(target){payload.id=target.id;payload.active=$('personnel-active').checked;}else payload.employee_number=$('personnel-number').value.trim();
     run(async()=>{

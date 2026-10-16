@@ -9,7 +9,7 @@ const db=new PGlite(),users=new Map(),TR='00000000-0000-4000-8000-000000000001';
 let browser,httpServer,staticServer;
 try{
  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
- for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql','202610160005_single_personnel_location.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
  const admin=crypto.randomUUID(),email=`staff-${admin}@identity.invalid`;
  users.set(email,{id:admin,password:'Synthetic-admin-password'});
  await db.query('insert into auth.users values($1)',[admin]);
@@ -70,7 +70,7 @@ try{
   await page.locator('#personnel-new').click();assert.equal(await page.evaluate(()=>document.activeElement.id),'personnel-new');await page.locator('#personnel-number').click();assert.equal(await page.evaluate(()=>document.activeElement.id),'personnel-number');
   await page.locator('#personnel-number').fill('MOBILE'+width);await page.locator('#personnel-name').fill('<img src=x onerror=alert(1)>');
   await page.locator('#personnel-save').click();await page.locator('#personnel-message').getByText('İstek tamamlanamadı.',{exact:true}).waitFor();assert(await page.locator('#auth-panel').isHidden());assert(await page.locator('#personnel-form').isVisible());
-  await page.locator(`#personnel-locations input[value="${TR}"]`).check();await page.locator('#personnel-save').click();
+  await page.locator('#personnel-location-select').selectOption(TR);await page.locator('#personnel-save').click();
   await page.locator('#temporary-credential').waitFor({state:'visible'});await page.locator('#personnel-message').waitFor({state:'hidden'});const temporary=await page.locator('#temporary-password').textContent();assert.match(temporary,/^[a-f0-9]{64}$/);
   await page.locator('#personnel-search').fill('MOBILE'+width);assert.equal(await page.locator('#personnel-list tr').count(),1);await page.locator('#personnel-search').fill('NOT_FOUND_SEARCH');assert.equal(await page.locator('#personnel-list button').count(),0);assert.equal(await page.locator('#personnel-list tr').count(),1);await page.locator('#personnel-search').fill('');
   assert.equal(await page.locator('#personnel-list img').count(),0);assert.equal(await page.locator('#personnel-number').inputValue(),'');assert(await page.locator('#personnel-form').isHidden());

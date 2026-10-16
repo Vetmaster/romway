@@ -1,4 +1,7 @@
 export default {
+choose_location:'Selectați locația',
+legacy_multiple_locations:'Această înregistrare are mai multe locații. Selectați o singură locație înainte de salvare.',
+
  start_shipment:'Inițiază expedierea',
  location_list:'Lista locațiilor',
  stock_list:'Lista stocurilor',
