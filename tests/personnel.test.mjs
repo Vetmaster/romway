@@ -8,7 +8,7 @@ const db=new PGlite(), TR='00000000-0000-4000-8000-000000000001',RO='00000000-00
 const allowed=new Set(['romway_personnel','romway_session','romway_consume_attempt','romway_open_session']);
 before(async()=>{
  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
- for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql','202610160005_single_personnel_location.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
 });
 after(()=>db.close());
 async function rpc(name,args){assert(allowed.has(name));const entries=Object.entries(args);return (await db.query(`select public.${name}(${entries.map(([k],i)=>{assert(/^p_[a-z_]+$/.test(k));return `${k}=>$${i+1}`;}).join(',')}) value`,entries.map(([,v])=>v))).rows[0].value;}
@@ -39,7 +39,7 @@ test('receiver, purchaser and forced-change administrator cannot use direct admi
 });
 test('admin can manage only lower roles wholly inside their assigned scope',async()=>{
  const f=await fixture('admin',[TR]);
- for(const [role,locs]of [['admin',[TR]],['super_admin',[TR]],['receiver',[RO]],['receiver',[TR,RO]]]) assert.equal((await f.call(create(role,locs))).status,403);
+ for(const [role,locs]of [['admin',[TR]],['super_admin',[TR]],['receiver',[RO]],['receiver',[TR,RO]]]) assert.equal((await f.call(create(role,locs))).status,locs.length>1?400:403);
  const body=create();assert.equal((await f.call(body)).status,200);
  const own=(await f.call({action:'personnel-list'})).body;assert.deepEqual(own.locations.map(x=>x.id),[TR]);assert(own.staff.every(x=>['receiver','purchasing'].includes(x.role)&&x.location_ids.every(id=>id===TR)));
  const external=await fixture('receiver',[TR,RO]);assert(!own.staff.some(x=>x.id===external.id));
@@ -108,4 +108,16 @@ test('personnel list exposes creation time and orders active/newest before inact
  }
  const response=await f.call({action:'personnel-list'});assert.equal(response.status,200);
  const rows=response.body.staff.filter(s=>ids.includes(s.id));assert.deepEqual(rows.map(s=>s.id),[ids[1],ids[0],ids[2]]);assert(rows.every(s=>Number.isFinite(Date.parse(s.created_at))));
+});
+
+test('single location is enforced by HTTP and RPC; old multi-location staff is preserved until an explicit correction',async()=>{
+ const f=await fixture();let created=0;const original=f.backend.createUser;f.backend.createUser=async(...args)=>{created++;return original(...args);};
+ assert.equal((await f.call(create('receiver',[TR,RO]))).status,400);assert.equal(created,0);
+ const reserve=create('receiver',[TR,RO]);assert.equal((await f.rpc('reserve',{id:crypto.randomUUID(),employee_number:reserve.employee_number,display_name:reserve.display_name,role:reserve.role,location_ids:reserve.location_ids})).error,'invalid_request');
+ const legacy=await fixture('receiver',[TR,RO]);
+ const update={id:legacy.id,display_name:'Legacy',role:'receiver',active:true,location_ids:[TR,RO]};
+ assert.equal((await f.call({action:'personnel-update',...update})).status,400);assert.equal((await f.rpc('update',update)).error,'invalid_request');
+ assert.equal((await db.query('select * from romway_private.staff_locations where staff_id=$1 and assigned',[legacy.id])).rows.length,2);
+ assert.equal((await f.call({action:'personnel-update',...update,location_ids:[TR]})).status,200);
+ const rows=(await db.query('select * from romway_private.staff_locations where staff_id=$1',[legacy.id])).rows;assert.equal(rows.length,2);assert.equal(rows.filter(x=>x.assigned).length,1);
 });
