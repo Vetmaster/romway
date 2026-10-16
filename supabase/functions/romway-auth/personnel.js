@@ -14,6 +14,7 @@ export async function managePersonnel({backend,staff,sessionHash,body}) {
     const id=crypto.randomUUID(),code='LOC_'+id.replaceAll('-','').toUpperCase();
     return rpc('location',{id,code,name:typeof body.name==='string'?body.name.trim():null,country:body.country??null});
   }
+  if (!Array.isArray(body.location_ids)||body.location_ids.length>1) throw new AuthError('invalid_request',400);
   if (body.action==='personnel-update') return rpc('update',{id:body.id,display_name:body.display_name,role:body.role,location_ids:body.location_ids,active:body.active});
   const id=crypto.randomUUID(), number=employeeNumber(body.employee_number);
   await rpc('reserve',{id,employee_number:number,display_name:body.display_name,role:body.role,location_ids:body.location_ids});
