@@ -183,3 +183,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Yerel doğrulama: 13 SQL/HTTP testi geçti; çoklu yeni kayıt/güncelleme reddi, Auth hesabı oluşturulmaması ve geçmiş korunarak tek lokasyona düzeltme kapsandı. Chromium 390/1440 px testinde eski çoklu kayıtta otomatik seçim olmaması, tekli seçim ve kaydet/vazgeç/yenileme geçti. Test Supabase migration/Edge dağıtımı ve Pages yayını henüz yapılmadı.
 
 - 16 Ekim kullanıcı onayıyla 202610160005 yalnız romway-auth-test projesine uygulandı; romway-auth v6 ACTIVE. Staff/Auth/lokasyon/atama/istek/denetim verileri öncesi-sonrası karşılaştırılarak korundu. RPC anon/authenticated erişimi kapalı, service_role erişimi korundu. Eski çoklu bağlı 5 personel kaydı değiştirilmedi; düzenleme sırasında tek lokasyon seçilecek. Son aktif yeşil yazı stili bu sürümde korunur.
+
+- Aktif durum yazısı #15803d canlı yeşile ve 700 kalınlığa alındı; çerçeve/dolgu eklenmedi.
