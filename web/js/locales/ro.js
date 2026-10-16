@@ -1,4 +1,6 @@
 export default {
+ close_form:'Închide formularul',
+
  active_staff_only:'Afișează doar personalul activ',
 
 preview_title:'Previzualizează rolul',

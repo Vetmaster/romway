@@ -1,4 +1,6 @@
 export default {
+ close_form:'Formu kapat',
+
  active_staff_only:'Sadece aktif personeli göster',
 
 preview_title:'Rol görünümünü önizle',
