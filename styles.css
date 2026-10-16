@@ -465,7 +465,7 @@ html[lang=ro] .app-banner .banner-subtitle {font-size:10px;}
 @media(min-width:821px){.app-shell .drawer-heading {display:none;}}
 
 /* Surface hierarchy: page, content panels, controls and compact rows. */
-:root {--line:#bccdd7;--muted:#485f6d;--page:#e4ecf1;--surface:#ffffff;}
+:root {--line:#bccdd7;--muted:#485f6d;--page:#ededed;--surface:#ffffff;}
 body {background:var(--page);}
 .app-banner {border-bottom:3px solid var(--blue);}
 .topbar {background:#dce8ef;border-bottom-color:#b5cbd8;}
