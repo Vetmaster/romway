@@ -530,7 +530,7 @@ input,select {border-color:#8fa8b9;}
 .active-personnel-filter input {accent-color:var(--blue);flex:0 0 auto;}
 
 /* Bring the sign-in card closer to the header and introductory text. */
-body:not(.app-shell) main {padding-top:16px;align-items:start;row-gap:16px;}
+body:not(.app-shell) main {padding-top:4px;align-items:start;row-gap:8px;}
 body:not(.app-shell) .intro {padding-bottom:0;}
 
 .staff-list-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 8px;}
@@ -546,3 +546,6 @@ body:not(.app-shell) .intro {padding-bottom:0;}
 .personnel-dialog #personnel-dialog-message:empty {display:none;}
 #record-edit-host .personnel-editor {border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:16px;}
 @media(max-width:420px){.staff-list-heading {gap:8px;}.staff-list-heading h3 {font-size:17px;}.staff-list-heading button {font-size:13px;padding:10px;}.personnel-dialog {padding:20px 16px;}}
+
+body:not(.app-shell) .topbar:has(.header-actions:empty) {display:none;}
+@media(max-width:820px){body:not(.app-shell) .intro h1 {margin:8px 0;line-height:1.2;}body:not(.app-shell) .intro p {margin:8px 0;}}

@@ -408,3 +408,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - SASA-F yayındaki openStudentDialog/showModal örneği doğrulandı; Personel ekle başlık sağına taşındı, açılır kart yerine erişilebilir modal pencere açılır. Otomatik giriş odağı yok; kapat/Escape/vazgeç desteklenir. Profil düzenlemesi aynı profilde korunur.
 
 - Chromium 390/1440 px yeni personel modal testi geçti: başlık sağı hizası, açılır kartın yokluğu, modal/odak, kapat/Escape/backdrop/vazgeç, hata tekrar deneme ve tek seferlik şifre yanıtı. Mevcut profil düzenleme ve rol önizlemesi testleri de geçti; gerçek personel verisi kullanılmadı.
+
+- Giriş kartı tekrar yukarı yaklaştırıldı: boş oturumsuz başlık satırı gizlendi, üst boşluk 4 px/ara 8 px yapıldı, mobil tanıtım satır aralıkları sıkılaştırıldı. Şifre değiştirmede çıkış içeren başlık satırı korunur.
