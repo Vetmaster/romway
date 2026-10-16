@@ -357,3 +357,7 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Genel bakış/sayfa başlığı şeridi sayfa zeminiyle aynı nötr griye alındı; koyu alt sınır ve gölge kaldırılarak göçük görünüm azaltıldı.
 
 - Düz başlık zemini korundu; altına 1 px #d0d0d0 ayırıcı çizgi geri eklendi, gölge yoktur.
+
+- Personel listesi erişilebilir tabloya dönüştürüldü; sicil/ad/rol/durum sütunları çift yönlü sıralanır. Varsayılan aktif ve yeniden eskiye korunur; sıralama aranan tüm sonuçlara, 10 kayıt sayfalamasından önce uygulanır. Mobilde rol/lokasyon ad altında gösterilir.
+
+- Personel tablo doğrulaması: iki sıralama birim testi ve izole Chromium 390/1440 px testinde başlık tıklama, doğal sicil sırası, durum yönü, 10/20 kayıt, arama, profil ve yatay taşma kontrolleri geçti. Test sentetik verilerle yapıldı.

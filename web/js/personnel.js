@@ -1,7 +1,8 @@
+import {sortStaff} from './staff-sort.js?v=70f9d7797eed';
 // No credentials or personnel data are persisted in browser storage.
 export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
   const $=id=>document.getElementById(id);
-  let role=null,data=null,editing=null,visibleCount=10,recordType=null,recordId=null;
+  let role=null,data=null,editing=null,visibleCount=10,recordType=null,recordId=null,sortKey='active',sortDirection='descending';
   function node(tag,value) {const el=document.createElement(tag);if(value!==undefined) el.textContent=value;return el;}
   function clearSecret() {$('temporary-credential').hidden=true;$('temporary-password').textContent='';$('temporary-number').textContent='';}
   function options(select,values) {select.replaceChildren(...values.map(([value,label])=>{const o=node('option',label);o.value=value;return o;}));}
@@ -27,10 +28,10 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
     if(!data.locations.length)$('location-list').append(node('li',text('no_locations')));
     const normalize=value=>value.toLocaleLowerCase(document.documentElement.lang).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i');
     const query=normalize($('personnel-search').value.trim());
-    const filtered=data.staff.filter(s=>normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)).sort((a,b)=>Number(b.active)-Number(a.active)||(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0));
+    const filtered=sortStaff(data.staff.filter(s=>normalize([s.display_name,s.employee_number,text(s.role),text(s.active?'active':'inactive'),...s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'')].join(' ')).includes(query)),sortKey,sortDirection,document.documentElement.lang);
     $('personnel-list').replaceChildren(...filtered.slice(0,visibleCount).map(s=>{
-      const row=node('li'),identity=node('div'),title=node('a',s.display_name),number=node('small',s.employee_number),details=node('div');
-      title.className='profile-name';title.href='#staff-profile/'+encodeURIComponent(s.id);identity.className='staff-identity';identity.append(title,number);details.className='staff-details';
+      const row=node('tr'),identity=node('td'),title=node('a',s.display_name),number=node('td',s.employee_number),details=node('td');
+      title.className='profile-name';title.href='#staff-profile/'+encodeURIComponent(s.id);identity.className='staff-identity';identity.append(title);details.className='staff-details';
       const roleLabel=node('span',text(s.role)),status=node('span',text(s.active?'active':'inactive'));status.className='staff-status '+(s.active?'active':'inactive');
       const names=s.location_ids.map(id=>data.locations.find(l=>l.id===id)?.name??'').filter(Boolean);
       const button=node('button',text('edit_staff'));button.type='button';button.className='secondary';
@@ -39,13 +40,15 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen}) {
         $('personnel-name').value=s.display_name;$('personnel-role').value=s.role;locations(s.location_ids);
         $('personnel-active').checked=s.active;$('personnel-active-label').hidden=false;$('personnel-save').dataset.i18n='save_staff';$('personnel-save').textContent=text('save_staff');$('personnel-new').focus();
       });
-      details.append(roleLabel,node('span',names.join(', ')||text('no_locations')),status);row.append(identity,details,button);return row;
+      const mobile=node('small',text(s.role)+' · '+(names.join(', ')||text('no_locations')));mobile.className='staff-mobile-details';identity.append(mobile);details.append(roleLabel);details.className='staff-extra-column';const assigned=node('td',names.join(', ')||text('no_locations'));assigned.className='staff-extra-column';const state=node('td');state.append(status);const actions=node('td');actions.append(button);row.append(number,identity,details,assigned,state,actions);return row;
     }));
     $('personnel-more').hidden=filtered.length<=visibleCount;
-    if(!filtered.length)$('personnel-list').append(node('li',text('no_staff')));
+    if(!filtered.length){const row=node('tr'),cell=node('td',text('no_staff'));cell.colSpan=6;row.append(cell);$('personnel-list').append(row);}
+    for(const th of document.querySelectorAll('[data-staff-sort]')){const active=th.dataset.staffSort===sortKey;th.setAttribute('aria-sort',active?sortDirection:'none');th.querySelector('.sort-arrow').textContent=active?(sortDirection==='ascending'?'↑':'↓'):'↕';}
     renderRecord();
   }
   function closeLocation(){ $('location-form').reset();$('location-form').hidden=true;$('location-toggle').setAttribute('aria-expanded','false'); }
+  for(const th of document.querySelectorAll('[data-staff-sort]'))th.querySelector('button').addEventListener('click',()=>{const key=th.dataset.staffSort;sortDirection=key===sortKey?(sortDirection==='ascending'?'descending':'ascending'):(key==='active'?'descending':'ascending');sortKey=key;visibleCount=10;render();});
   $('personnel-search').addEventListener('input',()=>{visibleCount=10;render();});
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
   $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
