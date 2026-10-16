@@ -153,3 +153,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Stok ve depolar kartının üst şeridi zeytin yerine #43856a yeşiline alındı; diğer renkler korundu.
 
 - Genel bakış/sayfa başlığı şeridinin zemini #d6d6d6 nötr griye alındı; sayfa zemini #ededed renginden daha koyudur.
+
+- Genel bakıştaki Hesabınız kartı ve kaldırılan alanları güncelleyen JS temizlendi; menü altındaki kullanıcı bilgileri korunur.
