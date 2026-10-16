@@ -1,5 +1,5 @@
 import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
-import {createPersonnel} from './personnel.js?v=60439b930052';
+import {createPersonnel} from './personnel.js?v=dcae45b2af8a';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
 import tr from './locales/tr.js?v=29873a83c7ec';
