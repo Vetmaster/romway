@@ -468,7 +468,7 @@ html[lang=ro] .app-banner .banner-subtitle {font-size:10px;}
 :root {--line:#bccdd7;--muted:#485f6d;--page:#ededed;--surface:#ffffff;}
 body {background:var(--page);}
 .app-banner {border-bottom:3px solid var(--blue);}
-.topbar {background:var(--page);border-bottom:0;box-shadow:none;}
+.topbar {background:var(--page);border-bottom:1px solid #d0d0d0;box-shadow:none;}
 .panel {background:var(--surface);border-color:#bdced9;box-shadow:0 6px 22px #1834460a;}
 .panel>h2 {color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:12px;}
 .dashboard-card {background:white;border:1px solid #bdced9;border-top:4px solid var(--blue);box-shadow:0 3px 10px #18344608;}
