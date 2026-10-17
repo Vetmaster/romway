@@ -229,3 +229,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - 44 test ve Chromium 390/1440 TR/RO yasal ekran/rol kontrolleri geçti. Temsili kurum metinleri yalnız romway-auth-test Edge v8 ACTIVE olarak uygulandı; migration yok ve mevcut kayıt özetleri aynı. Pages v2026.10.17.5 hazırlandı.
 
 - Yasal ekran yatay boşlukları daraltıldı: mobil dış boşluk 8 px, panel/iç metin boşluğu 12 px. Masaüstünde kullanılabilir alan 1440 px sınırına genişletildi. Metin boyutu ve diğer sayfalar korunur.
+
+- Yasal bilgilendirmeler menüdeki Ayarlar sayfasına taşındı; SASA-F ayarlar kartı düzeni referans alındı. Ayarlar ve yasal kart yalnız normal süper admin görünümünde açılır; sunucu rol kontrolü korunur. #settings yenilemede geri yüklenir, #legal doğrudan yolu korunur.
