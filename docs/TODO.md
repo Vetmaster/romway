@@ -214,3 +214,7 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Giriş kartı tekrar yukarı yaklaştırıldı: boş oturumsuz başlık satırı gizlendi, üst boşluk 4 px/ara 8 px yapıldı, mobil tanıtım satır aralıkları sıkılaştırıldı. Şifre değiştirmede çıkış içeren başlık satırı korunur.
 
 - Sol alt köşedeki Romway metni kullanıcı isteğiyle Solea © 2026 olarak güncellendi; giriş kartının son yukarı yerleşimi korunur.
+
+- Kart açılışında lokasyon formu, profil düzenlemesi ve sayfa başlıkları sabit banner altında hizalanır. Giriş alanına otomatik odak verilmez. Yasal metin PR #89 bu değişikliğe dahil değildir.
+
+- Chromium 390/1440 px: lokasyon kartı üst hizası, kapatma konumu, profil düzenlemede başlık odağı ve personel modal regresyonu geçti.

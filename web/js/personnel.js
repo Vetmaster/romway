@@ -1,3 +1,4 @@
+import {revealCard} from './card-scroll.js';
 import {sortStaff} from './staff-sort.js?v=70f9d7797eed';
 // No credentials or personnel data are persisted in browser storage.
 export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=()=>false,isBusy=()=>false}) {
@@ -51,7 +52,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
   $('personnel-active-only').addEventListener('change',()=>{visibleCount=10;render();});
   $('personnel-search').addEventListener('input',()=>{visibleCount=10;render();});
   $('personnel-more').addEventListener('click',()=>{visibleCount+=10;render();if($('personnel-more').hidden)$('personnel-new').focus();});
-  $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');}});
+  $('location-toggle').addEventListener('click',()=>{const opening=$('location-form').hidden;closeLocation();if(opening){clearSecret();resetForm();$('location-form').hidden=false;$('location-toggle').setAttribute('aria-expanded','true');revealCard($('location-card'));}});
   async function load() {visibleCount=10;data=await api.call('personnel-list');resetForm();render();}
   async function open(card='personnel',id=null){
     if(!role || (['location','location-profile'].includes(card)&&role!=='super_admin'))return;
@@ -91,7 +92,7 @@ export function createPersonnel({api,text,run,onSessionChange,onOpen,isReadonly=
     $('personnel-name').value=staff.display_name;$('personnel-role').value=staff.role;locations(staff.location_ids);
     $('personnel-active').checked=staff.active;$('personnel-active-label').hidden=false;
     $('personnel-save').dataset.i18n='save_staff';$('personnel-save').textContent=text('save_staff');renderRecord();
-    $('personnel-form-heading').tabIndex=-1;$('personnel-form-heading').focus();
+    revealCard($('personnel-form-heading'),{focus:true});
   });
   $('personnel-open').addEventListener('click',()=>open());
   $('personnel-new').addEventListener('click',()=>{
