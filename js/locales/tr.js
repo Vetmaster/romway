@@ -1,4 +1,10 @@
 export default {
+legal_title:'Yasal bilgilendirmeler',
+legal_draft:'Taslak',
+legal_intro:'Yalnızca süper admin incelemesi. Metinler diğer rollerde veya giriş ekranında gösterilmez; bu ekran bir kabul ya da rıza kaydı oluşturmaz.',
+legal_missing_title:'Kullanıma sunulmadan önce tamamlanacak bilgiler',
+legal_sources_title:'Resmî başvuru kaynakları',
+
  close_form:'Formu kapat',
 
  active_staff_only:'Sadece aktif personeli göster',
