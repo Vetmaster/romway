@@ -212,3 +212,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Chromium 390/1440 px yeni personel modal testi geçti: başlık sağı hizası, açılır kartın yokluğu, modal/odak, kapat/Escape/backdrop/vazgeç, hata tekrar deneme ve tek seferlik şifre yanıtı. Mevcut profil düzenleme ve rol önizlemesi testleri de geçti; gerçek personel verisi kullanılmadı.
 
 - Giriş kartı tekrar yukarı yaklaştırıldı: boş oturumsuz başlık satırı gizlendi, üst boşluk 4 px/ara 8 px yapıldı, mobil tanıtım satır aralıkları sıkılaştırıldı. Şifre değiştirmede çıkış içeren başlık satırı korunur.
+
+- Sol alt köşedeki Romway metni kullanıcı isteğiyle Solea © 2026 olarak güncellendi; giriş kartının son yukarı yerleşimi korunur.
