@@ -1,4 +1,10 @@
 export default {
+legal_title:'Informații juridice',
+legal_draft:'Proiect',
+legal_intro:'Examinare exclusiv pentru super administrator. Textele nu apar celorlalte roluri sau la autentificare; pagina nu înregistrează acceptarea ori consimțământul.',
+legal_missing_title:'Informații de completat înainte de utilizare',
+legal_sources_title:'Surse oficiale de referință',
+
  close_form:'Închide formularul',
 
  active_staff_only:'Afișează doar personalul activ',
