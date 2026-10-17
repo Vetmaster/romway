@@ -583,7 +583,7 @@ main.workspace:has(.legal-page:not([hidden])) {max-width:1440px;padding-inline:2
 .settings-link-copy small {margin-top:4px;}
 #settings-heading:focus {outline:none;}
 
-.drawer-bottom {margin-top:auto;flex-shrink:0;display:grid;gap:16px;}
-.drawer-bottom .drawer-profile {margin-top:0;}
+.drawer-bottom {margin-top:auto;flex-shrink:0;display:grid;gap:4px;}
+.drawer-bottom .drawer-profile {margin-top:0;padding-top:12px;}
 .drawer-utilities {display:grid;}
 .drawer-utilities:has(button[hidden]) {display:none;}
