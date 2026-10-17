@@ -429,3 +429,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Yasal ekran yatay boşlukları daraltıldı: mobil dış boşluk 8 px, panel/iç metin boşluğu 12 px. Masaüstünde kullanılabilir alan 1440 px sınırına genişletildi. Metin boyutu ve diğer sayfalar korunur.
 
 - Yasal bilgilendirmeler menüdeki Ayarlar sayfasına taşındı; SASA-F ayarlar kartı düzeni referans alındı. Ayarlar ve yasal kart yalnız normal süper admin görünümünde açılır; sunucu rol kontrolü korunur. #settings yenilemede geri yüklenir, #legal doğrudan yolu korunur.
+
+- Ayarlar bağlantısı SASA-F örneğindeki gibi menünün alt kısmına, kullanıcı bilgilerinin üstüne taşındı. Kısa ekranlarda menü kaydırılabilir; süper admin görünürlük kuralı korunur.
