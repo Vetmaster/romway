@@ -2,8 +2,8 @@ export default {
   "version": "2026-10-17",
   "status": "draft",
   "missingFields": [
-    "Veri sorumlusunun resmî unvanı ve adresi",
-    "Kurumun başvuru iletişim kanalı",
+    "Temsili test unvanı ve adresinin gerçek kurum bilgileriyle değiştirilmesi",
+    "Test başvuru adresinin kuruma ait çalışır iletişim kanalıyla değiştirilmesi",
     "İşlem bazında hukuki sebep ve hak başvuru süreci",
     "Veri kategorileri için saklama/imha takvimi",
     "Alıcılar, barındırma bölgeleri ve aktarım düzeni"
@@ -17,7 +17,11 @@ export default {
         {
           "heading": "Veri sorumlusu ve iletişim",
           "paragraphs": [
-            "Solea bir uygulama adıdır; veri sorumlusu olan tüzel kişi henüz doğrulanmadı. Resmî unvan, adres ve başvuru iletişim kanalı tamamlanacak. SASA-F işletmecisinin bilgileri bu metne aktarılmadı."
+            "TEST KURUM BİLGİLERİ — Tamamı temsilidir; gerçek bir tüzel kişiyi veya kullanılabilir başvuru kanalını göstermez.",
+            "Kurum unvanı: Solea Test Lojistik Ltd. Şti. (temsili).",
+            "Adres: Test Mahallesi, Örnek Sokak No: 0, Test Şehri (temsili adres).",
+            "Başvuru iletişimi: veri.basvuru@solea.example.invalid (yalnız test; posta gönderilemez).",
+            "Bu bilgiler yalnız test ekranının değerlendirilmesi içindir. Gerçek kullanımdan önce veri sorumlusunun resmî unvanı, adresi ve çalışır iletişim kanalı doğrulanarak değiştirilecektir."
           ]
         },
         {
@@ -142,7 +146,7 @@ export default {
         {
           "heading": "Başvuru kanalı",
           "paragraphs": [
-            "Kuruma ait resmî başvuru adresi henüz belirlenmedi. Çalışanlara sunulmadan önce kurumun iletişim kanalı ve talep süreci tamamlanacak; SASA-F e-posta adresi kullanılmayacak."
+            "Test başvuru kanalı: veri.basvuru@solea.example.invalid. Bu temsili adres posta almaz; bu ekrandan başvuru gönderilmez. Gerçek kullanımdan önce kuruma ait çalışır iletişim kanalı ve talep süreci tanımlanacaktır."
           ]
         },
         {

@@ -421,3 +421,7 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Yasal bölüm doğrulaması: 43 test ve Chromium 390/1440 px yasal ekran/rol/red/RO/akordeon/yenileme kontrolleri geçti; personel ekleme ve rol önizleme regresyonları da geçti. Şirket bilgileri bekleniyor; yalnız test Edge dağıtımı ve Pages yayını onay bekliyor. Ayrıntı: docs/YASAL_BILGILENDIRME.md.
 
 - 17 Ekim açık kullanıcı onayı: yasal metinler sunucu güncellemesi yalnız romway-auth-test projesine uygulandı (romway-auth v7 ACTIVE). Migration yok; mevcut personel/lokasyon kayıt özetleri aynı. 43 test ve 390/1440 px yasal ekran/kart kaydırma testleri geçti. Son kart hizalaması korunarak v2026.10.17.4 yayına hazırlandı. Şirket bilgileri hâlâ taslak tamamlama gerektirir.
+
+- Kullanıcı isteğiyle TR/RO yasal taslaklara açıkça temsili test kurum unvanı, adresi ve .invalid e-posta eklendi. Gerçek kurum doğrulaması ve diğer hukuki tamamlama alanları korunur; başvuru gönderme akışı eklenmedi.
+
+- 44 test ve Chromium 390/1440 TR/RO yasal ekran/rol kontrolleri geçti. Temsili kurum metinleri yalnız romway-auth-test Edge v8 ACTIVE olarak uygulandı; migration yok ve mevcut kayıt özetleri aynı. Pages v2026.10.17.5 hazırlandı.
