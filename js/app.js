@@ -1,5 +1,6 @@
+import {revealCard} from './card-scroll.js?v=8be790ca5050';
 import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
-import {createPersonnel} from './personnel.js?v=a21941baf4d1';
+import {createPersonnel} from './personnel.js?v=8fbb8c27fab8';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
 import tr from './locales/tr.js?v=235b0a892cd0';
@@ -161,7 +162,7 @@ function closeMenu(restoreFocus=true) {
   if(restoreFocus&&!$('menu-toggle').hidden) $('menu-toggle').focus();
 }
 function showDashboard() {
-  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;render();$('dashboard-heading').focus();
+  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;render();revealCard($('dashboard-heading'),{focus:true});
 }
 $('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');($('menu-toggle').hidden?$('nav-home'):$('nav-brand')).focus();});
 $('navigation-drawer').addEventListener('cancel',event=>{event.preventDefault();closeMenu();});
@@ -175,7 +176,7 @@ $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
-function showPending(page){closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':page==='shipment-start'?'start_shipment':'shipment_management');render();$('pending-heading').focus();}
+function showPending(page){closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':page==='shipment-start'?'start_shipment':'shipment_management');render();revealCard($('pending-heading'),{focus:true});}
 $('nav-stock-list').addEventListener('click',()=>showPending('stock'));
 $('nav-shipment').addEventListener('click',()=>{shipmentExpanded=!shipmentExpanded;render();});
 $('nav-start-shipment').addEventListener('click',()=>showPending('shipment-start'));
@@ -183,7 +184,7 @@ $('tab-dashboard').addEventListener('click',showDashboard);
 $('tab-personnel').addEventListener('click',()=>{closeMenu(false);personnel.open('personnel');});
 $('tab-stock').addEventListener('click',()=>showPending('stock'));
 $('tab-shipment').addEventListener('click',()=>showPending('shipment'));
-personnel=createPersonnel({api:personnelApi,isReadonly:()=>Boolean(previewRole),isBusy:()=>busy,text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');heading.setAttribute('tabindex','-1');heading.focus();},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
+personnel=createPersonnel({api:personnelApi,isReadonly:()=>Boolean(previewRole),isBusy:()=>busy,text,run:perform,onOpen:(page,id)=>{rememberPage(page+(id?'/'+encodeURIComponent(id):''));workspace=page;render();const heading=$(page.endsWith('-profile')?'record-heading':page==='location'?'location-page-heading':'personnel-heading');revealCard(heading,{focus:true});},onSessionChange:{restore,employeeNumber:()=>profile?.employee_number}});
 
 async function changePreview(){
  if(busy||profile?.role!=='super_admin')return;
