@@ -1,9 +1,10 @@
+import {renderLegalDocuments,clearLegalDocuments} from './legal-view.js?v=e9952ab7dc0e';
 import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
 import {createPersonnel} from './personnel.js?v=a21941baf4d1';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=235b0a892cd0';
-import ro from './locales/ro.js?v=6c5e6cda04ff';
+import tr from './locales/tr.js?v=552ce20484e0';
+import ro from './locales/ro.js?v=629cbbf6311d';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -12,6 +13,7 @@ try { api = createApi(config.authEndpoint); } catch { api = createApi(''); }
 let view = 'login', profile = null, message = '', isError = false, busy = false, workspace = false, submenuExpanded=false, inventoryExpanded=false, shipmentExpanded=false;
 const text = key => locales[language][key] ?? locales[language].service_unavailable;
 let previewRole='',previewLocation='',previewLocations=[];
+const canReadLegal=()=>view==='welcome'&&profile?.role==='super_admin'&&effectiveProfile()?.role==='super_admin';
 const effectiveProfile=()=>profile&&previewRole?{...profile,role:previewRole}:profile;
 const personnelApi={call:async(action,payload)=>{
  if(!previewRole)return api.call(action,payload);
@@ -26,6 +28,12 @@ function render() {
   if(view!=='welcome') workspace=false;
   if(view!=='welcome'||profile?.role!=='super_admin'){previewRole='';previewLocation='';previewLocations=[];$('preview-location').replaceChildren();}
   const shownProfile=effectiveProfile();
+  if(!canReadLegal()){if(workspace==='legal')workspace=false;clearLegalDocuments();}
+  $('nav-legal').hidden=!canReadLegal();
+  $('legal-section').hidden=!canReadLegal()||workspace!=='legal';
+  if(workspace!=='legal')clearLegalDocuments();
+  $('nav-legal').setAttribute('aria-current',workspace==='legal'?'page':'false');
+  $('language').disabled=busy&&workspace==='legal';
   personnel?.update(view==='welcome'?shownProfile:null);
   $('role-preview').hidden=view!=='welcome'||profile?.role!=='super_admin';
   $('preview-details').hidden=view!=='welcome'||profile?.role!=='super_admin'||!previewRole;
@@ -43,7 +51,7 @@ function render() {
   $('auth-panel').hidden=signedIn;document.querySelector('.intro').hidden=signedIn;
   $('welcome').hidden=!signedIn||workspace;
   document.body.classList.toggle('app-shell',signedIn);
-  const pageLabels={personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'stock_list',shipment:'shipment_management','shipment-start':'start_shipment'};
+  const pageLabels={legal:'legal_title',personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'stock_list',shipment:'shipment_management','shipment-start':'start_shipment'};
   $('page-title').textContent=signedIn?text(pageLabels[workspace]??'dashboard_title'):'';
   $('pending-section').hidden=!signedIn||!['stock','shipment','shipment-start'].includes(workspace);
   if(['stock','shipment','shipment-start'].includes(workspace))$('pending-heading').textContent=text(pageLabels[workspace]);
@@ -77,8 +85,8 @@ function render() {
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
-  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile'],['personnel-dialog-message',$('personnel-dialog').open]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
+  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile'],['personnel-dialog-message',$('personnel-dialog').open],['legal-message',workspace==='legal']]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#nav-legal,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
   for(const id of ['preview-role','preview-location','preview-end'])$(id).disabled=busy;
   if(previewRole){document.querySelectorAll('#personnel-form input,#personnel-form select,#personnel-form button,#location-form input,#location-form button,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-list button,#record-edit').forEach(el=>el.disabled=true);}
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
@@ -102,6 +110,7 @@ async function restorePage(){
   else if(page==='location'&&effectiveProfile()?.role==='super_admin')await personnel.open('location');
   else if(page==='staff-profile'&&['admin','super_admin'].includes(effectiveProfile()?.role))await personnel.open(page,id);
   else if(page==='location-profile'&&effectiveProfile()?.role==='super_admin')await personnel.open(page,id);
+  else if(page==='legal'&&canReadLegal())await showLegal();
   else if(['stock','shipment','shipment-start'].includes(page))showPending(page);
   else showDashboard();
 }
@@ -122,7 +131,7 @@ async function restore() {
 $('language').addEventListener('change',e => {
   language = locales[e.target.value] ? e.target.value : 'tr';
   try { localStorage.setItem('romway.language',language); } catch { /* Optional preference. */ }
-  personnel.translate(); render();
+  personnel.translate(); render();if(workspace==='legal')showLegal();
 });
 $('login').addEventListener('submit',event => {
   event.preventDefault();
@@ -176,6 +185,15 @@ $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.o
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
 function showPending(page){closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':page==='shipment-start'?'start_shipment':'shipment_management');render();$('pending-heading').focus();}
+async function showLegal(){
+ if(!canReadLegal()){showDashboard();return;}
+ if(busy)return;
+ closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;
+ workspace='legal';rememberPage('legal');clearLegalDocuments();
+ await perform(async()=>{const data=await api.call('legal-documents',{language});if(!canReadLegal())throw new Error('permission_denied');renderLegalDocuments(data,text);});
+ if(workspace==='legal')$('legal-heading').focus();
+}
+$('nav-legal').addEventListener('click',showLegal);
 $('nav-stock-list').addEventListener('click',()=>showPending('stock'));
 $('nav-shipment').addEventListener('click',()=>{shipmentExpanded=!shipmentExpanded;render();});
 $('nav-start-shipment').addEventListener('click',()=>showPending('shipment-start'));
