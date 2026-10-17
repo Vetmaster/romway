@@ -431,3 +431,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Yasal bilgilendirmeler menüdeki Ayarlar sayfasına taşındı; SASA-F ayarlar kartı düzeni referans alındı. Ayarlar ve yasal kart yalnız normal süper admin görünümünde açılır; sunucu rol kontrolü korunur. #settings yenilemede geri yüklenir, #legal doğrudan yolu korunur.
 
 - Ayarlar bağlantısı SASA-F örneğindeki gibi menünün alt kısmına, kullanıcı bilgilerinin üstüne taşındı. Kısa ekranlarda menü kaydırılabilir; süper admin görünürlük kuralı korunur.
+
+- Ayarlar alt bağlantısı kullanıcı satırına yaklaştırıldı: aralık 16→4 px, kullanıcı üst boşluğu 20→12 px; alt bölümün son hizası korunur.
