@@ -416,3 +416,8 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Kart açılışında lokasyon formu, profil düzenlemesi ve sayfa başlıkları sabit banner altında hizalanır. Giriş alanına otomatik odak verilmez. Yasal metin PR #89 bu değişikliğe dahil değildir.
 
 - Chromium 390/1440 px: lokasyon kartı üst hizası, kapatma konumu, profil düzenlemede başlık odağı ve personel modal regresyonu geçti.
+- Yasal bilgilendirmeler: SASA-F main LEGAL_DOCUMENTS/legalTextsView tek açık detaylı süper admin taslak sayfası referans alındı. Solea için 6 TR/RO taslak hazırlandı; şirket/iletişim/hukuki sebep/saklama/aktarım bilgileri doğrulanmadığından eksik alanlar açıkça gösterilir. Gövde metinleri web paketine konmadı; legal-documents endpoint sunucuda süper admin ve geçerli oturum/ilk şifre kontrolü yapar. Edge dağıtımı henüz yapılmadı; Supabase onayı bekliyor. Açık GitHub kaynak deposu gizli belge deposu değildir.
+
+- Yasal bölüm doğrulaması: 43 test ve Chromium 390/1440 px yasal ekran/rol/red/RO/akordeon/yenileme kontrolleri geçti; personel ekleme ve rol önizleme regresyonları da geçti. Şirket bilgileri bekleniyor; yalnız test Edge dağıtımı ve Pages yayını onay bekliyor. Ayrıntı: docs/YASAL_BILGILENDIRME.md.
+
+- 17 Ekim açık kullanıcı onayı: yasal metinler sunucu güncellemesi yalnız romway-auth-test projesine uygulandı (romway-auth v7 ACTIVE). Migration yok; mevcut personel/lokasyon kayıt özetleri aynı. 43 test ve 390/1440 px yasal ekran/kart kaydırma testleri geçti. Son kart hizalaması korunarak v2026.10.17.4 yayına hazırlandı. Şirket bilgileri hâlâ taslak tamamlama gerektirir.
