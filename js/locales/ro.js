@@ -1,4 +1,6 @@
 export default {
+settings_title:'Setări',
+settings_legal_description:'Consultați proiectele de informare juridică.',
 legal_title:'Informații juridice',
 legal_draft:'Proiect',
 legal_intro:'Examinare exclusiv pentru super administrator. Textele nu apar celorlalte roluri sau la autentificare; pagina nu înregistrează acceptarea ori consimțământul.',
