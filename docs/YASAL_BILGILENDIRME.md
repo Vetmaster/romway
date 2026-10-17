@@ -21,7 +21,7 @@ Menü ve `#legal` yolu yalnız gerçek süper admin oturumunda ve normal rol gö
 
 Kaynak GitHub deposu herkese açık olduğundan genel taslak kaynakları gizli belge sayılmaz. Buraya sır veya kuruma özel hassas veri eklenmemelidir. Uygulama içi erişim kontrolü bu açık kaynak durumunu değiştirmez.
 
-Veritabanı migration veya yeni tablo gerekmez. Mevcut test Supabase Edge güncellemesi henüz uygulanmadı; AGENTS.md gereği ayrıca kullanıcı onayı beklenir. Bu yüzden Pages sürümü henüz yayınlanmadı. Giriş ekranına veya diğer kullanıcı rollerine yasal onay kutusu eklenmedi.
+Veritabanı migration veya yeni tablo gerekmez. 17 Ekim kullanıcı onayıyla Edge güncellemesi yalnız romway-auth-test projesine uygulandı (v7 ACTIVE). Migration uygulanmadı; mevcut kayıt özetleri dağıtım öncesi/sonrası aynı. Pages yayını v2026.10.17.4 olarak hazırlanmıştır. Giriş ekranına veya diğer kullanıcı rollerine yasal onay kutusu eklenmedi.
 
 ## Resmî kaynaklar
 - [KVKK — Aydınlatma Yükümlülüğü](https://www.kvkk.gov.tr/Icerik/2033/Aydinlatma-Yukumlulugu-)
