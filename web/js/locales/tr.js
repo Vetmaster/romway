@@ -1,4 +1,6 @@
 export default {
+settings_title:'Ayarlar',
+settings_legal_description:'Hazırlanan yasal bilgilendirme metinlerini inceleyin.',
 legal_title:'Yasal bilgilendirmeler',
 legal_draft:'Taslak',
 legal_intro:'Yalnızca süper admin incelemesi. Metinler diğer rollerde veya giriş ekranında gösterilmez; bu ekran bir kabul ya da rıza kaydı oluşturmaz.',
