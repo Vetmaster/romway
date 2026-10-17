@@ -14,7 +14,7 @@ Altı metin: personel verileri aydınlatma taslağı; gizlilik/erişim; kurum i�
 - Veri kategorileri için saklama ve imha takvimi.
 - Alıcılar, barındırma bölgeleri ve uygulanacak aktarım düzeni.
 
-Bu alanlar için varsayımsal şirket bilgisi, kesin süre, ülke veya hukuki dayanak yazılmadı. Personelin bağlı deposu, mevcut konumu olarak varsayılmadı; gerçek sevkiyat modülü tamamlanmış gösterilmedi.
+17 Ekim kullanıcı kararıyla kurum kimliği ve iletişim alanları açıkça temsili test bilgileriyle dolduruldu: Solea Test Lojistik Ltd. Şti.; Test Mahallesi, Örnek Sokak No: 0, Test Şehri; veri.basvuru@solea.example.invalid. Adres gerçek değildir, e-posta posta almaz. Gerçek kurum bilgileri doğrulanmış sayılmaz; kesin süre veya hukuki dayanak uydurulmadı. Personelin bağlı deposu, mevcut konumu olarak varsayılmadı; gerçek sevkiyat modülü tamamlanmış gösterilmedi.
 
 ## Erişim ve dağıtım
 Menü ve `#legal` yolu yalnız gerçek süper admin oturumunda ve normal rol görünümünde kullanılabilir. `legal-documents` işlemi aynı kuralı sunucuda denetler; eksik/geçersiz oturum 401, diğer roller ve zorunlu şifre değişimi 403 alır. Yanıt `no-store` kullanır. Metinler web paketinde bulunmaz; DOM'a `textContent` ile yazılır. Role/ekrana geçişte içerik temizlenir. Başka bir rolü önizlerken bölüm gizlidir.
@@ -30,3 +30,5 @@ Veritabanı migration veya yeni tablo gerekmez. 17 Ekim kullanıcı onayıyla Ed
 
 ## Doğrulama
 43 birim/SQL/HTTP testi geçti. Yeni yasal endpoint için rol, ilk şifre değişimi, geçersiz oturum, Origin, dil ve `no-store` kontrolleri kapsandı. Chromium 390/1440 px testinde TR/RO, tek açık metin, sayfa yenileme, rol önizlemesi/rol kaybında içerik temizliği, doğrudan menü/API reddi ve taşma kontrolü geçti. Mevcut personel ekleme penceresi ve rol önizleme tarayıcı regresyonları geçti.
+
+17 Ekim test kurum güncellemesi: yalnız romway-auth-test Edge v8 ACTIVE; mevcut kayıtlar aynı, migration yok. 44 test ve 390/1440 px yasal ekran kontrolleri geçti. Pages sürümü v2026.10.17.5.

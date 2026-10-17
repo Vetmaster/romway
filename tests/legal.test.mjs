@@ -11,3 +11,15 @@ test('super admin receives localized read-only drafts, completion fields and aut
  for(const language of ['tr','ro']){const r=await request({role:'super_admin',password_change_required:false},{action:'legal-documents',language});assert.equal(r.status,200);assert.equal(r.body.status,'draft');assert.equal(r.body.documents.length,6);assert.equal(r.body.missingFields.length,5);assert.equal(r.headers.get('cache-control'),'no-store');assert.deepEqual(r.calls,['romway_session']);assert.equal(r.body.documents[0].id,'notice');assert(!JSON.stringify(r.body).includes('bilgi@sasa-f.com'));assert(!JSON.stringify(r.body).includes('Fenerbahçe'));assert(r.body.sources.every(s=>s.url.startsWith('https://')));}
  assert.equal((await request({role:'super_admin'},{action:'legal-documents',language:'de'})).status,400);
 });
+
+test('test organization details are explicitly fictitious and use a non-deliverable contact in both languages',async()=>{
+ for(const language of ['tr','ro']){
+  const {body}=await request({role:'super_admin',password_change_required:false},{action:'legal-documents',language});
+  const paragraphs=body.documents[0].sections[0].paragraphs;
+  assert(paragraphs.join(' ').includes('Solea Test Lojistik Ltd. Şti.'));
+  assert(paragraphs.join(' ').includes('veri.basvuru@solea.example.invalid'));
+  assert(paragraphs[0].includes(language==='tr'?'Tamamı temsilidir':'Toate sunt fictive'));
+  assert(body.documents.at(-1).sections[0].paragraphs[0].includes('veri.basvuru@solea.example.invalid'));
+  assert.equal(body.status,'draft');assert.equal(body.missingFields.length,5);
+ }
+});

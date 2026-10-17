@@ -2,8 +2,8 @@ export default {
   "version": "2026-10-17",
   "status": "draft",
   "missingFields": [
-    "Denumirea juridică și adresa operatorului",
-    "Canalul oficial de contact al organizației",
+    "Înlocuirea denumirii și adresei fictive cu datele organizației reale",
+    "Înlocuirea adresei de test cu un canal funcțional al organizației",
     "Temeiuri juridice pe operațiuni și procedura drepturilor",
     "Calendarul păstrării și ștergerii pe categorii",
     "Destinatarii, regiunile de găzduire și transferurile"
@@ -17,7 +17,11 @@ export default {
         {
           "heading": "Operator și contact",
           "paragraphs": [
-            "Solea este numele aplicației; entitatea care este operatorul datelor nu a fost confirmată. Denumirea juridică, adresa și canalul de contact vor fi completate. Datele operatorului SASA-F nu au fost transferate în acest text."
+            "DATE DE ORGANIZAȚIE PENTRU TEST — Toate sunt fictive; nu identifică o entitate juridică reală sau un canal funcțional de contact.",
+            "Denumire: Solea Test Lojistik Ltd. Şti. (fictivă).",
+            "Adresă: Test Mahallesi, Örnek Sokak No: 0, Test Şehri (adresă fictivă).",
+            "Contact pentru cereri: veri.basvuru@solea.example.invalid (doar test; nu primește e-mailuri).",
+            "Aceste date servesc exclusiv evaluării ecranului de test. Înainte de utilizarea reală, denumirea juridică, adresa și un canal funcțional de contact al operatorului vor fi verificate și înlocuite."
           ]
         },
         {
@@ -142,7 +146,7 @@ export default {
         {
           "heading": "Canal de contact",
           "paragraphs": [
-            "Adresa oficială a organizației nu a fost încă stabilită. Înainte de comunicarea către personal trebuie completate canalul de contact și procedura; nu se utilizează adresa de e-mail SASA-F."
+            "Canal de test pentru cereri: veri.basvuru@solea.example.invalid. Această adresă fictivă nu primește mesaje; ecranul nu trimite cereri. Înainte de utilizarea reală se vor defini canalul funcțional al organizației și procedura cererilor."
           ]
         },
         {
