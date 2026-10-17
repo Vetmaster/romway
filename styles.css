@@ -316,8 +316,8 @@ button.dashboard-card:hover {background:#f0f7fb;border-color:var(--blue);}
 .drawer-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .drawer-heading button {width:auto;margin:0;padding:10px;font-size:13px;}
 .navigation-drawer nav {display:grid;gap:8px;margin-top:32px;}
-.navigation-drawer nav button {margin:0;text-align:left;border:1px solid transparent;background:transparent;color:white;}
-.navigation-drawer nav button:hover,.navigation-drawer nav button[aria-current=page] {background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.25);}
+.navigation-drawer nav button,.drawer-utilities button {margin:0;text-align:left;border:1px solid transparent;background:transparent;color:white;}
+.navigation-drawer nav button:hover,.navigation-drawer nav button[aria-current=page],.drawer-utilities button:hover,.drawer-utilities button[aria-current=page] {background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.25);}
 .drawer-profile {margin-top:auto;flex-shrink:0;padding-top:20px;border-top:1px solid rgba(255,255,255,.3);overflow-wrap:anywhere;}
 .drawer-profile small {display:block;color:white;}
 .menu-toggle {width:auto;margin:0;padding:10px 14px;}
@@ -582,3 +582,8 @@ main.workspace:has(.legal-page:not([hidden])) {max-width:1440px;padding-inline:2
 .settings-link-copy strong,.settings-link-copy small {display:block;}
 .settings-link-copy small {margin-top:4px;}
 #settings-heading:focus {outline:none;}
+
+.drawer-bottom {margin-top:auto;flex-shrink:0;display:grid;gap:16px;}
+.drawer-bottom .drawer-profile {margin-top:0;}
+.drawer-utilities {display:grid;}
+.drawer-utilities:has(button[hidden]) {display:none;}
