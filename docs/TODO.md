@@ -260,3 +260,5 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Kullanıcının ayrıca istediği TESTADMIN→TEST_S_ADMIN giriş adı değiştirildi; Auth kimliği, parola kaydının parmak izi ve oturum sürümü aynı kaldı. TEST_ADMIN/admin, TEST_SATINALMA/purchasing, TEST_PERSONEL/receiver tek test deposuna bağlı oluşturuldu. Üçünün gerçek geçici şifre girişi ve ilk şifre değişimi engeli doğrulandı; şifreler kaynak/log/tarayıcı deposuna yazılmadı, yalnız Git dışı özel 0600 dosyada teslim edilir.
 
 - Pages v2026.10.18.2 built ve canlı ürün kataloğu uygulama dosyası yerel doğrulanmış sürümle aynı olarak kontrol edildi. Üç yeni test hesabının gerçek geçici girişleri başarılı; zorunlu şifre değişimi korunuyor.
+
+- Ana sayfa giriş/yenileme/geri dönüşte banner dahil sayfanın en üstünden açılır. Dashboard başlığına odak kaydırma yaptırmaz; diğer sayfa ve kartların başlık hizalaması korunur.

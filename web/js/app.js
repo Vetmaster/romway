@@ -186,7 +186,7 @@ function closeMenu(restoreFocus=true) {
   if(restoreFocus&&!$('menu-toggle').hidden) $('menu-toggle').focus();
 }
 function showDashboard() {
-  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;render();revealCard($('dashboard-heading'),{focus:true});
+  rememberPage('dashboard');closeMenu(false);workspace=false;message='';personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;render();$('dashboard-heading').focus({preventScroll:true});requestAnimationFrame(()=>{if(view==='welcome'&&!workspace)window.scrollTo({top:0,left:0,behavior:'instant'});});
 }
 $('menu-toggle').addEventListener('click',()=>{$('navigation-drawer').showModal();$('menu-toggle').setAttribute('aria-expanded','true');($('menu-toggle').hidden?$('nav-home'):$('nav-brand')).focus();});
 $('navigation-drawer').addEventListener('cancel',event=>{event.preventDefault();closeMenu();});
