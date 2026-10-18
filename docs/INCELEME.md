@@ -442,3 +442,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Yapılacak: ürün/miktar/parti/seri/QR altyapısı, stok hareketi, gönderim, teslim alma ve personel konum geçmişi. Bu işler tamamlanmış sayılmaz.
 
 - Doğrulandı: 49 birim/SQL/HTTP testi geçti. Chromium 390/1440 süper admin/nakliye taslak formu, hata tekrarı, aynı istek kimliği, TR/RO, metin kaçışları, yenileme ve taşma kontrolleri; mevcut rol önizleme/yasal/personel kontrolleri geçti. Test verileri sentetiktir; dağıtılmış sevkiyat entegrasyonu henüz yapılmadı.
+
+- 18 Ekim kullanıcı onayı uygulandı: yalnız romway-auth-test migration 202610180006 ve Edge v9 ACTIVE. Mevcut kayıt özetleri aynı. Dağıtılmış sunucuda sentetik nakliye hesabıyla taslak liste/oluşturma, tekrar güvenliği, farklı içerikle tekrar reddi, geçersiz rota ve yetki kontrolleri geçti. Bir test taslağı saklandı; önceki taslaklar değişmedi. Pages v2026.10.18.1 yayına hazır.

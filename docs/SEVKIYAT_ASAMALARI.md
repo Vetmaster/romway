@@ -22,4 +22,6 @@ Satın alma personeli admin onayı olmadan sevkiyatı gönderebilir. Yetkili nak
 QR ile hedef kabulü, kısmi/eksik teslim kuralları, yolda → hedef, geçmiş ve son bilinen konum. Konum bağlı depodan türetilmez; GPS iddiası yoktur. Fiyatlar receiver'a verilmez. Gönderim/kabul işlemleri tamamlanmadan bu kayıtlar üretilmez.
 
 ## Dağıtım durumu
-202610180006 migration ve Edge değişikliği yalnız dosya olarak hazırlandı. Mevcut Supabase'e uygulanmadı; kullanıcı onayı bekler. Pages yeni sunucu hazır olmadan yayınlanmayacak. İzin gelirse yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) için `scripts/deploy-test-shipment-drafts.mjs` çalıştırılır; mevcut kayıt özetleri önce/sonra karşılaştırılır. Başka projeye dağıtım yoktur.
+18 Ekim açık kullanıcı onayıyla 202610180006 migration yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesinde uygulandı ve romway-auth Edge v9 ACTIVE doğrulandı. Dağıtım öncesi/sonrası mevcut personel, lokasyon ve ilgili kayıt özetleri aynı kaldı. Başka projeye dağıtım yapılmadı.
+
+49 yerel birim/SQL/HTTP testi ve Chromium 390/1440 ekran kontrolleri geçti. Dağıtılmış sunucuda mevcut sentetik nakliye hesabıyla liste/oluşturma/tekrar güvenliği/çakışma/geçersiz rota/Origin/oturumsuz erişim/personel yönetimine erişim reddi test edildi. Bir açıkça etiketlenmiş test taslağı tutuldu; önceki taslaklar değişmedi. Script: `scripts/test-cloud-shipment-drafts.mjs`. Pages v2026.10.18.1 yayını hazırlandı. Ürün/miktar/QR ve gerçek stok hareketleri hâlâ kapsam dışıdır.
