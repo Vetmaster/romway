@@ -15,11 +15,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anta&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4261adb507a7">
-  <script type="module" src="js/app.js?v=41bdcfdc6d54"></script>
+  <link rel="stylesheet" href="styles.css?v=676f83791490">
+  <script type="module" src="js/app.js?v=7d224ba317d5"></script>
 </head>
 <body>
-  <header class="app-banner"><span id="app-version" class="app-version"><span class="sr-only" data-i18n="version_label"></span>v2026.10.17.10</span><a class="brand" href="./" aria-label="Romway"><svg viewBox="400 160 735 510" role="img" aria-label="Solea" width="144" height="100"><image href="assets/logo-solea.png" width="1536" height="1024"></image></svg><small class="banner-subtitle" data-i18n="drawer_brand_caption"></small></a><div class="banner-controls"><span class="banner-test" data-i18n="test_environment"></span><label class="language"><span data-i18n="language">Dil</span><select id="language"><option value="tr">Türkçe</option><option value="ro">Română</option></select></label></div></header>
+  <header class="app-banner"><span id="app-version" class="app-version"><span class="sr-only" data-i18n="version_label"></span>v2026.10.18.1</span><a class="brand" href="./" aria-label="Romway"><svg viewBox="400 160 735 510" role="img" aria-label="Solea" width="144" height="100"><image href="assets/logo-solea.png" width="1536" height="1024"></image></svg><small class="banner-subtitle" data-i18n="drawer_brand_caption"></small></a><div class="banner-controls"><span class="banner-test" data-i18n="test_environment"></span><label class="language"><span data-i18n="language">Dil</span><select id="language"><option value="tr">Türkçe</option><option value="ro">Română</option></select></label></div></header>
   <div class="topbar">
     <button id="menu-toggle" class="secondary menu-toggle" type="button" hidden aria-controls="navigation-drawer" aria-expanded="false" data-i18n="menu"></button>
     <strong id="page-title"></strong>
@@ -81,7 +81,7 @@
           <span class="card-link" data-i18n="open_page"></span>
         </button>
         <article class="dashboard-card"><span class="card-icon" aria-hidden="true">▦</span><strong data-i18n="inventory_title"></strong><p data-i18n="inventory_note"></p><small class="coming-soon" data-i18n="coming_soon"></small></article>
-        <article class="dashboard-card"><span class="card-icon" aria-hidden="true">⇄</span><strong data-i18n="shipment_title"></strong><p data-i18n="shipment_note"></p><small class="coming-soon" data-i18n="coming_soon"></small></article>
+        <button id="shipment-open" class="dashboard-card" type="button"><span class="card-icon" aria-hidden="true">⇄</span><strong data-i18n="shipment_management"></strong><p data-i18n="shipment_draft_stage"></p><small class="card-link" data-i18n="shipment_recent"></small></button>
       </div>
     </section>
     <section id="personnel-section" class="panel personnel" hidden aria-labelledby="personnel-heading">
@@ -122,6 +122,21 @@
       </section>
       <p id="profile-operation-message" role="status" aria-live="polite"></p><button id="record-edit" type="button" data-i18n="edit_staff" hidden></button><div id="record-edit-host"></div>
       <a id="record-back" class="profile-back" data-i18n="back_to_list"></a>
+    </section>
+    <section id="shipment-section" class="panel" hidden aria-labelledby="shipment-heading">
+      <div class="staff-list-heading"><h2 id="shipment-heading" tabindex="-1"></h2><button id="shipment-new" type="button" data-i18n="shipment_new_draft"></button></div>
+      <p class="shipment-notice" data-i18n="shipment_stage_note"></p>
+      <p id="shipment-message" role="status" aria-live="polite"></p>
+      <p id="shipment-readonly" data-i18n="preview_readonly" hidden></p>
+      <form id="shipment-form" hidden>
+        <label for="shipment-source" data-i18n="shipment_source"></label><select id="shipment-source" required></select>
+        <label for="shipment-destination" data-i18n="shipment_destination"></label><select id="shipment-destination" required></select>
+        <label for="shipment-carrier" data-i18n="shipment_carrier"></label><select id="shipment-carrier" required></select>
+        <label for="shipment-notes" data-i18n="shipment_notes"></label><textarea id="shipment-notes" rows="3" maxlength="1000"></textarea>
+        <button type="submit" data-i18n="shipment_save_draft"></button><button id="shipment-reset" type="button" class="secondary" data-i18n="shipment_clear"></button>
+      </form>
+      <p id="shipment-saved" role="status" aria-live="polite"></p>
+      <h3 data-i18n="shipment_recent"></h3><p class="muted" data-i18n="shipment_list_limit"></p><ul id="shipment-list" class="shipment-list"></ul>
     </section>
     <section id="pending-section" class="panel" hidden aria-labelledby="pending-heading"><h2 id="pending-heading" tabindex="-1"></h2><p data-i18n="coming_soon"></p></section>
     <section id="settings-section" class="panel settings-page" hidden aria-labelledby="settings-heading">

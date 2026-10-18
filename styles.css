@@ -566,10 +566,10 @@ body:not(.app-shell) .topbar:has(.header-actions:empty) {display:none;}
 #legal-sources a {color:var(--blue);overflow-wrap:anywhere;}
 
 /* Use the available width for legal text instead of stacking wide gutters. */
-main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden])) {max-width:1440px;padding-inline:20px;}
+main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipment-section:not([hidden])) {max-width:1440px;padding-inline:20px;}
 @media(max-width:820px) {
- main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden])) {padding-inline:8px;}
- .legal-page,.settings-page {padding-inline:12px;}
+ main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipment-section:not([hidden])) {padding-inline:8px;}
+ .legal-page,.settings-page,#shipment-section {padding-inline:12px;}
  .legal-page .legal-intro,.legal-page .legal-completion {padding:12px;}
  .legal-document summary {padding:12px;gap:8px;}
  .legal-document article {padding:0 12px 12px;}
@@ -591,3 +591,14 @@ main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden])) {max-
 @media(max-width:820px) {
  .settings-page .settings-link-card {padding:12px;gap:12px;}
 }
+
+#shipment-heading:focus {outline:none;}
+#shipment-section textarea {width:100%;font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;resize:vertical;}
+.shipment-notice {padding:12px;background:#f2f5f7;border:1px solid var(--line);border-radius:8px;}
+.shipment-list {list-style:none;padding:0;}
+.shipment-list li {padding:12px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere;}
+.shipment-list p {margin:4px 0;}
+.shipment-status {margin-left:10px;color:var(--muted);background:#f2f5f7;padding:2px 8px;border-radius:6px;font-size:12px;}
+
+#shipment-form select {width:100%;min-height:44px;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);}
+#shipment-message.error {color:#a01424;}
