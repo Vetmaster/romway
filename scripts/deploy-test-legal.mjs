@@ -8,7 +8,7 @@ const project=await api('');assert.equal(project.name,'romway-auth-test');assert
 const query=query=>api('/database/query',{body:{query}});
 const snapshotSql="select (select count(*) from auth.users)::int as auth_users,"+['staff','staff_locations','locations','personnel_requests','personnel_audit'].map(t=>`(select md5(coalesce(jsonb_agg(to_jsonb(r) order by to_jsonb(r)::text)::text,'[]')) from romway_private.${t} r) as ${t}`).join(',');
 const before=await query(snapshotSql),fnBefore=await api('/functions/romway-auth');assert.equal(fnBefore.verify_jwt,false);
-const files=['index.ts','backend.js','handler.js','personnel.js','security.js','legal.js','legal-tr.js','legal-ro.js','shipments.js'];
+const files=['index.ts','backend.js','handler.js','personnel.js','security.js','legal.js','legal-tr.js','legal-ro.js','shipments.js','products.js'];
 async function deploy(dry){const form=new FormData();form.append('metadata',JSON.stringify({name:'romway-auth',entrypoint_path:'index.ts',verify_jwt:false}));for(const file of files)form.append('file',new Blob([await readFile(join(root,'supabase/functions/romway-auth',file))],{type:'application/typescript'}),file);return api('/functions/deploy?slug=romway-auth'+(dry?'&bundleOnly=1':''),{body:form});}
 await deploy(true);console.log('Exact isolated test project verified; function bundle validated.');
 assert.deepEqual(await query(snapshotSql),before,'Existing records changed; deployment halted without deleting or reverting records');

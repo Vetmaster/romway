@@ -58,3 +58,5 @@
 - 17 Ekim kullanıcı yasal bilgilendirmeler sunucu güncellemesini yalnız romway-auth-test projesine uygulayıp ardından Pages yayınını açıkça onayladı. Bu izin başka Supabase projelerini kapsamaz; migration gerekmemektedir.
 
 - 18 Ekim kullanıcı PR #98 sevkiyat taslakları için 202610180006 migration ve romway-auth Edge güncellemesini yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulamayı, doğrulama ve ardından Pages yayınını açıkça onayladı. Mevcut kayıtlar korunur; sentetik test taslağı silinmez. Gönderim/stok hareketi kapsamda değildir.
+
+- 18 Ekim kullanıcı PR #99 ürün kataloğu migration/Edge güncellemesini yalnız romway-auth-test projesine uygulayıp yayınlamayı onayladı. Aynı istekte mevcut TESTADMIN süper admin girişini şifreyi koruyarak TEST_S_ADMIN yapmayı ve TEST_ADMIN/admin, TEST_SATINALMA/purchasing, TEST_PERSONEL/receiver hesaplarını oluşturmayı istedi. Diğer kayıtlar/şifreler korunur; yeni hesaplarda tek bağlı test deposu ve zorunlu ilk şifre değişimi vardır.

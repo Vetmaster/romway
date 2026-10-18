@@ -566,10 +566,10 @@ body:not(.app-shell) .topbar:has(.header-actions:empty) {display:none;}
 #legal-sources a {color:var(--blue);overflow-wrap:anywhere;}
 
 /* Use the available width for legal text instead of stacking wide gutters. */
-main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipment-section:not([hidden])) {max-width:1440px;padding-inline:20px;}
+main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipment-section:not([hidden]),#product-section:not([hidden])) {max-width:1440px;padding-inline:20px;}
 @media(max-width:820px) {
- main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipment-section:not([hidden])) {padding-inline:8px;}
- .legal-page,.settings-page,#shipment-section {padding-inline:12px;}
+ main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipment-section:not([hidden]),#product-section:not([hidden])) {padding-inline:8px;}
+ .legal-page,.settings-page,#shipment-section,#product-section {padding-inline:12px;}
  .legal-page .legal-intro,.legal-page .legal-completion {padding:12px;}
  .legal-document summary {padding:12px;gap:8px;}
  .legal-document article {padding:0 12px 12px;}
@@ -602,3 +602,13 @@ main.workspace:has(.legal-page:not([hidden]),.settings-page:not([hidden]),#shipm
 
 #shipment-form select {width:100%;min-height:44px;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);}
 #shipment-message.error {color:#a01424;}
+
+#product-heading:focus,#product-form-heading:focus {outline:none;}
+#product-form-heading {padding-right:40px;}
+#product-form select {width:100%;min-height:44px;}
+#product-message.error,#product-dialog-message.error {color:#a01424;}
+.product-table-wrap {overflow-x:auto;}
+.product-table {width:100%;border-collapse:collapse;text-align:left;table-layout:fixed;}
+.product-table th,.product-table td {padding:10px 6px;border-bottom:1px solid var(--line);overflow-wrap:anywhere;}
+.product-table th {background:#ededed;}
+.product-table th:first-child {width:30%;}.product-table th:last-child {width:22%;}

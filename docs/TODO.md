@@ -248,3 +248,15 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - 18 Ekim kullanıcı onayı uygulandı: yalnız romway-auth-test migration 202610180006 ve Edge v9 ACTIVE. Mevcut kayıt özetleri aynı. Dağıtılmış sunucuda sentetik nakliye hesabıyla taslak liste/oluşturma, tekrar güvenliği, farklı içerikle tekrar reddi, geçersiz rota ve yetki kontrolleri geçti. Bir test taslağı saklandı; önceki taslaklar değişmedi. Pages v2026.10.18.1 yayına hazır.
 
 - Pages v2026.10.18.1 built ve canlı uygulama dosyası doğrulandı. Canlı mobil Chromium testinde gerçek cookie girişi, taslak listesi/formu, depo seçenekleri, nakliye rolünün yalnız kendisini seçmesi, sayfa yenileme ve çıkış geçti; ek taslak oluşturulmadı.
+
+## 18 Ekim — ürün kartları
+- Hazır: ortak ürün kataloğu, ürün adı/parça kodu/birim ve yetkili işlem deposuyla ekleme, TR/RO modal form, arama ve 10’ar gösterim. Sunucuda kod benzersizliği, depo/rol kontrolü, service-only RPC ve tekrar güvenliği.
+- Bekleyen: 202610180007 ve Edge dağıtımı yalnız test projesine uygulanması için onay; dağıtılmış entegrasyon ve Pages.
+- Sonraki: stok girişi miktar/parti/seri, EUR maliyet/vergi, stok miktar listesi ve gerçek sevkiyat. Detay: URUN_KATALOGU.md.
+
+- Doğrulandı: 54 yerel birim/SQL/HTTP testi geçti. Chromium 390/1440 ürün modalı/odak, yinelenen kod hatası ve tekrar deneme, 10’ar sayfalama/arama, TR/RO, XSS metin kaçışı, yenileme/rol önizlemesi/taşma kontrolleri geçti. Sevkiyat, personel, rol önizleme ve yasal ekran regresyonları da geçti; gerçek Supabase ürün entegrasyonu yapılmadı.
+
+- 18 Ekim kullanıcı onayıyla ürün kataloğu migration 202610180007 ve Edge v10 ACTIVE yalnız romway-auth-test projesine uygulandı. Mevcut kayıt özetleri aynı. Dağıtılmış katalog liste/oluşturma/tekrar güvenliği/kod tekrarı/birim/Origin/oturum testleri geçti; bir sentetik kart saklandı.
+- Kullanıcının ayrıca istediği TESTADMIN→TEST_S_ADMIN giriş adı değiştirildi; Auth kimliği, parola kaydının parmak izi ve oturum sürümü aynı kaldı. TEST_ADMIN/admin, TEST_SATINALMA/purchasing, TEST_PERSONEL/receiver tek test deposuna bağlı oluşturuldu. Üçünün gerçek geçici şifre girişi ve ilk şifre değişimi engeli doğrulandı; şifreler kaynak/log/tarayıcı deposuna yazılmadı, yalnız Git dışı özel 0600 dosyada teslim edilir.
+
+- Pages v2026.10.18.2 built ve canlı ürün kataloğu uygulama dosyası yerel doğrulanmış sürümle aynı olarak kontrol edildi. Üç yeni test hesabının gerçek geçici girişleri başarılı; zorunlu şifre değişimi korunuyor.
