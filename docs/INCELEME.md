@@ -444,3 +444,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Doğrulandı: 49 birim/SQL/HTTP testi geçti. Chromium 390/1440 süper admin/nakliye taslak formu, hata tekrarı, aynı istek kimliği, TR/RO, metin kaçışları, yenileme ve taşma kontrolleri; mevcut rol önizleme/yasal/personel kontrolleri geçti. Test verileri sentetiktir; dağıtılmış sevkiyat entegrasyonu henüz yapılmadı.
 
 - 18 Ekim kullanıcı onayı uygulandı: yalnız romway-auth-test migration 202610180006 ve Edge v9 ACTIVE. Mevcut kayıt özetleri aynı. Dağıtılmış sunucuda sentetik nakliye hesabıyla taslak liste/oluşturma, tekrar güvenliği, farklı içerikle tekrar reddi, geçersiz rota ve yetki kontrolleri geçti. Bir test taslağı saklandı; önceki taslaklar değişmedi. Pages v2026.10.18.1 yayına hazır.
+
+- Pages v2026.10.18.1 built ve canlı uygulama dosyası doğrulandı. Canlı mobil Chromium testinde gerçek cookie girişi, taslak listesi/formu, depo seçenekleri, nakliye rolünün yalnız kendisini seçmesi, sayfa yenileme ve çıkış geçti; ek taslak oluşturulmadı.

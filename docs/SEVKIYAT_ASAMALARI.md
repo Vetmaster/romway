@@ -25,3 +25,5 @@ QR ile hedef kabulü, kısmi/eksik teslim kuralları, yolda → hedef, geçmiş 
 18 Ekim açık kullanıcı onayıyla 202610180006 migration yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesinde uygulandı ve romway-auth Edge v9 ACTIVE doğrulandı. Dağıtım öncesi/sonrası mevcut personel, lokasyon ve ilgili kayıt özetleri aynı kaldı. Başka projeye dağıtım yapılmadı.
 
 49 yerel birim/SQL/HTTP testi ve Chromium 390/1440 ekran kontrolleri geçti. Dağıtılmış sunucuda mevcut sentetik nakliye hesabıyla liste/oluşturma/tekrar güvenliği/çakışma/geçersiz rota/Origin/oturumsuz erişim/personel yönetimine erişim reddi test edildi. Bir açıkça etiketlenmiş test taslağı tutuldu; önceki taslaklar değişmedi. Script: `scripts/test-cloud-shipment-drafts.mjs`. Pages v2026.10.18.1 yayını hazırlandı. Ürün/miktar/QR ve gerçek stok hareketleri hâlâ kapsam dışıdır.
+
+- Pages v2026.10.18.1 built ve canlı uygulama dosyası doğrulandı. Canlı mobil Chromium testinde gerçek cookie girişi, taslak listesi/formu, depo seçenekleri, nakliye rolünün yalnız kendisini seçmesi, sayfa yenileme ve çıkış geçti; ek taslak oluşturulmadı.
