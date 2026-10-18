@@ -435,3 +435,10 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 - Ayarlar alt bağlantısı kullanıcı satırına yaklaştırıldı: aralık 16→4 px, kullanıcı üst boşluğu 20→12 px; alt bölümün son hizası korunur.
 
 - Ayarlar ekranı da yasal ekranın geniş alan düzenine alındı: mobil dış yan boşluk 8 px, panel ve bağlantı kartı 12 px; masaüstü üst sınır 1440 px.
+
+## 18 Ekim — sevkiyat taslağı
+- Hazır: taslak formu/liste TR/RO, yerel SQL/RPC ve Edge rol/depo denetimi, fiyat içermeyen yanıt, tekrar güvenli oluşturma. Detay: SEVKIYAT_ASAMALARI.md.
+- Bekleyen: yeni migration ve Edge yalnız test projesine uygulanması için onay; dağıtılmış gerçek entegrasyon testi ve Pages yayını.
+- Yapılacak: ürün/miktar/parti/seri/QR altyapısı, stok hareketi, gönderim, teslim alma ve personel konum geçmişi. Bu işler tamamlanmış sayılmaz.
+
+- Doğrulandı: 49 birim/SQL/HTTP testi geçti. Chromium 390/1440 süper admin/nakliye taslak formu, hata tekrarı, aynı istek kimliği, TR/RO, metin kaçışları, yenileme ve taşma kontrolleri; mevcut rol önizleme/yasal/personel kontrolleri geçti. Test verileri sentetiktir; dağıtılmış sevkiyat entegrasyonu henüz yapılmadı.
