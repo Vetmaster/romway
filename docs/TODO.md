@@ -248,3 +248,10 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - 18 Ekim kullanıcı onayı uygulandı: yalnız romway-auth-test migration 202610180006 ve Edge v9 ACTIVE. Mevcut kayıt özetleri aynı. Dağıtılmış sunucuda sentetik nakliye hesabıyla taslak liste/oluşturma, tekrar güvenliği, farklı içerikle tekrar reddi, geçersiz rota ve yetki kontrolleri geçti. Bir test taslağı saklandı; önceki taslaklar değişmedi. Pages v2026.10.18.1 yayına hazır.
 
 - Pages v2026.10.18.1 built ve canlı uygulama dosyası doğrulandı. Canlı mobil Chromium testinde gerçek cookie girişi, taslak listesi/formu, depo seçenekleri, nakliye rolünün yalnız kendisini seçmesi, sayfa yenileme ve çıkış geçti; ek taslak oluşturulmadı.
+
+## 18 Ekim — ürün kartları
+- Hazır: ortak ürün kataloğu, ürün adı/parça kodu/birim ve yetkili işlem deposuyla ekleme, TR/RO modal form, arama ve 10’ar gösterim. Sunucuda kod benzersizliği, depo/rol kontrolü, service-only RPC ve tekrar güvenliği.
+- Bekleyen: 202610180007 ve Edge dağıtımı yalnız test projesine uygulanması için onay; dağıtılmış entegrasyon ve Pages.
+- Sonraki: stok girişi miktar/parti/seri, EUR maliyet/vergi, stok miktar listesi ve gerçek sevkiyat. Detay: URUN_KATALOGU.md.
+
+- Doğrulandı: 54 yerel birim/SQL/HTTP testi geçti. Chromium 390/1440 ürün modalı/odak, yinelenen kod hatası ve tekrar deneme, 10’ar sayfalama/arama, TR/RO, XSS metin kaçışı, yenileme/rol önizlemesi/taşma kontrolleri geçti. Sevkiyat, personel, rol önizleme ve yasal ekran regresyonları da geçti; gerçek Supabase ürün entegrasyonu yapılmadı.

@@ -102,3 +102,6 @@ Personel aynı anda en fazla bir lokasyona bağlıdır; çoklu seçim yapılmaz.
 
 ## 18 Ekim — sevkiyat başlangıcı
 İlk aşama yalnız kaynak/hedef depo, nakliye personeli ve açıklama içeren sevkiyat taslağıdır. Ürün ve miktar/parti/seri altyapısı olmadan stok düşülmez, yolda veya teslim edildi durumu oluşturulmaz. Ayrıntılı sıra: SEVKIYAT_ASAMALARI.md. 18 Ekim kullanıcı onayıyla taslak migration/Edge yalnız romway-auth-test projesine uygulandı; dağıtılmış taslak işlemleri sentetik veriyle doğrulandı.
+
+## 18 Ekim — stok temeli
+İlk aşama ortak ürün kartı/listesidir: ürün adı, benzersiz parça kodu ve birim. Oluşturma yetkisi işlem yapılan depodan doğrulanır; kart eklemek stok oluşturmaz. Miktar ve maliyet/parti stok girişleri sonraki ayrı aşamadır. Ayrıntı: URUN_KATALOGU.md.

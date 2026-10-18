@@ -1,3 +1,4 @@
+import {createProducts} from './products.js?v=8c2ab91bfd51';
 import {createShipments} from './shipments.js?v=69d0877bbc02';
 import {revealCard} from './card-scroll.js?v=8be790ca5050';
 import {renderLegalDocuments,clearLegalDocuments} from './legal-view.js?v=8341a878c70e';
@@ -5,8 +6,8 @@ import {previewPersonnel,assertPreviewRead} from './preview.js?v=bc74676bde1e';
 import {createPersonnel} from './personnel.js?v=8fbb8c27fab8';
 import {config} from './config.js?v=ec17bf82ae7d';
 import {createApi} from './api.js?v=bd01bbf4eebb';
-import tr from './locales/tr.js?v=1d4b3e9e0747';
-import ro from './locales/ro.js?v=6cb03776c89c';
+import tr from './locales/tr.js?v=567f2416d922';
+import ro from './locales/ro.js?v=a8eaa5952c06';
 const $ = id => document.getElementById(id);
 const locales = {tr,ro}; let language = 'tr';
 try { const saved = localStorage.getItem('romway.language'); if (locales[saved]) language = saved; } catch { /* Storage can be blocked. */ }
@@ -24,12 +25,17 @@ const personnelApi={call:async(action,payload)=>{
  const result=await api.call(action,payload);
  return previewPersonnel(result,previewLocation);
 }};
-let personnel,shipments;
+let personnel,shipments,products;
+const canUseProducts=()=>view==='welcome'&&['super_admin','admin','purchasing'].includes(effectiveProfile()?.role);
 const desktopMenu=window.matchMedia('(min-width:821px)');
 function render() {
   if(view!=='welcome') workspace=false;
   if(view!=='welcome'||profile?.role!=='super_admin'){previewRole='';previewLocation='';previewLocations=[];$('preview-location').replaceChildren();}
   const shownProfile=effectiveProfile();
+  if(workspace==='stock'&&!canUseProducts()){workspace=false;products?.clear();}
+  $('product-section').hidden=!canUseProducts()||workspace!=='stock';
+  if(!canUseProducts()||workspace!=='stock')products?.clear();
+  for(const id of ['nav-stock-list','product-open','tab-stock','nav-inventory'])$(id).hidden=!canUseProducts();
   $('shipment-section').hidden=view!=='welcome'||!['shipment','shipment-start'].includes(workspace);
   if(view!=='welcome'||!['shipment','shipment-start'].includes(workspace))shipments?.clear();
   $('shipment-heading').textContent=text(workspace==='shipment-start'?'shipment_new_draft':'shipment_management');
@@ -59,9 +65,9 @@ function render() {
   $('auth-panel').hidden=signedIn;document.querySelector('.intro').hidden=signedIn;
   $('welcome').hidden=!signedIn||workspace;
   document.body.classList.toggle('app-shell',signedIn);
-  const pageLabels={settings:'settings_title',legal:'legal_title',personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'stock_list',shipment:'shipment_management','shipment-start':'start_shipment'};
+  const pageLabels={settings:'settings_title',legal:'legal_title',personnel:'staff_list',location:'location_list','staff-profile':'staff_profile','location-profile':'location_profile',stock:'product_list',shipment:'shipment_management','shipment-start':'start_shipment'};
   $('page-title').textContent=signedIn?text(pageLabels[workspace]??'dashboard_title'):'';
-  $('pending-section').hidden=!signedIn||workspace!=='stock';
+  $('pending-section').hidden=true;
   if(['stock','shipment','shipment-start'].includes(workspace))$('pending-heading').textContent=text(pageLabels[workspace]);
   $('bottom-tabs').hidden=!signedIn;
   $('tab-personnel').hidden=!['admin','super_admin'].includes(shownProfile?.role);
@@ -93,11 +99,12 @@ function render() {
   $('retry').hidden = view !== 'checking' || busy;
   $('panel-title').textContent = view === 'welcome' ? `${text('welcome_title')}, ${profile?.display_name ?? ''}` : text(view === 'change' ? 'change_title' : 'login_title');
   $('subtitle').textContent = text(view === 'change' ? 'change_subtitle' : view === 'welcome' ? 'welcome_subtitle' : 'login_subtitle');
-  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile'],['personnel-dialog-message',$('personnel-dialog').open],['legal-message',workspace==='legal'],['shipment-message',['shipment','shipment-start'].includes(workspace)]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
-  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#shipment-new,#shipment-open,#nav-settings,#nav-legal,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
+  for(const [id,visible] of [['message',!signedIn],['dashboard-message',signedIn&&!workspace],['personnel-message',workspace==='personnel'],['location-message',workspace==='location'],['profile-operation-message',workspace==='staff-profile'],['personnel-dialog-message',$('personnel-dialog').open],['legal-message',workspace==='legal'],['shipment-message',['shipment','shipment-start'].includes(workspace)],['product-message',workspace==='stock'],['product-dialog-message',$('product-dialog').open]]) {$(id).textContent=visible&&message?text(message):'';$(id).className=isError?'error':'';}
+  document.querySelectorAll('form input,form select,form button,#logout,#retry,#personnel-open,#nav-home,#nav-brand,#nav-personnel,#nav-add-personnel,#nav-add-location,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-search,#personnel-active-only,#personnel-more,#personnel-list button,#record-edit,#product-new,#product-more,#product-open,#product-close,#product-cancel,#shipment-new,#shipment-open,#nav-settings,#nav-legal,#nav-stock-list,#nav-shipment,#nav-start-shipment,#bottom-tabs button').forEach(el => { el.disabled = busy || !api.configured; });
   for(const id of ['preview-role','preview-location','preview-end'])$(id).disabled=busy;
   if(previewRole){document.querySelectorAll('#personnel-form input,#personnel-form select,#personnel-form button,#location-form input,#location-form button,#personnel-new,#personnel-dialog-close,#location-toggle,#personnel-list button,#record-edit').forEach(el=>el.disabled=true);}
   document.querySelectorAll('.panel').forEach(el=>el.setAttribute('aria-busy',String(busy)));
+  products?.translate();
 }
 function transition(next) { if (view !== next) { $('login').reset(); $('change').reset(); } view = next; }
 function notify(key, error = false) { message = key; isError = error; render(); }
@@ -193,7 +200,7 @@ $('nav-add-personnel').addEventListener('click',()=>{closeMenu(false);personnel.
 $('nav-add-location').addEventListener('click',()=>{closeMenu(false);personnel.open('location');});
 desktopMenu.addEventListener('change',()=>{closeMenu(false);render();});
 $('retry').addEventListener('click',restore);
-function showPending(page){if(['shipment','shipment-start'].includes(page)){showShipments(page);return;}closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':page==='shipment-start'?'start_shipment':'shipment_management');render();revealCard($('pending-heading'),{focus:true});}
+function showPending(page){if(page==='stock'){showProducts();return;}if(['shipment','shipment-start'].includes(page)){showShipments(page);return;}closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;workspace=page;rememberPage(page);message='';$('pending-heading').textContent=text(page==='stock'?'stock_list':page==='shipment-start'?'start_shipment':'shipment_management');render();revealCard($('pending-heading'),{focus:true});}
 function showSettings(){
  if(!canReadLegal()){showDashboard();return;}
  closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;
@@ -215,6 +222,13 @@ async function showShipments(page){
  workspace=page;rememberPage(page);message='';render();await shipments.open(page);if(workspace===page)revealCard($('shipment-heading'),{focus:true});
 }
 shipments=createShipments({api,text,run:perform,isReadonly:()=>Boolean(previewRole),onNavigate:showShipments});
+async function showProducts(){
+ if(busy||view!=='welcome')return;if(!canUseProducts()){showDashboard();return;}
+ closeMenu(false);personnel.clear();$('personnel-section').hidden=true;$('location-section').hidden=true;$('record-profile').hidden=true;
+ workspace='stock';rememberPage('stock');message='';render();await products.open();if(workspace==='stock')revealCard($('product-heading'),{focus:true});
+}
+products=createProducts({api,text,run:perform,isReadonly:()=>Boolean(previewRole),isBusy:()=>busy});
+$('product-open').addEventListener('click',showProducts);
 $('nav-stock-list').addEventListener('click',()=>showPending('stock'));
 $('nav-shipment').addEventListener('click',()=>{shipmentExpanded=!shipmentExpanded;render();});
 $('nav-start-shipment').addEventListener('click',()=>showPending('shipment-start'));

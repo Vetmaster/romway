@@ -9,12 +9,12 @@ const db=new PGlite(),users=new Map(),TR='00000000-0000-4000-8000-000000000001';
 let browser,httpServer,staticServer;
 try{
  await db.exec('create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);');
- for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql','202610160005_single_personnel_location.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['202610100001_auth_foundation.sql','202610110002_personnel.sql','202610110003_personnel_list_created_at.sql','202610110004_location_optional_country.sql','202610160005_single_personnel_location.sql','202610180006_shipment_drafts.sql','202610180007_product_catalog.sql'])await db.exec(await readFile(new URL('../supabase/migrations/'+file,import.meta.url),'utf8'));
  const admin=crypto.randomUUID(),email=`staff-${admin}@identity.invalid`;
  users.set(email,{id:admin,password:'Synthetic-admin-password'});
  await db.query('insert into auth.users values($1)',[admin]);
  await db.query("insert into romway_private.staff(id,employee_number,auth_email,display_name,role,active,password_change_required) values($1,'BROWSERADMIN',$2,'Browser Admin','super_admin',true,false)",[admin,email]);
- const names=new Set(['romway_staff_for_login','romway_consume_attempt','romway_open_session','romway_session','romway_revoke_session','romway_begin_password','romway_finish_password','romway_personnel']);
+ const names=new Set(['romway_staff_for_login','romway_consume_attempt','romway_open_session','romway_session','romway_revoke_session','romway_begin_password','romway_finish_password','romway_personnel','romway_shipments','romway_products']);
  const backend={
   async rpc(name,args){assert(names.has(name));const entries=Object.entries(args);return (await db.query(`select public.${name}(${entries.map(([k],i)=>{assert(/^p_[a-z_]+$/.test(k));return `${k}=>$${i+1}`;}).join(',')}) value`,entries.map(([,v])=>v))).rows[0].value;},
   async verifyPassword(e,p){const u=users.get(e);return u?.password===p?u.id:null;},
@@ -86,7 +86,7 @@ try{
   await page.reload();await page.locator('#record-profile').waitFor({state:'visible'});assert((await page.locator('#record-details').textContent()).includes('MOBILE'+width));await page.locator('#record-back').click();await page.locator('#personnel-section').waitFor({state:'visible'});
   await navigate('nav-add-location');await page.locator('#location-list').getByRole('link',{name:'Browser Test Depot '+width,exact:true}).click();await page.locator('#record-profile').waitFor({state:'visible'});assert((await page.locator('#record-details').textContent()).includes('Browser Test Depot '+width));assert((await page.locator('#record-related').textContent()).includes('MOBILE'+width)===false);
   await page.locator('#record-back').click();await page.locator('#location-section').waitFor({state:'visible'});
-  await page.evaluate(()=>location.hash='stock');await page.locator('#pending-section').waitFor();await page.evaluate(()=>location.hash='shipment');await page.waitForFunction(()=>document.querySelector('#tab-shipment').getAttribute('aria-current')==='page');await page.evaluate(()=>location.hash='personnel');await page.locator('#personnel-section').waitFor();
+  await page.evaluate(()=>location.hash='stock');await page.locator('#product-section').waitFor();await page.waitForFunction(()=>!document.querySelector('#product-search').disabled);await page.evaluate(()=>location.hash='shipment');await page.waitForFunction(()=>document.querySelector('#tab-shipment').getAttribute('aria-current')==='page');await page.evaluate(()=>location.hash='personnel');await page.locator('#personnel-section').waitFor();
   const target=page.locator('#personnel-list tr').filter({hasText:'MOBILE'+width});await target.getByRole('link').click();await page.locator('#record-edit').click();assert(await page.locator('#personnel-form').isVisible());assert.equal(await page.locator('#personnel-form-heading').textContent(),'Editează');
   await page.locator('#personnel-active').uncheck();await page.locator('#personnel-save').click();await page.locator('#record-details').getByText('Inactiv',{exact:true}).waitFor();
   await logout();await page.locator('#login').waitFor({state:'visible'});assert(await page.locator('#personnel-section').isHidden());
