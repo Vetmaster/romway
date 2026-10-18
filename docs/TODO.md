@@ -237,3 +237,14 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Ayarlar alt bağlantısı kullanıcı satırına yaklaştırıldı: aralık 16→4 px, kullanıcı üst boşluğu 20→12 px; alt bölümün son hizası korunur.
 
 - Ayarlar ekranı da yasal ekranın geniş alan düzenine alındı: mobil dış yan boşluk 8 px, panel ve bağlantı kartı 12 px; masaüstü üst sınır 1440 px.
+
+## 18 Ekim — sevkiyat taslağı
+- Hazır: taslak formu/liste TR/RO, yerel SQL/RPC ve Edge rol/depo denetimi, fiyat içermeyen yanıt, tekrar güvenli oluşturma. Detay: SEVKIYAT_ASAMALARI.md.
+- Bekleyen: yeni migration ve Edge yalnız test projesine uygulanması için onay; dağıtılmış gerçek entegrasyon testi ve Pages yayını.
+- Yapılacak: ürün/miktar/parti/seri/QR altyapısı, stok hareketi, gönderim, teslim alma ve personel konum geçmişi. Bu işler tamamlanmış sayılmaz.
+
+- Doğrulandı: 49 birim/SQL/HTTP testi geçti. Chromium 390/1440 süper admin/nakliye taslak formu, hata tekrarı, aynı istek kimliği, TR/RO, metin kaçışları, yenileme ve taşma kontrolleri; mevcut rol önizleme/yasal/personel kontrolleri geçti. Test verileri sentetiktir; dağıtılmış sevkiyat entegrasyonu henüz yapılmadı.
+
+- 18 Ekim kullanıcı onayı uygulandı: yalnız romway-auth-test migration 202610180006 ve Edge v9 ACTIVE. Mevcut kayıt özetleri aynı. Dağıtılmış sunucuda sentetik nakliye hesabıyla taslak liste/oluşturma, tekrar güvenliği, farklı içerikle tekrar reddi, geçersiz rota ve yetki kontrolleri geçti. Bir test taslağı saklandı; önceki taslaklar değişmedi. Pages v2026.10.18.1 yayına hazır.
+
+- Pages v2026.10.18.1 built ve canlı uygulama dosyası doğrulandı. Canlı mobil Chromium testinde gerçek cookie girişi, taslak listesi/formu, depo seçenekleri, nakliye rolünün yalnız kendisini seçmesi, sayfa yenileme ve çıkış geçti; ek taslak oluşturulmadı.

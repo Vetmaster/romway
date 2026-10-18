@@ -99,3 +99,6 @@ Personel aynı anda en fazla bir lokasyona bağlıdır; çoklu seçim yapılmaz.
 
 ## Nakliye personeli konum ve hareket geçmişi
 16 Ekim kararı: konum sevkiyat ve teslim alma işlemlerinden otomatik güncellenir; personel elle konum bildirmez. Profilde son bilinen konum ve hareket geçmişi bulunur. Bağlı depo mevcut konum olarak varsayılmaz. Sevkiyata nakliye personeli atanması, kaynak çıkışı/yolda/hedef kabulü ve işlem zamanı sunucuda kaydedilecek; son kayıt ve sevkiyat durumu gösterilecek, canlı GPS konumu iddiası yapılmayacak. Hareket kayıtları yetkili admin/süper admin personel kapsamıyla filtrelenecek, fiyat içermeyecek. Mevcut sevkiyat altyapısı henüz olmadığından UI şimdilik açıkça bilinmiyor/bağlantı bekliyor durumundadır; gerçek konum/geçmiş API ve veritabanı entegrasyonu tamamlanmış sayılmaz.
+
+## 18 Ekim — sevkiyat başlangıcı
+İlk aşama yalnız kaynak/hedef depo, nakliye personeli ve açıklama içeren sevkiyat taslağıdır. Ürün ve miktar/parti/seri altyapısı olmadan stok düşülmez, yolda veya teslim edildi durumu oluşturulmaz. Ayrıntılı sıra: SEVKIYAT_ASAMALARI.md. 18 Ekim kullanıcı onayıyla taslak migration/Edge yalnız romway-auth-test projesine uygulandı; dağıtılmış taslak işlemleri sentetik veriyle doğrulandı.

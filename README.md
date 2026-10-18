@@ -44,3 +44,6 @@ Telefon önizlemesi için aynı Wi-Fi ağında Mac’in özel ağ IP adresiyle `
 ## Personel yönetimi hazırlığı
 
 Personel yönetimi, temsili lokasyonlar ve sunucu yetkileri kullanıcı onayıyla yalnız ayrı Romway test projesine uygulandı. GitHub Pages test yayını güncellendi; gerçek API ve yönlendirmesiz yayın dosyalarıyla mobil akış doğrulandı. Kanıtlar INCELEME.md içinde tutulur. Yetki, geçici şifre teslimi ve yarım işlem sınırları [PERSONNEL.md](docs/PERSONNEL.md) içindedir. `npm run test:personnel-browser` personel ekranının yerel PostgreSQL/HTTP tarayıcı testidir; Chrome için `PLAYWRIGHT_EXECUTABLE_PATH` kullanılabilir. Bu test Supabase bulutuna veya gerçek kullanıcı hesaplarına yazmaz.
+
+## Sevkiyat taslağı — geliştirme
+Kaynak/hedef depo, nakliye personeli ve açıklama içeren taslak aşaması hazırlanmıştır. Ürün/miktar/QR ve stok hareketi henüz yoktur. 18 Ekim kullanıcı onayıyla migration ve Edge yalnız romway-auth-test projesine uygulandı; gerçek stok hareketi yoktur. Kapsam ve sonraki aşamalar: `docs/SEVKIYAT_ASAMALARI.md`. Yerel kontroller: `npm test` ve `node tests/shipments-browser.mjs` (Playwright Chromium gerekir).

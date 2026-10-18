@@ -56,3 +56,5 @@
 - 16 Ekim kararı: personel aynı anda en fazla bir bağlı lokasyona sahiptir; yeni kayıt/değişiklik UI, Edge ve RPC katmanında doğrulanır. Eski çoklu atamalar otomatik silinmez/seçilmez; yetkili kullanıcı tekini seçerek düzeltir. Nakliye operasyon kapsamı bu idari bilgiden bağımsızdır. 16 Ekim kullanıcı onayıyla 202610160005 ve romway-auth Edge güncellemesi yalnız romway-auth-test projesine uygulanabilir; diğer projeler ve kayıt silme kapsam dışıdır.
 
 - 17 Ekim kullanıcı yasal bilgilendirmeler sunucu güncellemesini yalnız romway-auth-test projesine uygulayıp ardından Pages yayınını açıkça onayladı. Bu izin başka Supabase projelerini kapsamaz; migration gerekmemektedir.
+
+- 18 Ekim kullanıcı PR #98 sevkiyat taslakları için 202610180006 migration ve romway-auth Edge güncellemesini yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulamayı, doğrulama ve ardından Pages yayınını açıkça onayladı. Mevcut kayıtlar korunur; sentetik test taslağı silinmez. Gönderim/stok hareketi kapsamda değildir.
