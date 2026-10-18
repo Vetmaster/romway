@@ -456,3 +456,5 @@ TR banner açıklaması 10/14 px aralığından 9.5/13 px aralığına hafif kü
 
 - 18 Ekim kullanıcı onayıyla ürün kataloğu migration 202610180007 ve Edge v10 ACTIVE yalnız romway-auth-test projesine uygulandı. Mevcut kayıt özetleri aynı. Dağıtılmış katalog liste/oluşturma/tekrar güvenliği/kod tekrarı/birim/Origin/oturum testleri geçti; bir sentetik kart saklandı.
 - Kullanıcının ayrıca istediği TESTADMIN→TEST_S_ADMIN giriş adı değiştirildi; Auth kimliği, parola kaydının parmak izi ve oturum sürümü aynı kaldı. TEST_ADMIN/admin, TEST_SATINALMA/purchasing, TEST_PERSONEL/receiver tek test deposuna bağlı oluşturuldu. Üçünün gerçek geçici şifre girişi ve ilk şifre değişimi engeli doğrulandı; şifreler kaynak/log/tarayıcı deposuna yazılmadı, yalnız Git dışı özel 0600 dosyada teslim edilir.
+
+- Pages v2026.10.18.2 built ve canlı ürün kataloğu uygulama dosyası yerel doğrulanmış sürümle aynı olarak kontrol edildi. Üç yeni test hesabının gerçek geçici girişleri başarılı; zorunlu şifre değişimi korunuyor.

@@ -21,3 +21,5 @@ Depoya stok girişi: ürün + miktar + parti/seri + EUR vergi dahil alış fiyat
 
 ## Yerel doğrulama
 54 birim/SQL/HTTP testi ve Chromium 390/1440 ürün ekranı, mevcut sevkiyat/personel/rol/yasal ekran kontrolleri geçti. Yeni ürün SQL testleri kod normalizasyonu/benzersizliği, tekrarlama, lokasyon kapsamı, nakliye/ilk şifre/kapalı hesap reddi ve service-only RPC/RLS kontrollerini kapsar. Test projesi dağıtımı ve endpoint kontrolleri yukarıda kayıtlıdır.
+
+- Pages v2026.10.18.2 built ve canlı ürün kataloğu uygulama dosyası yerel doğrulanmış sürümle aynı olarak kontrol edildi. Üç yeni test hesabının gerçek geçici girişleri başarılı; zorunlu şifre değişimi korunuyor.
