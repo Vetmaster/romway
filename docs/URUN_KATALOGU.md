@@ -14,10 +14,10 @@
 Aktif HttpOnly oturum, ilk şifre değişimi ve rol/depo yetkisi Edge ve service-only SQL RPC ile doğrulanır. Products tablosunda RLS açık ve istemci politikası/grant yoktur. Fiyat veya miktar kolonları bulunmaz; istemcinin ilave quantity/price alanları dikkate alınmaz. DOM metinleri textContent ile yazılır; rol önizlemesinde gerçek katalog verisi okunmaz ve kayıt yapılamaz.
 
 ## Dağıtım
-202610180007 migration, yeni Edge modülü ve opt-in `scripts/deploy-test-products.mjs` hazırdır. Mevcut Supabase'e uygulanmadı; test projesine ayrıca onay bekler. Pages eski sunucuya eksik API çağrısı yapacak biçimde yayınlanmayacak. İzin verilirse yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulanır; mevcut personel/lokasyon ve sevkiyat taslakları önce/sonra karşılaştırılır.
+18 Ekim açık kullanıcı onayıyla 202610180007 migration ve romway-auth Edge v10 ACTIVE yalnız romway-auth-test (ifnjvdjhfhzfxyuorqvz) projesine uygulandı. Dağıtım öncesi/sonrası mevcut personel/lokasyon/sevkiyat taslağı özetleri aynı kaldı. Dağıtılmış endpointte operatör test oturumuyla liste/oluşturma, tekrar güvenliği, normalleştirilmiş kod tekrarı reddi, geçersiz birim, Origin ve oturum kontrolleri geçti. Bir sentetik ürün kartı saklandı; önceki ürünler ve sevkiyatlar değişmedi. Pages v2026.10.18.2 yayını hazırlandı.
 
 ## Sonraki adım
 Depoya stok girişi: ürün + miktar + parti/seri + EUR vergi dahil alış fiyatı; vergisiz tutar/vergi ayrımı ve garanti/son kullanma. Taşıma gideri maliyete katılmaz. Ardından depo miktar listesi ve ürün seçilebilen gerçek sevkiyat/teslim alma akışı gelir.
 
 ## Yerel doğrulama
-54 birim/SQL/HTTP testi ve Chromium 390/1440 ürün ekranı, mevcut sevkiyat/personel/rol/yasal ekran kontrolleri geçti. Yeni ürün SQL testleri kod normalizasyonu/benzersizliği, tekrarlama, lokasyon kapsamı, nakliye/ilk şifre/kapalı hesap reddi ve service-only RPC/RLS kontrollerini kapsar. Yeni dağıtım henüz uygulanmadı.
+54 birim/SQL/HTTP testi ve Chromium 390/1440 ürün ekranı, mevcut sevkiyat/personel/rol/yasal ekran kontrolleri geçti. Yeni ürün SQL testleri kod normalizasyonu/benzersizliği, tekrarlama, lokasyon kapsamı, nakliye/ilk şifre/kapalı hesap reddi ve service-only RPC/RLS kontrollerini kapsar. Test projesi dağıtımı ve endpoint kontrolleri yukarıda kayıtlıdır.

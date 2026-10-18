@@ -255,3 +255,6 @@ Yerel Docker kurulumu kullanıcı tercihiyle uygulanmadı; bulut test ortamı ku
 - Sonraki: stok girişi miktar/parti/seri, EUR maliyet/vergi, stok miktar listesi ve gerçek sevkiyat. Detay: URUN_KATALOGU.md.
 
 - Doğrulandı: 54 yerel birim/SQL/HTTP testi geçti. Chromium 390/1440 ürün modalı/odak, yinelenen kod hatası ve tekrar deneme, 10’ar sayfalama/arama, TR/RO, XSS metin kaçışı, yenileme/rol önizlemesi/taşma kontrolleri geçti. Sevkiyat, personel, rol önizleme ve yasal ekran regresyonları da geçti; gerçek Supabase ürün entegrasyonu yapılmadı.
+
+- 18 Ekim kullanıcı onayıyla ürün kataloğu migration 202610180007 ve Edge v10 ACTIVE yalnız romway-auth-test projesine uygulandı. Mevcut kayıt özetleri aynı. Dağıtılmış katalog liste/oluşturma/tekrar güvenliği/kod tekrarı/birim/Origin/oturum testleri geçti; bir sentetik kart saklandı.
+- Kullanıcının ayrıca istediği TESTADMIN→TEST_S_ADMIN giriş adı değiştirildi; Auth kimliği, parola kaydının parmak izi ve oturum sürümü aynı kaldı. TEST_ADMIN/admin, TEST_SATINALMA/purchasing, TEST_PERSONEL/receiver tek test deposuna bağlı oluşturuldu. Üçünün gerçek geçici şifre girişi ve ilk şifre değişimi engeli doğrulandı; şifreler kaynak/log/tarayıcı deposuna yazılmadı, yalnız Git dışı özel 0600 dosyada teslim edilir.

@@ -105,3 +105,5 @@ Personel aynı anda en fazla bir lokasyona bağlıdır; çoklu seçim yapılmaz.
 
 ## 18 Ekim — stok temeli
 İlk aşama ortak ürün kartı/listesidir: ürün adı, benzersiz parça kodu ve birim. Oluşturma yetkisi işlem yapılan depodan doğrulanır; kart eklemek stok oluşturmaz. Miktar ve maliyet/parti stok girişleri sonraki ayrı aşamadır. Ayrıntı: URUN_KATALOGU.md.
+
+18 Ekim ürün kartı test migration/Edge dağıtımı kullanıcı onayıyla yalnız romway-auth-test projesine uygulandı ve dağıtılmış endpoint doğrulandı. Miktar/maliyet stok girişleri hâlâ sonraki aşamadır.

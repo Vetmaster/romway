@@ -49,4 +49,4 @@ Personel yönetimi, temsili lokasyonlar ve sunucu yetkileri kullanıcı onayıyl
 Kaynak/hedef depo, nakliye personeli ve açıklama içeren taslak aşaması hazırlanmıştır. Ürün/miktar/QR ve stok hareketi henüz yoktur. 18 Ekim kullanıcı onayıyla migration ve Edge yalnız romway-auth-test projesine uygulandı; gerçek stok hareketi yoktur. Kapsam ve sonraki aşamalar: `docs/SEVKIYAT_ASAMALARI.md`. Yerel kontroller: `npm test` ve `node tests/shipments-browser.mjs` (Playwright Chromium gerekir).
 
 ## Ürün kataloğu — geliştirme
-Ortak ürün kartı/listesi hazırlanmıştır; miktar, maliyet ve stok girişleri kapsam dışıdır. Yeni migration/Edge yalnız dosya olarak hazırdır ve test dağıtımı onay bekler. `docs/URUN_KATALOGU.md` kapsamı açıklar. Kontroller: `npm test`, `node tests/products-browser.mjs`.
+Ortak ürün kartı/listesi hazırlanmıştır; miktar, maliyet ve stok girişleri kapsam dışıdır. 18 Ekim kullanıcı onayıyla migration/Edge yalnız romway-auth-test projesine uygulandı; dağıtılmış katalog endpointi doğrulandı. `docs/URUN_KATALOGU.md` kapsamı açıklar. Kontroller: `npm test`, `node tests/products-browser.mjs`.
